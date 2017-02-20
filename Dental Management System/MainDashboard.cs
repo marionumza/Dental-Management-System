@@ -219,7 +219,7 @@ namespace Dental_Management_System
             // PerformLoad();
 
             //Properties.Settings.Default["CalendarTest"].Value();
-
+            System.DateTime holidayDate1 = new DateTime();
             ResizeRedraw = true;
             appVersion.Text = String.Format("v.{0}", AssemblyVersion);
             appTitle.Text= String.Format(AssemblyTitle);

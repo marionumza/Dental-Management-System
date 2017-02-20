@@ -102,12 +102,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ComposeMail.cs">
+    <Compile Include="Modules\ComposeMail.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ComposeMail.Designer.cs">
+    <Compile Include="Modules\ComposeMail.Designer.cs">
       <DependentUpon>ComposeMail.cs</DependentUpon>
     </Compile>
+    <Compile Include="DatabaseConnectionLink.cs" />
+    <Compile Include="DatabaseGetData.cs" />
     <Compile Include="Modules\DialogBoxes\EnterAdminPassPrompt.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -126,11 +128,12 @@
     <Compile Include="Modules\AppSettings.Designer.cs">
       <DependentUpon>AppSettings.cs</DependentUpon>
     </Compile>
-    <Compile Include="MainDashboard.cs">
+    <Compile Include="Modules\MainDashboard.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainDashboard.Designer.cs">
+    <Compile Include="Modules\MainDashboard.Designer.cs">
       <DependentUpon>MainDashboard.cs</DependentUpon>
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Modules\DialogBoxes\LoadingDashDialogBox.cs">
       <SubType>Form</SubType>
@@ -168,10 +171,10 @@
     <Compile Include="Modules\Patient_Registation.Designer.cs">
       <DependentUpon>Patient_Registation.cs</DependentUpon>
     </Compile>
-    <Compile Include="PaymentModu.cs">
+    <Compile Include="Modules\PaymentModu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PaymentModu.Designer.cs">
+    <Compile Include="Modules\PaymentModu.Designer.cs">
       <DependentUpon>PaymentModu.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\PaymentRates.Designer.cs">
@@ -181,7 +184,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="ComposeMail.resx">
+    <EmbeddedResource Include="Modules\ComposeMail.resx">
       <DependentUpon>ComposeMail.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modules\AppSettings.resx">
@@ -190,10 +193,10 @@
     <EmbeddedResource Include="Modules\DialogBoxes\LoadingDashDialogBox.resx">
       <DependentUpon>LoadingDashDialogBox.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainDashboard.en-US.resx">
+    <EmbeddedResource Include="Modules\MainDashboard.en-US.resx">
       <DependentUpon>MainDashboard.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainDashboard.resx">
+    <EmbeddedResource Include="Modules\MainDashboard.resx">
       <DependentUpon>MainDashboard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login Forms\serverSettings.resx">
@@ -217,7 +220,7 @@
     <EmbeddedResource Include="Modules\Patient_Registation.resx">
       <DependentUpon>Patient_Registation.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PaymentModu.resx">
+    <EmbeddedResource Include="Modules\PaymentModu.resx">
       <DependentUpon>PaymentModu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

@@ -35,10 +35,17 @@ namespace Dental_Management_System
     {
         public MainDashboard()
         {
-
             InitializeComponent();
-
         }
+
+        // CALL CLASS
+        DatabaseConnectionLink databaseConnectionLink = new DatabaseConnectionLink();
+        DatabaseGetData databaseGetData = new DatabaseGetData();
+
+        LoadingDashDialogBox loadingDialogBox = new LoadingDashDialogBox();
+        DataTable patientData = new DataTable();
+        DataTable pullPatientData = new DataTable();
+
 
         public string AssemblyVersion
         {
@@ -65,9 +72,6 @@ namespace Dental_Management_System
             }
         }
 
-        LoadingDashDialogBox loadingDialogBox = new LoadingDashDialogBox();
-        DataTable patientData = new DataTable();
-        DataTable pullPatientData = new DataTable();
 
         int pageSize = 999;
         int CurrentPageIndex = 1;
@@ -86,25 +90,18 @@ namespace Dental_Management_System
 
         public void PerformLoad()
         {
-
-            string connectionString = "Server=" + Properties.Settings.Default["SQL_IP"] + ';' + "Database=" +
-            Properties.Settings.Default["SQL_Database"] + ";" + "UID=" + Properties.Settings.Default["SQL_User"] + ';' + "PWD=" +
-            Properties.Settings.Default["SQL_Pass"];
-
-            string loadPatientInformation = "SELECT patient_information.PID, patient_information.FirstName, patient_information.MiddleName, patient_information.LastName, patient_information.Birthday, patient_information.Gender, patient_information.PhoneNumber, patient_information.Email FROM patient_information";
-
             try
             {
-                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                using (MySqlConnection connection = new MySqlConnection(databaseConnectionLink.networkLink))
                 {
                     connection.Open();
-                    MySqlCommand countcommand = connection.CreateCommand();
-                    countcommand.CommandText = "SELECT COUNT(*) FROM Patient_Information WHERE Birthday";
-                    long count = (long)countcommand.ExecuteScalar();
+                    MySqlCommand countCommand = connection.CreateCommand();
+                    countCommand.CommandText = "SELECT COUNT(*) FROM Patient_Information WHERE Birthday";
+                    long count = (long)countCommand.ExecuteScalar();
                     btnViewAppointments.Text = "View Appointments (" + count.ToString() + ")";
 
 
-                    using (MySqlDataAdapter data = new MySqlDataAdapter(loadPatientInformation, connectionString))
+                    using (MySqlDataAdapter data = new MySqlDataAdapter(databaseGetData.getDataFromDatabase, databaseConnectionLink.networkLink))
                     {
                         data.Fill(patientData);
 
@@ -117,8 +114,6 @@ namespace Dental_Management_System
             }
             catch(MySqlException exception)
             {
-
-                //MessageBox.Show(exception.Message + "\n" + "Please check your settings and restart the application", this.Text);
 
             }
             
@@ -155,7 +150,6 @@ namespace Dental_Management_System
             try
             {
 
-
                 dataGridView1.AutoGenerateColumns = false;
                 dataGridView1.MultiSelect = false;
                 dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -166,7 +160,7 @@ namespace Dental_Management_System
 
                 if (patientData.Rows.Count == 0)
                 {
-                   
+                 
                     //DisableModules();
                     //return;
                 }
@@ -193,8 +187,6 @@ namespace Dental_Management_System
                     dataGridView1.Columns[6].DataPropertyName = "Email";
                 }
 
-
-
             }
             catch(Exception ex)
             {
@@ -203,9 +195,6 @@ namespace Dental_Management_System
             }
 
         }
-
-
-
 
         private void Dashboard_Load(object sender, EventArgs e)
         {
@@ -281,17 +270,6 @@ namespace Dental_Management_System
             }
         }
 
-        
-
-
-        private void aboutDentalManagementToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            AboutForm aboutForm = new AboutForm();
-            aboutForm.ShowDialog();
-        }
-
-
-
         private void MainDashboard_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
@@ -336,11 +314,6 @@ namespace Dental_Management_System
 
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void BannerPanel_Paint(object sender, PaintEventArgs e)
         {
 
         }

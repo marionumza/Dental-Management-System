@@ -568,7 +568,6 @@
             this.BannerPanel.Name = "BannerPanel";
             this.BannerPanel.Size = new System.Drawing.Size(1080, 71);
             this.BannerPanel.TabIndex = 0;
-            this.BannerPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.BannerPanel_Paint);
             // 
             // label5
             // 

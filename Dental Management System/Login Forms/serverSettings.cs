@@ -25,17 +25,21 @@ namespace Dental_Management_System
         /// 
         /// </summary>
         /// 
-
+             
         BackgroundWorker worker = new BackgroundWorker();
         ProcessingDialogBox processingDialogBox = new ProcessingDialogBox();
 
+        // CLASS
+        DatabaseConnectionLink databaseConnectionLink = new DatabaseConnectionLink();
+
+
         public serverSettings()
         {
+
             InitializeComponent();
-
-
             worker.DoWork += (sender, args) => PerformReading();
             worker.RunWorkerCompleted += (sender, args) => ReadingCompleted();
+
         }
 
         /// <summary>
@@ -99,11 +103,7 @@ namespace Dental_Management_System
         private void NetworkTest()
         {
 
-            string connectionString = "Server=" + Properties.Settings.Default["SQL_IP"] + ';' + "Database=" +
-                Properties.Settings.Default["SQL_Database"] + ";" + "UID=" + Properties.Settings.Default["SQL_User"] + ';' + "PWD=" +
-                Properties.Settings.Default["SQL_Pass"];
-
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            using (MySqlConnection connection = new MySqlConnection(databaseConnectionLink.networkLink))
             {
 
                 try
@@ -113,14 +113,11 @@ namespace Dental_Management_System
 
                     Getsqlcompilemachineversion();
                     Getsqldatabaseengineversion();
-                    //sql_datasourcefilter();
                     connection.Close();
 
                 }
                 catch (Exception e)
                 {
-                    // pdb.Close();
-                    //sql_datasource.Items.Clear();
 
                     MessageBox.Show("Connection test failed. Please check the following: " + "\n" + "- The MySQL service is running"
                         + "\n" + "- MySQL server is installed" + "\n" + "- Application settings (e.g, Host address, Port, Username, Password)" + "\n" + "- Windows Firewall" + "\n" +
@@ -131,14 +128,9 @@ namespace Dental_Management_System
             }
         }
 
-
-        string connectionString = "Server=" + Properties.Settings.Default["SQL_IP"] + ';' + "Database=" + 
-            Properties.Settings.Default["SQL_Database"] + ";" + "UID=" + Properties.Settings.Default["SQL_User"] + ';' + "PWD=" + 
-            Properties.Settings.Default["SQL_Pass"];
-
         private void Getsqldatabaseengineversion()
         {
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            using (MySqlConnection connection = new MySqlConnection(databaseConnectionLink.networkLink))
             {
                 try
                 {
@@ -162,7 +154,7 @@ namespace Dental_Management_System
 
         private void Getsqlcompilemachineversion()
         {
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            using (MySqlConnection connection = new MySqlConnection(databaseConnectionLink.networkLink))
             {
                 try
                 {
@@ -186,7 +178,7 @@ namespace Dental_Management_System
 
         private void Getdatabaseengineversion()
         {
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            using (MySqlConnection connection = new MySqlConnection(databaseConnectionLink.networkLink))
             {
                 try
                 {
@@ -210,7 +202,7 @@ namespace Dental_Management_System
 
         private void GetOStype()
         {
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            using (MySqlConnection connection = new MySqlConnection(databaseConnectionLink.networkLink))
             {
                 try
                 {
@@ -234,7 +226,7 @@ namespace Dental_Management_System
 
         private void Getsqldatasourcefilter()
         {
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            using (MySqlConnection connection = new MySqlConnection(databaseConnectionLink.networkLink))
             {
                 try
                 {
@@ -302,7 +294,7 @@ namespace Dental_Management_System
                 "UID=" + Properties.Settings.Default["SQL_User"] + ';' + "PWD=" +
                 Properties.Settings.Default["SQL_Pass"];
 
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            using (MySqlConnection connection = new MySqlConnection(databaseConnectionLink.networkLink))
             {
                 try
                 {
@@ -444,11 +436,6 @@ namespace Dental_Management_System
         private void CreateDatabase_button_Click(object sender, EventArgs e)
         {
 
-            string connectionString1 = "Server=" + Properties.Settings.Default["SQL_IP"] + ';' + 
-                "UID=" + Properties.Settings.Default["SQL_User"] + ';' + "PWD=" +
-                Properties.Settings.Default["SQL_Pass"];
-
-
             if (txtboxDatabasename.Text == String.Empty)
             {
                 MessageBox.Show("Field cannot be left blank.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -463,7 +450,7 @@ namespace Dental_Management_System
             if (confirmCreationofDB == DialogResult.Yes)
             {
 
-                using (MySqlConnection connection = new MySqlConnection(connectionString1))
+                using (MySqlConnection connection = new MySqlConnection(databaseConnectionLink.networkLinkCreateDatabase))
                 {
                     try
                     {
@@ -518,8 +505,6 @@ namespace Dental_Management_System
                     }
                 }
 
-                //MessageBox.Show("Database " + "'" + txtboxDatabasename.Text + "'" + " has been created", this.Text,
-                //MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             }
             else if (confirmCreationofDB == DialogResult.No)
             {

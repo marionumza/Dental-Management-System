@@ -127,7 +127,7 @@ namespace Dental_Management_System
 
         private void linkLabel5_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            System.Diagnostics.Process.Start("http://www.mimekit.net/#");
+            System.Diagnostics.Process.Start("http://www.mimekit.net/");
         }
     }
 }

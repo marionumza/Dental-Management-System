@@ -198,6 +198,7 @@ namespace Dental_Management_System
 
         private void Dashboard_Load(object sender, EventArgs e)
         {
+            //comment
             BackgroundWorker initalizeDatabase = new BackgroundWorker();
             initalizeDatabase.DoWork += new DoWorkEventHandler(LoadDB);
             initalizeDatabase.RunWorkerCompleted += new RunWorkerCompletedEventHandler(LoadCompleted);

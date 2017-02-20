@@ -256,8 +256,9 @@ namespace Dental_Management_System
             DisableTextBoxInChartNotes();
 
             // DESIGN
-            this.Text = "Patient Medical Profile for " + firstname_readonly.Text + " " + lastname_readonly.Text;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Patient Medical Profile for " + firstname_readonly.Text + " " + lastname_readonly.Text;
+
         }
 
 

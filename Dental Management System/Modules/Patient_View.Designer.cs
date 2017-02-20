@@ -28,6 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+
+
+
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Patient_View));
             this.panel1 = new System.Windows.Forms.Panel();
@@ -190,7 +195,6 @@
             this.groupBox6.SuspendLayout();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ToothCharts_PicBox)).BeginInit();
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.toothcartnotes_panel.SuspendLayout();
             this.NotesPage1.SuspendLayout();
             this.NotesPage2.SuspendLayout();
@@ -495,11 +499,8 @@
             this.cbMaritalStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbMaritalStatus.FormattingEnabled = true;
             this.cbMaritalStatus.Items.AddRange(new object[] {
-            "Single",
-            "Married",
-            "Separated",
-            "Divorced",
-            "Widowed"});
+            "Male",
+            "Female"});
             this.cbMaritalStatus.Location = new System.Drawing.Point(114, 179);
             this.cbMaritalStatus.Name = "cbMaritalStatus";
             this.cbMaritalStatus.Size = new System.Drawing.Size(143, 25);
@@ -584,9 +585,9 @@
             this.label9.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.Location = new System.Drawing.Point(15, 182);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(87, 17);
+            this.label9.Size = new System.Drawing.Size(51, 17);
             this.label9.TabIndex = 21;
-            this.label9.Text = "Marital status";
+            this.label9.Text = "Gender";
             // 
             // label8
             // 
@@ -1762,7 +1763,6 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Patient_View";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Patient Medical Profile";
             this.Load += new System.EventHandler(this.Patient_View_Load);
             this.panel1.ResumeLayout(false);

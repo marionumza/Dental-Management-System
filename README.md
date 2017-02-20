@@ -11,3 +11,4 @@ Internal current software version
 Download the MySQL Server: https://www.mysql.com/
 
 .NET 4.0 Framework (Windows 7 users): https://www.microsoft.com/en-us/download/confirmation.aspx?id=17718
+

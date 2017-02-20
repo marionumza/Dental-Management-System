@@ -28,11 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-
-
-
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Patient_View));
             this.panel1 = new System.Windows.Forms.Panel();
@@ -1668,10 +1663,11 @@
             // 
             this.lastname_readonly.BackColor = System.Drawing.Color.White;
             this.lastname_readonly.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.lastname_readonly.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.lastname_readonly.Location = new System.Drawing.Point(50, 207);
             this.lastname_readonly.Name = "lastname_readonly";
             this.lastname_readonly.ReadOnly = true;
-            this.lastname_readonly.Size = new System.Drawing.Size(115, 15);
+            this.lastname_readonly.Size = new System.Drawing.Size(115, 18);
             this.lastname_readonly.TabIndex = 9;
             this.lastname_readonly.TabStop = false;
             this.lastname_readonly.Text = "- - -";
@@ -1690,10 +1686,11 @@
             // 
             this.middlename_readonly.BackColor = System.Drawing.Color.White;
             this.middlename_readonly.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.middlename_readonly.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.middlename_readonly.Location = new System.Drawing.Point(50, 153);
             this.middlename_readonly.Name = "middlename_readonly";
             this.middlename_readonly.ReadOnly = true;
-            this.middlename_readonly.Size = new System.Drawing.Size(115, 15);
+            this.middlename_readonly.Size = new System.Drawing.Size(115, 18);
             this.middlename_readonly.TabIndex = 7;
             this.middlename_readonly.TabStop = false;
             this.middlename_readonly.Text = "- - -";
@@ -1712,10 +1709,11 @@
             // 
             this.firstname_readonly.BackColor = System.Drawing.Color.White;
             this.firstname_readonly.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.firstname_readonly.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.firstname_readonly.Location = new System.Drawing.Point(50, 101);
             this.firstname_readonly.Name = "firstname_readonly";
             this.firstname_readonly.ReadOnly = true;
-            this.firstname_readonly.Size = new System.Drawing.Size(115, 15);
+            this.firstname_readonly.Size = new System.Drawing.Size(115, 18);
             this.firstname_readonly.TabIndex = 5;
             this.firstname_readonly.TabStop = false;
             this.firstname_readonly.Text = "- - -";
@@ -1734,10 +1732,11 @@
             // 
             this.lbl_IDnum.BackColor = System.Drawing.Color.White;
             this.lbl_IDnum.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.lbl_IDnum.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.lbl_IDnum.Location = new System.Drawing.Point(50, 52);
             this.lbl_IDnum.Name = "lbl_IDnum";
             this.lbl_IDnum.ReadOnly = true;
-            this.lbl_IDnum.Size = new System.Drawing.Size(115, 15);
+            this.lbl_IDnum.Size = new System.Drawing.Size(115, 18);
             this.lbl_IDnum.TabIndex = 3;
             this.lbl_IDnum.TabStop = false;
             this.lbl_IDnum.Text = "123456";
@@ -1763,6 +1762,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Patient_View";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Patient Medical Profile";
             this.Load += new System.EventHandler(this.Patient_View_Load);
             this.panel1.ResumeLayout(false);

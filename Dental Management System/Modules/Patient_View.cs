@@ -19,13 +19,14 @@ namespace Dental_Management_System
             InitializeComponent();
         }
 
-        string connectionString = "Server=" + Properties.Settings.Default["SQL_IP"] + ';' + "Database=" +
-        Properties.Settings.Default["SQL_Database"] + ";" + "UID=" + Properties.Settings.Default["SQL_User"] + ';' + "PWD=" +
-        Properties.Settings.Default["SQL_Pass"];
+
+        // CALL CLASS
+        DatabaseConnectionLink databaseConnectionLink = new DatabaseConnectionLink();
+        DatabaseGetData databaseGetData = new DatabaseGetData();
 
         private void LoadInformation()
         {
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            using (MySqlConnection connection = new MySqlConnection(databaseConnectionLink.networkLink))
             {
                 try
                 {
@@ -160,13 +161,43 @@ namespace Dental_Management_System
         {
 
             string fieldate = cbBirthday.Value.ToString("yyyy-MM-dd");
+            string question1 = null;
+            string question2 = null;
+            string charttype = null;
+
+            if (metroRadioButtonQ1Yes.Checked == true)
+            {
+                question1 = metroRadioButtonQ1Yes.Text;
+            }
+            else if (metroRadioButtonQ1No.Checked == true)
+            {
+                question1 = metroRadioButtonQ1No.Text;
+            }
+            if (metroRadioButtonQ2Yes.Checked == true)
+            {
+                question2 = metroRadioButtonQ2Yes.Text;
+            }
+            else if (metroRadioButtonQ2No.Checked == true)
+            {
+                question2 = metroRadioButtonQ2No.Text;
+            }
+
+            if (radioButtonPrimary.Checked == true)
+            {
+                charttype = radioButtonPrimary.Text;
+            }
+            else if (radioButtonPermament.Checked == true)
+            {
+                charttype = radioButtonPermament.Text;
+            }
 
             try
             {
-                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                using (MySqlConnection connection = new MySqlConnection(databaseConnectionLink.networkLink))
                 {
                     connection.Open();
                     MySqlCommand updateCommand = new MySqlCommand();
+                    updateCommand.CommandTimeout = 22000;
                     updateCommand.Connection = connection;
                     updateCommand.CommandText = "UPDATE Patient_Information SET FirstName=@FirstName, MiddleName=@MiddleName, LastName=@LastName, Birthday=@Birthday, Gender=@Gender, PhoneNumber=@PhoneNumber, Email=@Email, Occupation=@Occupation, ParentName=@ParentName, Relationship=@Relationship, HomePhone=@HomePhone, CellPhone=@CellPhone, WorkPhone=@WorkPhone, WorkExtPhone=@WorkExtPhone, Address=@Address WHERE PID=" + lbl_IDnum.Text;
                     updateCommand.Parameters.AddWithValue("@FirstName", String.Format("{0}", txtboxFirstName.Text));
@@ -187,7 +218,51 @@ namespace Dental_Management_System
                     updateCommand.ExecuteNonQuery();
                     updateCommand.Parameters.Clear();
 
-                    MessageBox.Show("Patient information updated.", this.Text);
+                    updateCommand.CommandText = "UPDATE Patient_MedHistory SET Q1=@Q1, Q2=@Q2, ChartType=@ChartType, Note1=@Note1, Note2=@Note2, Note3=@Note3, Note4=@Note4, Note5=@Note5, Note6=@Note6, Note7=@Note7, Note8=@Note8, Note9=@Note9, Note10=@Note10, Note11=@Note11, Note12=@Note12, Note13=@Note13, Note14=@Note14, Note15=@Note15, Note16=@Note16, Note17=@Note17, Note18=@Note18, Note19=@Note19, Note20=@Note20, Note21=@Note21, Note22=@Note22, Note23=@Note23, Note24=@Note24, Note25=@Note25, Note26=@Note26, Note27=@Note27, Note28=@Note28, Note29=@Note29, Note30=@Note30, Note31=@Note31, Note32=@Note32 WHERE PID=" + lbl_IDnum.Text;
+                    updateCommand.Parameters.AddWithValue("@Q1", String.Format("{0}", question1));
+                    updateCommand.Parameters.AddWithValue("@Q2", String.Format("{0}", question2));
+                    updateCommand.Parameters.AddWithValue("@ChartType", String.Format("{0}", charttype));
+                    updateCommand.Parameters.AddWithValue("@Note1", String.Format("{0}", toothNote_1.Text));
+                    updateCommand.Parameters.AddWithValue("@Note2", String.Format("{0}", toothNote_2.Text));
+                    updateCommand.Parameters.AddWithValue("@Note3", String.Format("{0}", toothNote_3.Text));
+                    updateCommand.Parameters.AddWithValue("@Note4", String.Format("{0}", toothNote_4.Text));
+                    updateCommand.Parameters.AddWithValue("@Note5", String.Format("{0}", toothNote_5.Text));
+                    updateCommand.Parameters.AddWithValue("@Note6", String.Format("{0}", toothNote_6.Text));
+                    updateCommand.Parameters.AddWithValue("@Note7", String.Format("{0}", toothNote_7.Text));
+                    updateCommand.Parameters.AddWithValue("@Note8", String.Format("{0}", toothNote_8.Text));
+                    updateCommand.Parameters.AddWithValue("@Note9", String.Format("{0}", toothNote_9.Text));
+                    updateCommand.Parameters.AddWithValue("@Note10", String.Format("{0}", toothNote_10.Text));
+                    updateCommand.Parameters.AddWithValue("@Note11", String.Format("{0}", toothNote_11.Text));
+                    updateCommand.Parameters.AddWithValue("@Note12", String.Format("{0}", toothNote_12.Text));
+                    updateCommand.Parameters.AddWithValue("@Note13", String.Format("{0}", toothNote_13.Text));
+                    updateCommand.Parameters.AddWithValue("@Note14", String.Format("{0}", toothNote_14.Text));
+                    updateCommand.Parameters.AddWithValue("@Note15", String.Format("{0}", toothNote_15.Text));
+                    updateCommand.Parameters.AddWithValue("@Note16", String.Format("{0}", toothNote_16.Text));
+                    updateCommand.Parameters.AddWithValue("@Note17", String.Format("{0}", toothNote_17.Text));
+                    updateCommand.Parameters.AddWithValue("@Note18", String.Format("{0}", toothNote_18.Text));
+                    updateCommand.Parameters.AddWithValue("@Note19", String.Format("{0}", toothNote_19.Text));
+                    updateCommand.Parameters.AddWithValue("@Note20", String.Format("{0}", toothNote_20.Text));
+                    updateCommand.Parameters.AddWithValue("@Note21", String.Format("{0}", toothNote_21.Text));
+                    updateCommand.Parameters.AddWithValue("@Note22", String.Format("{0}", toothNote_22.Text));
+                    updateCommand.Parameters.AddWithValue("@Note23", String.Format("{0}", toothNote_23.Text));
+                    updateCommand.Parameters.AddWithValue("@Note24", String.Format("{0}", toothNote_24.Text));
+                    updateCommand.Parameters.AddWithValue("@Note25", String.Format("{0}", toothNote_25.Text));
+                    updateCommand.Parameters.AddWithValue("@Note26", String.Format("{0}", toothNote_26.Text));
+                    updateCommand.Parameters.AddWithValue("@Note27", String.Format("{0}", toothNote_27.Text));
+                    updateCommand.Parameters.AddWithValue("@Note28", String.Format("{0}", toothNote_28.Text));
+                    updateCommand.Parameters.AddWithValue("@Note29", String.Format("{0}", toothNote_29.Text));
+                    updateCommand.Parameters.AddWithValue("@Note30", String.Format("{0}", toothNote_30.Text));
+                    updateCommand.Parameters.AddWithValue("@Note31", String.Format("{0}", toothNote_31.Text));
+                    updateCommand.Parameters.AddWithValue("@Note32", String.Format("{0}", toothNote_32.Text));
+                    updateCommand.ExecuteNonQuery();
+                    updateCommand.Parameters.Clear();
+
+                    DialogResult confirmSaveChanges = MessageBox.Show("Patient information has been updated.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if (confirmSaveChanges == DialogResult.OK)
+                    {
+                        metroToggleEditMode.Checked = false;
+                    }
+
                     connection.Close();
                 }
 
@@ -364,12 +439,23 @@ namespace Dental_Management_System
 
         private void Reset_button_Click(object sender, EventArgs e)
         {
-            DialogResult confirmDelete = MessageBox.Show("Are you sure you want to delete '" + firstname_readonly.Text + " " + lastname_readonly.Text + "'?", this.Text, MessageBoxButtons.YesNo,
-                MessageBoxIcon.Warning);
+            DialogResult confirmDelete = MessageBox.Show("Are you sure you want to delete '" + firstname_readonly.Text + " " + lastname_readonly.Text + "'?" +
+                "\n" + "This process cannot be reversed." , this.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
             if (confirmDelete == DialogResult.Yes)
             {
-
+                using (MySqlConnection connection = new MySqlConnection(databaseConnectionLink.networkLink))
+                {
+                    connection.Open();
+                    MySqlCommand deleteCommand = connection.CreateCommand();
+                    deleteCommand.CommandText = "DELETE FROM Patient_MedHistory WHERE PID=" + lbl_IDnum.Text;
+                    deleteCommand.ExecuteNonQuery();
+                    deleteCommand.CommandText = "DELETE FROM Patient_Information WHERE PID=" + lbl_IDnum.Text;
+                    deleteCommand.ExecuteNonQuery();
+                    MessageBox.Show("Patient deleted", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    connection.Close();
+                    this.Close();
+                }
             }
             else if (confirmDelete == DialogResult.No)
             {
@@ -379,130 +465,8 @@ namespace Dental_Management_System
 
         private void Addpatient_button_Click(object sender, EventArgs e)
         {
+
             UpdateInformation();
-            /* 
-            MainDashboard dashboard = new MainDashboard();
-            dashboard.Refresh();
-
-            string connectionString = "Server=" + Properties.Settings.Default["SQL_IP"] + ';' + "Database=" +
-            Properties.Settings.Default["SQL_Database"] + ";" + "UID=" + Properties.Settings.Default["SQL_User"] + ';' + "PWD=" +
-            Properties.Settings.Default["SQL_Pass"];
-
-            string fieldate = cbBirthday.Value.ToString("yyyy-MM-dd");
-            string question1 = null;
-            string question2;
-            string charttype = null;
-
-            if (metroRadioButton1.Checked == true)
-            {
-                question1 = metroRadioButton1.Text;
-            }
-            else if(metroRadioButton2.Checked == true)
-            {
-                question1 = metroRadioButton2.Text;
-            }
-
-            if (primaryTeeth_rb.Checked == true)
-            {
-                charttype = primaryTeeth_rb.Text;
-            }
-            else if (Permament_rb.Checked == true)
-            {
-                charttype = Permament_rb.Text;
-            }
-
-
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
-            {
-                try
-                {
-                    connection.Open();
-                    MySqlCommand command = new MySqlCommand();                 
-                    command.Connection = connection;
-
-                    // HIGHER TIMEOUT ENSURES THAT THERE IS MORE TIME TO EXECUTE THE QUERY, ESPECIALLY IF THERE ARE MANY TO PROCESS
-                    command.CommandTimeout = 22000;
-
-                    if (txtboxFirstName.Text == String.Empty || txtboxLastName.Text == String.Empty)
-                    {
-                        MessageBox.Show("Patient name can't be left blank.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-                    else
-                    {
-
-                        command.CommandText = "INSERT INTO Patient_Information (PID, FirstName, MiddleName, LastName, Birthday, MaritalStatus, PhoneNumber, Email, Occupation, ParentName, Relationship, HomePhone, CellPhone, WorkPhone, WorkExtPhone, Address) VALUES (@PID, @FirstName, @MiddleName, @LastName, @Birthday, @MaritalStatus, @PhoneNumber, @Email, @Occupation, @ParentName, @Relationship,  @HomePhone, @CellPhone, @WorkPhone, @WorkExtPhone, @Address)";
-                        command.Parameters.AddWithValue("@PID", lbl_IDnum.Text);
-                        command.Parameters.AddWithValue("@FirstName", String.Format("{0}", txtboxFirstName.Text));
-                        command.Parameters.AddWithValue("@MiddleName", String.Format("{0}", txtboxMiddleName.Text));
-                        command.Parameters.AddWithValue("@LastName", String.Format("{0}", txtboxLastName.Text));
-                        command.Parameters.AddWithValue("@Birthday", String.Format("{0}", fieldate));
-                        command.Parameters.AddWithValue("@MaritalStatus", String.Format("{0}", cbMaritalStatus.Text));
-                        command.Parameters.AddWithValue("@PhoneNumber", String.Format("{0}", txtboxPhoneNum.Text));
-                        command.Parameters.AddWithValue("@Email", String.Format("{0}", txtboxEmail.Text));
-                        command.Parameters.AddWithValue("@Occupation", String.Format("{0}", txtboxOccupation.Text));
-                        command.Parameters.AddWithValue("@ParentName", String.Format("{0}", txtboxParentName.Text));
-                        command.Parameters.AddWithValue("@Relationship", String.Format("{0}", txtboxRelationship.Text));
-                        command.Parameters.AddWithValue("@HomePhone", String.Format("{0}", txtboxHomePhone.Text));
-                        command.Parameters.AddWithValue("@Cellphone", String.Format("{0}", txtboxCellphoneNum.Text));
-                        command.Parameters.AddWithValue("@Workphone", String.Format("{0}", txtboxWorkPhone.Text));
-                        command.Parameters.AddWithValue("@WorkExtPhone", String.Format("{0}", txtboxExtensionNum.Text));
-                        command.Parameters.AddWithValue("@Address", String.Format("{0}", txtboxAddress.Text));
-                        command.ExecuteNonQuery();
-                        command.Parameters.Clear();
-
-                        command.CommandText = "INSERT INTO Patient_MedHistory (PID, Q1, ChartType, Note1, Note2, Note3, Note4, Note5, Note6, Note7, Note8, Note9, Note10, Note11, Note12, Note13, Note14, Note15, Note16, Note17, Note18, Note19, Note20, Note21, Note22, Note23, Note24, Note25, Note26, Note27, Note28, Note29, Note30, Note31, Note32) VALUES (@PID, @Q1, @ChartType, @Note1, @Note2, @Note3, @Note4, @Note5, @Note6, @Note7, @Note8, @Note9, @Note10, @Note11, @Note12, @Note13, @Note14, @Note15, @Note16, @Note17, @Note18, @Note19, @Note20, @Note21, @Note22, @Note23, @Note24, @Note25, @Note26, @Note27, @Note28, @Note29, @Note30, @Note31, @Note32)";
-                        command.Parameters.AddWithValue("@PID", lbl_IDnum.Text);
-                        command.Parameters.AddWithValue("@Q1", String.Format("{0}", question1));
-                        command.Parameters.AddWithValue("@ChartType", String.Format("{0}", charttype));
-                        command.Parameters.AddWithValue("@Note1", String.Format("{0}", toothNote_1.Text));
-                        command.Parameters.AddWithValue("@Note2", String.Format("{0}", toothNote_2.Text));
-                        command.Parameters.AddWithValue("@Note3", String.Format("{0}", toothNote_3.Text));
-                        command.Parameters.AddWithValue("@Note4", String.Format("{0}", toothNote_4.Text));
-                        command.Parameters.AddWithValue("@Note5", String.Format("{0}", toothNote_5.Text));
-                        command.Parameters.AddWithValue("@Note6", String.Format("{0}", toothNote_6.Text));
-                        command.Parameters.AddWithValue("@Note7", String.Format("{0}", toothNote_7.Text));
-                        command.Parameters.AddWithValue("@Note8", String.Format("{0}", toothNote_8.Text));
-                        command.Parameters.AddWithValue("@Note9", String.Format("{0}", toothNote_9.Text));
-                        command.Parameters.AddWithValue("@Note10", String.Format("{0}", toothNote_10.Text));
-                        command.Parameters.AddWithValue("@Note11", String.Format("{0}", toothNote_11.Text));
-                        command.Parameters.AddWithValue("@Note12", String.Format("{0}", toothNote_12.Text));
-                        command.Parameters.AddWithValue("@Note13", String.Format("{0}", toothNote_13.Text));
-                        command.Parameters.AddWithValue("@Note14", String.Format("{0}", toothNote_14.Text));
-                        command.Parameters.AddWithValue("@Note15", String.Format("{0}", toothNote_15.Text));
-                        command.Parameters.AddWithValue("@Note16", String.Format("{0}", toothNote_16.Text));
-                        command.Parameters.AddWithValue("@Note17", String.Format("{0}", toothNote_17.Text));
-                        command.Parameters.AddWithValue("@Note18", String.Format("{0}", toothNote_18.Text));
-                        command.Parameters.AddWithValue("@Note19", String.Format("{0}", toothNote_19.Text));
-                        command.Parameters.AddWithValue("@Note20", String.Format("{0}", toothNote_20.Text));
-                        command.Parameters.AddWithValue("@Note21", String.Format("{0}", toothNote_21.Text));
-                        command.Parameters.AddWithValue("@Note22", String.Format("{0}", toothNote_22.Text));
-                        command.Parameters.AddWithValue("@Note23", String.Format("{0}", toothNote_23.Text));
-                        command.Parameters.AddWithValue("@Note24", String.Format("{0}", toothNote_24.Text));
-                        command.Parameters.AddWithValue("@Note25", String.Format("{0}", toothNote_25.Text));
-                        command.Parameters.AddWithValue("@Note26", String.Format("{0}", toothNote_26.Text));
-                        command.Parameters.AddWithValue("@Note27", String.Format("{0}", toothNote_27.Text));
-                        command.Parameters.AddWithValue("@Note28", String.Format("{0}", toothNote_28.Text));
-                        command.Parameters.AddWithValue("@Note29", String.Format("{0}", toothNote_29.Text));
-                        command.Parameters.AddWithValue("@Note30", String.Format("{0}", toothNote_30.Text));
-                        command.Parameters.AddWithValue("@Note31", String.Format("{0}", toothNote_31.Text));
-                        command.Parameters.AddWithValue("@Note32", String.Format("{0}", toothNote_32.Text));
-                        command.ExecuteNonQuery();
-                        command.Parameters.Clear();
-
-                        MessageBox.Show("New patient added.", this.Text);
-                        connection.Close();
-                    }
-                  
-                    
-                }
-                catch (MySqlException exception)
-                {
-                    MessageBox.Show(exception.Message);
-                }
-            } */
-
-
 
         }
 

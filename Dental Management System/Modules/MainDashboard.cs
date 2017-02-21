@@ -291,8 +291,7 @@ namespace Dental_Management_System
 
         private void button_payment_Click_1(object sender, EventArgs e)
         {
-            PaymentModu paymentModule = new PaymentModu();
-            paymentModule.ShowDialog();
+
         }
 
         private void button_signout_Click(object sender, EventArgs e)

@@ -177,6 +177,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.lbl_IDnum = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.metroTabPage3 = new MetroFramework.Controls.MetroTabPage();
             this.panel1.SuspendLayout();
             this.Patient_TabControl.SuspendLayout();
             this.genInfo.SuspendLayout();
@@ -272,10 +273,11 @@
             this.Patient_TabControl.Controls.Add(this.metroTabPage1);
             this.Patient_TabControl.Controls.Add(this.toothchart);
             this.Patient_TabControl.Controls.Add(this.metroTabPage2);
+            this.Patient_TabControl.Controls.Add(this.metroTabPage3);
             this.Patient_TabControl.FontWeight = MetroFramework.MetroTabControlWeight.Regular;
             this.Patient_TabControl.Location = new System.Drawing.Point(166, 20);
             this.Patient_TabControl.Name = "Patient_TabControl";
-            this.Patient_TabControl.SelectedIndex = 0;
+            this.Patient_TabControl.SelectedIndex = 4;
             this.Patient_TabControl.Size = new System.Drawing.Size(676, 415);
             this.Patient_TabControl.Style = MetroFramework.MetroColorStyle.Green;
             this.Patient_TabControl.TabIndex = 12;
@@ -1751,6 +1753,20 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "ID NUMBER";
             // 
+            // metroTabPage3
+            // 
+            this.metroTabPage3.HorizontalScrollbarBarColor = true;
+            this.metroTabPage3.HorizontalScrollbarHighlightOnWheel = false;
+            this.metroTabPage3.HorizontalScrollbarSize = 10;
+            this.metroTabPage3.Location = new System.Drawing.Point(4, 41);
+            this.metroTabPage3.Name = "metroTabPage3";
+            this.metroTabPage3.Size = new System.Drawing.Size(668, 370);
+            this.metroTabPage3.TabIndex = 5;
+            this.metroTabPage3.Text = "Appointment";
+            this.metroTabPage3.VerticalScrollbarBarColor = true;
+            this.metroTabPage3.VerticalScrollbarHighlightOnWheel = false;
+            this.metroTabPage3.VerticalScrollbarSize = 10;
+            // 
             // Patient_View
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1944,5 +1960,6 @@
         private System.Windows.Forms.Label label49;
         private System.Windows.Forms.Label label48;
         private System.Windows.Forms.Label label45;
+        private MetroFramework.Controls.MetroTabPage metroTabPage3;
     }
 }

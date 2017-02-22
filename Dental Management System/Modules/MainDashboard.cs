@@ -302,7 +302,7 @@ namespace Dental_Management_System
         private void button_newpatient_Click(object sender, EventArgs e)
         {
             Patient_Registation patientRegistration = new Patient_Registation();
-            patientRegistration.ShowDialog();
+            patientRegistration.Show();
 
         }
 

@@ -52,7 +52,7 @@ namespace Dental_Management_System
 
         private void Patient_TabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (Patient_TabControl.SelectedIndex == 2 && RunMessageBoxOnce == 0)
+           /* if (Patient_TabControl.SelectedIndex == 2 && RunMessageBoxOnce == 0)
             {
                 MessageBox.Show("Note: This field can be left blank for new patients with no previous medical history", this.Text
                     , MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -63,7 +63,7 @@ namespace Dental_Management_System
             else if (Patient_TabControl.SelectedIndex == 2 && RunMessageBoxOnce == 1)
             {
                 return;
-            }
+            } */
         }
 
         void IDGenerator()
@@ -382,6 +382,24 @@ namespace Dental_Management_System
                 toothNote_31.Enabled = false;
                 toothNote_32.Enabled = false;
 
+            }
+        }
+
+        private void btnOpenToothChartExternalWindow_Click(object sender, EventArgs e)
+        {
+            ToothChartExternalWindow toothChartExternalWindow = new ToothChartExternalWindow();
+
+            if (primaryTeeth_rb.Checked == true)
+            {
+                toothChartExternalWindow.pictureBox1.Image = Properties.Resources.PrimaryTeethChart;
+                toothChartExternalWindow.Show();
+                toothChartExternalWindow.Text = "Tooth Chart - Primary Teeth";
+            }
+            else if (Permament_rb.Checked == true)
+            {
+                toothChartExternalWindow.pictureBox1.Image = Properties.Resources.PermanentToothChart;
+                toothChartExternalWindow.Show();
+                toothChartExternalWindow.Text = "Tooth Chart - Permanent Teeth";
             }
         }
     }

@@ -178,6 +178,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Modules\ToothChartExternalWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modules\ToothChartExternalWindow.Designer.cs">
+      <DependentUpon>ToothChartExternalWindow.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Modules\ComposeMail.resx">
       <DependentUpon>ComposeMail.cs</DependentUpon>
     </EmbeddedResource>
@@ -224,6 +230,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Modules\ToothChartExternalWindow.resx">
+      <DependentUpon>ToothChartExternalWindow.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="Properties\PaymentRates.settings">

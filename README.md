@@ -12,7 +12,7 @@ Download the MySQL Server: https://www.mysql.com/
 
 .NET 4.0 Framework (Windows 7 users): https://www.microsoft.com/en-us/download/confirmation.aspx?id=17718
 
-###### INTERNAL SOFTWARE VERSION (FROM OLD VISUAL STUDIO GIT HISTORY)
+###### INTERNAL SOFTWARE VERSION (FROM VISUAL STUDIO GIT HISTORY)
 
 **0.1.11** — [December 1, 2016 - December 20, 2016]
 
@@ -46,4 +46,4 @@ Download the MySQL Server: https://www.mysql.com/
 4. Commit 430f56fc: Made some improvements to design naming scheme.
 5. Commit bbf0e7c1: Function added to create new database. Added new Email component.
 6. Commit 0b9f9b07: Improvements to BackgroundWorker to properly load data from the database thus reducing loading times after logging in.
-7. INTERNAL VERSION CHANGE TO 0.2.10
+7. INTERNAL VERSION CHANGE TO 0.2.10 AND MIGRATION TO GITHUB FOR VERSION CONTROL.

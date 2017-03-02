@@ -331,7 +331,7 @@ namespace Dental_Management_System
             DisableTextBoxInChartNotes();
 
             // DESIGN
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = FormStartPosition.CenterScreen;
             this.Text = "Patient Medical Profile for " + firstname_readonly.Text + " " + lastname_readonly.Text;
 
         }
@@ -575,6 +575,74 @@ namespace Dental_Management_System
                     }
 
                 }
+            }
+
+        }
+
+        private void btnOpenToothChartExternalWindow_Click(object sender, EventArgs e)
+        {
+            ToothChartExternalWindow toothChartExternalWindow = new ToothChartExternalWindow();
+
+            if (radioButtonPrimary.Checked == true)
+            {
+                toothChartExternalWindow.pictureBox1.Image = Properties.Resources.PrimaryTeethChart;
+                toothChartExternalWindow.Show();
+                toothChartExternalWindow.Text = "Tooth Chart - Primary Teeth";
+            }
+            else if (radioButtonPermament.Checked == true)
+            {
+                toothChartExternalWindow.pictureBox1.Image = Properties.Resources.PermanentToothChart;
+                toothChartExternalWindow.Show();
+                toothChartExternalWindow.Text = "Tooth Chart - Permanent Teeth";
+            }
+        }
+
+        private void Patient_View_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            List<Form> openForms = new List<Form>();
+
+            foreach (Form form in Application.OpenForms)
+            {
+                openForms.Add(form);
+            }
+
+            foreach (Form form in openForms)
+            {
+                if (form.Name == "ToothChartExternalWindow")
+                    form.Dispose();
+
+            }
+        }
+
+        private void btnSetAppointment_Click(object sender, EventArgs e)
+        {
+
+            string getday = dateTimePicker_DateSelection.Value.ToString("yyyy-MM-dd");
+
+            try
+            {
+                using (MySqlConnection connection = new MySqlConnection(databaseConnectionLink.networkLink))
+                {
+                    connection.Open();
+                    MySqlCommand command = new MySqlCommand();
+                    command.Connection = connection;
+
+                    command.CommandText = "INSERT INTO Patient_Schedule(Time, Date, Service, LastName, FirstName, Notes) VALUES (@Time, @Date, @Service, @LastName, @FirstName, @Notes)";
+                    command.Parameters.AddWithValue("@Time", String.Format("{0}", comboBox_ChooseTime.Text));
+                    command.Parameters.AddWithValue("@Date", String.Format("{0}", getday));
+                    command.Parameters.AddWithValue("@Service", String.Format("{0}", comboBox_ServiceType.Text));
+                    command.Parameters.AddWithValue("@LastName", String.Format("{0}", lastname_readonly.Text));
+                    command.Parameters.AddWithValue("@FirstName", String.Format("{0}", firstname_readonly.Text));
+                    command.Parameters.AddWithValue("@Notes", String.Format("{0}", textBox_Notes.Text));
+                    command.ExecuteNonQuery();
+                    command.Parameters.Clear();
+                    connection.Close();
+                }
+            }
+            catch (Exception eh)
+            {
+                
+                MessageBox.Show(eh.Message);
             }
 
         }

@@ -13,10 +13,15 @@ namespace Dental_Management_System
 {
     public partial class Patient_Registation : Form
     {
-        public Patient_Registation()
+
+        private readonly MainDashboard fm1;
+        public Patient_Registation(MainDashboard dashboard)
         {
             InitializeComponent();
+
+            fm1 = dashboard;
         }
+
 
 
         private void Patient_Registation_Load(object sender, EventArgs e)
@@ -206,9 +211,6 @@ namespace Dental_Management_System
         private void Addpatient_button_Click(object sender, EventArgs e)
         {
 
-            MainDashboard dashboard = new MainDashboard();
-            dashboard.Refresh();
-
             string connectionString = "Server=" + Properties.Settings.Default["SQL_IP"] + ';' + "Database=" +
             Properties.Settings.Default["SQL_Database"] + ";" + "UID=" + Properties.Settings.Default["SQL_User"] + ';' + "PWD=" +
             Properties.Settings.Default["SQL_Pass"];
@@ -327,6 +329,9 @@ namespace Dental_Management_System
                         MessageBox.Show("New patient added.", this.Text);
                         connection.Close();
                         ResetAll();
+
+                        
+
                     }
                   
                     
@@ -400,6 +405,23 @@ namespace Dental_Management_System
                 toothChartExternalWindow.pictureBox1.Image = Properties.Resources.PermanentToothChart;
                 toothChartExternalWindow.Show();
                 toothChartExternalWindow.Text = "Tooth Chart - Permanent Teeth";
+            }
+        }
+
+        private void Patient_Registation_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            List<Form> openForms = new List<Form>();
+
+            foreach (Form form in Application.OpenForms)
+            {
+                openForms.Add(form);
+            }
+
+            foreach (Form form in openForms)
+            {
+                if (form.Name == "ToothChartExternalWindow")
+                    form.Dispose();
+
             }
         }
     }

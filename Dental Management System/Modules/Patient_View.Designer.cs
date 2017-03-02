@@ -81,6 +81,7 @@
             this.toothchart = new System.Windows.Forms.TabPage();
             this.toothchart_panel = new System.Windows.Forms.Panel();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.btnOpenToothChartExternalWindow = new System.Windows.Forms.Button();
             this.addnotes_button = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.radioButtonPermament = new System.Windows.Forms.RadioButton();
@@ -167,6 +168,16 @@
             this.label49 = new System.Windows.Forms.Label();
             this.label48 = new System.Windows.Forms.Label();
             this.label45 = new System.Windows.Forms.Label();
+            this.metroTabPage3 = new MetroFramework.Controls.MetroTabPage();
+            this.btnSetAppointment = new System.Windows.Forms.Button();
+            this.textBox_Notes = new System.Windows.Forms.TextBox();
+            this.label60 = new System.Windows.Forms.Label();
+            this.comboBox_ServiceType = new System.Windows.Forms.ComboBox();
+            this.label59 = new System.Windows.Forms.Label();
+            this.dateTimePicker_DateSelection = new System.Windows.Forms.DateTimePicker();
+            this.label58 = new System.Windows.Forms.Label();
+            this.comboBox_ChooseTime = new System.Windows.Forms.ComboBox();
+            this.label57 = new System.Windows.Forms.Label();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnSaveChanges = new System.Windows.Forms.Button();
             this.lastname_readonly = new System.Windows.Forms.TextBox();
@@ -177,7 +188,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.lbl_IDnum = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.metroTabPage3 = new MetroFramework.Controls.MetroTabPage();
             this.panel1.SuspendLayout();
             this.Patient_TabControl.SuspendLayout();
             this.genInfo.SuspendLayout();
@@ -195,6 +205,7 @@
             this.NotesPage1.SuspendLayout();
             this.NotesPage2.SuspendLayout();
             this.metroTabPage2.SuspendLayout();
+            this.metroTabPage3.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -225,16 +236,16 @@
             this.label47.AutoSize = true;
             this.label47.BackColor = System.Drawing.Color.Transparent;
             this.label47.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label47.Location = new System.Drawing.Point(47, 234);
+            this.label47.Location = new System.Drawing.Point(37, 244);
             this.label47.Name = "label47";
-            this.label47.Size = new System.Drawing.Size(83, 17);
+            this.label47.Size = new System.Drawing.Size(91, 17);
             this.label47.TabIndex = 31;
-            this.label47.Text = "Allow editing";
+            this.label47.Text = "Enable Editing";
             // 
             // metroToggleEditMode
             // 
             this.metroToggleEditMode.AutoSize = true;
-            this.metroToggleEditMode.Location = new System.Drawing.Point(39, 263);
+            this.metroToggleEditMode.Location = new System.Drawing.Point(40, 273);
             this.metroToggleEditMode.Name = "metroToggleEditMode";
             this.metroToggleEditMode.Size = new System.Drawing.Size(80, 17);
             this.metroToggleEditMode.TabIndex = 14;
@@ -277,7 +288,7 @@
             this.Patient_TabControl.FontWeight = MetroFramework.MetroTabControlWeight.Regular;
             this.Patient_TabControl.Location = new System.Drawing.Point(166, 20);
             this.Patient_TabControl.Name = "Patient_TabControl";
-            this.Patient_TabControl.SelectedIndex = 4;
+            this.Patient_TabControl.SelectedIndex = 0;
             this.Patient_TabControl.Size = new System.Drawing.Size(676, 415);
             this.Patient_TabControl.Style = MetroFramework.MetroColorStyle.Green;
             this.Patient_TabControl.TabIndex = 12;
@@ -782,6 +793,7 @@
             // 
             // groupBox6
             // 
+            this.groupBox6.Controls.Add(this.btnOpenToothChartExternalWindow);
             this.groupBox6.Controls.Add(this.addnotes_button);
             this.groupBox6.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.groupBox6.Location = new System.Drawing.Point(3, 113);
@@ -790,6 +802,19 @@
             this.groupBox6.TabIndex = 6;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Tools";
+            // 
+            // btnOpenToothChartExternalWindow
+            // 
+            this.btnOpenToothChartExternalWindow.BackColor = System.Drawing.Color.Gainsboro;
+            this.btnOpenToothChartExternalWindow.FlatAppearance.BorderSize = 0;
+            this.btnOpenToothChartExternalWindow.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOpenToothChartExternalWindow.Location = new System.Drawing.Point(30, 86);
+            this.btnOpenToothChartExternalWindow.Name = "btnOpenToothChartExternalWindow";
+            this.btnOpenToothChartExternalWindow.Size = new System.Drawing.Size(128, 34);
+            this.btnOpenToothChartExternalWindow.TabIndex = 7;
+            this.btnOpenToothChartExternalWindow.Text = "Popout";
+            this.btnOpenToothChartExternalWindow.UseVisualStyleBackColor = false;
+            this.btnOpenToothChartExternalWindow.Click += new System.EventHandler(this.btnOpenToothChartExternalWindow_Click);
             // 
             // addnotes_button
             // 
@@ -1625,6 +1650,147 @@
             this.label45.TabIndex = 24;
             this.label45.Text = "Amount:";
             // 
+            // metroTabPage3
+            // 
+            this.metroTabPage3.Controls.Add(this.btnSetAppointment);
+            this.metroTabPage3.Controls.Add(this.textBox_Notes);
+            this.metroTabPage3.Controls.Add(this.label60);
+            this.metroTabPage3.Controls.Add(this.comboBox_ServiceType);
+            this.metroTabPage3.Controls.Add(this.label59);
+            this.metroTabPage3.Controls.Add(this.dateTimePicker_DateSelection);
+            this.metroTabPage3.Controls.Add(this.label58);
+            this.metroTabPage3.Controls.Add(this.comboBox_ChooseTime);
+            this.metroTabPage3.Controls.Add(this.label57);
+            this.metroTabPage3.HorizontalScrollbarBarColor = true;
+            this.metroTabPage3.HorizontalScrollbarHighlightOnWheel = false;
+            this.metroTabPage3.HorizontalScrollbarSize = 10;
+            this.metroTabPage3.Location = new System.Drawing.Point(4, 41);
+            this.metroTabPage3.Name = "metroTabPage3";
+            this.metroTabPage3.Size = new System.Drawing.Size(668, 370);
+            this.metroTabPage3.TabIndex = 5;
+            this.metroTabPage3.Text = "Appointment";
+            this.metroTabPage3.VerticalScrollbarBarColor = true;
+            this.metroTabPage3.VerticalScrollbarHighlightOnWheel = false;
+            this.metroTabPage3.VerticalScrollbarSize = 10;
+            // 
+            // btnSetAppointment
+            // 
+            this.btnSetAppointment.BackColor = System.Drawing.Color.Gainsboro;
+            this.btnSetAppointment.FlatAppearance.BorderSize = 0;
+            this.btnSetAppointment.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSetAppointment.ForeColor = System.Drawing.Color.Black;
+            this.btnSetAppointment.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSetAppointment.ImageIndex = 2;
+            this.btnSetAppointment.Location = new System.Drawing.Point(6, 328);
+            this.btnSetAppointment.Name = "btnSetAppointment";
+            this.btnSetAppointment.Size = new System.Drawing.Size(115, 35);
+            this.btnSetAppointment.TabIndex = 32;
+            this.btnSetAppointment.Text = "Set appointment";
+            this.btnSetAppointment.UseVisualStyleBackColor = false;
+            this.btnSetAppointment.Click += new System.EventHandler(this.btnSetAppointment_Click);
+            // 
+            // textBox_Notes
+            // 
+            this.textBox_Notes.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.textBox_Notes.Location = new System.Drawing.Point(6, 242);
+            this.textBox_Notes.Multiline = true;
+            this.textBox_Notes.Name = "textBox_Notes";
+            this.textBox_Notes.Size = new System.Drawing.Size(240, 73);
+            this.textBox_Notes.TabIndex = 9;
+            // 
+            // label60
+            // 
+            this.label60.AutoSize = true;
+            this.label60.BackColor = System.Drawing.Color.Transparent;
+            this.label60.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.label60.Location = new System.Drawing.Point(3, 219);
+            this.label60.Name = "label60";
+            this.label60.Size = new System.Drawing.Size(43, 17);
+            this.label60.TabIndex = 8;
+            this.label60.Text = "Notes";
+            // 
+            // comboBox_ServiceType
+            // 
+            this.comboBox_ServiceType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_ServiceType.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.comboBox_ServiceType.FormattingEnabled = true;
+            this.comboBox_ServiceType.Items.AddRange(new object[] {
+            "Regular Cleaning",
+            "Pasta",
+            "Braces",
+            "Braces checkup"});
+            this.comboBox_ServiceType.Location = new System.Drawing.Point(6, 174);
+            this.comboBox_ServiceType.Name = "comboBox_ServiceType";
+            this.comboBox_ServiceType.Size = new System.Drawing.Size(135, 25);
+            this.comboBox_ServiceType.TabIndex = 7;
+            // 
+            // label59
+            // 
+            this.label59.AutoSize = true;
+            this.label59.BackColor = System.Drawing.Color.Transparent;
+            this.label59.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.label59.Location = new System.Drawing.Point(3, 147);
+            this.label59.Name = "label59";
+            this.label59.Size = new System.Drawing.Size(49, 17);
+            this.label59.TabIndex = 6;
+            this.label59.Text = "Service";
+            // 
+            // dateTimePicker_DateSelection
+            // 
+            this.dateTimePicker_DateSelection.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.dateTimePicker_DateSelection.Location = new System.Drawing.Point(6, 40);
+            this.dateTimePicker_DateSelection.MaxDate = new System.DateTime(2099, 12, 31, 0, 0, 0, 0);
+            this.dateTimePicker_DateSelection.MinDate = new System.DateTime(2017, 3, 1, 0, 0, 0, 0);
+            this.dateTimePicker_DateSelection.Name = "dateTimePicker_DateSelection";
+            this.dateTimePicker_DateSelection.Size = new System.Drawing.Size(240, 25);
+            this.dateTimePicker_DateSelection.TabIndex = 5;
+            // 
+            // label58
+            // 
+            this.label58.AutoSize = true;
+            this.label58.BackColor = System.Drawing.Color.Transparent;
+            this.label58.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.label58.Location = new System.Drawing.Point(3, 81);
+            this.label58.Name = "label58";
+            this.label58.Size = new System.Drawing.Size(92, 17);
+            this.label58.TabIndex = 4;
+            this.label58.Text = "Choose a time";
+            // 
+            // comboBox_ChooseTime
+            // 
+            this.comboBox_ChooseTime.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_ChooseTime.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.comboBox_ChooseTime.FormattingEnabled = true;
+            this.comboBox_ChooseTime.Items.AddRange(new object[] {
+            "07:00 AM",
+            "08:00 AM",
+            "09:00 AM",
+            "10:00 AM",
+            "11:00 AM",
+            "12:00 PM",
+            "01:00 PM",
+            "02:00 PM",
+            "03:00 PM",
+            "04:00 PM",
+            "05:00 PM",
+            "06:00 PM",
+            "07:00 PM"});
+            this.comboBox_ChooseTime.Location = new System.Drawing.Point(6, 111);
+            this.comboBox_ChooseTime.Name = "comboBox_ChooseTime";
+            this.comboBox_ChooseTime.Size = new System.Drawing.Size(135, 25);
+            this.comboBox_ChooseTime.TabIndex = 3;
+            // 
+            // label57
+            // 
+            this.label57.AutoSize = true;
+            this.label57.BackColor = System.Drawing.Color.Transparent;
+            this.label57.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.label57.Location = new System.Drawing.Point(2, 11);
+            this.label57.Name = "label57";
+            this.label57.Size = new System.Drawing.Size(93, 17);
+            this.label57.TabIndex = 2;
+            this.label57.Text = "Choose a date";
+            // 
             // btnDelete
             // 
             this.btnDelete.BackColor = System.Drawing.Color.Gainsboro;
@@ -1753,20 +1919,6 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "ID NUMBER";
             // 
-            // metroTabPage3
-            // 
-            this.metroTabPage3.HorizontalScrollbarBarColor = true;
-            this.metroTabPage3.HorizontalScrollbarHighlightOnWheel = false;
-            this.metroTabPage3.HorizontalScrollbarSize = 10;
-            this.metroTabPage3.Location = new System.Drawing.Point(4, 41);
-            this.metroTabPage3.Name = "metroTabPage3";
-            this.metroTabPage3.Size = new System.Drawing.Size(668, 370);
-            this.metroTabPage3.TabIndex = 5;
-            this.metroTabPage3.Text = "Appointment";
-            this.metroTabPage3.VerticalScrollbarBarColor = true;
-            this.metroTabPage3.VerticalScrollbarHighlightOnWheel = false;
-            this.metroTabPage3.VerticalScrollbarSize = 10;
-            // 
             // Patient_View
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1780,6 +1932,7 @@
             this.Name = "Patient_View";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Patient Medical Profile";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Patient_View_FormClosing);
             this.Load += new System.EventHandler(this.Patient_View_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -1807,6 +1960,8 @@
             this.NotesPage2.PerformLayout();
             this.metroTabPage2.ResumeLayout(false);
             this.metroTabPage2.PerformLayout();
+            this.metroTabPage3.ResumeLayout(false);
+            this.metroTabPage3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1961,5 +2116,15 @@
         private System.Windows.Forms.Label label48;
         private System.Windows.Forms.Label label45;
         private MetroFramework.Controls.MetroTabPage metroTabPage3;
+        private System.Windows.Forms.Label label57;
+        private System.Windows.Forms.ComboBox comboBox_ChooseTime;
+        private System.Windows.Forms.Button btnSetAppointment;
+        private System.Windows.Forms.TextBox textBox_Notes;
+        private System.Windows.Forms.Label label60;
+        private System.Windows.Forms.ComboBox comboBox_ServiceType;
+        private System.Windows.Forms.Label label59;
+        private System.Windows.Forms.DateTimePicker dateTimePicker_DateSelection;
+        private System.Windows.Forms.Label label58;
+        private System.Windows.Forms.Button btnOpenToothChartExternalWindow;
     }
 }

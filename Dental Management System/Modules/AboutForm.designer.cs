@@ -28,6 +28,7 @@
         private void InitializeComponent()
         {
             this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.logoPictureBox = new System.Windows.Forms.PictureBox();
             this.labelProductName = new System.Windows.Forms.Label();
             this.labelVersion = new System.Windows.Forms.Label();
             this.labelCopyright = new System.Windows.Forms.Label();
@@ -46,10 +47,9 @@
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.logoPictureBox = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel.SuspendLayout();
-            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel
@@ -76,6 +76,17 @@
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.164383F));
             this.tableLayoutPanel.Size = new System.Drawing.Size(573, 434);
             this.tableLayoutPanel.TabIndex = 0;
+            // 
+            // logoPictureBox
+            // 
+            this.logoPictureBox.Image = global::Dental_Management_System.Properties.Resources.DMS_Icon;
+            this.logoPictureBox.Location = new System.Drawing.Point(3, 3);
+            this.logoPictureBox.Name = "logoPictureBox";
+            this.tableLayoutPanel.SetRowSpan(this.logoPictureBox, 6);
+            this.logoPictureBox.Size = new System.Drawing.Size(115, 129);
+            this.logoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.logoPictureBox.TabIndex = 12;
+            this.logoPictureBox.TabStop = false;
             // 
             // labelProductName
             // 
@@ -322,17 +333,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Components";
             // 
-            // logoPictureBox
-            // 
-            this.logoPictureBox.Image = global::Dental_Management_System.Properties.Resources.DMS_Icon;
-            this.logoPictureBox.Location = new System.Drawing.Point(3, 3);
-            this.logoPictureBox.Name = "logoPictureBox";
-            this.tableLayoutPanel.SetRowSpan(this.logoPictureBox, 6);
-            this.logoPictureBox.Size = new System.Drawing.Size(115, 129);
-            this.logoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.logoPictureBox.TabIndex = 12;
-            this.logoPictureBox.TabStop = false;
-            // 
             // AboutForm
             // 
             this.AcceptButton = this.okButton;
@@ -354,9 +354,9 @@
             this.Text = "About Dental Management System";
             this.Load += new System.EventHandler(this.AboutForm_Load);
             this.tableLayoutPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -79,10 +79,13 @@
             this.toothchart = new System.Windows.Forms.TabPage();
             this.toothchart_panel = new System.Windows.Forms.Panel();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.btnOpenToothChartExternalWindow = new System.Windows.Forms.Button();
+            this.lblToothChartMessage = new System.Windows.Forms.Label();
             this.btnAddToothNotes = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.Permament_rb = new System.Windows.Forms.RadioButton();
             this.primaryTeeth_rb = new System.Windows.Forms.RadioButton();
+            this.ToothCharts_PicBox = new System.Windows.Forms.PictureBox();
             this.toothcartnotes_panel = new System.Windows.Forms.Panel();
             this.PrevPage_button = new System.Windows.Forms.Button();
             this.NextPage_button = new System.Windows.Forms.Button();
@@ -163,9 +166,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.lbl_IDnum = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.lblToothChartMessage = new System.Windows.Forms.Label();
-            this.btnOpenToothChartExternalWindow = new System.Windows.Forms.Button();
-            this.ToothCharts_PicBox = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             this.Patient_TabControl.SuspendLayout();
@@ -180,10 +180,10 @@
             this.toothchart_panel.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.groupBox5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ToothCharts_PicBox)).BeginInit();
             this.toothcartnotes_panel.SuspendLayout();
             this.NotesPage1.SuspendLayout();
             this.NotesPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ToothCharts_PicBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -217,7 +217,7 @@
             this.Patient_TabControl.FontWeight = MetroFramework.MetroTabControlWeight.Regular;
             this.Patient_TabControl.Location = new System.Drawing.Point(166, 20);
             this.Patient_TabControl.Name = "Patient_TabControl";
-            this.Patient_TabControl.SelectedIndex = 2;
+            this.Patient_TabControl.SelectedIndex = 0;
             this.Patient_TabControl.Size = new System.Drawing.Size(676, 415);
             this.Patient_TabControl.Style = MetroFramework.MetroColorStyle.Green;
             this.Patient_TabControl.TabIndex = 12;
@@ -764,6 +764,30 @@
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Tools";
             // 
+            // btnOpenToothChartExternalWindow
+            // 
+            this.btnOpenToothChartExternalWindow.BackColor = System.Drawing.Color.Gainsboro;
+            this.btnOpenToothChartExternalWindow.FlatAppearance.BorderSize = 0;
+            this.btnOpenToothChartExternalWindow.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOpenToothChartExternalWindow.Location = new System.Drawing.Point(30, 178);
+            this.btnOpenToothChartExternalWindow.Name = "btnOpenToothChartExternalWindow";
+            this.btnOpenToothChartExternalWindow.Size = new System.Drawing.Size(128, 34);
+            this.btnOpenToothChartExternalWindow.TabIndex = 6;
+            this.btnOpenToothChartExternalWindow.Text = "Popout";
+            this.btnOpenToothChartExternalWindow.UseVisualStyleBackColor = false;
+            this.btnOpenToothChartExternalWindow.Click += new System.EventHandler(this.btnOpenToothChartExternalWindow_Click);
+            // 
+            // lblToothChartMessage
+            // 
+            this.lblToothChartMessage.AutoSize = true;
+            this.lblToothChartMessage.Location = new System.Drawing.Point(26, 25);
+            this.lblToothChartMessage.Name = "lblToothChartMessage";
+            this.lblToothChartMessage.Size = new System.Drawing.Size(133, 95);
+            this.lblToothChartMessage.TabIndex = 5;
+            this.lblToothChartMessage.Text = "This field can be left \r\nblank for new\r\npatients with \r\nno previous \r\nmedical his" +
+    "tory";
+            this.lblToothChartMessage.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // btnAddToothNotes
             // 
             this.btnAddToothNotes.BackColor = System.Drawing.Color.Gainsboro;
@@ -812,6 +836,16 @@
             this.primaryTeeth_rb.Text = "Primary";
             this.primaryTeeth_rb.UseVisualStyleBackColor = true;
             this.primaryTeeth_rb.CheckedChanged += new System.EventHandler(this.primaryTeeth_rb_CheckedChanged);
+            // 
+            // ToothCharts_PicBox
+            // 
+            this.ToothCharts_PicBox.Image = global::Dental_Management_System.Properties.Resources.PrimaryTeethChart;
+            this.ToothCharts_PicBox.Location = new System.Drawing.Point(190, 3);
+            this.ToothCharts_PicBox.Name = "ToothCharts_PicBox";
+            this.ToothCharts_PicBox.Size = new System.Drawing.Size(475, 360);
+            this.ToothCharts_PicBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.ToothCharts_PicBox.TabIndex = 1;
+            this.ToothCharts_PicBox.TabStop = false;
             // 
             // toothcartnotes_panel
             // 
@@ -1578,40 +1612,6 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "ID NUMBER";
             // 
-            // lblToothChartMessage
-            // 
-            this.lblToothChartMessage.AutoSize = true;
-            this.lblToothChartMessage.Location = new System.Drawing.Point(26, 25);
-            this.lblToothChartMessage.Name = "lblToothChartMessage";
-            this.lblToothChartMessage.Size = new System.Drawing.Size(133, 95);
-            this.lblToothChartMessage.TabIndex = 5;
-            this.lblToothChartMessage.Text = "This field can be left \r\nblank for new\r\npatients with \r\nno previous \r\nmedical his" +
-    "tory";
-            this.lblToothChartMessage.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // btnOpenToothChartExternalWindow
-            // 
-            this.btnOpenToothChartExternalWindow.BackColor = System.Drawing.Color.Gainsboro;
-            this.btnOpenToothChartExternalWindow.FlatAppearance.BorderSize = 0;
-            this.btnOpenToothChartExternalWindow.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnOpenToothChartExternalWindow.Location = new System.Drawing.Point(30, 178);
-            this.btnOpenToothChartExternalWindow.Name = "btnOpenToothChartExternalWindow";
-            this.btnOpenToothChartExternalWindow.Size = new System.Drawing.Size(128, 34);
-            this.btnOpenToothChartExternalWindow.TabIndex = 6;
-            this.btnOpenToothChartExternalWindow.Text = "Popout";
-            this.btnOpenToothChartExternalWindow.UseVisualStyleBackColor = false;
-            this.btnOpenToothChartExternalWindow.Click += new System.EventHandler(this.btnOpenToothChartExternalWindow_Click);
-            // 
-            // ToothCharts_PicBox
-            // 
-            this.ToothCharts_PicBox.Image = global::Dental_Management_System.Properties.Resources.PrimaryTeethChart;
-            this.ToothCharts_PicBox.Location = new System.Drawing.Point(190, 3);
-            this.ToothCharts_PicBox.Name = "ToothCharts_PicBox";
-            this.ToothCharts_PicBox.Size = new System.Drawing.Size(475, 360);
-            this.ToothCharts_PicBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.ToothCharts_PicBox.TabIndex = 1;
-            this.ToothCharts_PicBox.TabStop = false;
-            // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::Dental_Management_System.Properties.Resources.profile_ico;
@@ -1635,6 +1635,7 @@
             this.Name = "Patient_Registation";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "New Patient";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Patient_Registation_FormClosing);
             this.Load += new System.EventHandler(this.Patient_Registation_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -1657,12 +1658,12 @@
             this.groupBox6.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ToothCharts_PicBox)).EndInit();
             this.toothcartnotes_panel.ResumeLayout(false);
             this.NotesPage1.ResumeLayout(false);
             this.NotesPage1.PerformLayout();
             this.NotesPage2.ResumeLayout(false);
             this.NotesPage2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ToothCharts_PicBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 

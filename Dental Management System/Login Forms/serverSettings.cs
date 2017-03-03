@@ -103,7 +103,7 @@ namespace Dental_Management_System
         private void NetworkTest()
         {
 
-            using (MySqlConnection connection = new MySqlConnection(databaseConnectionLink.networkLink))
+            using (MySqlConnection connection = new MySqlConnection(databaseConnectionLink.networkTestLink))
             {
 
                 try

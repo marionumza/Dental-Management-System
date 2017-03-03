@@ -337,6 +337,7 @@
             // 
             // txtboxExtensionNum
             // 
+            this.txtboxExtensionNum.BackColor = System.Drawing.Color.White;
             this.txtboxExtensionNum.Location = new System.Drawing.Point(290, 180);
             this.txtboxExtensionNum.MaxLength = 6;
             this.txtboxExtensionNum.Name = "txtboxExtensionNum";
@@ -358,6 +359,7 @@
             // 
             // txtboxWorkPhone
             // 
+            this.txtboxWorkPhone.BackColor = System.Drawing.Color.White;
             this.txtboxWorkPhone.Location = new System.Drawing.Point(114, 180);
             this.txtboxWorkPhone.MaxLength = 16;
             this.txtboxWorkPhone.Name = "txtboxWorkPhone";
@@ -379,6 +381,7 @@
             // 
             // txtboxCellphoneNum
             // 
+            this.txtboxCellphoneNum.BackColor = System.Drawing.Color.White;
             this.txtboxCellphoneNum.Location = new System.Drawing.Point(114, 143);
             this.txtboxCellphoneNum.MaxLength = 16;
             this.txtboxCellphoneNum.Name = "txtboxCellphoneNum";
@@ -399,6 +402,7 @@
             // 
             // txtboxAddress
             // 
+            this.txtboxAddress.BackColor = System.Drawing.Color.White;
             this.txtboxAddress.Location = new System.Drawing.Point(114, 221);
             this.txtboxAddress.Multiline = true;
             this.txtboxAddress.Name = "txtboxAddress";
@@ -419,6 +423,7 @@
             // 
             // txtboxHomePhone
             // 
+            this.txtboxHomePhone.BackColor = System.Drawing.Color.White;
             this.txtboxHomePhone.Location = new System.Drawing.Point(114, 104);
             this.txtboxHomePhone.MaxLength = 16;
             this.txtboxHomePhone.Name = "txtboxHomePhone";
@@ -439,6 +444,7 @@
             // 
             // txtboxRelationship
             // 
+            this.txtboxRelationship.BackColor = System.Drawing.Color.White;
             this.txtboxRelationship.Location = new System.Drawing.Point(114, 66);
             this.txtboxRelationship.Name = "txtboxRelationship";
             this.txtboxRelationship.ReadOnly = true;
@@ -458,6 +464,7 @@
             // 
             // txtboxParentName
             // 
+            this.txtboxParentName.BackColor = System.Drawing.Color.White;
             this.txtboxParentName.Location = new System.Drawing.Point(114, 27);
             this.txtboxParentName.Name = "txtboxParentName";
             this.txtboxParentName.ReadOnly = true;
@@ -527,6 +534,7 @@
             // 
             // txtboxEmail
             // 
+            this.txtboxEmail.BackColor = System.Drawing.Color.White;
             this.txtboxEmail.Location = new System.Drawing.Point(114, 258);
             this.txtboxEmail.MaxLength = 64;
             this.txtboxEmail.Name = "txtboxEmail";
@@ -547,6 +555,7 @@
             // 
             // txtboxPhoneNum
             // 
+            this.txtboxPhoneNum.BackColor = System.Drawing.Color.White;
             this.txtboxPhoneNum.Location = new System.Drawing.Point(114, 219);
             this.txtboxPhoneNum.MaxLength = 16;
             this.txtboxPhoneNum.Name = "txtboxPhoneNum";
@@ -568,6 +577,7 @@
             // 
             // txtboxOccupation
             // 
+            this.txtboxOccupation.BackColor = System.Drawing.Color.White;
             this.txtboxOccupation.Location = new System.Drawing.Point(114, 297);
             this.txtboxOccupation.Multiline = true;
             this.txtboxOccupation.Name = "txtboxOccupation";
@@ -610,6 +620,7 @@
             // 
             // txtboxLastName
             // 
+            this.txtboxLastName.BackColor = System.Drawing.Color.White;
             this.txtboxLastName.Location = new System.Drawing.Point(114, 104);
             this.txtboxLastName.Name = "txtboxLastName";
             this.txtboxLastName.ReadOnly = true;
@@ -630,6 +641,7 @@
             // 
             // txtboxMiddleName
             // 
+            this.txtboxMiddleName.BackColor = System.Drawing.Color.White;
             this.txtboxMiddleName.Location = new System.Drawing.Point(114, 66);
             this.txtboxMiddleName.Name = "txtboxMiddleName";
             this.txtboxMiddleName.ReadOnly = true;
@@ -650,6 +662,7 @@
             // 
             // txtboxFirstName
             // 
+            this.txtboxFirstName.BackColor = System.Drawing.Color.White;
             this.txtboxFirstName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtboxFirstName.Location = new System.Drawing.Point(114, 27);
             this.txtboxFirstName.Name = "txtboxFirstName";

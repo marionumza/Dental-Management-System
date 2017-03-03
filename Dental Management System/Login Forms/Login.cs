@@ -10,6 +10,8 @@ using System.Text;
 using System.Windows.Forms;
 using MySql;
 using MySql.Data.Entity;
+using MetroFramework.Forms;
+using MetroFramework;
 
 namespace Dental_Management_System
 {
@@ -43,12 +45,13 @@ namespace Dental_Management_System
             EnableDoubleBuffering(this, true);
         }
 
+
         private void LoginForm_Load(object sender, EventArgs e)
         {
             txtBoxPass.Text = "Password";
             txtBoxPass.UseSystemPasswordChar = false;
 
-            appVersion.Text = String.Format("Version: {0}", AssemblyVersion);
+            appVersion.Text = String.Format("Client version: {0}", AssemblyVersion);
 
         }
 
@@ -98,8 +101,13 @@ namespace Dental_Management_System
                 else if (txtBoxUser.Text != "" || txtBoxPass.Text != "")
                 {
 
-                    MessageBox.Show("Incorrect password", "Log in");
+                    MetroMessageBox.Show(this, "The username or password you have entered may be incorrect." +
+                        " Please try again.", "Login", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //MessageBox.Show("Incorrect password", "Log in");
+                    txtBoxUser.Clear();
                     txtBoxPass.Clear();
+                    txtBoxUser.Text = "Username";
+                    txtBoxPass.Text = "Password";
                 }
             }
             catch
@@ -134,6 +142,16 @@ namespace Dental_Management_System
 
         private void panel2_Paint(object sender, PaintEventArgs e)
         {
+            Graphics graphics = panel2.CreateGraphics();
+
+            Brush grey = new SolidBrush(Color.Gray);
+            Pen greyPen = new Pen(grey, 1);
+
+            Brush grey2 = new SolidBrush(Color.Gray);
+            Pen greyPen2 = new Pen(grey2, 1);
+
+            graphics.DrawLine(greyPen, 72, 205, 375, 205);
+            graphics.DrawLine(greyPen2, 72, 250, 375, 250);
 
         }
 
@@ -169,17 +187,20 @@ namespace Dental_Management_System
 
         }
 
-        private void appVersion_DoubleClick(object sender, EventArgs e)
-        {
-            AboutForm aboutForm = new AboutForm();
-            aboutForm.ShowDialog();
-        }
-
         private void LoginForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
         }
 
+        private void linkLabel4_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/ddasutein/Dental-Management-System");
+        }
 
+        private void appVersion_DoubleClick(object sender, EventArgs e)
+        {
+            AboutForm aboutForm = new AboutForm();
+            aboutForm.ShowDialog();
+        }
     }
 }

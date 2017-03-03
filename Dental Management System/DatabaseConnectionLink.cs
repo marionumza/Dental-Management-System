@@ -11,6 +11,9 @@ namespace Dental_Management_System
         Properties.Settings.Default["SQL_Database"] + ";" + "UID=" + Properties.Settings.Default["SQL_User"] + ';' + "PWD=" +
         Properties.Settings.Default["SQL_Pass"];
 
+        public string networkTestLink = "Server=" + Properties.Settings.Default["SQL_IP"] + ';'
+        + "UID=" + Properties.Settings.Default["SQL_User"] + ';' + "PWD=" + Properties.Settings.Default["SQL_Pass"];
+
         public string networkLinkCreateDatabase = "Server=" + Properties.Settings.Default["SQL_IP"] + ';' +
                 "UID=" + Properties.Settings.Default["SQL_User"] + ';' + "PWD=" +
                 Properties.Settings.Default["SQL_Pass"];

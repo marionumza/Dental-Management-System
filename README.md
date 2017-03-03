@@ -4,6 +4,8 @@ This is a College project.
 
 Note: This is not intended to be used in a commercial environment unless stated by the developer (Dasutein). You may contribute to the source code as needed. For general bug fixes or new features, please switch to the 'general-fixes' branch and make your changes there. 
 
+To login to the system, the temporary default username is **dev** and no password.
+
 Internal current software version: **0.2.20**
 
 For this software to work properly, you need the following...

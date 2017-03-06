@@ -39,7 +39,7 @@
             // 
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.pictureBox1.Image = global::Dental_Management_System.Properties.Resources.image_1062226;
-            this.pictureBox1.Location = new System.Drawing.Point(38, 18);
+            this.pictureBox1.Location = new System.Drawing.Point(40, 36);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(69, 69);
             this.pictureBox1.TabIndex = 0;
@@ -49,7 +49,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(112, 21);
+            this.label1.Location = new System.Drawing.Point(115, 30);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(159, 19);
             this.label1.TabIndex = 1;
@@ -59,7 +59,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(112, 40);
+            this.label2.Location = new System.Drawing.Point(115, 49);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(294, 57);
             this.label2.TabIndex = 2;
@@ -69,7 +69,7 @@
             // btnCancel
             // 
             this.btnCancel.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.btnCancel.Location = new System.Drawing.Point(311, 100);
+            this.btnCancel.Location = new System.Drawing.Point(349, 114);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(116, 27);
             this.btnCancel.TabIndex = 3;
@@ -82,7 +82,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(439, 139);
+            this.ClientSize = new System.Drawing.Size(477, 153);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);

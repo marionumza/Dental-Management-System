@@ -48,6 +48,7 @@ namespace Dental_Management_System
         DataTable pullPatientSchedule = new DataTable();
 
         bool IsConnectionActive;
+        string getTotalAppointmentCount;
 
         public string AssemblyVersion
         {
@@ -82,12 +83,21 @@ namespace Dental_Management_System
 
         void DisableModules()
         {
+            // VIEW RECORD TAB
+
             dataGridView1.Visible = false;
+            lblDatabaseError2.Visible = true;
             lblDatabaseError.Visible = true;
             lblsadface.Visible = true;
             btnNewPatient.Enabled = false;
             btnPayment.Enabled = false;
             panelSearch.Visible = false;
+
+            // APPOINTMENT TAB
+            dataGridView2.Visible = false;
+            btnSetAppointment.Enabled = false;
+            btnDeleteSchedule.Enabled = false;
+            btnSendEmail.Enabled = false;
         }
 
         void EmptyDataGridMessage()
@@ -110,7 +120,7 @@ namespace Dental_Management_System
                     MySqlCommand countCommand = connection.CreateCommand();
                     countCommand.CommandText = "SELECT COUNT(*) FROM Patient_Schedule WHERE ID";
                     long count = (long)countCommand.ExecuteScalar();
-                    btnViewAppointments.Text = "View Appointments (" + count.ToString() + ")";
+                    getTotalAppointmentCount = "View Appointments (" + count.ToString() + ")";
 
                     if (connection.State == ConnectionState.Open)
                         IsConnectionActive = true;
@@ -170,6 +180,7 @@ namespace Dental_Management_System
         void LoadCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             loadingDialogBox.Dispose();
+            btnViewAppointments.Text = getTotalAppointmentCount;
 
             dataGridView1.Columns.Clear();
             dataGridView2.Columns.Clear();
@@ -192,6 +203,7 @@ namespace Dental_Management_System
                 dataGridView2.AllowUserToDeleteRows = false;
                 dataGridView2.ColumnCount = 5;
                 dataGridView2.DataSource = pullPatientSchedule;
+               // dataGridView2.Sort(dataGridView2.Columns[2], ListSortDirection.Ascending);
 
                 if (patientData.Rows.Count == 0)
                 {
@@ -244,6 +256,7 @@ namespace Dental_Management_System
                     dataGridView2.Columns[3].DataPropertyName = "LastName";
                     dataGridView2.Columns[4].HeaderText = "First Name";
                     dataGridView2.Columns[4].DataPropertyName = "FirstName";
+                    dataGridView2.Columns[4].Width = 120;
                 }
 
             }
@@ -264,12 +277,9 @@ namespace Dental_Management_System
             initalizeDatabase.RunWorkerAsync();
             loadingDialogBox.ShowDialog();
 
-            // PerformLoad();
-
             //Properties.Settings.Default["CalendarTest"].Value();
             System.DateTime holidayDate1 = new DateTime();
             ResizeRedraw = true;
-            appVersion.Text = String.Format("v.{0}", AssemblyVersion);
             appTitle.Text= String.Format(AssemblyTitle);
 
             // ENABLE DOUBLE BUFFERING                     
@@ -466,6 +476,47 @@ namespace Dental_Management_System
                     }
                     connection.Close();
                 
+                }
+            }
+        }
+
+        private void metroButtonDeleteSchedule_Click(object sender, EventArgs e)
+        {
+            using (MySqlConnection connection = new MySqlConnection(databaseConnectionLink.networkLink))
+            {
+
+                if (dataGridView2.SelectedCells[0].Value.ToString() == String.Empty)
+                {
+                    return;
+                }
+                else
+                {
+
+                    DialogResult confirmDeletionOfAppointment = MetroMessageBox.Show(this, "Are you sure you want to delete this schedule?" + "\n" + "\n" +
+                        "Name: " + lblAppointmentPatientDataFirstName.Text + " " + lblAppointmentPatientDataLastName.Text + "\n" +
+                        "Date and Time: " + lblAppointmentPatientDataDate.Text + " " + lblAppointmentPatientDataTime.Text + "\n" +
+                        "Service: " + lblAppointmentPatientDataService.Text, "Appointments", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+                    if (confirmDeletionOfAppointment == DialogResult.Yes)
+                    {
+                        connection.Open();
+                        MySqlCommand command = new MySqlCommand();
+                        command.Connection = connection;
+                        command.CommandText = "DELETE FROM Patient_Schedule WHERE ID=" + dataGridView2.SelectedCells[0].Value.ToString();
+                        command.ExecuteReader();
+                        connection.Close();
+
+                        if (dataGridView2.SelectedCells[0].Selected)
+                        {
+                            dataGridView2.Rows.RemoveAt(dataGridView2.SelectedRows[0].Index);
+                        }
+
+                    }
+                    else if (confirmDeletionOfAppointment == DialogResult.No)
+                    {
+                        return;
+                    }
+
                 }
             }
         }

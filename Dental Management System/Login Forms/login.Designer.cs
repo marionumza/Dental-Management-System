@@ -31,17 +31,17 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblWelcomeMessage = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblWelcome = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.appVersion = new System.Windows.Forms.Label();
+            this.lblGitHubRepo = new System.Windows.Forms.LinkLabel();
+            this.lblappVersion = new System.Windows.Forms.Label();
             this.txtBoxPass = new System.Windows.Forms.TextBox();
             this.txtBoxUser = new System.Windows.Forms.TextBox();
             this.btn_Configure = new System.Windows.Forms.Button();
             this.btnSignIn = new System.Windows.Forms.Button();
-            this.linkLabel4 = new System.Windows.Forms.LinkLabel();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -56,7 +56,7 @@
             this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.panel2.Controls.Add(this.pictureBox2);
             this.panel2.Controls.Add(this.pictureBox1);
-            this.panel2.Controls.Add(this.label1);
+            this.panel2.Controls.Add(this.lblWelcomeMessage);
             this.panel2.Controls.Add(this.panel4);
             this.panel2.Controls.Add(this.panel1);
             this.panel2.Controls.Add(this.txtBoxPass);
@@ -90,39 +90,39 @@
             this.pictureBox1.TabIndex = 14;
             this.pictureBox1.TabStop = false;
             // 
-            // label1
+            // lblWelcomeMessage
             // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
-            this.label1.Location = new System.Drawing.Point(97, 103);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(248, 21);
-            this.label1.TabIndex = 12;
-            this.label1.Text = "Please login to begin your session.";
+            this.lblWelcomeMessage.AutoSize = true;
+            this.lblWelcomeMessage.BackColor = System.Drawing.Color.Transparent;
+            this.lblWelcomeMessage.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblWelcomeMessage.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
+            this.lblWelcomeMessage.Location = new System.Drawing.Point(102, 106);
+            this.lblWelcomeMessage.Name = "lblWelcomeMessage";
+            this.lblWelcomeMessage.Size = new System.Drawing.Size(248, 21);
+            this.lblWelcomeMessage.TabIndex = 12;
+            this.lblWelcomeMessage.Text = "Please login to begin your session.";
             // 
             // panel4
             // 
-            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(83)))), ((int)(((byte)(113)))));
-            this.panel4.Controls.Add(this.label2);
+            this.panel4.BackColor = System.Drawing.Color.White;
+            this.panel4.Controls.Add(this.lblWelcome);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel4.Location = new System.Drawing.Point(0, 0);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(446, 88);
             this.panel4.TabIndex = 13;
             // 
-            // label2
+            // lblWelcome
             // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(138, 22);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(158, 45);
-            this.label2.TabIndex = 11;
-            this.label2.Text = "Welcome";
+            this.lblWelcome.AutoSize = true;
+            this.lblWelcome.BackColor = System.Drawing.Color.Transparent;
+            this.lblWelcome.Font = new System.Drawing.Font("Segoe UI", 28F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblWelcome.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
+            this.lblWelcome.Location = new System.Drawing.Point(124, 22);
+            this.lblWelcome.Name = "lblWelcome";
+            this.lblWelcome.Size = new System.Drawing.Size(188, 51);
+            this.lblWelcome.TabIndex = 11;
+            this.lblWelcome.Text = "Welcome";
             // 
             // panel1
             // 
@@ -137,29 +137,45 @@
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
-            this.panel3.Controls.Add(this.linkLabel4);
-            this.panel3.Controls.Add(this.appVersion);
+            this.panel3.Controls.Add(this.lblGitHubRepo);
+            this.panel3.Controls.Add(this.lblappVersion);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(446, 32);
             this.panel3.TabIndex = 12;
             // 
-            // appVersion
+            // lblGitHubRepo
             // 
-            this.appVersion.AutoSize = true;
-            this.appVersion.BackColor = System.Drawing.Color.Transparent;
-            this.appVersion.Font = new System.Drawing.Font("Segoe UI", 8F);
-            this.appVersion.ForeColor = System.Drawing.Color.White;
-            this.appVersion.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.appVersion.Location = new System.Drawing.Point(12, 9);
-            this.appVersion.Name = "appVersion";
-            this.appVersion.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.appVersion.Size = new System.Drawing.Size(70, 13);
-            this.appVersion.TabIndex = 7;
-            this.appVersion.Text = "Version: N/A";
-            this.appVersion.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.appVersion.DoubleClick += new System.EventHandler(this.appVersion_DoubleClick);
+            this.lblGitHubRepo.AutoSize = true;
+            this.lblGitHubRepo.Font = new System.Drawing.Font("Segoe UI", 8F);
+            this.lblGitHubRepo.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
+            this.lblGitHubRepo.LinkColor = System.Drawing.Color.DimGray;
+            this.lblGitHubRepo.LinkVisited = true;
+            this.lblGitHubRepo.Location = new System.Drawing.Point(285, 9);
+            this.lblGitHubRepo.Name = "lblGitHubRepo";
+            this.lblGitHubRepo.Size = new System.Drawing.Size(162, 13);
+            this.lblGitHubRepo.TabIndex = 9;
+            this.lblGitHubRepo.TabStop = true;
+            this.lblGitHubRepo.Text = "Click to see Github Repository";
+            this.lblGitHubRepo.VisitedLinkColor = System.Drawing.Color.DimGray;
+            this.lblGitHubRepo.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel4_LinkClicked);
+            // 
+            // lblappVersion
+            // 
+            this.lblappVersion.AutoSize = true;
+            this.lblappVersion.BackColor = System.Drawing.Color.Transparent;
+            this.lblappVersion.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.lblappVersion.ForeColor = System.Drawing.Color.White;
+            this.lblappVersion.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblappVersion.Location = new System.Drawing.Point(7, 6);
+            this.lblappVersion.Name = "lblappVersion";
+            this.lblappVersion.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.lblappVersion.Size = new System.Drawing.Size(156, 19);
+            this.lblappVersion.TabIndex = 7;
+            this.lblappVersion.Text = "Client version: 0.3.351.4";
+            this.lblappVersion.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblappVersion.DoubleClick += new System.EventHandler(this.appVersion_DoubleClick);
             // 
             // txtBoxPass
             // 
@@ -224,22 +240,6 @@
             this.btnSignIn.UseVisualStyleBackColor = false;
             this.btnSignIn.Click += new System.EventHandler(this.btnSignIn_Click);
             // 
-            // linkLabel4
-            // 
-            this.linkLabel4.AutoSize = true;
-            this.linkLabel4.Font = new System.Drawing.Font("Segoe UI", 8F);
-            this.linkLabel4.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
-            this.linkLabel4.LinkColor = System.Drawing.Color.DimGray;
-            this.linkLabel4.LinkVisited = true;
-            this.linkLabel4.Location = new System.Drawing.Point(285, 9);
-            this.linkLabel4.Name = "linkLabel4";
-            this.linkLabel4.Size = new System.Drawing.Size(162, 13);
-            this.linkLabel4.TabIndex = 9;
-            this.linkLabel4.TabStop = true;
-            this.linkLabel4.Text = "Click to see Github Repository";
-            this.linkLabel4.VisitedLinkColor = System.Drawing.Color.DimGray;
-            this.linkLabel4.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel4_LinkClicked);
-            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -275,12 +275,12 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Label appVersion;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblappVersion;
+        private System.Windows.Forms.Label lblWelcomeMessage;
+        private System.Windows.Forms.Label lblWelcome;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.LinkLabel linkLabel4;
+        private System.Windows.Forms.LinkLabel lblGitHubRepo;
     }
 }
 

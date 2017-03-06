@@ -42,7 +42,6 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.btnViewAppointments = new System.Windows.Forms.Button();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.button1 = new System.Windows.Forms.Button();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.label12 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -59,18 +58,40 @@
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panel6 = new System.Windows.Forms.Panel();
             this.panelSearch = new System.Windows.Forms.Panel();
             this.txtboxSearch = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.btnSetAppointment = new MetroFramework.Controls.MetroButton();
+            this.btnDeleteSchedule = new MetroFramework.Controls.MetroButton();
             this.btnSendEmail = new MetroFramework.Controls.MetroButton();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.lblAppointmentPatientDataDate = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.lblAppointmentPatientDataTime = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.txtBoxAppointPatientDataNotes = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.lblAppointmentPatientDataService = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lblAppointmentPatientDataLastName = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.lblAppointmentPatientDataFirstName = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.btnSetAppointment = new MetroFramework.Controls.MetroButton();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.button2 = new System.Windows.Forms.Button();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.BannerPanel = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
-            this.appVersion = new System.Windows.Forms.Label();
             this.button_settings = new System.Windows.Forms.Button();
             this.button_about = new System.Windows.Forms.Button();
             this.btnPayment = new System.Windows.Forms.Button();
@@ -82,28 +103,7 @@
             this.appTitle = new System.Windows.Forms.Label();
             this.metroContextMenu1 = new MetroFramework.Controls.MetroContextMenu(this.components);
             this.backgroundSyncTimeOut = new System.Windows.Forms.Timer(this.components);
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.lblAppointmentPatientDataFirstName = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.lblAppointmentPatientDataLastName = new System.Windows.Forms.Label();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.lblAppointmentPatientDataService = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.txtBoxAppointPatientDataNotes = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.lblAppointmentPatientDataTime = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.lblAppointmentPatientDataDate = new System.Windows.Forms.Label();
+            this.lblDatabaseError2 = new System.Windows.Forms.Label();
             this.NavigationMenu.SuspendLayout();
             this.metroTabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -115,12 +115,12 @@
             this.panelSearch.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.panel5.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.BannerPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
-            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // NavigationMenu
@@ -166,7 +166,6 @@
             this.panel4.BackColor = System.Drawing.Color.White;
             this.panel4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.panel4.Controls.Add(this.btnViewAppointments);
-            this.panel4.Controls.Add(this.button1);
             this.panel4.Controls.Add(this.pictureBox3);
             this.panel4.Controls.Add(this.label12);
             this.panel4.Controls.Add(this.label6);
@@ -189,7 +188,7 @@
             this.btnViewAppointments.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnViewAppointments.ImageKey = "payment_icon.png";
             this.btnViewAppointments.ImageList = this.imageList1;
-            this.btnViewAppointments.Location = new System.Drawing.Point(375, 421);
+            this.btnViewAppointments.Location = new System.Drawing.Point(369, 389);
             this.btnViewAppointments.Name = "btnViewAppointments";
             this.btnViewAppointments.Size = new System.Drawing.Size(388, 32);
             this.btnViewAppointments.TabIndex = 16;
@@ -204,24 +203,6 @@
             this.imageList1.Images.SetKeyName(1, "add_icon.png");
             this.imageList1.Images.SetKeyName(2, "payment_icon.png");
             this.imageList1.Images.SetKeyName(3, "setting_icon.png");
-            // 
-            // button1
-            // 
-            this.button1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.button1.BackColor = System.Drawing.Color.Transparent;
-            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.button1.ForeColor = System.Drawing.Color.Gray;
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.ImageKey = "add_icon.png";
-            this.button1.ImageList = this.imageList1;
-            this.button1.Location = new System.Drawing.Point(375, 383);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(388, 32);
-            this.button1.TabIndex = 15;
-            this.button1.Text = "新しい患者を追加する";
-            this.button1.UseVisualStyleBackColor = false;
             // 
             // pictureBox3
             // 
@@ -417,6 +398,15 @@
             this.Column5.HeaderText = "Date of Birth";
             this.Column5.Name = "Column5";
             // 
+            // panel6
+            // 
+            this.panel6.BackColor = System.Drawing.Color.White;
+            this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel6.Location = new System.Drawing.Point(0, 0);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(1072, 10);
+            this.panel6.TabIndex = 8;
+            // 
             // panelSearch
             // 
             this.panelSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
@@ -459,9 +449,13 @@
             // 
             // panel5
             // 
+            this.panel5.Controls.Add(this.lblDatabaseError2);
+            this.panel5.Controls.Add(this.btnDeleteSchedule);
+            this.panel5.Controls.Add(this.btnSendEmail);
             this.panel5.Controls.Add(this.groupBox2);
             this.panel5.Controls.Add(this.dataGridView2);
             this.panel5.Controls.Add(this.groupBox1);
+            this.panel5.Controls.Add(this.btnSetAppointment);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel5.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.panel5.Location = new System.Drawing.Point(0, 10);
@@ -469,9 +463,251 @@
             this.panel5.Size = new System.Drawing.Size(1072, 505);
             this.panel5.TabIndex = 2;
             // 
+            // btnDeleteSchedule
+            // 
+            this.btnDeleteSchedule.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnDeleteSchedule.Location = new System.Drawing.Point(178, 461);
+            this.btnDeleteSchedule.Name = "btnDeleteSchedule";
+            this.btnDeleteSchedule.Size = new System.Drawing.Size(85, 23);
+            this.btnDeleteSchedule.TabIndex = 7;
+            this.btnDeleteSchedule.Text = "Delete";
+            this.btnDeleteSchedule.UseSelectable = true;
+            this.btnDeleteSchedule.Click += new System.EventHandler(this.metroButtonDeleteSchedule_Click);
+            // 
+            // btnSendEmail
+            // 
+            this.btnSendEmail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnSendEmail.Location = new System.Drawing.Point(269, 461);
+            this.btnSendEmail.Name = "btnSendEmail";
+            this.btnSendEmail.Size = new System.Drawing.Size(104, 23);
+            this.btnSendEmail.TabIndex = 3;
+            this.btnSendEmail.Text = "Send E-Mail";
+            this.btnSendEmail.UseSelectable = true;
+            this.btnSendEmail.Click += new System.EventHandler(this.btnSendEmail_Click);
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.Controls.Add(this.lblAppointmentPatientDataDate);
+            this.groupBox2.Controls.Add(this.label17);
+            this.groupBox2.Controls.Add(this.lblAppointmentPatientDataTime);
+            this.groupBox2.Controls.Add(this.label13);
+            this.groupBox2.Controls.Add(this.txtBoxAppointPatientDataNotes);
+            this.groupBox2.Controls.Add(this.label11);
+            this.groupBox2.Controls.Add(this.lblAppointmentPatientDataService);
+            this.groupBox2.Controls.Add(this.label15);
+            this.groupBox2.Location = new System.Drawing.Point(528, 112);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(523, 372);
+            this.groupBox2.TabIndex = 6;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Appointment Details";
+            // 
+            // lblAppointmentPatientDataDate
+            // 
+            this.lblAppointmentPatientDataDate.AutoSize = true;
+            this.lblAppointmentPatientDataDate.Location = new System.Drawing.Point(129, 95);
+            this.lblAppointmentPatientDataDate.Name = "lblAppointmentPatientDataDate";
+            this.lblAppointmentPatientDataDate.Size = new System.Drawing.Size(67, 19);
+            this.lblAppointmentPatientDataDate.TabIndex = 7;
+            this.lblAppointmentPatientDataDate.Text = "3/2/2017";
+            this.lblAppointmentPatientDataDate.Click += new System.EventHandler(this.label18_Click);
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.label17.Location = new System.Drawing.Point(45, 95);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(44, 19);
+            this.label17.TabIndex = 6;
+            this.label17.Text = "Date:";
+            this.label17.Click += new System.EventHandler(this.label17_Click);
+            // 
+            // lblAppointmentPatientDataTime
+            // 
+            this.lblAppointmentPatientDataTime.AutoSize = true;
+            this.lblAppointmentPatientDataTime.Location = new System.Drawing.Point(129, 64);
+            this.lblAppointmentPatientDataTime.Name = "lblAppointmentPatientDataTime";
+            this.lblAppointmentPatientDataTime.Size = new System.Drawing.Size(70, 19);
+            this.lblAppointmentPatientDataTime.TabIndex = 5;
+            this.lblAppointmentPatientDataTime.Text = "09:00 AM";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.label13.Location = new System.Drawing.Point(45, 64);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(46, 19);
+            this.label13.TabIndex = 4;
+            this.label13.Text = "Time:";
+            // 
+            // txtBoxAppointPatientDataNotes
+            // 
+            this.txtBoxAppointPatientDataNotes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtBoxAppointPatientDataNotes.BackColor = System.Drawing.Color.White;
+            this.txtBoxAppointPatientDataNotes.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtBoxAppointPatientDataNotes.Location = new System.Drawing.Point(133, 126);
+            this.txtBoxAppointPatientDataNotes.Multiline = true;
+            this.txtBoxAppointPatientDataNotes.Name = "txtBoxAppointPatientDataNotes";
+            this.txtBoxAppointPatientDataNotes.ReadOnly = true;
+            this.txtBoxAppointPatientDataNotes.Size = new System.Drawing.Size(365, 125);
+            this.txtBoxAppointPatientDataNotes.TabIndex = 3;
+            this.txtBoxAppointPatientDataNotes.Text = "Tjkahkjsdfhakjdhaskasdsa";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.label11.Location = new System.Drawing.Point(45, 126);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(48, 19);
+            this.label11.TabIndex = 2;
+            this.label11.Text = "Notes";
+            // 
+            // lblAppointmentPatientDataService
+            // 
+            this.lblAppointmentPatientDataService.AutoSize = true;
+            this.lblAppointmentPatientDataService.Location = new System.Drawing.Point(129, 33);
+            this.lblAppointmentPatientDataService.Name = "lblAppointmentPatientDataService";
+            this.lblAppointmentPatientDataService.Size = new System.Drawing.Size(103, 19);
+            this.lblAppointmentPatientDataService.TabIndex = 1;
+            this.lblAppointmentPatientDataService.Text = "Dental Cleanup";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.label15.Location = new System.Drawing.Point(45, 33);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(63, 19);
+            this.label15.TabIndex = 0;
+            this.label15.Text = "Service:";
+            this.label15.Click += new System.EventHandler(this.label15_Click);
+            // 
+            // dataGridView2
+            // 
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.dataGridView2.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            this.dataGridView2.BackgroundColor = System.Drawing.Color.White;
+            this.dataGridView2.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dataGridView2.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 10F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn4,
+            this.dataGridViewTextBoxColumn5});
+            this.dataGridView2.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(233)))), ((int)(((byte)(233)))));
+            this.dataGridView2.Location = new System.Drawing.Point(3, 6);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
+            this.dataGridView2.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            this.dataGridView2.RowTemplate.DefaultCellStyle.BackColor = System.Drawing.Color.White;
+            this.dataGridView2.Size = new System.Drawing.Size(522, 432);
+            this.dataGridView2.TabIndex = 6;
+            this.dataGridView2.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellClick);
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "ID";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.Width = 30;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "Time";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.HeaderText = "Date";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.Width = 150;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.HeaderText = "Last Name";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.HeaderText = "First Name";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.lblAppointmentPatientDataLastName);
+            this.groupBox1.Controls.Add(this.label9);
+            this.groupBox1.Controls.Add(this.lblAppointmentPatientDataFirstName);
+            this.groupBox1.Controls.Add(this.label7);
+            this.groupBox1.Location = new System.Drawing.Point(528, -3);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(523, 109);
+            this.groupBox1.TabIndex = 5;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Patient";
+            // 
+            // lblAppointmentPatientDataLastName
+            // 
+            this.lblAppointmentPatientDataLastName.AutoSize = true;
+            this.lblAppointmentPatientDataLastName.Location = new System.Drawing.Point(129, 63);
+            this.lblAppointmentPatientDataLastName.Name = "lblAppointmentPatientDataLastName";
+            this.lblAppointmentPatientDataLastName.Size = new System.Drawing.Size(75, 19);
+            this.lblAppointmentPatientDataLastName.TabIndex = 3;
+            this.lblAppointmentPatientDataLastName.Text = "Sakurauchi";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.label9.Location = new System.Drawing.Point(45, 63);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(83, 19);
+            this.label9.TabIndex = 2;
+            this.label9.Text = "Last Name:";
+            // 
+            // lblAppointmentPatientDataFirstName
+            // 
+            this.lblAppointmentPatientDataFirstName.AutoSize = true;
+            this.lblAppointmentPatientDataFirstName.Location = new System.Drawing.Point(129, 33);
+            this.lblAppointmentPatientDataFirstName.Name = "lblAppointmentPatientDataFirstName";
+            this.lblAppointmentPatientDataFirstName.Size = new System.Drawing.Size(35, 19);
+            this.lblAppointmentPatientDataFirstName.TabIndex = 1;
+            this.lblAppointmentPatientDataFirstName.Text = "Riko";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.label7.Location = new System.Drawing.Point(45, 33);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(85, 19);
+            this.label7.TabIndex = 0;
+            this.label7.Text = "First Name:";
+            // 
             // btnSetAppointment
             // 
-            this.btnSetAppointment.Location = new System.Drawing.Point(219, 303);
+            this.btnSetAppointment.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnSetAppointment.Location = new System.Drawing.Point(3, 461);
             this.btnSetAppointment.Name = "btnSetAppointment";
             this.btnSetAppointment.Size = new System.Drawing.Size(169, 23);
             this.btnSetAppointment.TabIndex = 4;
@@ -479,15 +715,13 @@
             this.btnSetAppointment.UseSelectable = true;
             this.btnSetAppointment.Click += new System.EventHandler(this.btnSetAppointment_Click);
             // 
-            // btnSendEmail
+            // panel2
             // 
-            this.btnSendEmail.Location = new System.Drawing.Point(394, 303);
-            this.btnSendEmail.Name = "btnSendEmail";
-            this.btnSendEmail.Size = new System.Drawing.Size(104, 23);
-            this.btnSendEmail.TabIndex = 3;
-            this.btnSendEmail.Text = "Send E-Mail";
-            this.btnSendEmail.UseSelectable = true;
-            this.btnSendEmail.Click += new System.EventHandler(this.btnSendEmail_Click);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1072, 10);
+            this.panel2.TabIndex = 7;
             // 
             // button2
             // 
@@ -502,7 +736,6 @@
             // 
             this.BannerPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.BannerPanel.Controls.Add(this.label5);
-            this.BannerPanel.Controls.Add(this.appVersion);
             this.BannerPanel.Controls.Add(this.button_settings);
             this.BannerPanel.Controls.Add(this.button_about);
             this.BannerPanel.Controls.Add(this.btnPayment);
@@ -530,19 +763,6 @@
             this.label5.Size = new System.Drawing.Size(11, 17);
             this.label5.TabIndex = 10;
             this.label5.Text = "|";
-            // 
-            // appVersion
-            // 
-            this.appVersion.AutoSize = true;
-            this.appVersion.BackColor = System.Drawing.Color.Transparent;
-            this.appVersion.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Italic);
-            this.appVersion.ForeColor = System.Drawing.Color.Silver;
-            this.appVersion.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.appVersion.Location = new System.Drawing.Point(78, 41);
-            this.appVersion.Name = "appVersion";
-            this.appVersion.Size = new System.Drawing.Size(73, 13);
-            this.appVersion.TabIndex = 9;
-            this.appVersion.Text = "Version: x.x.x.x";
             // 
             // button_settings
             // 
@@ -703,240 +923,20 @@
             this.backgroundSyncTimeOut.Enabled = true;
             this.backgroundSyncTimeOut.Interval = 30;
             // 
-            // groupBox1
+            // lblDatabaseError2
             // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.lblAppointmentPatientDataLastName);
-            this.groupBox1.Controls.Add(this.label9);
-            this.groupBox1.Controls.Add(this.lblAppointmentPatientDataFirstName);
-            this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Location = new System.Drawing.Point(528, -3);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(523, 109);
-            this.groupBox1.TabIndex = 5;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Patient";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.label7.Location = new System.Drawing.Point(45, 33);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(85, 19);
-            this.label7.TabIndex = 0;
-            this.label7.Text = "First Name:";
-            // 
-            // dataGridView2
-            // 
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.dataGridView2.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
-            this.dataGridView2.BackgroundColor = System.Drawing.Color.White;
-            this.dataGridView2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dataGridView2.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 10F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2,
-            this.dataGridViewTextBoxColumn3,
-            this.dataGridViewTextBoxColumn4,
-            this.dataGridViewTextBoxColumn5});
-            this.dataGridView2.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(233)))), ((int)(((byte)(233)))));
-            this.dataGridView2.Location = new System.Drawing.Point(3, 6);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
-            this.dataGridView2.RowsDefaultCellStyle = dataGridViewCellStyle6;
-            this.dataGridView2.RowTemplate.DefaultCellStyle.BackColor = System.Drawing.Color.White;
-            this.dataGridView2.Size = new System.Drawing.Size(522, 491);
-            this.dataGridView2.TabIndex = 6;
-            this.dataGridView2.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellClick);
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "ID";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.Width = 30;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "Time";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.HeaderText = "Date";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.Width = 150;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.HeaderText = "Last Name";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.HeaderText = "First Name";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            // 
-            // panel2
-            // 
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1072, 10);
-            this.panel2.TabIndex = 7;
-            // 
-            // panel6
-            // 
-            this.panel6.BackColor = System.Drawing.Color.White;
-            this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel6.Location = new System.Drawing.Point(0, 0);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(1072, 10);
-            this.panel6.TabIndex = 8;
-            // 
-            // lblAppointmentPatientDataFirstName
-            // 
-            this.lblAppointmentPatientDataFirstName.AutoSize = true;
-            this.lblAppointmentPatientDataFirstName.Location = new System.Drawing.Point(129, 33);
-            this.lblAppointmentPatientDataFirstName.Name = "lblAppointmentPatientDataFirstName";
-            this.lblAppointmentPatientDataFirstName.Size = new System.Drawing.Size(35, 19);
-            this.lblAppointmentPatientDataFirstName.TabIndex = 1;
-            this.lblAppointmentPatientDataFirstName.Text = "Riko";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.label9.Location = new System.Drawing.Point(45, 63);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(83, 19);
-            this.label9.TabIndex = 2;
-            this.label9.Text = "Last Name:";
-            // 
-            // lblAppointmentPatientDataLastName
-            // 
-            this.lblAppointmentPatientDataLastName.AutoSize = true;
-            this.lblAppointmentPatientDataLastName.Location = new System.Drawing.Point(129, 63);
-            this.lblAppointmentPatientDataLastName.Name = "lblAppointmentPatientDataLastName";
-            this.lblAppointmentPatientDataLastName.Size = new System.Drawing.Size(75, 19);
-            this.lblAppointmentPatientDataLastName.TabIndex = 3;
-            this.lblAppointmentPatientDataLastName.Text = "Sakurauchi";
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox2.Controls.Add(this.lblAppointmentPatientDataDate);
-            this.groupBox2.Controls.Add(this.btnSendEmail);
-            this.groupBox2.Controls.Add(this.btnSetAppointment);
-            this.groupBox2.Controls.Add(this.label17);
-            this.groupBox2.Controls.Add(this.lblAppointmentPatientDataTime);
-            this.groupBox2.Controls.Add(this.label13);
-            this.groupBox2.Controls.Add(this.txtBoxAppointPatientDataNotes);
-            this.groupBox2.Controls.Add(this.label11);
-            this.groupBox2.Controls.Add(this.lblAppointmentPatientDataService);
-            this.groupBox2.Controls.Add(this.label15);
-            this.groupBox2.Location = new System.Drawing.Point(528, 112);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(523, 372);
-            this.groupBox2.TabIndex = 6;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Appointment Details";
-            // 
-            // lblAppointmentPatientDataService
-            // 
-            this.lblAppointmentPatientDataService.AutoSize = true;
-            this.lblAppointmentPatientDataService.Location = new System.Drawing.Point(129, 33);
-            this.lblAppointmentPatientDataService.Name = "lblAppointmentPatientDataService";
-            this.lblAppointmentPatientDataService.Size = new System.Drawing.Size(103, 19);
-            this.lblAppointmentPatientDataService.TabIndex = 1;
-            this.lblAppointmentPatientDataService.Text = "Dental Cleanup";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.label15.Location = new System.Drawing.Point(45, 33);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(63, 19);
-            this.label15.TabIndex = 0;
-            this.label15.Text = "Service:";
-            this.label15.Click += new System.EventHandler(this.label15_Click);
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.label11.Location = new System.Drawing.Point(45, 126);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(48, 19);
-            this.label11.TabIndex = 2;
-            this.label11.Text = "Notes";
-            // 
-            // txtBoxAppointPatientDataNotes
-            // 
-            this.txtBoxAppointPatientDataNotes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxAppointPatientDataNotes.BackColor = System.Drawing.Color.White;
-            this.txtBoxAppointPatientDataNotes.Location = new System.Drawing.Point(49, 157);
-            this.txtBoxAppointPatientDataNotes.Multiline = true;
-            this.txtBoxAppointPatientDataNotes.Name = "txtBoxAppointPatientDataNotes";
-            this.txtBoxAppointPatientDataNotes.ReadOnly = true;
-            this.txtBoxAppointPatientDataNotes.Size = new System.Drawing.Size(449, 125);
-            this.txtBoxAppointPatientDataNotes.TabIndex = 3;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.label13.Location = new System.Drawing.Point(45, 64);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(46, 19);
-            this.label13.TabIndex = 4;
-            this.label13.Text = "Time:";
-            // 
-            // lblAppointmentPatientDataTime
-            // 
-            this.lblAppointmentPatientDataTime.AutoSize = true;
-            this.lblAppointmentPatientDataTime.Location = new System.Drawing.Point(129, 64);
-            this.lblAppointmentPatientDataTime.Name = "lblAppointmentPatientDataTime";
-            this.lblAppointmentPatientDataTime.Size = new System.Drawing.Size(70, 19);
-            this.lblAppointmentPatientDataTime.TabIndex = 5;
-            this.lblAppointmentPatientDataTime.Text = "09:00 AM";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.label17.Location = new System.Drawing.Point(45, 95);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(44, 19);
-            this.label17.TabIndex = 6;
-            this.label17.Text = "Date:";
-            this.label17.Click += new System.EventHandler(this.label17_Click);
-            // 
-            // lblAppointmentPatientDataDate
-            // 
-            this.lblAppointmentPatientDataDate.AutoSize = true;
-            this.lblAppointmentPatientDataDate.Location = new System.Drawing.Point(129, 95);
-            this.lblAppointmentPatientDataDate.Name = "lblAppointmentPatientDataDate";
-            this.lblAppointmentPatientDataDate.Size = new System.Drawing.Size(67, 19);
-            this.lblAppointmentPatientDataDate.TabIndex = 7;
-            this.lblAppointmentPatientDataDate.Text = "3/2/2017";
-            this.lblAppointmentPatientDataDate.Click += new System.EventHandler(this.label18_Click);
+            this.lblDatabaseError2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblDatabaseError2.Font = new System.Drawing.Font("Segoe UI", 15F);
+            this.lblDatabaseError2.ForeColor = System.Drawing.Color.DimGray;
+            this.lblDatabaseError2.Location = new System.Drawing.Point(7, 197);
+            this.lblDatabaseError2.Name = "lblDatabaseError2";
+            this.lblDatabaseError2.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.lblDatabaseError2.Size = new System.Drawing.Size(518, 93);
+            this.lblDatabaseError2.TabIndex = 8;
+            this.lblDatabaseError2.Text = "Unable to retrieve items from the database.\r\nCheck if your connection settings ar" +
+    "e correct and try again.";
+            this.lblDatabaseError2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblDatabaseError2.Visible = false;
             // 
             // MainDashboard
             // 
@@ -968,15 +968,15 @@
             this.panelSearch.PerformLayout();
             this.tabPage3.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.BannerPanel.ResumeLayout(false);
             this.BannerPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1002,7 +1002,6 @@
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panelSearch;
-        private System.Windows.Forms.Label appVersion;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label5;
@@ -1013,7 +1012,6 @@
         private MetroFramework.Controls.MetroContextMenu metroContextMenu1;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btnViewAppointments;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
@@ -1050,6 +1048,8 @@
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label lblAppointmentPatientDataTime;
         private System.Windows.Forms.Label label13;
+        private MetroFramework.Controls.MetroButton btnDeleteSchedule;
+        public System.Windows.Forms.Label lblDatabaseError2;
     }
 }
 

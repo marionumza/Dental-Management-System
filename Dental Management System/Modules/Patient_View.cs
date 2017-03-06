@@ -616,8 +616,20 @@ namespace Dental_Management_System
 
         private void btnSetAppointment_Click(object sender, EventArgs e)
         {
-
+            
             string getday = dateTimePicker_DateSelection.Value.ToString("yyyy-MM-dd");
+
+            if (comboBox_ChooseTime.SelectedItem == null)
+            {
+                MessageBox.Show("Please select the time.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            if (comboBox_ServiceType.SelectedItem == null)
+            {
+                MessageBox.Show("Please select a service.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
 
             try
             {
@@ -637,6 +649,12 @@ namespace Dental_Management_System
                     command.ExecuteNonQuery();
                     command.Parameters.Clear();
                     connection.Close();
+
+                    MessageBox.Show("Appointment has been scheduled for " + dateTimePicker_DateSelection.Value.ToString("MM/dd/yyyy") + " " + comboBox_ChooseTime.Text +
+                        "\n" + "Service: " + comboBox_ServiceType.Text, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                    btnSetAppointment.Enabled = false;
+                    
+
                 }
             }
             catch (Exception eh)
@@ -644,6 +662,11 @@ namespace Dental_Management_System
                 
                 MessageBox.Show(eh.Message);
             }
+
+        }
+
+        private void Patient_TabControl_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
         }
     }

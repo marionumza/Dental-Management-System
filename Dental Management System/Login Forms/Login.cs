@@ -51,7 +51,7 @@ namespace Dental_Management_System
             txtBoxPass.Text = "Password";
             txtBoxPass.UseSystemPasswordChar = false;
 
-            appVersion.Text = String.Format("Client version: {0}", AssemblyVersion);
+            lblappVersion.Text = String.Format("Client version: {0}", AssemblyVersion);
 
         }
 

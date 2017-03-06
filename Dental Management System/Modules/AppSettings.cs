@@ -270,19 +270,6 @@ namespace Dental_Management_System
             serverConfig.ShowDialog();
         }
 
-        private void UseWhiteBG_checkbox_CheckedChanged(object sender, EventArgs e)
-        {
-            if (UseWhiteBG_checkbox.Checked == false)
-            {
-                WallpaperFileLocation.Enabled = true;
-                BrowseWP_Button.Enabled = true;
-            }
-            else if (UseWhiteBG_checkbox.Checked == true)
-            {
-                WallpaperFileLocation.Enabled = false;
-                BrowseWP_Button.Enabled = false;
-            }
-        }
 
         private void accountType_combobox_SelectedIndexChanged(object sender, EventArgs e)
         {

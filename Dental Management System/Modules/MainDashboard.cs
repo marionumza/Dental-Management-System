@@ -38,16 +38,20 @@ namespace Dental_Management_System
             InitializeComponent();
         }
 
-        // CALL CLASS
+        // Calling all class and methods to be used in other methods.
+
         DatabaseConnectionLink databaseConnectionLink = new DatabaseConnectionLink();
         DatabaseGetData databaseGetData = new DatabaseGetData();
-
         LoadingDashDialogBox loadingDialogBox = new LoadingDashDialogBox();
+        RefreshDialogBox refreshDialogBox = new RefreshDialogBox();
+        BackgroundWorker retrievePatientDataInformation = new BackgroundWorker();
+        BackgroundWorker retrieveScheduleInformation = new BackgroundWorker();
         public DataTable patientData = new DataTable();
         DataTable pullPatientData = new DataTable();
         DataTable pullPatientSchedule = new DataTable();
 
         bool IsConnectionActive;
+        string getTotalAppointmentCount;
 
         public string AssemblyVersion
         {
@@ -74,6 +78,38 @@ namespace Dental_Management_System
             }
         }
 
+        private void Dashboard_Load(object sender, EventArgs e)
+        {
+         
+            // Starts the Background Worker process to retrieve information from the database. 
+
+            retrievePatientDataInformation.DoWork += new DoWorkEventHandler(StartLoadingDatabase);
+            retrievePatientDataInformation.RunWorkerCompleted += new RunWorkerCompletedEventHandler(StopLoadingDatabase);
+            retrievePatientDataInformation.RunWorkerAsync();
+            retrieveScheduleInformation.DoWork += new DoWorkEventHandler(StartLoadingScheduleInformation);
+            retrieveScheduleInformation.RunWorkerCompleted += new RunWorkerCompletedEventHandler(StopLoadingScheduleInformation);
+            retrieveScheduleInformation.RunWorkerAsync();
+            loadingDialogBox.ShowDialog();
+
+            ResizeRedraw = true;
+            appTitle.Text = String.Format(AssemblyTitle);
+
+            // ENABLE DOUBLE BUFFERING                     
+            EnableDoubleBuffering(BannerPanel, true);
+            EnableDoubleBuffering(NavigationMenu, true);
+            EnableDoubleBuffering(this, true);
+            EnableDoubleBuffering(panel4, true);
+
+
+            // INITIALIZE SETTINGS
+            label2.Text = Properties.Settings.Default["DoctorName"].ToString();
+            label3.Text = Properties.Settings.Default["DoctorName"].ToString();
+            label4.Text = Properties.Settings.Default["DocAddress"].ToString();
+            label6.Text = Properties.Settings.Default["DocNumber"].ToString();
+            label12.Text = Properties.Settings.Default["DocOfficeName"].ToString();
+
+        }
+
 
         int pageSize = 999;
         int CurrentPageIndex = 1;
@@ -82,12 +118,22 @@ namespace Dental_Management_System
 
         void DisableModules()
         {
+            // VIEW RECORD TAB
+
             dataGridView1.Visible = false;
+            lblDatabaseError2.Visible = true;
             lblDatabaseError.Visible = true;
             lblsadface.Visible = true;
             btnNewPatient.Enabled = false;
             btnPayment.Enabled = false;
             panelSearch.Visible = false;
+
+            // APPOINTMENT TAB
+
+            dataGridView2.Visible = false;
+            btnSetAppointment.Enabled = false;
+            btnDeleteSchedule.Enabled = false;
+            btnSendEmail.Enabled = false;
         }
 
         void EmptyDataGridMessage()
@@ -98,8 +144,36 @@ namespace Dental_Management_System
             lblDatabaseError.Visible = true;
         }
 
+        public void PerformLoadOfScheduleData()
+        {
+            try
+            {
+                using (MySqlConnection connection = new MySqlConnection(databaseConnectionLink.networkLink))
+                {
+                    connection.Open();
+                    MySqlCommand countCommand = connection.CreateCommand();
+                    countCommand.CommandText = "SELECT COUNT(*) FROM Patient_Schedule WHERE ID";
+                    long count = (long)countCommand.ExecuteScalar();
+                    getTotalAppointmentCount = "View Appointments (" + count.ToString() + ")"; 
 
-        public void PerformLoad()
+                    if (connection.State == ConnectionState.Open)
+                        IsConnectionActive = true;
+                    else if (connection.State == ConnectionState.Broken)
+                        IsConnectionActive = false;
+
+                    using (MySqlDataAdapter adapter = new MySqlDataAdapter(databaseGetData.getScheduleDataFromDatabase, databaseConnectionLink.networkLink))
+                    {
+                        adapter.Fill(pullPatientSchedule);
+                    }
+                }
+            }
+            catch
+            {
+
+            }
+        }
+
+        public void PerformLoadOfPatientData()
         {
             try
             {
@@ -107,31 +181,12 @@ namespace Dental_Management_System
                 {
 
                     connection.Open();
-                    MySqlCommand countCommand = connection.CreateCommand();
-                    countCommand.CommandText = "SELECT COUNT(*) FROM Patient_Schedule WHERE ID";
-                    long count = (long)countCommand.ExecuteScalar();
-                    btnViewAppointments.Text = "View Appointments (" + count.ToString() + ")";
-
-                    if (connection.State == ConnectionState.Open)
-                        IsConnectionActive = true;
-                    else if (connection.State == ConnectionState.Broken)
-                        IsConnectionActive = false;
-
 
                     using (MySqlDataAdapter data = new MySqlDataAdapter(databaseGetData.getDataFromDatabase, databaseConnectionLink.networkLink))
                     {
-
                         data.Fill(patientData);
-
-                        using (MySqlDataAdapter data2 = new MySqlDataAdapter(databaseGetData.getScheduleDataFromDatabase, databaseConnectionLink.networkLink))
-                        {
-                            data2.Fill(pullPatientSchedule);
-
-
-                            connection.Close();
-
-                            Thread.Sleep(3000);
-                        }
+                        connection.Close();
+                        Thread.Sleep(2000);                       
                        
                     }
                 }
@@ -143,47 +198,15 @@ namespace Dental_Management_System
             
         }
 
-        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        void StartLoadingScheduleInformation(object sender, DoWorkEventArgs a)
         {
-            var PID = dataGridView1.SelectedCells[0].Value.ToString();
-            Patient_View patientView = new Patient_View();
-
-            if(dataGridView1.SelectedCells[0].Value.ToString() == String.Empty)
-            {
-                return;
-            }
-            else
-            {
-                patientView.lbl_IDnum.Text = PID;
-                patientView.Show();
-            }
-
+            PerformLoadOfScheduleData();
         }
 
-
-        void LoadDB(object sender, DoWorkEventArgs e)
+        void StopLoadingScheduleInformation(object sender, RunWorkerCompletedEventArgs a)
         {
-
-            PerformLoad();
-        }
-
-        void LoadCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            loadingDialogBox.Dispose();
-
-            dataGridView1.Columns.Clear();
-            dataGridView2.Columns.Clear();
-
             try
             {
-
-                dataGridView1.AutoGenerateColumns = false;
-                dataGridView1.MultiSelect = false;
-                dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-                dataGridView1.ReadOnly = true;
-                dataGridView1.AllowUserToDeleteRows = false;
-                dataGridView1.ColumnCount = 7;              
-                dataGridView1.DataSource = patientData;
 
                 dataGridView2.AutoGenerateColumns = false;
                 dataGridView2.MultiSelect = false;
@@ -193,25 +216,78 @@ namespace Dental_Management_System
                 dataGridView2.ColumnCount = 5;
                 dataGridView2.DataSource = pullPatientSchedule;
 
-                if (patientData.Rows.Count == 0)
+                dataGridView2.Columns[0].HeaderText = "ID";
+                dataGridView2.Columns[0].DataPropertyName = "ID";
+                dataGridView2.Columns[0].Width = 50;
+                dataGridView2.Columns[0].Frozen = true;
+                dataGridView2.Columns[1].HeaderText = "Time";
+                dataGridView2.Columns[1].DataPropertyName = "Time";
+                dataGridView2.Columns[1].Width = 100;
+                dataGridView2.Columns[2].HeaderText = "Date";
+                dataGridView2.Columns[2].DataPropertyName = "Date";
+                dataGridView2.Columns[3].HeaderText = "Last Name";
+                dataGridView2.Columns[3].DataPropertyName = "LastName";
+                dataGridView2.Columns[4].HeaderText = "First Name";
+                dataGridView2.Columns[4].DataPropertyName = "FirstName";
+                dataGridView2.Columns[4].Width = 120;
+            }
+            catch
+            {
+
+            }
+        }
+
+
+        void StartLoadingDatabase(object sender, DoWorkEventArgs e)
+        {
+            PerformLoadOfPatientData();
+        }
+
+        void StopLoadingDatabase(object sender, RunWorkerCompletedEventArgs e)
+        {
+
+            loadingDialogBox.Dispose();
+
+            if (refreshDialogBox.Visible == true)
+            {
+                refreshDialogBox.Close();
+            }
+
+            btnViewAppointments.Text = getTotalAppointmentCount;
+
+            dataGridView1.Rows.Clear();
+
+
+            if (patientData.Rows.Count == 0)
+            {
+
+                if (IsConnectionActive == true)
                 {
-                 
-                    if (IsConnectionActive == true)
-                    {
-                        EmptyDataGridMessage();
-                    }
-                    else if (IsConnectionActive == false)
-                    {
-                        DisableModules();
-                        return;
-                    }
+                    EmptyDataGridMessage();
 
                 }
-
-
-
-                else
+                else if (IsConnectionActive == false)
                 {
+                    DisableModules();
+                    return;
+                }
+
+            }
+
+            else
+            {
+                try
+                {
+                    dataGridView1.AutoGenerateColumns = false;
+                    dataGridView1.MultiSelect = false;
+                    dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+                    dataGridView1.ReadOnly = true;
+                    dataGridView1.AllowUserToDeleteRows = false;
+                    dataGridView1.ColumnCount = 7;
+                    dataGridView1.DataSource = patientData;
+
+                    // dataGridView2.Sort(dataGridView2.Columns[2], ListSortDirection.Ascending);
+
                     dataGridView1.Columns[0].HeaderText = "PID";
                     dataGridView1.Columns[0].DataPropertyName = "PID";
                     dataGridView1.Columns[0].Width = 100;
@@ -231,62 +307,49 @@ namespace Dental_Management_System
                     dataGridView1.Columns[6].HeaderText = "Email";
                     dataGridView1.Columns[6].DataPropertyName = "Email";
 
-                    dataGridView2.Columns[0].HeaderText = "ID";
-                    dataGridView2.Columns[0].DataPropertyName = "ID";
-                    dataGridView2.Columns[0].Width = 50;
-                    dataGridView2.Columns[0].Frozen = true;
-                    dataGridView2.Columns[1].HeaderText = "Time";
-                    dataGridView2.Columns[1].DataPropertyName = "Time";
-                    dataGridView2.Columns[1].Width = 100;
-                    dataGridView2.Columns[2].HeaderText = "Date";
-                    dataGridView2.Columns[2].DataPropertyName = "Date";
-                    dataGridView2.Columns[3].HeaderText = "Last Name";
-                    dataGridView2.Columns[3].DataPropertyName = "LastName";
-                    dataGridView2.Columns[4].HeaderText = "First Name";
-                    dataGridView2.Columns[4].DataPropertyName = "FirstName";
                 }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
 
+                }
             }
-            catch(Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-
-            }
-
         }
 
-        private void Dashboard_Load(object sender, EventArgs e)
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            var PID = dataGridView1.SelectedCells[0].Value.ToString();
+            Patient_View patientView = new Patient_View();
 
-            BackgroundWorker initalizeDatabase = new BackgroundWorker();
-            initalizeDatabase.DoWork += new DoWorkEventHandler(LoadDB);
-            initalizeDatabase.RunWorkerCompleted += new RunWorkerCompletedEventHandler(LoadCompleted);
-            initalizeDatabase.RunWorkerAsync();
-            loadingDialogBox.ShowDialog();
+            using (MySqlConnection connection = new MySqlConnection(databaseConnectionLink.networkLink))
+            {
+                connection.Open();
+                MySqlCommand validatePatientID = connection.CreateCommand();
+                validatePatientID.CommandText = "SELECT * FROM Patient_Information WHERE PID=" + dataGridView1.SelectedCells[0].Value.ToString();
+                MySqlDataReader validation = validatePatientID.ExecuteReader();
+                if (validation.HasRows)
+                {
 
-            // PerformLoad();
+                }
+                else
+                {
+                    return;
+                }
+                connection.Close();
+            }
 
-            //Properties.Settings.Default["CalendarTest"].Value();
-            System.DateTime holidayDate1 = new DateTime();
-            ResizeRedraw = true;
-            appVersion.Text = String.Format("v.{0}", AssemblyVersion);
-            appTitle.Text= String.Format(AssemblyTitle);
-
-            // ENABLE DOUBLE BUFFERING                     
-            EnableDoubleBuffering(BannerPanel, true);
-            EnableDoubleBuffering(NavigationMenu, true);
-            EnableDoubleBuffering(this, true);
-            EnableDoubleBuffering(panel4, true);
-
-
-            // INITIALIZE SETTINGS
-            label2.Text = Properties.Settings.Default["DoctorName"].ToString();
-            label3.Text = Properties.Settings.Default["DoctorName"].ToString();
-            label4.Text = Properties.Settings.Default["DocAddress"].ToString();
-            label6.Text = Properties.Settings.Default["DocNumber"].ToString();
-            label12.Text = Properties.Settings.Default["DocOfficeName"].ToString();
+            if (dataGridView1.SelectedCells[0].Value.ToString() == String.Empty)
+            {
+                return;
+            }
+            else
+            {
+                patientView.lbl_IDnum.Text = PID;
+                patientView.Show();
+            }
 
         }
+
 
         /// <summary>
         /// 
@@ -314,6 +377,8 @@ namespace Dental_Management_System
         {
             DialogResult LogoutMessage = MetroMessageBox.Show(this, "You are about to Log out. Any unsaved progress will be lost. Press OK to continue.", 
                 this.Text, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+
+            // Closes all open forms upon user sign out.
 
             List<Form> openForms = new List<Form>();
 
@@ -416,26 +481,6 @@ namespace Dental_Management_System
 
         }
 
-        private void txtboxSearch_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label15_Click(object sender, EventArgs e)
-        {
-
-
-        }
-
-        private void label17_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label18_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -456,7 +501,6 @@ namespace Dental_Management_System
                     while (reader.Read())
                     {
 
-
                         lblAppointmentPatientDataTime.Text = (reader["Time"].ToString());
                         lblAppointmentPatientDataDate.Text = (reader["Date"].ToString());
                         lblAppointmentPatientDataService.Text = (reader["Service"].ToString());
@@ -467,6 +511,70 @@ namespace Dental_Management_System
                     connection.Close();
                 
                 }
+            }
+        }
+
+        private void metroButtonDeleteSchedule_Click(object sender, EventArgs e)
+        {
+            using (MySqlConnection connection = new MySqlConnection(databaseConnectionLink.networkLink))
+            {
+
+                if (dataGridView2.SelectedCells[0].Value.ToString() == String.Empty)
+                {
+                    return;
+                }
+                else
+                {
+
+                    DialogResult confirmDeletionOfAppointment = MetroMessageBox.Show(this, "Are you sure you want to delete this schedule?" + "\n" + "\n" +
+                        "Name: " + lblAppointmentPatientDataFirstName.Text + " " + lblAppointmentPatientDataLastName.Text + "\n" +
+                        "Date and Time: " + lblAppointmentPatientDataDate.Text + " " + lblAppointmentPatientDataTime.Text + "\n" +
+                        "Service: " + lblAppointmentPatientDataService.Text, "Appointments", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+                    if (confirmDeletionOfAppointment == DialogResult.Yes)
+                    {
+                        connection.Open();
+                        MySqlCommand command = new MySqlCommand();
+                        command.Connection = connection;
+                        command.CommandText = "DELETE FROM Patient_Schedule WHERE ID=" + dataGridView2.SelectedCells[0].Value.ToString();
+                        command.ExecuteReader();
+                        connection.Close();
+
+                        if (dataGridView2.SelectedCells[0].Selected)
+                        {
+                            dataGridView2.Rows.RemoveAt(dataGridView2.SelectedRows[0].Index);
+                        }
+
+                    }
+                    else if (confirmDeletionOfAppointment == DialogResult.No)
+                    {
+                        return;
+                    }
+
+                }
+            }
+        }
+
+        private void btnRefreshDataGrid1_Click(object sender, EventArgs e)
+        {
+            dataGridView1.DataSource = null;
+            dataGridView1.Rows.Clear();
+            patientData.Clear();
+
+            BackgroundWorker initalizeDatabase = new BackgroundWorker();
+            initalizeDatabase.DoWork += new DoWorkEventHandler(StartLoadingDatabase);
+            initalizeDatabase.RunWorkerCompleted += new RunWorkerCompletedEventHandler(StopLoadingDatabase);
+            initalizeDatabase.RunWorkerAsync();
+            refreshDialogBox.ShowDialog();
+
+            if (dataGridView1.Visible == false)
+            {
+                dataGridView1.Visible = true;
+                lblDatabaseError.Visible = false;
+            }
+            else if (dataGridView1.Visible == true)
+            {
+                return;
             }
         }
     }

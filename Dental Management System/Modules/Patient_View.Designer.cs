@@ -293,6 +293,7 @@
             this.Patient_TabControl.Style = MetroFramework.MetroColorStyle.Green;
             this.Patient_TabControl.TabIndex = 12;
             this.Patient_TabControl.UseSelectable = true;
+            this.Patient_TabControl.SelectedIndexChanged += new System.EventHandler(this.Patient_TabControl_SelectedIndexChanged);
             // 
             // genInfo
             // 

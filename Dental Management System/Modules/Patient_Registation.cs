@@ -326,7 +326,7 @@ namespace Dental_Management_System
                         command.ExecuteNonQuery();
                         command.Parameters.Clear();
 
-                        MessageBox.Show("New patient added.", this.Text);
+                        MessageBox.Show("New patient added.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
                         connection.Close();
                         ResetAll();
 

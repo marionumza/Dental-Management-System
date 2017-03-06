@@ -104,6 +104,7 @@
             this.metroContextMenu1 = new MetroFramework.Controls.MetroContextMenu(this.components);
             this.backgroundSyncTimeOut = new System.Windows.Forms.Timer(this.components);
             this.lblDatabaseError2 = new System.Windows.Forms.Label();
+            this.btnRefreshDataGrid1 = new MetroFramework.Controls.MetroButton();
             this.NavigationMenu.SuspendLayout();
             this.metroTabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -144,7 +145,7 @@
             this.metroTabControl1.FontWeight = MetroFramework.MetroTabControlWeight.Regular;
             this.metroTabControl1.Location = new System.Drawing.Point(0, 0);
             this.metroTabControl1.Name = "metroTabControl1";
-            this.metroTabControl1.SelectedIndex = 2;
+            this.metroTabControl1.SelectedIndex = 1;
             this.metroTabControl1.Size = new System.Drawing.Size(1080, 560);
             this.metroTabControl1.TabIndex = 0;
             this.metroTabControl1.UseSelectable = true;
@@ -188,11 +189,12 @@
             this.btnViewAppointments.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnViewAppointments.ImageKey = "payment_icon.png";
             this.btnViewAppointments.ImageList = this.imageList1;
-            this.btnViewAppointments.Location = new System.Drawing.Point(369, 389);
+            this.btnViewAppointments.Location = new System.Drawing.Point(452, 381);
             this.btnViewAppointments.Name = "btnViewAppointments";
-            this.btnViewAppointments.Size = new System.Drawing.Size(388, 32);
+            this.btnViewAppointments.Size = new System.Drawing.Size(212, 72);
             this.btnViewAppointments.TabIndex = 16;
             this.btnViewAppointments.Text = "View Appointments (0)";
+            this.btnViewAppointments.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnViewAppointments.UseVisualStyleBackColor = false;
             // 
             // imageList1
@@ -410,6 +412,7 @@
             // panelSearch
             // 
             this.panelSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
+            this.panelSearch.Controls.Add(this.btnRefreshDataGrid1);
             this.panelSearch.Controls.Add(this.txtboxSearch);
             this.panelSearch.Controls.Add(this.label1);
             this.panelSearch.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -424,7 +427,6 @@
             this.txtboxSearch.Name = "txtboxSearch";
             this.txtboxSearch.Size = new System.Drawing.Size(420, 29);
             this.txtboxSearch.TabIndex = 1;
-            this.txtboxSearch.TextChanged += new System.EventHandler(this.txtboxSearch_TextChanged);
             // 
             // label1
             // 
@@ -510,10 +512,9 @@
             this.lblAppointmentPatientDataDate.AutoSize = true;
             this.lblAppointmentPatientDataDate.Location = new System.Drawing.Point(129, 95);
             this.lblAppointmentPatientDataDate.Name = "lblAppointmentPatientDataDate";
-            this.lblAppointmentPatientDataDate.Size = new System.Drawing.Size(67, 19);
+            this.lblAppointmentPatientDataDate.Size = new System.Drawing.Size(27, 19);
             this.lblAppointmentPatientDataDate.TabIndex = 7;
-            this.lblAppointmentPatientDataDate.Text = "3/2/2017";
-            this.lblAppointmentPatientDataDate.Click += new System.EventHandler(this.label18_Click);
+            this.lblAppointmentPatientDataDate.Text = "---";
             // 
             // label17
             // 
@@ -524,16 +525,15 @@
             this.label17.Size = new System.Drawing.Size(44, 19);
             this.label17.TabIndex = 6;
             this.label17.Text = "Date:";
-            this.label17.Click += new System.EventHandler(this.label17_Click);
             // 
             // lblAppointmentPatientDataTime
             // 
             this.lblAppointmentPatientDataTime.AutoSize = true;
             this.lblAppointmentPatientDataTime.Location = new System.Drawing.Point(129, 64);
             this.lblAppointmentPatientDataTime.Name = "lblAppointmentPatientDataTime";
-            this.lblAppointmentPatientDataTime.Size = new System.Drawing.Size(70, 19);
+            this.lblAppointmentPatientDataTime.Size = new System.Drawing.Size(27, 19);
             this.lblAppointmentPatientDataTime.TabIndex = 5;
-            this.lblAppointmentPatientDataTime.Text = "09:00 AM";
+            this.lblAppointmentPatientDataTime.Text = "---";
             // 
             // label13
             // 
@@ -557,7 +557,7 @@
             this.txtBoxAppointPatientDataNotes.ReadOnly = true;
             this.txtBoxAppointPatientDataNotes.Size = new System.Drawing.Size(365, 125);
             this.txtBoxAppointPatientDataNotes.TabIndex = 3;
-            this.txtBoxAppointPatientDataNotes.Text = "Tjkahkjsdfhakjdhaskasdsa";
+            this.txtBoxAppointPatientDataNotes.Text = "---";
             // 
             // label11
             // 
@@ -574,9 +574,9 @@
             this.lblAppointmentPatientDataService.AutoSize = true;
             this.lblAppointmentPatientDataService.Location = new System.Drawing.Point(129, 33);
             this.lblAppointmentPatientDataService.Name = "lblAppointmentPatientDataService";
-            this.lblAppointmentPatientDataService.Size = new System.Drawing.Size(103, 19);
+            this.lblAppointmentPatientDataService.Size = new System.Drawing.Size(27, 19);
             this.lblAppointmentPatientDataService.TabIndex = 1;
-            this.lblAppointmentPatientDataService.Text = "Dental Cleanup";
+            this.lblAppointmentPatientDataService.Text = "---";
             // 
             // label15
             // 
@@ -587,7 +587,6 @@
             this.label15.Size = new System.Drawing.Size(63, 19);
             this.label15.TabIndex = 0;
             this.label15.Text = "Service:";
-            this.label15.Click += new System.EventHandler(this.label15_Click);
             // 
             // dataGridView2
             // 
@@ -671,9 +670,9 @@
             this.lblAppointmentPatientDataLastName.AutoSize = true;
             this.lblAppointmentPatientDataLastName.Location = new System.Drawing.Point(129, 63);
             this.lblAppointmentPatientDataLastName.Name = "lblAppointmentPatientDataLastName";
-            this.lblAppointmentPatientDataLastName.Size = new System.Drawing.Size(75, 19);
+            this.lblAppointmentPatientDataLastName.Size = new System.Drawing.Size(27, 19);
             this.lblAppointmentPatientDataLastName.TabIndex = 3;
-            this.lblAppointmentPatientDataLastName.Text = "Sakurauchi";
+            this.lblAppointmentPatientDataLastName.Text = "---";
             // 
             // label9
             // 
@@ -690,9 +689,9 @@
             this.lblAppointmentPatientDataFirstName.AutoSize = true;
             this.lblAppointmentPatientDataFirstName.Location = new System.Drawing.Point(129, 33);
             this.lblAppointmentPatientDataFirstName.Name = "lblAppointmentPatientDataFirstName";
-            this.lblAppointmentPatientDataFirstName.Size = new System.Drawing.Size(35, 19);
+            this.lblAppointmentPatientDataFirstName.Size = new System.Drawing.Size(27, 19);
             this.lblAppointmentPatientDataFirstName.TabIndex = 1;
-            this.lblAppointmentPatientDataFirstName.Text = "Riko";
+            this.lblAppointmentPatientDataFirstName.Text = "---";
             // 
             // label7
             // 
@@ -938,6 +937,17 @@
             this.lblDatabaseError2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblDatabaseError2.Visible = false;
             // 
+            // btnRefreshDataGrid1
+            // 
+            this.btnRefreshDataGrid1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnRefreshDataGrid1.Location = new System.Drawing.Point(569, 11);
+            this.btnRefreshDataGrid1.Name = "btnRefreshDataGrid1";
+            this.btnRefreshDataGrid1.Size = new System.Drawing.Size(104, 23);
+            this.btnRefreshDataGrid1.TabIndex = 4;
+            this.btnRefreshDataGrid1.Text = "Refresh";
+            this.btnRefreshDataGrid1.UseSelectable = true;
+            this.btnRefreshDataGrid1.Click += new System.EventHandler(this.btnRefreshDataGrid1_Click);
+            // 
             // MainDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -1050,6 +1060,7 @@
         private System.Windows.Forms.Label label13;
         private MetroFramework.Controls.MetroButton btnDeleteSchedule;
         public System.Windows.Forms.Label lblDatabaseError2;
+        private MetroFramework.Controls.MetroButton btnRefreshDataGrid1;
     }
 }
 

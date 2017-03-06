@@ -17,19 +17,11 @@ namespace Dental_Management_System
 {
     public partial class serverSettings : Form
     {
-        /// <summary>
-        /// BackgroundWorker allows the secondary form "ProcessingDialogBox" to run for a specific amount of time
-        /// to perform an action in the background. 
-        /// 
-        /// ProcessingDialogBox contains the dialog box for testing the connection to MySQL
-        /// 
-        /// </summary>
-        /// 
-             
+                         
         BackgroundWorker worker = new BackgroundWorker();
         ProcessingDialogBox processingDialogBox = new ProcessingDialogBox();
 
-        // CLASS
+        // Calling all class and methods to be used in other methods.
         DatabaseConnectionLink databaseConnectionLink = new DatabaseConnectionLink();
 
 
@@ -42,13 +34,9 @@ namespace Dental_Management_System
 
         }
 
-        /// <summary>
-        /// Prevents the current form from being closed.
-        /// </summary>
+        private const int NO_CLOSE_BUTTON = 0x200;
 
-        //private const int NO_CLOSE_BUTTON = 0x200;
-
-        /* protected override CreateParams CreateParams
+        protected override CreateParams CreateParams
         {
             get
             {
@@ -56,7 +44,7 @@ namespace Dental_Management_System
                 cprams.ClassStyle = cprams.ClassStyle | NO_CLOSE_BUTTON ;
                 return cprams ;
             }
-        } */
+        } 
 
         // Puts the current thread to sleep for 5 seconds
         void PerformReading()
@@ -66,6 +54,7 @@ namespace Dental_Management_System
         }
 
         // After the thread is finished reading, it proceeds to test connection and then closes.
+
         void ReadingCompleted()
         {
             processingDialogBox.Close();
@@ -94,8 +83,6 @@ namespace Dental_Management_System
                 mysqlserverlog_textbox.AppendText(Environment.NewLine + "> " + DateTime.Now.ToString("hh:mm:ss : ") +
                 "Database '" + cbDatabaseSelection.Text + "' now in use.");
             }
-
-
 
             txtboxCurrentDB.Text = cbDatabaseSelection.Text;
         }
@@ -253,8 +240,6 @@ namespace Dental_Management_System
 
             }
         }
-
-
 
         private void serverSettings_Load(object sender, EventArgs e)
         {
@@ -488,6 +473,13 @@ namespace Dental_Management_System
                         command.CommandText = "CREATE TABLE Patient_Schedule(ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY, Time VARCHAR(64), Date DATE, Service VARCHAR(24), LastName VARCHAR(255), FirstName VARCHAR(255), Notes VARCHAR(255))";
                         mysqlserverlog_textbox.AppendText(Environment.NewLine + "> " + DateTime.Now.ToString("hh:mm:ss : ") +
                         "Preparing table 'Patient_Schedule'.... ");
+                        command.ExecuteNonQuery();
+                        mysqlserverlog_textbox.AppendText(Environment.NewLine + "> " + DateTime.Now.ToString("hh:mm:ss : ") +
+                        "Done!");
+
+                        command.CommandText = "CREATE TABLE Dental_Services(ServiceName VARCHAR(64), Fee VARCHAR(32))";
+                        mysqlserverlog_textbox.AppendText(Environment.NewLine + "> " + DateTime.Now.ToString("hh:mm:ss : ") +
+                        "Preparing table 'Dental_Services'.... ");
                         command.ExecuteNonQuery();
                         mysqlserverlog_textbox.AppendText(Environment.NewLine + "> " + DateTime.Now.ToString("hh:mm:ss : ") +
                         "Done!");

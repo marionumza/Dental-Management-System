@@ -184,6 +184,12 @@
     <Compile Include="Modules\ToothChartExternalWindow.Designer.cs">
       <DependentUpon>ToothChartExternalWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modules\DialogBoxes\RefreshDialogBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modules\DialogBoxes\RefreshDialogBox.Designer.cs">
+      <DependentUpon>RefreshDialogBox.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Modules\ComposeMail.resx">
       <DependentUpon>ComposeMail.cs</DependentUpon>
     </EmbeddedResource>
@@ -232,6 +238,9 @@
     </Compile>
     <EmbeddedResource Include="Modules\ToothChartExternalWindow.resx">
       <DependentUpon>ToothChartExternalWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\DialogBoxes\RefreshDialogBox.resx">
+      <DependentUpon>RefreshDialogBox.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="packages.config" />

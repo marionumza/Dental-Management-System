@@ -164,6 +164,8 @@ namespace Dental_Management_System
                     using (MySqlDataAdapter adapter = new MySqlDataAdapter(databaseGetData.getScheduleDataFromDatabase, databaseConnectionLink.networkLink))
                     {
                         adapter.Fill(pullPatientSchedule);
+                        connection.Close();
+                        Thread.Sleep(2000);
                     }
                 }
             }
@@ -205,6 +207,13 @@ namespace Dental_Management_System
 
         void StopLoadingScheduleInformation(object sender, RunWorkerCompletedEventArgs a)
         {
+
+
+            if (refreshDialogBox.Visible == true)
+            {
+                refreshDialogBox.Close();
+            }
+
             try
             {
 
@@ -216,20 +225,21 @@ namespace Dental_Management_System
                 dataGridView2.ColumnCount = 5;
                 dataGridView2.DataSource = pullPatientSchedule;
 
-                dataGridView2.Columns[0].HeaderText = "ID";
+                dataGridView2.Columns[0].HeaderText = "#";
                 dataGridView2.Columns[0].DataPropertyName = "ID";
-                dataGridView2.Columns[0].Width = 50;
+                dataGridView2.Columns[0].Width = 30;
                 dataGridView2.Columns[0].Frozen = true;
                 dataGridView2.Columns[1].HeaderText = "Time";
                 dataGridView2.Columns[1].DataPropertyName = "Time";
                 dataGridView2.Columns[1].Width = 100;
                 dataGridView2.Columns[2].HeaderText = "Date";
                 dataGridView2.Columns[2].DataPropertyName = "Date";
+                dataGridView2.Columns[2].Width = 90;
                 dataGridView2.Columns[3].HeaderText = "Last Name";
                 dataGridView2.Columns[3].DataPropertyName = "LastName";
                 dataGridView2.Columns[4].HeaderText = "First Name";
                 dataGridView2.Columns[4].DataPropertyName = "FirstName";
-                dataGridView2.Columns[4].Width = 120;
+                dataGridView2.Columns[4].Width = 150;
             }
             catch
             {
@@ -306,6 +316,7 @@ namespace Dental_Management_System
                     dataGridView1.Columns[5].DataPropertyName = "PhoneNumber";
                     dataGridView1.Columns[6].HeaderText = "Email";
                     dataGridView1.Columns[6].DataPropertyName = "Email";
+                    dataGridView1.Columns[6].Width = 380;
 
                 }
                 catch (Exception ex)
@@ -484,6 +495,8 @@ namespace Dental_Management_System
 
         private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            btnDeleteSchedule.Enabled = true;
+
             using (MySqlConnection connection = new MySqlConnection(databaseConnectionLink.networkLink))
             {
 
@@ -526,10 +539,10 @@ namespace Dental_Management_System
                 else
                 {
 
-                    DialogResult confirmDeletionOfAppointment = MetroMessageBox.Show(this, "Are you sure you want to delete this schedule?" + "\n" + "\n" +
+                    DialogResult confirmDeletionOfAppointment = MetroMessageBox.Show(this, "Are you sure you want to delete this scheduled appointment?" + "\n" + "\n" +
                         "Name: " + lblAppointmentPatientDataFirstName.Text + " " + lblAppointmentPatientDataLastName.Text + "\n" +
                         "Date and Time: " + lblAppointmentPatientDataDate.Text + " " + lblAppointmentPatientDataTime.Text + "\n" +
-                        "Service: " + lblAppointmentPatientDataService.Text, "Appointments", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                        "Service: " + lblAppointmentPatientDataService.Text, "Appointments", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
 
                     if (confirmDeletionOfAppointment == DialogResult.Yes)
                     {
@@ -576,6 +589,19 @@ namespace Dental_Management_System
             {
                 return;
             }
+        }
+
+        private void btnRefreshAppointmentsList_Click(object sender, EventArgs e)
+        {
+            dataGridView2.DataSource = null;
+            dataGridView2.Rows.Clear();
+            pullPatientSchedule.Clear();
+            BackgroundWorker retrieveScheduleInformation = new BackgroundWorker();
+            retrieveScheduleInformation.DoWork += new DoWorkEventHandler(StartLoadingScheduleInformation);
+            retrieveScheduleInformation.RunWorkerCompleted += new RunWorkerCompletedEventHandler(StopLoadingScheduleInformation);
+            retrieveScheduleInformation.RunWorkerAsync();
+            refreshDialogBox.ShowDialog();
+
         }
     }
 }

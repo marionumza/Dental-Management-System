@@ -30,12 +30,12 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainDashboard));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
             this.NavigationMenu = new System.Windows.Forms.Panel();
             this.metroTabControl1 = new MetroFramework.Controls.MetroTabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -60,10 +60,12 @@
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel6 = new System.Windows.Forms.Panel();
             this.panelSearch = new System.Windows.Forms.Panel();
+            this.btnRefreshRecordList = new MetroFramework.Controls.MetroButton();
             this.txtboxSearch = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.lblDatabaseError2 = new System.Windows.Forms.Label();
             this.btnDeleteSchedule = new MetroFramework.Controls.MetroButton();
             this.btnSendEmail = new MetroFramework.Controls.MetroButton();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -103,8 +105,7 @@
             this.appTitle = new System.Windows.Forms.Label();
             this.metroContextMenu1 = new MetroFramework.Controls.MetroContextMenu(this.components);
             this.backgroundSyncTimeOut = new System.Windows.Forms.Timer(this.components);
-            this.lblDatabaseError2 = new System.Windows.Forms.Label();
-            this.btnRefreshDataGrid1 = new MetroFramework.Controls.MetroButton();
+            this.btnRefreshAppointmentsList = new MetroFramework.Controls.MetroButton();
             this.NavigationMenu.SuspendLayout();
             this.metroTabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -145,7 +146,7 @@
             this.metroTabControl1.FontWeight = MetroFramework.MetroTabControlWeight.Regular;
             this.metroTabControl1.Location = new System.Drawing.Point(0, 0);
             this.metroTabControl1.Name = "metroTabControl1";
-            this.metroTabControl1.SelectedIndex = 1;
+            this.metroTabControl1.SelectedIndex = 2;
             this.metroTabControl1.Size = new System.Drawing.Size(1080, 560);
             this.metroTabControl1.TabIndex = 0;
             this.metroTabControl1.UseSelectable = true;
@@ -340,19 +341,19 @@
             // 
             // dataGridView1
             // 
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle28.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle28;
             this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle29.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle29.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle29.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle29.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle29.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle29.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle29;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
@@ -365,10 +366,10 @@
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle30.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle30.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
+            dataGridViewCellStyle30.SelectionForeColor = System.Drawing.Color.Black;
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle30;
             this.dataGridView1.RowTemplate.DefaultCellStyle.BackColor = System.Drawing.Color.White;
             this.dataGridView1.Size = new System.Drawing.Size(1072, 459);
             this.dataGridView1.TabIndex = 0;
@@ -412,7 +413,7 @@
             // panelSearch
             // 
             this.panelSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
-            this.panelSearch.Controls.Add(this.btnRefreshDataGrid1);
+            this.panelSearch.Controls.Add(this.btnRefreshRecordList);
             this.panelSearch.Controls.Add(this.txtboxSearch);
             this.panelSearch.Controls.Add(this.label1);
             this.panelSearch.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -420,6 +421,17 @@
             this.panelSearch.Name = "panelSearch";
             this.panelSearch.Size = new System.Drawing.Size(1072, 46);
             this.panelSearch.TabIndex = 1;
+            // 
+            // btnRefreshRecordList
+            // 
+            this.btnRefreshRecordList.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnRefreshRecordList.Location = new System.Drawing.Point(569, 11);
+            this.btnRefreshRecordList.Name = "btnRefreshRecordList";
+            this.btnRefreshRecordList.Size = new System.Drawing.Size(104, 23);
+            this.btnRefreshRecordList.TabIndex = 4;
+            this.btnRefreshRecordList.Text = "Refresh";
+            this.btnRefreshRecordList.UseSelectable = true;
+            this.btnRefreshRecordList.Click += new System.EventHandler(this.btnRefreshDataGrid1_Click);
             // 
             // txtboxSearch
             // 
@@ -451,6 +463,7 @@
             // 
             // panel5
             // 
+            this.panel5.Controls.Add(this.btnRefreshAppointmentsList);
             this.panel5.Controls.Add(this.lblDatabaseError2);
             this.panel5.Controls.Add(this.btnDeleteSchedule);
             this.panel5.Controls.Add(this.btnSendEmail);
@@ -465,9 +478,25 @@
             this.panel5.Size = new System.Drawing.Size(1072, 505);
             this.panel5.TabIndex = 2;
             // 
+            // lblDatabaseError2
+            // 
+            this.lblDatabaseError2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblDatabaseError2.Font = new System.Drawing.Font("Segoe UI", 15F);
+            this.lblDatabaseError2.ForeColor = System.Drawing.Color.DimGray;
+            this.lblDatabaseError2.Location = new System.Drawing.Point(7, 197);
+            this.lblDatabaseError2.Name = "lblDatabaseError2";
+            this.lblDatabaseError2.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.lblDatabaseError2.Size = new System.Drawing.Size(518, 93);
+            this.lblDatabaseError2.TabIndex = 8;
+            this.lblDatabaseError2.Text = "Unable to retrieve items from the database.\r\nCheck if your connection settings ar" +
+    "e correct and try again.";
+            this.lblDatabaseError2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblDatabaseError2.Visible = false;
+            // 
             // btnDeleteSchedule
             // 
             this.btnDeleteSchedule.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnDeleteSchedule.Enabled = false;
             this.btnDeleteSchedule.Location = new System.Drawing.Point(178, 461);
             this.btnDeleteSchedule.Name = "btnDeleteSchedule";
             this.btnDeleteSchedule.Size = new System.Drawing.Size(85, 23);
@@ -502,7 +531,7 @@
             this.groupBox2.Controls.Add(this.label15);
             this.groupBox2.Location = new System.Drawing.Point(528, 112);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(523, 372);
+            this.groupBox2.Size = new System.Drawing.Size(544, 372);
             this.groupBox2.TabIndex = 6;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Appointment Details";
@@ -555,7 +584,7 @@
             this.txtBoxAppointPatientDataNotes.Multiline = true;
             this.txtBoxAppointPatientDataNotes.Name = "txtBoxAppointPatientDataNotes";
             this.txtBoxAppointPatientDataNotes.ReadOnly = true;
-            this.txtBoxAppointPatientDataNotes.Size = new System.Drawing.Size(365, 125);
+            this.txtBoxAppointPatientDataNotes.Size = new System.Drawing.Size(386, 125);
             this.txtBoxAppointPatientDataNotes.TabIndex = 3;
             this.txtBoxAppointPatientDataNotes.Text = "---";
             // 
@@ -590,19 +619,19 @@
             // 
             // dataGridView2
             // 
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.dataGridView2.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle25.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.dataGridView2.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle25;
             this.dataGridView2.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView2.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridView2.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 10F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle26.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle26.Font = new System.Drawing.Font("Segoe UI", 10F);
+            dataGridViewCellStyle26.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle26.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle26.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle26.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle26;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
@@ -614,10 +643,10 @@
             this.dataGridView2.Location = new System.Drawing.Point(3, 6);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
-            this.dataGridView2.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle27.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle27.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
+            dataGridViewCellStyle27.SelectionForeColor = System.Drawing.Color.Black;
+            this.dataGridView2.RowsDefaultCellStyle = dataGridViewCellStyle27;
             this.dataGridView2.RowTemplate.DefaultCellStyle.BackColor = System.Drawing.Color.White;
             this.dataGridView2.Size = new System.Drawing.Size(522, 432);
             this.dataGridView2.TabIndex = 6;
@@ -660,7 +689,7 @@
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Location = new System.Drawing.Point(528, -3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(523, 109);
+            this.groupBox1.Size = new System.Drawing.Size(544, 109);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Patient";
@@ -922,31 +951,16 @@
             this.backgroundSyncTimeOut.Enabled = true;
             this.backgroundSyncTimeOut.Interval = 30;
             // 
-            // lblDatabaseError2
+            // btnRefreshAppointmentsList
             // 
-            this.lblDatabaseError2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblDatabaseError2.Font = new System.Drawing.Font("Segoe UI", 15F);
-            this.lblDatabaseError2.ForeColor = System.Drawing.Color.DimGray;
-            this.lblDatabaseError2.Location = new System.Drawing.Point(7, 197);
-            this.lblDatabaseError2.Name = "lblDatabaseError2";
-            this.lblDatabaseError2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.lblDatabaseError2.Size = new System.Drawing.Size(518, 93);
-            this.lblDatabaseError2.TabIndex = 8;
-            this.lblDatabaseError2.Text = "Unable to retrieve items from the database.\r\nCheck if your connection settings ar" +
-    "e correct and try again.";
-            this.lblDatabaseError2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lblDatabaseError2.Visible = false;
-            // 
-            // btnRefreshDataGrid1
-            // 
-            this.btnRefreshDataGrid1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnRefreshDataGrid1.Location = new System.Drawing.Point(569, 11);
-            this.btnRefreshDataGrid1.Name = "btnRefreshDataGrid1";
-            this.btnRefreshDataGrid1.Size = new System.Drawing.Size(104, 23);
-            this.btnRefreshDataGrid1.TabIndex = 4;
-            this.btnRefreshDataGrid1.Text = "Refresh";
-            this.btnRefreshDataGrid1.UseSelectable = true;
-            this.btnRefreshDataGrid1.Click += new System.EventHandler(this.btnRefreshDataGrid1_Click);
+            this.btnRefreshAppointmentsList.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnRefreshAppointmentsList.Location = new System.Drawing.Point(379, 461);
+            this.btnRefreshAppointmentsList.Name = "btnRefreshAppointmentsList";
+            this.btnRefreshAppointmentsList.Size = new System.Drawing.Size(104, 23);
+            this.btnRefreshAppointmentsList.TabIndex = 9;
+            this.btnRefreshAppointmentsList.Text = "Refresh";
+            this.btnRefreshAppointmentsList.UseSelectable = true;
+            this.btnRefreshAppointmentsList.Click += new System.EventHandler(this.btnRefreshAppointmentsList_Click);
             // 
             // MainDashboard
             // 
@@ -1060,7 +1074,8 @@
         private System.Windows.Forms.Label label13;
         private MetroFramework.Controls.MetroButton btnDeleteSchedule;
         public System.Windows.Forms.Label lblDatabaseError2;
-        private MetroFramework.Controls.MetroButton btnRefreshDataGrid1;
+        private MetroFramework.Controls.MetroButton btnRefreshRecordList;
+        private MetroFramework.Controls.MetroButton btnRefreshAppointmentsList;
     }
 }
 

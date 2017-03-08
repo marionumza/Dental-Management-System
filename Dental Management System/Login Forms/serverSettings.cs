@@ -18,19 +18,42 @@ namespace Dental_Management_System
     public partial class serverSettings : Form
     {
                          
+        // CALL ALL CLASS AND OTHER METHODS
+        DatabaseConnectionLink databaseConnectionLink = new DatabaseConnectionLink();
         BackgroundWorker worker = new BackgroundWorker();
         ProcessingDialogBox processingDialogBox = new ProcessingDialogBox();
-
-        // Calling all class and methods to be used in other methods.
-        DatabaseConnectionLink databaseConnectionLink = new DatabaseConnectionLink();
 
 
         public serverSettings()
         {
-
             InitializeComponent();
             worker.DoWork += (sender, args) => PerformReading();
             worker.RunWorkerCompleted += (sender, args) => ReadingCompleted();
+
+        }
+
+        private void serverSettings_Load(object sender, EventArgs e)
+        {
+
+            // LOAD ALL SETTINGS HERE
+
+            sql_hostaddress.Text = Properties.Settings.Default["SQL_IP"].ToString();
+            txtboxCurrentDB.Text = Properties.Settings.Default["SQL_Database"].ToString();
+            sql_port.Text = Properties.Settings.Default["SQL_Port"].ToString();
+            sql_user.Text = Properties.Settings.Default["SQL_User"].ToString();
+            sql_pass.Text = Properties.Settings.Default["SQL_Pass"].ToString();
+
+            chkEnableExternalNetwork.Checked = Properties.Settings.Default.UseWAN;
+
+            // LOAD ALL BACKGROUND PROCESS HERE
+            BackgroundWorker bwg = new BackgroundWorker();
+            bwg.DoWork += new DoWorkEventHandler(StartLoadingMySQLAboutInformation);
+            bwg.RunWorkerAsync();
+            //BackgroundWorker BeginLoadingDatabaseList = new BackgroundWorker();
+            //BeginLoadingDatabaseList.DoWork += new DoWorkEventHandler(StartLoadingDatabaseList);
+            //BeginLoadingDatabaseList.RunWorkerCompleted += new RunWorkerCompletedEventHandler(StopLoadingDatabaseList);
+            //BeginLoadingDatabaseList.RunWorkerAsync();
+
 
         }
 
@@ -44,7 +67,137 @@ namespace Dental_Management_System
                 cprams.ClassStyle = cprams.ClassStyle | NO_CLOSE_BUTTON ;
                 return cprams ;
             }
-        } 
+        }
+
+        public void StartLoadingMySQLAboutInformation(object sender, DoWorkEventArgs a)
+        {
+
+            using (MySqlConnection connection = new MySqlConnection(databaseConnectionLink.networkLink))
+            {
+                try
+                {
+                    connection.Open();
+                    MySqlCommand getMySQLVersion = connection.CreateCommand();
+                    getMySQLVersion.CommandText = "SHOW VARIABLES LIKE 'version'";
+                    MySqlDataReader versionReader = getMySQLVersion.ExecuteReader();
+                    while (versionReader.Read())
+                    {
+                        lblMysqlversion.Text = versionReader.GetString(1);
+                    }
+
+                    connection.Close();
+                }
+                catch
+                {
+                }
+            }
+
+            using (MySqlConnection connection = new MySqlConnection(databaseConnectionLink.networkLink))
+            {
+                try
+                {
+                    connection.Open();
+                    MySqlCommand getSQLdbver = connection.CreateCommand();
+                    getSQLdbver.CommandText = "SHOW VARIABLES LIKE 'version_compile_machine'";
+                    MySqlDataReader verReader = getSQLdbver.ExecuteReader();
+                    while (verReader.Read())
+                    {
+                        lblCompileMachine.Text = verReader.GetString(1);
+                    }
+
+                    connection.Close();
+                }
+                catch
+                {
+
+                }
+            }
+
+            using (MySqlConnection connection = new MySqlConnection(databaseConnectionLink.networkLink))
+            {
+                try
+                {
+                    connection.Open();
+                    MySqlCommand getSQLdbver = connection.CreateCommand();
+                    getSQLdbver.CommandText = "SHOW VARIABLES LIKE 'innodb_version'";
+                    MySqlDataReader verReader = getSQLdbver.ExecuteReader();
+                    while (verReader.Read())
+                    {
+                        lblDatabaseEngineVersion.Text = verReader.GetString(1);
+                    }
+
+                    connection.Close();
+                }
+                catch
+                {
+
+                }
+            }
+
+            using (MySqlConnection connection = new MySqlConnection(databaseConnectionLink.networkLink))
+            {
+                try
+                {
+                    connection.Open();
+                    MySqlCommand getSQLdbver = connection.CreateCommand();
+                    getSQLdbver.CommandText = "SHOW VARIABLES LIKE 'version_compile_os'";
+                    MySqlDataReader verReader = getSQLdbver.ExecuteReader();
+                    while (verReader.Read())
+                    {
+                        lblOperatingSystemType.Text = verReader.GetString(1);
+                    }
+
+                    connection.Close();
+                }
+                catch
+                {
+
+                }
+            }
+
+        }
+
+        string databaseList;
+
+        public void StartLoadingDatabaseList()
+        {
+            using (MySqlConnection connection = new MySqlConnection(databaseConnectionLink.networkLink))
+            {
+                try
+                {
+                    connection.Open();
+                    MySqlCommand command = connection.CreateCommand();
+                    command.CommandText = "SHOW DATABASES";
+
+                    MySqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        var row = "";
+                        for (var i = 0; i < reader.FieldCount; i++)
+                            row += reader.GetValue(i);
+
+                        cbDatabaseSelection.Items.Add(row);
+
+                    }
+
+                    connection.Close();
+
+                }
+                catch (MySqlException exception)
+                {
+                    mysqlserverlog_textbox.AppendText(Environment.NewLine + "> " + DateTime.Now.ToString("hh:mm:ss : ") +
+                    exception.Message);
+                }
+            }
+        }
+
+        public void StopLoadingDatabaseList(object sender, RunWorkerCompletedEventArgs b)
+        {
+            LoadDatabaseList();
+            
+            // cbDatabaseSelection.Items.Add();
+        }
+        
 
         // Puts the current thread to sleep for 5 seconds
         void PerformReading()
@@ -98,8 +251,6 @@ namespace Dental_Management_System
                     connection.Open();
                     MessageBox.Show("The connection to the MySQL server is currently active.", "Test Successful", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
 
-                    Getsqlcompilemachineversion();
-                    Getsqldatabaseengineversion();
                     connection.Close();
 
                 }
@@ -114,159 +265,7 @@ namespace Dental_Management_System
                 }
             }
         }
-
-        private void Getsqldatabaseengineversion()
-        {
-            using (MySqlConnection connection = new MySqlConnection(databaseConnectionLink.networkLink))
-            {
-                try
-                {
-                    connection.Open();
-                    MySqlCommand getSQLver = connection.CreateCommand();
-                    getSQLver.CommandText = "SHOW VARIABLES LIKE 'version'";
-                    MySqlDataReader verReader = getSQLver.ExecuteReader();
-                    while (verReader.Read())
-                    {
-                        lblMysqlversion.Text = verReader.GetString(1);
-                    }
-
-                    connection.Close();
-                }
-                catch
-                {
-
-                }
-            }
-        }
-
-        private void Getsqlcompilemachineversion()
-        {
-            using (MySqlConnection connection = new MySqlConnection(databaseConnectionLink.networkLink))
-            {
-                try
-                {
-                    connection.Open();
-                    MySqlCommand getSQLdbver = connection.CreateCommand();
-                    getSQLdbver.CommandText = "SHOW VARIABLES LIKE 'version_compile_machine'";
-                    MySqlDataReader verReader = getSQLdbver.ExecuteReader();
-                    while (verReader.Read())
-                    {
-                        lblCompileMachine.Text = verReader.GetString(1);
-                    }
-
-                    connection.Close();
-                }
-                catch
-                {
-
-                }
-            }
-        }
-
-        private void Getdatabaseengineversion()
-        {
-            using (MySqlConnection connection = new MySqlConnection(databaseConnectionLink.networkLink))
-            {
-                try
-                {
-                    connection.Open();
-                    MySqlCommand getSQLdbver = connection.CreateCommand();
-                    getSQLdbver.CommandText = "SHOW VARIABLES LIKE 'innodb_version'";
-                    MySqlDataReader verReader = getSQLdbver.ExecuteReader();
-                    while (verReader.Read())
-                    {
-                        lblDatabaseEngineVersion.Text = verReader.GetString(1);
-                    }
-
-                    connection.Close();
-                }
-                catch
-                {
-
-                }
-            }
-        }
-
-        private void GetOStype()
-        {
-            using (MySqlConnection connection = new MySqlConnection(databaseConnectionLink.networkLink))
-            {
-                try
-                {
-                    connection.Open();
-                    MySqlCommand getSQLdbver = connection.CreateCommand();
-                    getSQLdbver.CommandText = "SHOW VARIABLES LIKE 'version_compile_os'";
-                    MySqlDataReader verReader = getSQLdbver.ExecuteReader();
-                    while (verReader.Read())
-                    {
-                        lblOperatingSystemType.Text = verReader.GetString(1);
-                    }
-
-                    connection.Close();
-                }
-                catch
-                {
-
-                }
-            }
-        }
-
-        private void Getsqldatasourcefilter()
-        {
-            using (MySqlConnection connection = new MySqlConnection(databaseConnectionLink.networkLink))
-            {
-                try
-                {
-                    connection.Open();
-                    MySqlCommand command = connection.CreateCommand();
-                    //command.CommandText = "SHOW DATABASES LIKE '%lms_%'";
-
-                    MySqlDataReader reader = command.ExecuteReader();
-                    while (reader.Read())
-                    {
-                        var row = "";
-                        for (var i = 0; i < reader.FieldCount; i++)
-                            row += reader.GetValue(i);
-                        cbDatabaseSelection.Items.Add(row);
-                    }
-
-                    connection.Close();
-
-                }
-                catch
-                {
-                    MessageBox.Show("Either one or more setting is incorrect, MySQL is not installed, or the MySQL service is not running.", "Configure MySQL Connection");
-                }
-
-            }
-        }
-
-        private void serverSettings_Load(object sender, EventArgs e)
-        {
-
-            sql_hostaddress.Text = Properties.Settings.Default["SQL_IP"].ToString();
-            txtboxCurrentDB.Text = Properties.Settings.Default["SQL_Database"].ToString();
-            sql_port.Text = Properties.Settings.Default["SQL_Port"].ToString();
-            sql_user.Text = Properties.Settings.Default["SQL_User"].ToString();
-            sql_pass.Text = Properties.Settings.Default["SQL_Pass"].ToString();
-
-            chkEnableExternalNetwork.Checked = Properties.Settings.Default.UseWAN;
-
-        }
-
-        /// <summary>
-        /// Summons "About" information such as MySQL version and compile machine.
-        /// </summary>
-        /// 
-
-        private void LoadAbout()
-        {
-            Getsqlcompilemachineversion();
-            Getsqldatabaseengineversion();
-            Getdatabaseengineversion();
-            GetOStype();    
-        }
-
+      
         /// <summary>
         /// Loads and refreshes database list for combobox.
         /// </summary>
@@ -275,36 +274,6 @@ namespace Dental_Management_System
         private void LoadDatabaseList()
         {
 
-            string connectionString = "Server=" + Properties.Settings.Default["SQL_IP"] + ';' + 
-                "UID=" + Properties.Settings.Default["SQL_User"] + ';' + "PWD=" +
-                Properties.Settings.Default["SQL_Pass"];
-
-            using (MySqlConnection connection = new MySqlConnection(databaseConnectionLink.networkLink))
-            {
-                try
-                {
-                    connection.Open();
-                    MySqlCommand command = connection.CreateCommand();
-                    command.CommandText = "SHOW DATABASES";
-
-                    MySqlDataReader reader = command.ExecuteReader();
-                    while (reader.Read())
-                    {
-                        var row = "";
-                        for (var i = 0; i < reader.FieldCount; i++)
-                            row += reader.GetValue(i);
-                        cbDatabaseSelection.Items.Add(row);
-                    }
-
-                    connection.Close();
-
-                }
-                catch (MySqlException exception)
-                {
-                    mysqlserverlog_textbox.AppendText(Environment.NewLine + "> " + DateTime.Now.ToString("hh:mm:ss : ") +
-                    exception.Message);
-                }
-            }
         }
 
         private void button_save_Click(object sender, EventArgs e)
@@ -526,29 +495,6 @@ namespace Dental_Management_System
             }
         }
 
-        int LoadFromDatabaseOnce = 0;
-
-        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-            if (tabControl1.SelectedIndex == 2 && LoadFromDatabaseOnce == 0)
-            {
-                LoadAbout();
-                LoadFromDatabaseOnce++;
-
-            }
-            else if (tabControl1.SelectedIndex == 2 && LoadFromDatabaseOnce == 1)
-            {
-                return;
-            }
-
-            if (tabControl1.SelectedIndex == 1)
-            {
-                LoadDatabaseList();
-            }
-
-        }
-
         private void txtboxDatabasename_TextChanged(object sender, EventArgs e)
         {
             int characterCount = txtboxDatabasename.Text.Length;
@@ -559,12 +505,17 @@ namespace Dental_Management_System
         private void cbDatabaseSelection_Click(object sender, EventArgs e)
         {
             cbDatabaseSelection.Items.Clear();
-            LoadDatabaseList();
+            StartLoadingDatabaseList();
         }
 
         private void mysqlserverlog_textbox_TextChanged(object sender, EventArgs e)
         {
             mysqlserverlog_textbox.ScrollToCaret();
+        }
+
+        private void cbDatabaseSelection_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+
         }
     }
 }

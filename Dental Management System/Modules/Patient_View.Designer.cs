@@ -33,7 +33,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.label47 = new System.Windows.Forms.Label();
             this.metroToggleEditMode = new MetroFramework.Controls.MetroToggle();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnExportData = new System.Windows.Forms.Button();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.Patient_TabControl = new MetroFramework.Controls.MetroTabControl();
             this.genInfo = new MetroFramework.Controls.MetroTabPage();
@@ -213,7 +213,7 @@
             this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.Controls.Add(this.label47);
             this.panel1.Controls.Add(this.metroToggleEditMode);
-            this.panel1.Controls.Add(this.button1);
+            this.panel1.Controls.Add(this.btnExportData);
             this.panel1.Controls.Add(this.Patient_TabControl);
             this.panel1.Controls.Add(this.btnDelete);
             this.panel1.Controls.Add(this.btnSaveChanges);
@@ -253,21 +253,22 @@
             this.metroToggleEditMode.UseSelectable = true;
             this.metroToggleEditMode.CheckedChanged += new System.EventHandler(this.metroToggleEditMode_CheckedChanged);
             // 
-            // button1
+            // btnExportData
             // 
-            this.button1.BackColor = System.Drawing.Color.Gainsboro;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.ForeColor = System.Drawing.Color.Black;
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.ImageIndex = 2;
-            this.button1.ImageList = this.imageList1;
-            this.button1.Location = new System.Drawing.Point(29, 389);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(115, 35);
-            this.button1.TabIndex = 13;
-            this.button1.Text = "Export";
-            this.button1.UseVisualStyleBackColor = false;
+            this.btnExportData.BackColor = System.Drawing.Color.Gainsboro;
+            this.btnExportData.FlatAppearance.BorderSize = 0;
+            this.btnExportData.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExportData.ForeColor = System.Drawing.Color.Black;
+            this.btnExportData.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnExportData.ImageIndex = 2;
+            this.btnExportData.ImageList = this.imageList1;
+            this.btnExportData.Location = new System.Drawing.Point(29, 389);
+            this.btnExportData.Name = "btnExportData";
+            this.btnExportData.Size = new System.Drawing.Size(115, 35);
+            this.btnExportData.TabIndex = 13;
+            this.btnExportData.Text = "Export";
+            this.btnExportData.UseVisualStyleBackColor = false;
+            this.btnExportData.Click += new System.EventHandler(this.btnExportData_Click);
             // 
             // imageList1
             // 
@@ -1995,32 +1996,20 @@
         private MetroFramework.Controls.MetroTabControl Patient_TabControl;
         private MetroFramework.Controls.MetroTabPage genInfo;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.TextBox txtboxExtensionNum;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.TextBox txtboxWorkPhone;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TextBox txtboxCellphoneNum;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox txtboxAddress;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.TextBox txtboxHomePhone;
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.TextBox txtboxRelationship;
         private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.TextBox txtboxParentName;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox txtboxPhoneNum;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox txtboxOccupation;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox txtboxLastName;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox txtboxMiddleName;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtboxFirstName;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TabPage toothchart;
         private System.Windows.Forms.Panel toothchart_panel;
@@ -2109,15 +2098,12 @@
         private System.Windows.Forms.Label label19;
         private MetroFramework.Controls.MetroRadioButton metroRadioButtonQ2No;
         private MetroFramework.Controls.MetroRadioButton metroRadioButtonQ2Yes;
-        private System.Windows.Forms.TextBox txtboxEmail;
         private System.Windows.Forms.Label label46;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnExportData;
         private MetroFramework.Controls.MetroTabPage metroTabPage2;
         public System.Windows.Forms.TextBox lbl_IDnum;
         private System.Windows.Forms.Label label47;
         private MetroFramework.Controls.MetroToggle metroToggleEditMode;
-        private System.Windows.Forms.DateTimePicker cbBirthday;
-        private System.Windows.Forms.ComboBox cbMaritalStatus;
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.Label label55;
         private System.Windows.Forms.Label label56;
@@ -2140,5 +2126,20 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker_DateSelection;
         private System.Windows.Forms.Label label58;
         private System.Windows.Forms.Button btnOpenToothChartExternalWindow;
+        public System.Windows.Forms.TextBox txtboxExtensionNum;
+        public System.Windows.Forms.TextBox txtboxWorkPhone;
+        public System.Windows.Forms.TextBox txtboxCellphoneNum;
+        public System.Windows.Forms.TextBox txtboxAddress;
+        public System.Windows.Forms.TextBox txtboxHomePhone;
+        public System.Windows.Forms.TextBox txtboxRelationship;
+        public System.Windows.Forms.TextBox txtboxParentName;
+        public System.Windows.Forms.TextBox txtboxPhoneNum;
+        public System.Windows.Forms.TextBox txtboxOccupation;
+        public System.Windows.Forms.TextBox txtboxLastName;
+        public System.Windows.Forms.TextBox txtboxMiddleName;
+        public System.Windows.Forms.TextBox txtboxFirstName;
+        public System.Windows.Forms.TextBox txtboxEmail;
+        public System.Windows.Forms.DateTimePicker cbBirthday;
+        public System.Windows.Forms.ComboBox cbMaritalStatus;
     }
 }

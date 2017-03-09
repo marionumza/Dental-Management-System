@@ -8,6 +8,12 @@ using System.Text;
 using System.Windows.Forms;
 using MySql;
 using MySql.Data.MySqlClient;
+using System.IO;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+using itextsharp.pdfa.iTextSharp;
+using MetroFramework.Forms;
+using MetroFramework;
 
 namespace Dental_Management_System
 {
@@ -23,6 +29,11 @@ namespace Dental_Management_System
         // CALL CLASS
         DatabaseConnectionLink databaseConnectionLink = new DatabaseConnectionLink();
         DatabaseGetData databaseGetData = new DatabaseGetData();
+
+        // STRINGS
+        string Q1YesNo;
+        string Q2YesNo;
+
 
         private void LoadInformation()
         {
@@ -62,9 +73,6 @@ namespace Dental_Management_System
                     MySqlDataReader reader2 = command2.ExecuteReader();
                     while (reader2.Read())
                     {
-
-                        string Q1YesNo;
-                        string Q2YesNo;
                         string ValidateChartType;
 
                         Q1YesNo = (reader2["Q1"].ToString());
@@ -667,6 +675,176 @@ namespace Dental_Management_System
 
         private void Patient_TabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
+
+        }
+
+        public string saveFileLocation = string.Empty;
+
+        private void btnExportData_Click(object sender, EventArgs e)
+        {
+
+
+            string saveFileLocation = string.Empty;
+
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.FileName = lbl_IDnum.Text + "-" + txtboxLastName.Text;
+            saveFileDialog.Filter = "PDF (*.pdf)|*.pdf|All files (*.*)|*.*";
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                saveFileLocation = saveFileDialog.FileName;
+            }
+
+            try
+            {
+                Document doc = new Document(iTextSharp.text.PageSize.A4);
+                PdfWriter write = PdfWriter.GetInstance(doc, new FileStream(saveFileLocation, FileMode.Create));
+
+                doc.Open();
+
+                // BASIC INFORMATION FOR CLINIC
+
+                Paragraph ClinicName = new Paragraph(Properties.Settings.Default["DocOfficeName"].ToString(), FontFactory.GetFont(FontFactory.HELVETICA, 12, iTextSharp.text.Font.BOLD));
+                ClinicName.Alignment = Element.ALIGN_CENTER;
+
+                Paragraph ClinicAddress = new Paragraph("Address: " + Properties.Settings.Default["DocAddress"].ToString(), FontFactory.GetFont(FontFactory.HELVETICA, 8, iTextSharp.text.Font.NORMAL));
+                ClinicAddress.Alignment = Element.ALIGN_CENTER;
+
+                Paragraph ClinicTelephoneNumber = new Paragraph("Tel no. " + Properties.Settings.Default["DocNumber"].ToString(), FontFactory.GetFont(FontFactory.HELVETICA, 8, iTextSharp.text.Font.NORMAL));
+                ClinicTelephoneNumber.Alignment = Element.ALIGN_CENTER;
+
+                Paragraph MedicalHeader = new Paragraph("Medical Profile", FontFactory.GetFont(FontFactory.HELVETICA, 10, iTextSharp.text.Font.BOLD));
+                MedicalHeader.Alignment = Element.ALIGN_LEFT;
+
+                // PATIENT DATA
+
+                Paragraph PatientName = new Paragraph("Name: " + txtboxLastName.Text + ", " + txtboxFirstName.Text + " " + txtboxMiddleName.Text + ".", FontFactory.GetFont(FontFactory.HELVETICA, 9, iTextSharp.text.Font.NORMAL));
+                MedicalHeader.Alignment = Element.ALIGN_LEFT;
+
+                Paragraph PatientDOB = new Paragraph("Date of Birth: " + cbBirthday.Text, FontFactory.GetFont(FontFactory.HELVETICA, 9, iTextSharp.text.Font.NORMAL));
+                MedicalHeader.Alignment = Element.ALIGN_LEFT;
+
+                Paragraph PatientGender = new Paragraph("Gender: " + cbMaritalStatus.Text, FontFactory.GetFont(FontFactory.HELVETICA, 9, iTextSharp.text.Font.NORMAL));
+                MedicalHeader.Alignment = Element.ALIGN_LEFT;
+
+                Paragraph PatientPhoneNumberAndEmail = new Paragraph("Phone Number: " + txtboxPhoneNum.Text + "         " + "Email: " + txtboxEmail.Text, FontFactory.GetFont(FontFactory.HELVETICA, 9, iTextSharp.text.Font.NORMAL));
+                MedicalHeader.Alignment = Element.ALIGN_LEFT;
+
+                Paragraph PatientOccupation = new Paragraph("Occupation: " + txtboxOccupation.Text, FontFactory.GetFont(FontFactory.HELVETICA, 9, iTextSharp.text.Font.NORMAL));
+                MedicalHeader.Alignment = Element.ALIGN_LEFT;
+
+                // PARENT DATA
+
+                Paragraph InCaseOfEmergency = new Paragraph("In case of emergencies, we should notify", FontFactory.GetFont(FontFactory.HELVETICA, 9, iTextSharp.text.Font.ITALIC));
+                MedicalHeader.Alignment = Element.ALIGN_LEFT;
+
+                Paragraph ParentName = new Paragraph("Parent/Guardian Name: " + txtboxParentName.Text, FontFactory.GetFont(FontFactory.HELVETICA, 9, iTextSharp.text.Font.NORMAL));
+                MedicalHeader.Alignment = Element.ALIGN_LEFT;
+
+                Paragraph Relationship = new Paragraph("What is your relationship with this person? " + txtboxRelationship.Text, FontFactory.GetFont(FontFactory.HELVETICA, 9, iTextSharp.text.Font.NORMAL));
+                MedicalHeader.Alignment = Element.ALIGN_LEFT;
+
+                Paragraph HomeAndCellPhone = new Paragraph("Home Phone: " + txtboxHomePhone.Text + "            " + "Cellphone: " + txtboxCellphoneNum.Text, FontFactory.GetFont(FontFactory.HELVETICA, 9, iTextSharp.text.Font.NORMAL));
+                MedicalHeader.Alignment = Element.ALIGN_LEFT;
+
+                Paragraph WorkPhone = new Paragraph("Work Phone (if any): " + txtboxWorkPhone.Text + "          " + "Extension Number: " + txtboxExtensionNum.Text, FontFactory.GetFont(FontFactory.HELVETICA, 9, iTextSharp.text.Font.NORMAL));
+                MedicalHeader.Alignment = Element.ALIGN_LEFT;
+
+                Paragraph HomeAddress = new Paragraph("Address: " + txtboxAddress.Text, FontFactory.GetFont(FontFactory.HELVETICA, 9, iTextSharp.text.Font.NORMAL));
+                MedicalHeader.Alignment = Element.ALIGN_LEFT;
+
+                // MEDICAL RECORD
+
+                Paragraph MedicalHistory = new Paragraph("Medical History", FontFactory.GetFont(FontFactory.HELVETICA, 10, iTextSharp.text.Font.BOLD));
+                MedicalHistory.Alignment = Element.ALIGN_LEFT;
+
+                Paragraph MedicalHistoryDisclaimer = new Paragraph("For the following questions circle YES or NO, or whichever applies. Your answers are for our records and will be considered confidential.", FontFactory.GetFont(FontFactory.HELVETICA, 9, iTextSharp.text.Font.NORMAL));
+                MedicalHistory.Alignment = Element.ALIGN_LEFT;
+
+                Paragraph Question1 = new Paragraph("1. " + "Are you in good health?........................................................................................................................    " + Q1YesNo, 
+                    FontFactory.GetFont(FontFactory.HELVETICA, 9, iTextSharp.text.Font.BOLD));
+                Question1.Alignment = Element.ALIGN_LEFT;
+
+                Paragraph Question2 = new Paragraph("2. " + "Have you ever been hospitalized or had a major operation?............................................................    " + Q2YesNo,
+                    FontFactory.GetFont(FontFactory.HELVETICA, 9, iTextSharp.text.Font.BOLD));
+                Question2.Alignment = Element.ALIGN_LEFT;
+
+                Paragraph FinalDisclaimer = new Paragraph("To the best of my knowledge, the questions on this form have been accurately answered. I understand that providing incorrect information can be dangerous to my (or patient’s) health. It is my responsibility to inform the dental office of any changes in medical status.",
+                    FontFactory.GetFont(FontFactory.HELVETICA, 9, iTextSharp.text.Font.NORMAL));
+                FinalDisclaimer.Alignment = Element.ALIGN_LEFT;
+
+                Paragraph ParentSignature = new Paragraph("SIGNATURE OF PATIENT, PARENT, OR GUARDIAN: _____________________________________________________",
+                    FontFactory.GetFont(FontFactory.HELVETICA, 9, iTextSharp.text.Font.NORMAL));
+                ParentSignature.Alignment = Element.ALIGN_LEFT;
+
+                Paragraph DentistSignature = new Paragraph("DENTIST’S SIGNATURE",
+                    FontFactory.GetFont(FontFactory.HELVETICA, 9, iTextSharp.text.Font.NORMAL));
+                DentistSignature.Alignment = Element.ALIGN_LEFT;
+
+                Paragraph PrintedDate = new Paragraph("PRINTED ON: " + DateTime.Now.ToString("MM/dd/yyyy"),
+                    FontFactory.GetFont(FontFactory.HELVETICA, 6, iTextSharp.text.Font.NORMAL));
+                PrintedDate.Alignment = Element.ALIGN_RIGHT;
+
+                doc.Add(ClinicName);
+                doc.Add(ClinicAddress);
+                doc.Add(ClinicTelephoneNumber);
+                doc.Add(new Paragraph("\n"));
+                doc.Add(MedicalHeader);
+                doc.Add(PatientName);
+                doc.Add(PatientDOB);
+                doc.Add(PatientGender);
+                doc.Add(PatientPhoneNumberAndEmail);
+                doc.Add(PatientOccupation);
+                doc.Add(new Paragraph("\n"));
+                doc.Add(InCaseOfEmergency);
+                doc.Add(ParentName);
+                doc.Add(Relationship);
+                doc.Add(HomeAndCellPhone);
+                doc.Add(WorkPhone);
+                doc.Add(HomeAddress);
+                doc.Add(new Paragraph("\n"));
+                doc.Add(MedicalHistory);
+                doc.Add(MedicalHistoryDisclaimer);
+                doc.Add(Question1);
+                doc.Add(Question2);
+                doc.Add(new Paragraph("\n"));
+                doc.Add(new Paragraph("\n"));
+                doc.Add(new Paragraph("\n"));
+                doc.Add(new Paragraph("\n"));
+                doc.Add(new Paragraph("\n"));
+                doc.Add(new Paragraph("\n"));
+                doc.Add(new Paragraph("\n"));
+                doc.Add(new Paragraph("\n"));
+                doc.Add(new Paragraph("\n"));
+                doc.Add(new Paragraph("\n"));
+                doc.Add(new Paragraph("\n"));
+                doc.Add(new Paragraph("\n"));
+                doc.Add(new Paragraph("\n"));
+                doc.Add(new Paragraph("\n"));
+                doc.Add(new Paragraph("\n"));
+                doc.Add(new Paragraph("\n"));
+                doc.Add(FinalDisclaimer);
+                doc.Add(new Paragraph("\n"));
+                doc.Add(ParentSignature);
+                doc.Add(new Paragraph("\n"));
+                doc.Add(DentistSignature);
+                doc.Add(new Paragraph("\n"));
+                doc.Add(PrintedDate);
+
+
+
+                doc.Close();
+
+                MetroMessageBox.Show(this, "Your PDF has been saved in" + "\n" + saveFileDialog.FileName, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.Close();
+
+            }
+            catch (Exception exception)
+            {
+                MetroMessageBox.Show(this, exception.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
+
+
 
         }
     }

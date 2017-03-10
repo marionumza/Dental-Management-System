@@ -4,15 +4,22 @@ This is a College project.
 
 Note: This is not intended to be used in a commercial environment unless stated by the developer (Dasutein). You may contribute to the source code as needed. For general bug fixes or new features, please switch to the 'general-fixes' branch and make your changes there. 
 
-To login to the system, the temporary default username is **dev** and no password.
+To login to the system, the temporary default username is **dev** and no password. 
 
 Internal current software version: **0.2.40** as of ***March 6, 2017***
 
 For this software to work properly, you need the following...
 
-MySQL Server: https://www.mysql.com/
+- MySQL Server: https://www.mysql.com/
+- .NET 4.0 Framework (Windows 7 users): https://www.microsoft.com/en-us/download/confirmation.aspx?id=17718
 
-.NET 4.0 Framework (Windows 7 users): https://www.microsoft.com/en-us/download/confirmation.aspx?id=17718
+If you want to deploy this program on multiple PCs, run the solution file, compile then copy the /bin/debug folder.
+
+###### SYSTEM REQUIREMENTS
+
+- At least a DUAL CORE processor above 1.4 GHz for optimal performance. 
+- 1366 x 768 resolution or greater is recommended.
+- OS: Windows 7, Windows 8.1, or Windows 10.
 
 ###### COMPONENTS USED TO BUILD THIS SOFTWARE
 

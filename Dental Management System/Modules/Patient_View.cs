@@ -692,7 +692,17 @@ namespace Dental_Management_System
 
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                saveFileLocation = saveFileDialog.FileName;
+
+                if (!string.IsNullOrEmpty(saveFileDialog.FileName))
+                {
+                    saveFileLocation = saveFileDialog.FileName;
+                }
+
+            }
+            else
+            {
+                if (!string.IsNullOrEmpty(saveFileDialog.FileName))
+                    return;
             }
 
             try

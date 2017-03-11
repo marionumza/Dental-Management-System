@@ -152,7 +152,7 @@
             this.lblGitHubRepo.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
             this.lblGitHubRepo.LinkColor = System.Drawing.Color.DimGray;
             this.lblGitHubRepo.LinkVisited = true;
-            this.lblGitHubRepo.Location = new System.Drawing.Point(285, 9);
+            this.lblGitHubRepo.Location = new System.Drawing.Point(284, 9);
             this.lblGitHubRepo.Name = "lblGitHubRepo";
             this.lblGitHubRepo.Size = new System.Drawing.Size(162, 13);
             this.lblGitHubRepo.TabIndex = 9;

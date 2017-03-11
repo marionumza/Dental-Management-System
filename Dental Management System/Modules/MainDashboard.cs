@@ -81,7 +81,7 @@ namespace Dental_Management_System
         private void Dashboard_Load(object sender, EventArgs e)
         {
          
-            // Starts the Background Worker process to retrieve information from the database. 
+            // START ALL BACKGROUND THREADS
 
             retrievePatientDataInformation.DoWork += new DoWorkEventHandler(StartLoadingDatabase);
             retrievePatientDataInformation.RunWorkerCompleted += new RunWorkerCompletedEventHandler(StopLoadingDatabase);
@@ -455,7 +455,7 @@ namespace Dental_Management_System
         private void button_payment_Click_1(object sender, EventArgs e)
         {
             PaymentModule paymentModule = new PaymentModule();
-            paymentModule.ShowDialog();
+            paymentModule.Show();
         }
 
         private void button_signout_Click(object sender, EventArgs e)

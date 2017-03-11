@@ -446,7 +446,7 @@ namespace Dental_Management_System
                         mysqlserverlog_textbox.AppendText(Environment.NewLine + "> " + DateTime.Now.ToString("hh:mm:ss : ") +
                         "Done!");
 
-                        command.CommandText = "CREATE TABLE Dental_Services(ServiceName VARCHAR(64), Fee VARCHAR(32))";
+                        command.CommandText = "CREATE TABLE Dental_Services(Name VARCHAR(64) NOT NULL PRIMARY KEY, Fee VARCHAR(32))";
                         mysqlserverlog_textbox.AppendText(Environment.NewLine + "> " + DateTime.Now.ToString("hh:mm:ss : ") +
                         "Preparing table 'Dental_Services'.... ");
                         command.ExecuteNonQuery();

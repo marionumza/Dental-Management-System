@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 using MySql;
 using MySql.Data.MySqlClient;
@@ -19,15 +20,35 @@ namespace Dental_Management_System
 
         }
 
-        bool ValidateAccountType = false;
+        // CALL CLASS
+        DatabaseConnectionLink databaseConnectionLink = new DatabaseConnectionLink();
+        DatabaseGetData databaseGetData = new DatabaseGetData();
+
+        // DATA TABLES
+        DataTable DentalClinicServices = new DataTable();
+        DataTable ClinicServices = new DataTable();
+
+        BackgroundWorker retrieveDentalClinicServicesData = new BackgroundWorker();
+        RefreshDialogBox refreshDialogBox = new RefreshDialogBox();
+
+        bool ValidateAccountType = true;
 
         private void AppSettings_Load(object sender, EventArgs e)
         {
+
+            // LOAD SETTINGS FOR "GENERAL" TAB
             doctorname_txtbox.Text = Properties.Settings.Default["DoctorName"].ToString();
             textBox1.Text = Properties.Settings.Default["DocAddress"].ToString();
             DocNumber_txtbox.Text = Properties.Settings.Default["DocNumber"].ToString();
             textBox4.Text = Properties.Settings.Default["DocOfficeName"].ToString();
             DisableGroupBox();
+
+            // LOAD SERVICES AND FEES
+            retrieveDentalClinicServicesData.DoWork += new DoWorkEventHandler(StartLoadingOfDentalServices);
+            retrieveDentalClinicServicesData.RunWorkerCompleted += new RunWorkerCompletedEventHandler(StopLoadingOfDentalServices);
+            retrieveDentalClinicServicesData.RunWorkerAsync();
+
+
         }
 
         MainDashboard dashboard = (MainDashboard)Application.OpenForms["MainDashboard"];
@@ -347,6 +368,153 @@ namespace Dental_Management_System
 
                 }
             }
+        }
+
+        void StartLoadingOfDentalServices(object sender, DoWorkEventArgs e)
+        {
+            try
+            {
+                using (MySqlConnection connection = new MySqlConnection(databaseConnectionLink.networkLink))
+                {
+
+                    connection.Open();
+
+                    using (MySqlDataAdapter data = new MySqlDataAdapter(databaseGetData.getDentalClincFromDatabase, databaseConnectionLink.networkLink))
+                    {
+                        data.Fill(ClinicServices);
+                        connection.Close();
+                        Thread.Sleep(1000);
+                    }
+                }
+            }
+            catch
+            {
+
+            }
+        }
+
+        void StopLoadingOfDentalServices(object sender, RunWorkerCompletedEventArgs e)
+        {
+
+            if (refreshDialogBox.Visible == true)
+            {
+                refreshDialogBox.Close();
+            }
+
+
+            try
+            {
+                dataGridView2.AutoGenerateColumns = false;
+                dataGridView2.MultiSelect = false;
+                dataGridView2.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+                dataGridView2.ReadOnly = true;
+                dataGridView2.AllowUserToDeleteRows = false;
+                dataGridView2.ColumnCount = 2;
+                dataGridView2.DataSource = ClinicServices;
+
+                dataGridView2.Columns[0].HeaderText = "Service Name";
+                dataGridView2.Columns[0].DataPropertyName = "ServiceName";
+                dataGridView2.Columns[0].Width = 100;
+                dataGridView2.Columns[0].Frozen = true;
+                dataGridView2.Columns[1].HeaderText = "Fee";
+                dataGridView2.Columns[1].DataPropertyName = "Fee";
+                dataGridView2.Columns[1].Width = 175;
+                dataGridView2.Columns[1].Frozen = true;
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+
+            }
+        }
+
+
+        private void btnAddNewService_Click(object sender, EventArgs e)
+        {
+
+            using (MySqlConnection connection = new MySqlConnection(databaseConnectionLink.networkLink))
+            {
+                try
+                {
+                    connection.Open();
+                    MySqlCommand command = new MySqlCommand();
+                    command.Connection = connection;
+                    command.CommandText = "INSERT INTO Dental_Services (ServiceName, Fee) VALUES (@ServiceName, @Fee)";
+                    command.Parameters.AddWithValue("@ServiceName", txtboxServiceName.Text);
+                    command.Parameters.AddWithValue("@Fee", String.Format("{0}", txtboxServiceFee.Text));
+                    command.ExecuteNonQuery();
+                    command.Parameters.Clear();
+                    connection.Close();
+
+                    dataGridView2.DataSource = null;
+                    dataGridView2.Rows.Clear();
+                    ClinicServices.Clear();
+                    BackgroundWorker retrieveDentalClinicServicesData = new BackgroundWorker();
+                    retrieveDentalClinicServicesData.DoWork += new DoWorkEventHandler(StartLoadingOfDentalServices);
+                    retrieveDentalClinicServicesData.RunWorkerCompleted += new RunWorkerCompletedEventHandler(StopLoadingOfDentalServices);
+                    retrieveDentalClinicServicesData.RunWorkerAsync();
+                    refreshDialogBox.ShowDialog();
+
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
+
+        private void dataGridView2_RowValidated(object sender, DataGridViewCellEventArgs e)
+        {
+            using (MySqlConnection connection = new MySqlConnection(databaseConnectionLink.networkLink))
+            {
+                using (MySqlDataAdapter adapter = new MySqlDataAdapter(databaseGetData.getALLDentalClinicFromDatabase, databaseConnectionLink.networkLink))
+                {
+                    try
+                    {
+
+                        connection.Open();
+                        DentalClinicServices = ((DataTable)dataGridView2.DataSource).GetChanges();
+                        if (DentalClinicServices != null)
+                        {
+                            MySqlCommandBuilder mcb = new MySqlCommandBuilder(adapter);
+                            adapter.UpdateCommand = mcb.GetUpdateCommand();
+                            adapter.Update(DentalClinicServices);
+                            ((DataTable)dataGridView2.DataSource).AcceptChanges();
+
+                            MessageBox.Show("Changes have been saved to the database.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        }
+                        connection.Close();
+
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
+
+        private void metroToggleEnableEditing_CheckedChanged(object sender, EventArgs e)
+        {
+            if (metroToggleEnableEditing.Checked == true)
+            {
+                dataGridView2.ReadOnly = false;
+                dataGridView2.AllowUserToDeleteRows = true;
+            }
+            else if (metroToggleEnableEditing.Checked == false)
+            {
+                dataGridView2.ReadOnly = true;
+                dataGridView2.AllowUserToDeleteRows = false;
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+
+
         }
     }
 }

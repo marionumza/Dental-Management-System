@@ -58,6 +58,7 @@ namespace Dental_Management_System
                         txtboxOccupation.Text = (reader["Occupation"].ToString());
                         txtboxParentName.Text = (reader["ParentName"].ToString());
                         txtboxRelationship.Text = (reader["Relationship"].ToString());
+                        txtboxCellphoneNum.Text = (reader["CellPhone"].ToString());
                         txtboxHomePhone.Text = (reader["HomePhone"].ToString());
                         txtboxWorkPhone.Text = (reader["WorkPhone"].ToString());
                         txtboxExtensionNum.Text = (reader["WorkExtPhone"].ToString());
@@ -856,6 +857,13 @@ namespace Dental_Management_System
 
 
 
+        }
+
+        private void linkLabelClickToPayment_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            PaymentModule paymentModule = new PaymentModule();
+            paymentModule.txtboxPatientIDNumber.Text = lbl_IDnum.Text;
+            paymentModule.Show();
         }
     }
 }

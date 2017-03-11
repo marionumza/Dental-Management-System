@@ -158,6 +158,7 @@
             this.label68 = new System.Windows.Forms.Label();
             this.return_button = new System.Windows.Forms.Button();
             this.metroTabPage2 = new MetroFramework.Controls.MetroTabPage();
+            this.linkLabelClickToPayment = new System.Windows.Forms.LinkLabel();
             this.label55 = new System.Windows.Forms.Label();
             this.label56 = new System.Windows.Forms.Label();
             this.label53 = new System.Windows.Forms.Label();
@@ -1533,6 +1534,7 @@
             // 
             // metroTabPage2
             // 
+            this.metroTabPage2.Controls.Add(this.linkLabelClickToPayment);
             this.metroTabPage2.Controls.Add(this.label55);
             this.metroTabPage2.Controls.Add(this.label56);
             this.metroTabPage2.Controls.Add(this.label53);
@@ -1554,6 +1556,22 @@
             this.metroTabPage2.VerticalScrollbarBarColor = true;
             this.metroTabPage2.VerticalScrollbarHighlightOnWheel = false;
             this.metroTabPage2.VerticalScrollbarSize = 10;
+            // 
+            // linkLabelClickToPayment
+            // 
+            this.linkLabelClickToPayment.AutoSize = true;
+            this.linkLabelClickToPayment.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.linkLabelClickToPayment.LinkBehavior = System.Windows.Forms.LinkBehavior.AlwaysUnderline;
+            this.linkLabelClickToPayment.LinkColor = System.Drawing.Color.DimGray;
+            this.linkLabelClickToPayment.LinkVisited = true;
+            this.linkLabelClickToPayment.Location = new System.Drawing.Point(12, 344);
+            this.linkLabelClickToPayment.Name = "linkLabelClickToPayment";
+            this.linkLabelClickToPayment.Size = new System.Drawing.Size(173, 19);
+            this.linkLabelClickToPayment.TabIndex = 34;
+            this.linkLabelClickToPayment.TabStop = true;
+            this.linkLabelClickToPayment.Text = "Click to go to payment >>";
+            this.linkLabelClickToPayment.VisitedLinkColor = System.Drawing.Color.DimGray;
+            this.linkLabelClickToPayment.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelClickToPayment_LinkClicked);
             // 
             // label55
             // 
@@ -2141,5 +2159,6 @@
         public System.Windows.Forms.TextBox txtboxEmail;
         public System.Windows.Forms.DateTimePicker cbBirthday;
         public System.Windows.Forms.ComboBox cbMaritalStatus;
+        private System.Windows.Forms.LinkLabel linkLabelClickToPayment;
     }
 }

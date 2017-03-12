@@ -161,7 +161,7 @@ namespace Dental_Management_System
 
         public void StartLoadingDatabaseList()
         {
-            using (MySqlConnection connection = new MySqlConnection(databaseConnectionLink.networkLink))
+            using (MySqlConnection connection = new MySqlConnection(databaseConnectionLink.networkLinkDatabaseList))
             {
                 try
                 {
@@ -446,7 +446,15 @@ namespace Dental_Management_System
                         mysqlserverlog_textbox.AppendText(Environment.NewLine + "> " + DateTime.Now.ToString("hh:mm:ss : ") +
                         "Done!");
 
-                        command.CommandText = "CREATE TABLE Dental_Services(Name VARCHAR(64) NOT NULL PRIMARY KEY, Fee VARCHAR(32))";
+                        command.CommandText = "CREATE TABLE Patient_Payment(PID BIGINT NOT NULL PRIMARY KEY, Service VARCHAR(64), ServiceFee VARCHAR(64), MiscFee VARCHAR(64), Discount VARCHAR(64), VAT VARCHAR(6), Method VARCHAR(64), Total VARCHAR(64), LastVisit VARCHAR(64), FOREIGN KEY fk_pidone(PID) REFERENCES Patient_Information(PID) ON UPDATE CASCADE ON DELETE RESTRICT)ENGINE=InnoDB";
+                        mysqlserverlog_textbox.AppendText(Environment.NewLine + "> " + DateTime.Now.ToString("hh:mm:ss : ") +
+                        "Preparing table 'Patient_Payment'.... ");
+                        command.ExecuteNonQuery();
+                        mysqlserverlog_textbox.AppendText(Environment.NewLine + "> " + DateTime.Now.ToString("hh:mm:ss : ") +
+                        "Done!");
+
+
+                        command.CommandText = "CREATE TABLE Dental_Services(ServiceName VARCHAR(64) NOT NULL PRIMARY KEY, Fee VARCHAR(32))";
                         mysqlserverlog_textbox.AppendText(Environment.NewLine + "> " + DateTime.Now.ToString("hh:mm:ss : ") +
                         "Preparing table 'Dental_Services'.... ");
                         command.ExecuteNonQuery();

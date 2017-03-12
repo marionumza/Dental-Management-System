@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label17 = new System.Windows.Forms.Label();
+            this.labelTotalAmount = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
+            this.labelVAT = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
@@ -59,15 +59,23 @@
             this.lblSeniorCitizenTIN = new System.Windows.Forms.Label();
             this.txtboxPWDNumber = new System.Windows.Forms.TextBox();
             this.lblOSCAPWDID = new System.Windows.Forms.Label();
+            this.txtboxAdditionalFee = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.labelAdditionalFee = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.checkBoxEnableAdditionalFee = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.label17);
+            this.groupBox1.Controls.Add(this.labelAdditionalFee);
+            this.groupBox1.Controls.Add(this.label9);
+            this.groupBox1.Controls.Add(this.labelTotalAmount);
             this.groupBox1.Controls.Add(this.label18);
-            this.groupBox1.Controls.Add(this.label15);
+            this.groupBox1.Controls.Add(this.labelVAT);
             this.groupBox1.Controls.Add(this.label16);
             this.groupBox1.Controls.Add(this.label13);
             this.groupBox1.Controls.Add(this.label14);
@@ -81,44 +89,44 @@
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Location = new System.Drawing.Point(322, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(233, 254);
+            this.groupBox1.Size = new System.Drawing.Size(233, 320);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Preview";
             // 
-            // label17
+            // labelTotalAmount
             // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(117, 222);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(45, 15);
-            this.label17.TabIndex = 17;
-            this.label17.Text = "500.00";
+            this.labelTotalAmount.AutoSize = true;
+            this.labelTotalAmount.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Bold);
+            this.labelTotalAmount.Location = new System.Drawing.Point(114, 256);
+            this.labelTotalAmount.Name = "labelTotalAmount";
+            this.labelTotalAmount.Size = new System.Drawing.Size(36, 28);
+            this.labelTotalAmount.TabIndex = 17;
+            this.labelTotalAmount.Text = "---";
             // 
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(22, 222);
+            this.label18.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Bold);
+            this.label18.Location = new System.Drawing.Point(19, 256);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(37, 15);
+            this.label18.Size = new System.Drawing.Size(64, 28);
             this.label18.TabIndex = 16;
             this.label18.Text = "Total:";
             // 
-            // label15
+            // labelVAT
             // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(116, 190);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(29, 15);
-            this.label15.TabIndex = 15;
-            this.label15.Text = "12%";
+            this.labelVAT.AutoSize = true;
+            this.labelVAT.Location = new System.Drawing.Point(116, 225);
+            this.labelVAT.Name = "labelVAT";
+            this.labelVAT.Size = new System.Drawing.Size(19, 15);
+            this.labelVAT.TabIndex = 15;
+            this.labelVAT.Text = "12";
             // 
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(21, 190);
+            this.label16.Location = new System.Drawing.Point(21, 225);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(46, 15);
             this.label16.TabIndex = 14;
@@ -127,7 +135,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(116, 160);
+            this.label13.Location = new System.Drawing.Point(116, 195);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(36, 15);
             this.label13.TabIndex = 13;
@@ -136,7 +144,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(21, 160);
+            this.label14.Location = new System.Drawing.Point(21, 195);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(60, 15);
             this.label14.TabIndex = 12;
@@ -147,9 +155,9 @@
             this.labelServiceFee.AutoSize = true;
             this.labelServiceFee.Location = new System.Drawing.Point(116, 131);
             this.labelServiceFee.Name = "labelServiceFee";
-            this.labelServiceFee.Size = new System.Drawing.Size(40, 15);
+            this.labelServiceFee.Size = new System.Drawing.Size(22, 15);
             this.labelServiceFee.TabIndex = 11;
-            this.labelServiceFee.Text = "400.00";
+            this.labelServiceFee.Text = "---";
             // 
             // label10
             // 
@@ -165,9 +173,9 @@
             this.labelService.AutoSize = true;
             this.labelService.Location = new System.Drawing.Point(116, 102);
             this.labelService.Name = "labelService";
-            this.labelService.Size = new System.Drawing.Size(54, 15);
+            this.labelService.Size = new System.Drawing.Size(22, 15);
             this.labelService.TabIndex = 9;
-            this.labelService.Text = "Clean up";
+            this.labelService.Text = "---";
             // 
             // label12
             // 
@@ -184,7 +192,7 @@
             this.labelPatientName.Name = "labelPatientName";
             this.labelPatientName.Size = new System.Drawing.Size(86, 39);
             this.labelPatientName.TabIndex = 7;
-            this.labelPatientName.Text = "Nishikino Maki";
+            this.labelPatientName.Text = "---";
             // 
             // label4
             // 
@@ -200,9 +208,9 @@
             this.labelPatientID.AutoSize = true;
             this.labelPatientID.Location = new System.Drawing.Point(116, 30);
             this.labelPatientID.Name = "labelPatientID";
-            this.labelPatientID.Size = new System.Drawing.Size(43, 15);
+            this.labelPatientID.Size = new System.Drawing.Size(22, 15);
             this.labelPatientID.TabIndex = 5;
-            this.labelPatientID.Text = "123456";
+            this.labelPatientID.Text = "---";
             // 
             // label2
             // 
@@ -219,7 +227,7 @@
             this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 285);
+            this.panel1.Location = new System.Drawing.Point(0, 356);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(567, 48);
             this.panel1.TabIndex = 1;
@@ -232,6 +240,7 @@
             this.button2.TabIndex = 1;
             this.button2.Text = "Process transaction";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
             // 
@@ -285,7 +294,7 @@
             this.comboBox2.FormattingEnabled = true;
             this.comboBox2.Items.AddRange(new object[] {
             "Cash"});
-            this.comboBox2.Location = new System.Drawing.Point(134, 98);
+            this.comboBox2.Location = new System.Drawing.Point(134, 143);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(121, 23);
             this.comboBox2.TabIndex = 7;
@@ -293,7 +302,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(12, 101);
+            this.label7.Location = new System.Drawing.Point(12, 146);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(102, 15);
             this.label7.TabIndex = 6;
@@ -302,7 +311,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(12, 141);
+            this.label8.Location = new System.Drawing.Point(12, 183);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(57, 15);
             this.label8.TabIndex = 8;
@@ -311,7 +320,8 @@
             // radioButtonNone
             // 
             this.radioButtonNone.AutoSize = true;
-            this.radioButtonNone.Location = new System.Drawing.Point(134, 141);
+            this.radioButtonNone.Checked = true;
+            this.radioButtonNone.Location = new System.Drawing.Point(134, 183);
             this.radioButtonNone.Name = "radioButtonNone";
             this.radioButtonNone.Size = new System.Drawing.Size(54, 19);
             this.radioButtonNone.TabIndex = 9;
@@ -323,11 +333,10 @@
             // radioButtonSCPWD
             // 
             this.radioButtonSCPWD.AutoSize = true;
-            this.radioButtonSCPWD.Location = new System.Drawing.Point(201, 141);
+            this.radioButtonSCPWD.Location = new System.Drawing.Point(201, 183);
             this.radioButtonSCPWD.Name = "radioButtonSCPWD";
             this.radioButtonSCPWD.Size = new System.Drawing.Size(70, 19);
             this.radioButtonSCPWD.TabIndex = 10;
-            this.radioButtonSCPWD.TabStop = true;
             this.radioButtonSCPWD.Text = "SC/PWD";
             this.radioButtonSCPWD.UseVisualStyleBackColor = true;
             this.radioButtonSCPWD.CheckedChanged += new System.EventHandler(this.radioButtonSCPWD_CheckedChanged);
@@ -335,7 +344,7 @@
             // txtboxSeniorTIN
             // 
             this.txtboxSeniorTIN.Enabled = false;
-            this.txtboxSeniorTIN.Location = new System.Drawing.Point(135, 175);
+            this.txtboxSeniorTIN.Location = new System.Drawing.Point(135, 217);
             this.txtboxSeniorTIN.Name = "txtboxSeniorTIN";
             this.txtboxSeniorTIN.Size = new System.Drawing.Size(149, 23);
             this.txtboxSeniorTIN.TabIndex = 12;
@@ -344,7 +353,7 @@
             // 
             this.lblSeniorCitizenTIN.AutoSize = true;
             this.lblSeniorCitizenTIN.Enabled = false;
-            this.lblSeniorCitizenTIN.Location = new System.Drawing.Point(12, 178);
+            this.lblSeniorCitizenTIN.Location = new System.Drawing.Point(12, 220);
             this.lblSeniorCitizenTIN.Name = "lblSeniorCitizenTIN";
             this.lblSeniorCitizenTIN.Size = new System.Drawing.Size(114, 15);
             this.lblSeniorCitizenTIN.TabIndex = 11;
@@ -353,7 +362,7 @@
             // txtboxPWDNumber
             // 
             this.txtboxPWDNumber.Enabled = false;
-            this.txtboxPWDNumber.Location = new System.Drawing.Point(134, 213);
+            this.txtboxPWDNumber.Location = new System.Drawing.Point(134, 255);
             this.txtboxPWDNumber.Name = "txtboxPWDNumber";
             this.txtboxPWDNumber.Size = new System.Drawing.Size(149, 23);
             this.txtboxPWDNumber.TabIndex = 14;
@@ -362,18 +371,78 @@
             // 
             this.lblOSCAPWDID.AutoSize = true;
             this.lblOSCAPWDID.Enabled = false;
-            this.lblOSCAPWDID.Location = new System.Drawing.Point(11, 216);
+            this.lblOSCAPWDID.Location = new System.Drawing.Point(11, 258);
             this.lblOSCAPWDID.Name = "lblOSCAPWDID";
             this.lblOSCAPWDID.Size = new System.Drawing.Size(96, 15);
             this.lblOSCAPWDID.TabIndex = 13;
             this.lblOSCAPWDID.Text = "OSCA/PWD ID #:";
             // 
+            // txtboxAdditionalFee
+            // 
+            this.txtboxAdditionalFee.Enabled = false;
+            this.txtboxAdditionalFee.Location = new System.Drawing.Point(134, 99);
+            this.txtboxAdditionalFee.Name = "txtboxAdditionalFee";
+            this.txtboxAdditionalFee.Size = new System.Drawing.Size(121, 23);
+            this.txtboxAdditionalFee.TabIndex = 16;
+            this.txtboxAdditionalFee.TextChanged += new System.EventHandler(this.txtboxAdditionalFee_TextChanged);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(11, 102);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(86, 15);
+            this.label3.TabIndex = 15;
+            this.label3.Text = "Additional Fee:";
+            // 
+            // labelAdditionalFee
+            // 
+            this.labelAdditionalFee.AutoSize = true;
+            this.labelAdditionalFee.Location = new System.Drawing.Point(116, 161);
+            this.labelAdditionalFee.Name = "labelAdditionalFee";
+            this.labelAdditionalFee.Size = new System.Drawing.Size(22, 15);
+            this.labelAdditionalFee.TabIndex = 19;
+            this.labelAdditionalFee.Text = "---";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(21, 161);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(89, 15);
+            this.label9.TabIndex = 18;
+            this.label9.Text = "Additional Fee: ";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 7F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(20, 119);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(63, 12);
+            this.label5.TabIndex = 17;
+            this.label5.Text = "(if applicable)";
+            // 
+            // checkBoxEnableAdditionalFee
+            // 
+            this.checkBoxEnableAdditionalFee.AutoSize = true;
+            this.checkBoxEnableAdditionalFee.Location = new System.Drawing.Point(262, 103);
+            this.checkBoxEnableAdditionalFee.Name = "checkBoxEnableAdditionalFee";
+            this.checkBoxEnableAdditionalFee.Size = new System.Drawing.Size(15, 14);
+            this.checkBoxEnableAdditionalFee.TabIndex = 18;
+            this.checkBoxEnableAdditionalFee.UseVisualStyleBackColor = true;
+            this.checkBoxEnableAdditionalFee.CheckedChanged += new System.EventHandler(this.checkBoxEnableAdditionalFee_CheckedChanged);
+            // 
             // PaymentModule
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(567, 333);
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(567, 404);
+            this.Controls.Add(this.checkBoxEnableAdditionalFee);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.txtboxAdditionalFee);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.txtboxPWDNumber);
             this.Controls.Add(this.lblOSCAPWDID);
             this.Controls.Add(this.txtboxSeniorTIN);
@@ -427,9 +496,9 @@
         private System.Windows.Forms.Label lblSeniorCitizenTIN;
         private System.Windows.Forms.TextBox txtboxPWDNumber;
         private System.Windows.Forms.Label lblOSCAPWDID;
-        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label labelTotalAmount;
         private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label labelVAT;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;
@@ -438,5 +507,11 @@
         private System.Windows.Forms.Label labelService;
         private System.Windows.Forms.Label label12;
         public System.Windows.Forms.TextBox txtboxPatientIDNumber;
+        private System.Windows.Forms.Label labelAdditionalFee;
+        private System.Windows.Forms.Label label9;
+        public System.Windows.Forms.TextBox txtboxAdditionalFee;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.CheckBox checkBoxEnableAdditionalFee;
     }
 }

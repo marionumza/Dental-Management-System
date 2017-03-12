@@ -147,10 +147,27 @@ namespace Dental_Management_System
                         toothNote_31.Text = (reader2["Note31"].ToString());
                         toothNote_32.Text = (reader2["Note32"].ToString());
 
-
                     }
 
                     connection.Close();
+                    connection.Open();
+
+                    MySqlCommand command3 = connection.CreateCommand();
+                    command3.CommandText = "SELECT Service, ServiceFee, MiscFee, Discount, VAT, Method, Total, LastVisit FROM Patient_Payment WHERE PID=" + lbl_IDnum.Text;
+                    MySqlDataReader reader3 = command3.ExecuteReader();
+                    while (reader3.Read())
+                    {
+                        lblServiceType.Text = (reader3["Service"].ToString());
+                        lblServiceFee.Text = (reader3["ServiceFee"].ToString());
+                        lblAdditionalFees.Text = (reader3["MiscFee"].ToString());
+                        lblDiscount.Text = (reader3["Discount"].ToString());
+                        lblVAT.Text = (reader3["VAT"].ToString());
+                        lblTotalAmount.Text = (reader3["Total"].ToString());
+                        label55.Text = (reader3["LastVisit"].ToString());
+    
+                    }
+                    connection.Close();
+
                 }
                 catch(Exception exception)
                 {
@@ -457,6 +474,8 @@ namespace Dental_Management_System
                 {
                     connection.Open();
                     MySqlCommand deleteCommand = connection.CreateCommand();
+                    deleteCommand.CommandText = "DELETE FROM Patient_Payment WHERE PID=" + lbl_IDnum.Text;
+                    deleteCommand.ExecuteNonQuery();
                     deleteCommand.CommandText = "DELETE FROM Patient_MedHistory WHERE PID=" + lbl_IDnum.Text;
                     deleteCommand.ExecuteNonQuery();
                     deleteCommand.CommandText = "DELETE FROM Patient_Information WHERE PID=" + lbl_IDnum.Text;
@@ -688,7 +707,7 @@ namespace Dental_Management_System
             string saveFileLocation = string.Empty;
 
             SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.FileName = lbl_IDnum.Text + "-" + txtboxLastName.Text;
+            saveFileDialog.FileName = lbl_IDnum.Text + "-" + "Data" + "-" + txtboxLastName.Text;
             saveFileDialog.Filter = "PDF (*.pdf)|*.pdf|All files (*.*)|*.*";
 
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
@@ -859,11 +878,138 @@ namespace Dental_Management_System
 
         }
 
-        private void linkLabelClickToPayment_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void btnGotoPayment_Click(object sender, EventArgs e)
         {
             PaymentModule paymentModule = new PaymentModule();
             paymentModule.txtboxPatientIDNumber.Text = lbl_IDnum.Text;
             paymentModule.Show();
+        }
+
+        private void btnPrintReceipt_Click(object sender, EventArgs e)
+        {
+
+            string saveFileLocation = string.Empty;
+
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.FileName = lbl_IDnum.Text + "-" + "Receipt" + "-" +txtboxLastName.Text;
+            saveFileDialog.Filter = "PDF (*.pdf)|*.pdf|All files (*.*)|*.*";
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+
+                if (!string.IsNullOrEmpty(saveFileDialog.FileName))
+                {
+                    saveFileLocation = saveFileDialog.FileName;
+                }
+
+            }
+            else
+            {
+                if (!string.IsNullOrEmpty(saveFileDialog.FileName))
+                    return;
+            }
+
+            try
+            {
+
+                Document doc = new Document(iTextSharp.text.PageSize.A4);
+                PdfWriter write = PdfWriter.GetInstance(doc, new FileStream(saveFileLocation, FileMode.Create));
+
+                doc.Open();
+
+                // BASIC INFORMATION FOR CLINIC
+
+                Paragraph ClinicName = new Paragraph(Properties.Settings.Default["DocOfficeName"].ToString(), FontFactory.GetFont(FontFactory.HELVETICA, 12, iTextSharp.text.Font.BOLD));
+                ClinicName.Alignment = Element.ALIGN_LEFT;
+
+                Paragraph ClinicAddress = new Paragraph("Address: " + Properties.Settings.Default["DocAddress"].ToString(), FontFactory.GetFont(FontFactory.HELVETICA, 8, iTextSharp.text.Font.NORMAL));
+                ClinicAddress.Alignment = Element.ALIGN_LEFT;
+
+                Paragraph ClinicTelephoneNumber = new Paragraph("Tel no. " + Properties.Settings.Default["DocNumber"].ToString(), FontFactory.GetFont(FontFactory.HELVETICA, 8, iTextSharp.text.Font.NORMAL));
+                ClinicTelephoneNumber.Alignment = Element.ALIGN_LEFT;
+
+                Paragraph OfficialHeader = new Paragraph("OFFICIAL RECEIPT", FontFactory.GetFont(FontFactory.HELVETICA, 10, iTextSharp.text.Font.BOLD));
+                OfficialHeader.Alignment = Element.ALIGN_LEFT;
+
+                // BREAK DOWN FEE
+
+                Paragraph ServiceType = new Paragraph("Service:......................... " + lblServiceType.Text, FontFactory.GetFont(FontFactory.HELVETICA, 9, iTextSharp.text.Font.NORMAL));
+                ServiceType.Alignment = Element.ALIGN_LEFT;
+
+                Paragraph ServiceFee = new Paragraph("Service fee:................... " + lblServiceFee.Text, FontFactory.GetFont(FontFactory.HELVETICA, 9, iTextSharp.text.Font.NORMAL));
+                ServiceFee.Alignment = Element.ALIGN_LEFT;
+
+                Paragraph MiscFee = new Paragraph("Additional fees:.............. " + lblAdditionalFees.Text, FontFactory.GetFont(FontFactory.HELVETICA, 9, iTextSharp.text.Font.NORMAL));
+                MiscFee.Alignment = Element.ALIGN_LEFT;
+
+                Paragraph Discount = new Paragraph("Discount:....................... " + lblDiscount.Text, FontFactory.GetFont(FontFactory.HELVETICA, 9, iTextSharp.text.Font.NORMAL));
+                Discount.Alignment = Element.ALIGN_LEFT;
+
+                Paragraph VAT = new Paragraph("VAT............................... " + lblVAT.Text, FontFactory.GetFont(FontFactory.HELVETICA, 9, iTextSharp.text.Font.NORMAL));
+                VAT.Alignment = Element.ALIGN_LEFT;
+
+                Paragraph TotalAmount = new Paragraph("Total Amount:............. " + lblTotalAmount.Text, FontFactory.GetFont(FontFactory.HELVETICA, 9, iTextSharp.text.Font.BOLD));
+                TotalAmount.Alignment = Element.ALIGN_LEFT;
+
+                Paragraph SeniorID = new Paragraph("Senior Citizen TIN: ", FontFactory.GetFont(FontFactory.HELVETICA, 9, iTextSharp.text.Font.NORMAL));
+                SeniorID.Alignment = Element.ALIGN_LEFT;
+
+                Paragraph PWDID = new Paragraph("OSCA/PWD ID: ", FontFactory.GetFont(FontFactory.HELVETICA, 9, iTextSharp.text.Font.NORMAL));
+                PWDID.Alignment = Element.ALIGN_LEFT;
+
+                Paragraph TINNUMBER = new Paragraph("TIN #: " + "221-463-613-000" + " | " + "BIR: " + "3AU0001004336", FontFactory.GetFont(FontFactory.HELVETICA, 9, iTextSharp.text.Font.NORMAL));
+                TINNUMBER.Alignment = Element.ALIGN_LEFT;
+
+                Paragraph DATEISSUED = new Paragraph("Date Issued: " + "April 3, 2013" + " | " + "Expiration: " + "June 30, 2018", FontFactory.GetFont(FontFactory.HELVETICA, 9, iTextSharp.text.Font.NORMAL));
+                DATEISSUED.Alignment = Element.ALIGN_LEFT;
+
+                Paragraph PRINTDATE = new Paragraph("Receipt Print Date: " + DateTime.Now.ToString("MM/dd/yyyy"), FontFactory.GetFont(FontFactory.HELVETICA, 9, iTextSharp.text.Font.NORMAL));
+                PRINTDATE.Alignment = Element.ALIGN_LEFT;
+
+                Paragraph DOCSIGN = new Paragraph("SIGNED BY (Cashier/Authorized Representative)", FontFactory.GetFont(FontFactory.HELVETICA, 9, iTextSharp.text.Font.NORMAL));
+                DOCSIGN.Alignment = Element.ALIGN_LEFT;
+
+                Paragraph DISCLAIMER = new Paragraph("THIS DOCUMENT IS NOT VALID FOR CLAIMING INPUT TAXES" + "\n" + "THIS OFFICIAL RECEIPT SHALL BE VALID FOR FIVE(5) YEARS FROM THE DATE OF PRINTING", FontFactory.GetFont(FontFactory.HELVETICA, 5, iTextSharp.text.Font.NORMAL));
+                DISCLAIMER.Alignment = Element.ALIGN_CENTER;
+
+                Paragraph CUTHERE = new Paragraph("-------------------------------------------------------------------------------CUT HERE--------------------------------------------------------------------", FontFactory.GetFont(FontFactory.HELVETICA, 9, iTextSharp.text.Font.NORMAL));
+                CUTHERE.Alignment = Element.ALIGN_LEFT;
+
+                doc.Add(ClinicName);
+                doc.Add(ClinicAddress);
+                doc.Add(ClinicTelephoneNumber);
+                doc.Add(new Paragraph("\n"));
+                doc.Add(OfficialHeader);
+                doc.Add(new Paragraph("\n"));
+                doc.Add(ServiceType);
+                doc.Add(ServiceFee);
+                doc.Add(MiscFee);
+                doc.Add(Discount);
+                doc.Add(VAT);
+                doc.Add(TotalAmount);
+                doc.Add(new Paragraph("\n"));
+                doc.Add(SeniorID);
+                doc.Add(PWDID);
+                doc.Add(new Paragraph("\n"));
+                doc.Add(TINNUMBER);
+                doc.Add(DATEISSUED);
+                doc.Add(PRINTDATE);
+                doc.Add(new Paragraph("\n"));
+                doc.Add(DOCSIGN);
+                doc.Add(new Paragraph("\n"));
+                doc.Add(new Paragraph("\n"));
+                doc.Add(DISCLAIMER);
+                doc.Add(CUTHERE);
+
+                doc.Close();
+
+                MetroMessageBox.Show(this, "Your PDF has been saved in" + "\n" + saveFileDialog.FileName, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.Close();
+            }
+            catch(Exception exception)
+            {
+                MetroMessageBox.Show(this, exception.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
         }
     }
 }

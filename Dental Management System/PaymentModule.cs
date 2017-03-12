@@ -169,6 +169,131 @@ namespace Dental_Management_System
             }
 
         }
+
+        private void txtboxAdditionalFee_TextChanged(object sender, EventArgs e)
+        {
+            labelAdditionalFee.Text = txtboxAdditionalFee.Text;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+            if (txtboxPatientIDNumber.Text == String.Empty)
+            {
+                MessageBox.Show("Please enter a Patient ID number", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            if (comboBoxServiceList.Text == String.Empty)
+            {
+                MessageBox.Show("Please select a service.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            if (txtboxAdditionalFee.Text.Length > 1)
+            {
+                using (MySqlConnection connection = new MySqlConnection(databaseConnectionLink.networkLink))
+                {
+                    try
+                    {
+
+                        int vattax1 = Convert.ToInt32(labelVAT.Text);
+                        int servicefee1 = Convert.ToInt32(labelServiceFee.Text);
+                        int addtionalfee = Convert.ToInt32(labelAdditionalFee.Text);
+                        int getSumTotal = servicefee1 + addtionalfee;
+
+                        int multiply = getSumTotal * vattax1;
+                        int div = multiply / 100;
+                        int getNetPrice = getSumTotal + div;
+
+                        labelTotalAmount.Text = getNetPrice.ToString();
+
+                        connection.Open();
+                        MySqlCommand updateCommand = new MySqlCommand();
+                        updateCommand.CommandTimeout = 22000;
+                        updateCommand.Connection = connection;
+                        updateCommand.CommandText = "UPDATE Patient_Payment SET Service=@Service, ServiceFee=@ServiceFee, MiscFee=@MiscFee, Discount=@Discount, VAT=@VAT, Method=@Method, Total=@Total, LastVisit=@LastVisit WHERE PID=" + labelPatientID.Text;
+                        updateCommand.Parameters.AddWithValue("@Service", String.Format("{0}", comboBoxServiceList.Text));
+                        updateCommand.Parameters.AddWithValue("@ServiceFee", String.Format("{0}", servicefee1.ToString()));
+                        updateCommand.Parameters.AddWithValue("@MiscFee", String.Format("{0}", addtionalfee.ToString()));
+                        updateCommand.Parameters.AddWithValue("@Discount", String.Format("{0}", label13.Text));
+                        updateCommand.Parameters.AddWithValue("@VAT", String.Format("{0}", labelVAT.Text));
+                        updateCommand.Parameters.AddWithValue("@Method", String.Format("{0}", comboBox2.Text));
+                        updateCommand.Parameters.AddWithValue("@Total", String.Format("{0}", getNetPrice.ToString()));
+                        updateCommand.Parameters.AddWithValue("@LastVisit", String.Format("{0}", DateTime.Now.ToString("MM/dd/yyyy")));
+
+                        updateCommand.ExecuteNonQuery();
+                        updateCommand.Parameters.Clear();
+                        connection.Close();
+                    }
+                    catch (Exception exa)
+                    {
+                        MessageBox.Show(exa.Message);
+                    }
+                }
+            }
+            else if (txtboxAdditionalFee.Text == String.Empty)
+            {
+
+
+                using (MySqlConnection connection = new MySqlConnection(databaseConnectionLink.networkLink))
+                {
+                    try
+                    {
+
+                        int servicefee = Convert.ToInt32(labelServiceFee.Text);
+                        int vattax = Convert.ToInt32(labelVAT.Text);
+                        int total = servicefee * vattax;
+                        int divide = total / 100;
+                        int vatprice = divide;
+                        int netprice = Convert.ToInt32(labelServiceFee.Text) + vatprice;
+
+                        labelTotalAmount.Text = netprice.ToString();
+
+                        connection.Open();
+                        MySqlCommand updateCommand = new MySqlCommand();
+                        updateCommand.CommandTimeout = 22000;
+                        updateCommand.Connection = connection;
+                        updateCommand.CommandText = "UPDATE Patient_Payment SET Service=@Service, ServiceFee=@ServiceFee, Discount=@Discount, VAT=@VAT, Method=@Method, Total=@Total, LastVisit=@LastVisit WHERE PID=" + labelPatientID.Text;
+                        updateCommand.Parameters.AddWithValue("@Service", String.Format("{0}", comboBoxServiceList.Text));
+                        updateCommand.Parameters.AddWithValue("@ServiceFee", String.Format("{0}", servicefee.ToString()));
+                        updateCommand.Parameters.AddWithValue("@Discount", String.Format("{0}", label13.Text));
+                        updateCommand.Parameters.AddWithValue("@VAT", String.Format("{0}", labelVAT.Text));
+                        updateCommand.Parameters.AddWithValue("@Method", String.Format("{0}", comboBox2.Text));
+                        updateCommand.Parameters.AddWithValue("@Total", String.Format("{0}", netprice.ToString()));
+                        updateCommand.Parameters.AddWithValue("@LastVisit", String.Format("{0}", DateTime.Now.ToString("MM/dd/yyyy")));
+
+                        updateCommand.ExecuteNonQuery();
+                        updateCommand.Parameters.Clear();
+                        connection.Close();
+                    }
+                    catch (Exception exa)
+                    {
+                        MessageBox.Show(exa.Message);
+                    }
+                }
+            }
+
+
+            if (txtboxAdditionalFee.Text == null)
+            {
+
+            }
+        }
+
+        private void checkBoxEnableAdditionalFee_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxEnableAdditionalFee.Checked == true)
+            {
+                txtboxAdditionalFee.Enabled = true;
+            }
+            else if (checkBoxEnableAdditionalFee.Checked == false)
+            {
+                txtboxAdditionalFee.Clear();
+                txtboxAdditionalFee.Enabled = false;
+            }
+
+        }
     }
 
 }

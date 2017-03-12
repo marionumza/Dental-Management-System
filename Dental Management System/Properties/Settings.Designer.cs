@@ -178,5 +178,17 @@ namespace Dental_Management_System.Properties {
                 this["WANDialogMsg"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool HideConfigureButtonAtLogin {
+            get {
+                return ((bool)(this["HideConfigureButtonAtLogin"]));
+            }
+            set {
+                this["HideConfigureButtonAtLogin"] = value;
+            }
+        }
     }
 }

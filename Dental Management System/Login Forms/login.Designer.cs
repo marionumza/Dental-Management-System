@@ -171,9 +171,9 @@
             this.lblappVersion.Location = new System.Drawing.Point(7, 6);
             this.lblappVersion.Name = "lblappVersion";
             this.lblappVersion.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.lblappVersion.Size = new System.Drawing.Size(156, 19);
+            this.lblappVersion.Size = new System.Drawing.Size(164, 19);
             this.lblappVersion.TabIndex = 7;
-            this.lblappVersion.Text = "Client version: 0.3.351.4";
+            this.lblappVersion.Text = "Client version: 1.0.351.64";
             this.lblappVersion.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.lblappVersion.DoubleClick += new System.EventHandler(this.appVersion_DoubleClick);
             // 

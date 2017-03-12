@@ -158,17 +158,6 @@
             this.label68 = new System.Windows.Forms.Label();
             this.return_button = new System.Windows.Forms.Button();
             this.metroTabPage2 = new MetroFramework.Controls.MetroTabPage();
-            this.linkLabelClickToPayment = new System.Windows.Forms.LinkLabel();
-            this.label55 = new System.Windows.Forms.Label();
-            this.label56 = new System.Windows.Forms.Label();
-            this.label53 = new System.Windows.Forms.Label();
-            this.label54 = new System.Windows.Forms.Label();
-            this.label51 = new System.Windows.Forms.Label();
-            this.label52 = new System.Windows.Forms.Label();
-            this.label50 = new System.Windows.Forms.Label();
-            this.label49 = new System.Windows.Forms.Label();
-            this.label48 = new System.Windows.Forms.Label();
-            this.label45 = new System.Windows.Forms.Label();
             this.metroTabPage3 = new MetroFramework.Controls.MetroTabPage();
             this.btnSetAppointment = new System.Windows.Forms.Button();
             this.textBox_Notes = new System.Windows.Forms.TextBox();
@@ -189,6 +178,25 @@
             this.label3 = new System.Windows.Forms.Label();
             this.lbl_IDnum = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.btnGotoPayment = new System.Windows.Forms.Button();
+            this.label72 = new System.Windows.Forms.Label();
+            this.lblAdditionalFees = new System.Windows.Forms.Label();
+            this.label52 = new System.Windows.Forms.Label();
+            this.lblServiceFee = new System.Windows.Forms.Label();
+            this.label48 = new System.Windows.Forms.Label();
+            this.label54 = new System.Windows.Forms.Label();
+            this.lblTotalAmount = new System.Windows.Forms.Label();
+            this.lblVAT = new System.Windows.Forms.Label();
+            this.label55 = new System.Windows.Forms.Label();
+            this.label49 = new System.Windows.Forms.Label();
+            this.lblDiscount = new System.Windows.Forms.Label();
+            this.lblServiceType = new System.Windows.Forms.Label();
+            this.label56 = new System.Windows.Forms.Label();
+            this.label45 = new System.Windows.Forms.Label();
+            this.label70 = new System.Windows.Forms.Label();
+            this.label50 = new System.Windows.Forms.Label();
+            this.btnPrintReceipt = new System.Windows.Forms.Button();
+            this.label51 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.Patient_TabControl.SuspendLayout();
             this.genInfo.SuspendLayout();
@@ -259,6 +267,7 @@
             this.btnExportData.BackColor = System.Drawing.Color.Gainsboro;
             this.btnExportData.FlatAppearance.BorderSize = 0;
             this.btnExportData.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExportData.Font = new System.Drawing.Font("Segoe UI", 9.75F);
             this.btnExportData.ForeColor = System.Drawing.Color.Black;
             this.btnExportData.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnExportData.ImageIndex = 2;
@@ -278,6 +287,7 @@
             this.imageList1.Images.SetKeyName(0, "delete_icon.png");
             this.imageList1.Images.SetKeyName(1, "save_icon.png");
             this.imageList1.Images.SetKeyName(2, "export_icon.png");
+            this.imageList1.Images.SetKeyName(3, "payment_icon.png");
             // 
             // Patient_TabControl
             // 
@@ -290,7 +300,7 @@
             this.Patient_TabControl.FontWeight = MetroFramework.MetroTabControlWeight.Regular;
             this.Patient_TabControl.Location = new System.Drawing.Point(166, 20);
             this.Patient_TabControl.Name = "Patient_TabControl";
-            this.Patient_TabControl.SelectedIndex = 0;
+            this.Patient_TabControl.SelectedIndex = 3;
             this.Patient_TabControl.Size = new System.Drawing.Size(676, 415);
             this.Patient_TabControl.Style = MetroFramework.MetroColorStyle.Green;
             this.Patient_TabControl.TabIndex = 12;
@@ -1534,17 +1544,25 @@
             // 
             // metroTabPage2
             // 
-            this.metroTabPage2.Controls.Add(this.linkLabelClickToPayment);
-            this.metroTabPage2.Controls.Add(this.label55);
-            this.metroTabPage2.Controls.Add(this.label56);
-            this.metroTabPage2.Controls.Add(this.label53);
-            this.metroTabPage2.Controls.Add(this.label54);
             this.metroTabPage2.Controls.Add(this.label51);
-            this.metroTabPage2.Controls.Add(this.label52);
+            this.metroTabPage2.Controls.Add(this.btnPrintReceipt);
             this.metroTabPage2.Controls.Add(this.label50);
-            this.metroTabPage2.Controls.Add(this.label49);
-            this.metroTabPage2.Controls.Add(this.label48);
+            this.metroTabPage2.Controls.Add(this.label70);
             this.metroTabPage2.Controls.Add(this.label45);
+            this.metroTabPage2.Controls.Add(this.btnGotoPayment);
+            this.metroTabPage2.Controls.Add(this.label56);
+            this.metroTabPage2.Controls.Add(this.label54);
+            this.metroTabPage2.Controls.Add(this.lblTotalAmount);
+            this.metroTabPage2.Controls.Add(this.lblServiceType);
+            this.metroTabPage2.Controls.Add(this.label48);
+            this.metroTabPage2.Controls.Add(this.label72);
+            this.metroTabPage2.Controls.Add(this.lblVAT);
+            this.metroTabPage2.Controls.Add(this.lblDiscount);
+            this.metroTabPage2.Controls.Add(this.lblServiceFee);
+            this.metroTabPage2.Controls.Add(this.lblAdditionalFees);
+            this.metroTabPage2.Controls.Add(this.label55);
+            this.metroTabPage2.Controls.Add(this.label49);
+            this.metroTabPage2.Controls.Add(this.label52);
             this.metroTabPage2.HorizontalScrollbarBarColor = true;
             this.metroTabPage2.HorizontalScrollbarHighlightOnWheel = false;
             this.metroTabPage2.HorizontalScrollbarSize = 10;
@@ -1552,136 +1570,10 @@
             this.metroTabPage2.Name = "metroTabPage2";
             this.metroTabPage2.Size = new System.Drawing.Size(668, 370);
             this.metroTabPage2.TabIndex = 4;
-            this.metroTabPage2.Text = "Payment Details";
+            this.metroTabPage2.Text = "Payment";
             this.metroTabPage2.VerticalScrollbarBarColor = true;
             this.metroTabPage2.VerticalScrollbarHighlightOnWheel = false;
             this.metroTabPage2.VerticalScrollbarSize = 10;
-            // 
-            // linkLabelClickToPayment
-            // 
-            this.linkLabelClickToPayment.AutoSize = true;
-            this.linkLabelClickToPayment.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.linkLabelClickToPayment.LinkBehavior = System.Windows.Forms.LinkBehavior.AlwaysUnderline;
-            this.linkLabelClickToPayment.LinkColor = System.Drawing.Color.DimGray;
-            this.linkLabelClickToPayment.LinkVisited = true;
-            this.linkLabelClickToPayment.Location = new System.Drawing.Point(12, 344);
-            this.linkLabelClickToPayment.Name = "linkLabelClickToPayment";
-            this.linkLabelClickToPayment.Size = new System.Drawing.Size(173, 19);
-            this.linkLabelClickToPayment.TabIndex = 34;
-            this.linkLabelClickToPayment.TabStop = true;
-            this.linkLabelClickToPayment.Text = "Click to go to payment >>";
-            this.linkLabelClickToPayment.VisitedLinkColor = System.Drawing.Color.DimGray;
-            this.linkLabelClickToPayment.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelClickToPayment_LinkClicked);
-            // 
-            // label55
-            // 
-            this.label55.AutoSize = true;
-            this.label55.BackColor = System.Drawing.Color.Transparent;
-            this.label55.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label55.Location = new System.Drawing.Point(13, 230);
-            this.label55.Name = "label55";
-            this.label55.Size = new System.Drawing.Size(67, 17);
-            this.label55.TabIndex = 33;
-            this.label55.Text = "2/17/2017";
-            // 
-            // label56
-            // 
-            this.label56.AutoSize = true;
-            this.label56.BackColor = System.Drawing.Color.Transparent;
-            this.label56.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label56.Location = new System.Drawing.Point(13, 213);
-            this.label56.Name = "label56";
-            this.label56.Size = new System.Drawing.Size(69, 17);
-            this.label56.TabIndex = 32;
-            this.label56.Text = "Last Visit:";
-            // 
-            // label53
-            // 
-            this.label53.AutoSize = true;
-            this.label53.BackColor = System.Drawing.Color.Transparent;
-            this.label53.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label53.Location = new System.Drawing.Point(13, 185);
-            this.label53.Name = "label53";
-            this.label53.Size = new System.Drawing.Size(46, 17);
-            this.label53.TabIndex = 31;
-            this.label53.Text = "Braces";
-            // 
-            // label54
-            // 
-            this.label54.AutoSize = true;
-            this.label54.BackColor = System.Drawing.Color.Transparent;
-            this.label54.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label54.Location = new System.Drawing.Point(13, 168);
-            this.label54.Name = "label54";
-            this.label54.Size = new System.Drawing.Size(56, 17);
-            this.label54.TabIndex = 30;
-            this.label54.Text = "Service:";
-            // 
-            // label51
-            // 
-            this.label51.AutoSize = true;
-            this.label51.BackColor = System.Drawing.Color.Transparent;
-            this.label51.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label51.Location = new System.Drawing.Point(13, 87);
-            this.label51.Name = "label51";
-            this.label51.Size = new System.Drawing.Size(81, 17);
-            this.label51.TabIndex = 29;
-            this.label51.Text = "- 15,525 Php";
-            // 
-            // label52
-            // 
-            this.label52.AutoSize = true;
-            this.label52.BackColor = System.Drawing.Color.Transparent;
-            this.label52.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label52.Location = new System.Drawing.Point(13, 68);
-            this.label52.Name = "label52";
-            this.label52.Size = new System.Drawing.Size(59, 17);
-            this.label52.TabIndex = 28;
-            this.label52.Text = "Balance:";
-            // 
-            // label50
-            // 
-            this.label50.AutoSize = true;
-            this.label50.BackColor = System.Drawing.Color.Transparent;
-            this.label50.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label50.Location = new System.Drawing.Point(13, 137);
-            this.label50.Name = "label50";
-            this.label50.Size = new System.Drawing.Size(70, 17);
-            this.label50.TabIndex = 27;
-            this.label50.Text = "Installment";
-            // 
-            // label49
-            // 
-            this.label49.AutoSize = true;
-            this.label49.BackColor = System.Drawing.Color.Transparent;
-            this.label49.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label49.Location = new System.Drawing.Point(13, 119);
-            this.label49.Name = "label49";
-            this.label49.Size = new System.Drawing.Size(60, 17);
-            this.label49.TabIndex = 26;
-            this.label49.Text = "Method:";
-            // 
-            // label48
-            // 
-            this.label48.AutoSize = true;
-            this.label48.BackColor = System.Drawing.Color.Transparent;
-            this.label48.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label48.Location = new System.Drawing.Point(13, 38);
-            this.label48.Name = "label48";
-            this.label48.Size = new System.Drawing.Size(79, 17);
-            this.label48.TabIndex = 25;
-            this.label48.Text = "2000.00 Php";
-            // 
-            // label45
-            // 
-            this.label45.AutoSize = true;
-            this.label45.BackColor = System.Drawing.Color.Transparent;
-            this.label45.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label45.Location = new System.Drawing.Point(13, 20);
-            this.label45.Name = "label45";
-            this.label45.Size = new System.Drawing.Size(62, 17);
-            this.label45.TabIndex = 24;
-            this.label45.Text = "Amount:";
             // 
             // metroTabPage3
             // 
@@ -1830,6 +1722,7 @@
             this.btnDelete.Enabled = false;
             this.btnDelete.FlatAppearance.BorderSize = 0;
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDelete.Font = new System.Drawing.Font("Segoe UI", 9.75F);
             this.btnDelete.ForeColor = System.Drawing.Color.Black;
             this.btnDelete.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnDelete.ImageIndex = 0;
@@ -1951,6 +1844,229 @@
             this.label2.Size = new System.Drawing.Size(69, 13);
             this.label2.TabIndex = 2;
             this.label2.Text = "ID NUMBER";
+            // 
+            // btnGotoPayment
+            // 
+            this.btnGotoPayment.BackColor = System.Drawing.Color.SeaGreen;
+            this.btnGotoPayment.FlatAppearance.BorderSize = 0;
+            this.btnGotoPayment.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGotoPayment.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.btnGotoPayment.ForeColor = System.Drawing.Color.White;
+            this.btnGotoPayment.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnGotoPayment.ImageList = this.imageList1;
+            this.btnGotoPayment.Location = new System.Drawing.Point(20, 324);
+            this.btnGotoPayment.Name = "btnGotoPayment";
+            this.btnGotoPayment.Size = new System.Drawing.Size(147, 39);
+            this.btnGotoPayment.TabIndex = 32;
+            this.btnGotoPayment.Text = "Go to Payment";
+            this.btnGotoPayment.UseVisualStyleBackColor = false;
+            this.btnGotoPayment.Click += new System.EventHandler(this.btnGotoPayment_Click);
+            // 
+            // label72
+            // 
+            this.label72.AutoSize = true;
+            this.label72.BackColor = System.Drawing.Color.Transparent;
+            this.label72.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label72.Location = new System.Drawing.Point(15, 243);
+            this.label72.Name = "label72";
+            this.label72.Size = new System.Drawing.Size(168, 28);
+            this.label72.TabIndex = 37;
+            this.label72.Text = "TOTAL AMOUNT";
+            // 
+            // lblAdditionalFees
+            // 
+            this.lblAdditionalFees.AutoSize = true;
+            this.lblAdditionalFees.BackColor = System.Drawing.Color.Transparent;
+            this.lblAdditionalFees.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAdditionalFees.Location = new System.Drawing.Point(135, 117);
+            this.lblAdditionalFees.Name = "lblAdditionalFees";
+            this.lblAdditionalFees.Size = new System.Drawing.Size(23, 17);
+            this.lblAdditionalFees.TabIndex = 27;
+            this.lblAdditionalFees.Text = "---";
+            // 
+            // label52
+            // 
+            this.label52.AutoSize = true;
+            this.label52.BackColor = System.Drawing.Color.Transparent;
+            this.label52.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label52.Location = new System.Drawing.Point(17, 96);
+            this.label52.Name = "label52";
+            this.label52.Size = new System.Drawing.Size(74, 17);
+            this.label52.TabIndex = 28;
+            this.label52.Text = "Service fee:";
+            // 
+            // lblServiceFee
+            // 
+            this.lblServiceFee.AutoSize = true;
+            this.lblServiceFee.BackColor = System.Drawing.Color.Transparent;
+            this.lblServiceFee.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblServiceFee.Location = new System.Drawing.Point(135, 96);
+            this.lblServiceFee.Name = "lblServiceFee";
+            this.lblServiceFee.Size = new System.Drawing.Size(15, 17);
+            this.lblServiceFee.TabIndex = 29;
+            this.lblServiceFee.Text = "0";
+            // 
+            // label48
+            // 
+            this.label48.AutoSize = true;
+            this.label48.BackColor = System.Drawing.Color.Transparent;
+            this.label48.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label48.Location = new System.Drawing.Point(15, 277);
+            this.label48.Name = "label48";
+            this.label48.Size = new System.Drawing.Size(48, 28);
+            this.label48.TabIndex = 39;
+            this.label48.Text = "Php";
+            // 
+            // label54
+            // 
+            this.label54.AutoSize = true;
+            this.label54.BackColor = System.Drawing.Color.Transparent;
+            this.label54.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label54.Location = new System.Drawing.Point(17, 138);
+            this.label54.Name = "label54";
+            this.label54.Size = new System.Drawing.Size(61, 17);
+            this.label54.TabIndex = 30;
+            this.label54.Text = "Discount:";
+            // 
+            // lblTotalAmount
+            // 
+            this.lblTotalAmount.AutoSize = true;
+            this.lblTotalAmount.BackColor = System.Drawing.Color.Transparent;
+            this.lblTotalAmount.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalAmount.Location = new System.Drawing.Point(59, 278);
+            this.lblTotalAmount.Name = "lblTotalAmount";
+            this.lblTotalAmount.Size = new System.Drawing.Size(53, 28);
+            this.lblTotalAmount.TabIndex = 38;
+            this.lblTotalAmount.Text = "0.00";
+            // 
+            // lblVAT
+            // 
+            this.lblVAT.AutoSize = true;
+            this.lblVAT.BackColor = System.Drawing.Color.Transparent;
+            this.lblVAT.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVAT.Location = new System.Drawing.Point(135, 159);
+            this.lblVAT.Name = "lblVAT";
+            this.lblVAT.Size = new System.Drawing.Size(40, 17);
+            this.lblVAT.TabIndex = 36;
+            this.lblVAT.Text = "None";
+            // 
+            // label55
+            // 
+            this.label55.AutoSize = true;
+            this.label55.BackColor = System.Drawing.Color.Transparent;
+            this.label55.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label55.Location = new System.Drawing.Point(135, 179);
+            this.label55.Name = "label55";
+            this.label55.Size = new System.Drawing.Size(67, 17);
+            this.label55.TabIndex = 33;
+            this.label55.Text = "2/17/2017";
+            // 
+            // label49
+            // 
+            this.label49.AutoSize = true;
+            this.label49.BackColor = System.Drawing.Color.Transparent;
+            this.label49.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label49.Location = new System.Drawing.Point(17, 117);
+            this.label49.Name = "label49";
+            this.label49.Size = new System.Drawing.Size(98, 17);
+            this.label49.TabIndex = 26;
+            this.label49.Text = "Additional fees:";
+            // 
+            // lblDiscount
+            // 
+            this.lblDiscount.AutoSize = true;
+            this.lblDiscount.BackColor = System.Drawing.Color.Transparent;
+            this.lblDiscount.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDiscount.Location = new System.Drawing.Point(135, 138);
+            this.lblDiscount.Name = "lblDiscount";
+            this.lblDiscount.Size = new System.Drawing.Size(40, 17);
+            this.lblDiscount.TabIndex = 31;
+            this.lblDiscount.Text = "None";
+            // 
+            // lblServiceType
+            // 
+            this.lblServiceType.AutoSize = true;
+            this.lblServiceType.BackColor = System.Drawing.Color.Transparent;
+            this.lblServiceType.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblServiceType.Location = new System.Drawing.Point(135, 75);
+            this.lblServiceType.Name = "lblServiceType";
+            this.lblServiceType.Size = new System.Drawing.Size(23, 17);
+            this.lblServiceType.TabIndex = 25;
+            this.lblServiceType.Text = "---";
+            // 
+            // label56
+            // 
+            this.label56.AutoSize = true;
+            this.label56.BackColor = System.Drawing.Color.Transparent;
+            this.label56.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label56.Location = new System.Drawing.Point(17, 179);
+            this.label56.Name = "label56";
+            this.label56.Size = new System.Drawing.Size(62, 17);
+            this.label56.TabIndex = 32;
+            this.label56.Text = "Last Visit:";
+            // 
+            // label45
+            // 
+            this.label45.AutoSize = true;
+            this.label45.BackColor = System.Drawing.Color.Transparent;
+            this.label45.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label45.Location = new System.Drawing.Point(17, 75);
+            this.label45.Name = "label45";
+            this.label45.Size = new System.Drawing.Size(52, 17);
+            this.label45.TabIndex = 24;
+            this.label45.Text = "Service:";
+            // 
+            // label70
+            // 
+            this.label70.AutoSize = true;
+            this.label70.BackColor = System.Drawing.Color.Transparent;
+            this.label70.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label70.Location = new System.Drawing.Point(17, 159);
+            this.label70.Name = "label70";
+            this.label70.Size = new System.Drawing.Size(47, 17);
+            this.label70.TabIndex = 35;
+            this.label70.Text = "VAT %:";
+            // 
+            // label50
+            // 
+            this.label50.AutoSize = true;
+            this.label50.BackColor = System.Drawing.Color.Transparent;
+            this.label50.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label50.ForeColor = System.Drawing.Color.OrangeRed;
+            this.label50.Location = new System.Drawing.Point(15, 24);
+            this.label50.Name = "label50";
+            this.label50.Size = new System.Drawing.Size(179, 30);
+            this.label50.TabIndex = 40;
+            this.label50.Text = "Payment details";
+            // 
+            // btnPrintReceipt
+            // 
+            this.btnPrintReceipt.BackColor = System.Drawing.Color.SeaGreen;
+            this.btnPrintReceipt.FlatAppearance.BorderSize = 0;
+            this.btnPrintReceipt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPrintReceipt.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.btnPrintReceipt.ForeColor = System.Drawing.Color.White;
+            this.btnPrintReceipt.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPrintReceipt.ImageList = this.imageList1;
+            this.btnPrintReceipt.Location = new System.Drawing.Point(173, 324);
+            this.btnPrintReceipt.Name = "btnPrintReceipt";
+            this.btnPrintReceipt.Size = new System.Drawing.Size(175, 39);
+            this.btnPrintReceipt.TabIndex = 41;
+            this.btnPrintReceipt.Text = "Print Receipt";
+            this.btnPrintReceipt.UseVisualStyleBackColor = false;
+            this.btnPrintReceipt.Click += new System.EventHandler(this.btnPrintReceipt_Click);
+            // 
+            // label51
+            // 
+            this.label51.AutoSize = true;
+            this.label51.BackColor = System.Drawing.Color.Transparent;
+            this.label51.Font = new System.Drawing.Font("Segoe UI", 150F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label51.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label51.Location = new System.Drawing.Point(208, 0);
+            this.label51.Name = "label51";
+            this.label51.Size = new System.Drawing.Size(465, 265);
+            this.label51.TabIndex = 42;
+            this.label51.Text = "$  ₱";
             // 
             // Patient_View
             // 
@@ -2123,16 +2239,6 @@
         private System.Windows.Forms.Label label47;
         private MetroFramework.Controls.MetroToggle metroToggleEditMode;
         private System.Windows.Forms.ImageList imageList1;
-        private System.Windows.Forms.Label label55;
-        private System.Windows.Forms.Label label56;
-        private System.Windows.Forms.Label label53;
-        private System.Windows.Forms.Label label54;
-        private System.Windows.Forms.Label label51;
-        private System.Windows.Forms.Label label52;
-        private System.Windows.Forms.Label label50;
-        private System.Windows.Forms.Label label49;
-        private System.Windows.Forms.Label label48;
-        private System.Windows.Forms.Label label45;
         private MetroFramework.Controls.MetroTabPage metroTabPage3;
         private System.Windows.Forms.Label label57;
         private System.Windows.Forms.ComboBox comboBox_ChooseTime;
@@ -2159,6 +2265,24 @@
         public System.Windows.Forms.TextBox txtboxEmail;
         public System.Windows.Forms.DateTimePicker cbBirthday;
         public System.Windows.Forms.ComboBox cbMaritalStatus;
-        private System.Windows.Forms.LinkLabel linkLabelClickToPayment;
+        private System.Windows.Forms.Button btnGotoPayment;
+        private System.Windows.Forms.Button btnPrintReceipt;
+        private System.Windows.Forms.Label label50;
+        private System.Windows.Forms.Label label70;
+        private System.Windows.Forms.Label label45;
+        private System.Windows.Forms.Label label56;
+        private System.Windows.Forms.Label label54;
+        private System.Windows.Forms.Label lblTotalAmount;
+        private System.Windows.Forms.Label lblServiceType;
+        private System.Windows.Forms.Label label48;
+        private System.Windows.Forms.Label label72;
+        private System.Windows.Forms.Label lblVAT;
+        private System.Windows.Forms.Label lblDiscount;
+        private System.Windows.Forms.Label lblServiceFee;
+        private System.Windows.Forms.Label lblAdditionalFees;
+        private System.Windows.Forms.Label label55;
+        private System.Windows.Forms.Label label49;
+        private System.Windows.Forms.Label label52;
+        private System.Windows.Forms.Label label51;
     }
 }

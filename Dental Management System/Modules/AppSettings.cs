@@ -42,6 +42,7 @@ namespace Dental_Management_System
             DocNumber_txtbox.Text = Properties.Settings.Default["DocNumber"].ToString();
             textBox4.Text = Properties.Settings.Default["DocOfficeName"].ToString();
             DisableGroupBox();
+            metroButtonToggleHideConfigureButtonCheckState();
 
             // LOAD SERVICES AND FEES
             retrieveDentalClinicServicesData.DoWork += new DoWorkEventHandler(StartLoadingOfDentalServices);
@@ -69,6 +70,18 @@ namespace Dental_Management_System
             }
         }
 
+        private void metroButtonToggleHideConfigureButtonCheckState()
+        {
+            if ((bool)Properties.Settings.Default["HideConfigureButtonAtLogin"] == true)
+            {
+                metroToggleHideConfigureButtonAtLogin.Checked = true;
+            }
+            else if ((bool)Properties.Settings.Default["HideConfigureButtonAtLogin"] == false)
+            {
+                metroToggleHideConfigureButtonAtLogin.Checked = false;
+            }
+        }
+
 
         public void SaveSettings()
         {
@@ -82,6 +95,16 @@ namespace Dental_Management_System
                 Properties.Settings.Default["DocAddress"] = textBox1.Text;
                 Properties.Settings.Default["DocNumber"] = DocNumber_txtbox.Text;
                 Properties.Settings.Default["DocOfficeName"] = textBox4.Text;
+
+                if (metroToggleHideConfigureButtonAtLogin.Checked == true)
+                {
+                    Properties.Settings.Default["HideConfigureButtonAtLogin"] = true;
+                }
+                else
+                {
+                    Properties.Settings.Default["HideConfigureButtonAtLogin"] = false;
+                }
+
                 Properties.Settings.Default.Save();
                 Application.Exit();
             }

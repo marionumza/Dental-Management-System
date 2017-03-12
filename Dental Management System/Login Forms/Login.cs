@@ -50,9 +50,23 @@ namespace Dental_Management_System
         {
             txtBoxPass.Text = "Password";
             txtBoxPass.UseSystemPasswordChar = false;
+            PreventAccessToMySQLConsole();
 
             lblappVersion.Text = String.Format("Client version: {0}", AssemblyVersion);
 
+        }
+
+        private void PreventAccessToMySQLConsole()
+        {
+
+            if ((bool)Properties.Settings.Default["HideConfigureButtonAtLogin"] == true)
+            {
+                btn_Configure.Visible = false;
+            }
+            else if ((bool)Properties.Settings.Default["HideConfigureButtonAtLogin"] == false)
+            {
+                btn_Configure.Visible = true;
+            }
         }
 
         public string AssemblyVersion

@@ -13,7 +13,12 @@ For this software to work properly, you need the following...
 - MySQL Server: https://www.mysql.com/
 - .NET 4.0 Framework (Windows 7 users): https://www.microsoft.com/en-us/download/confirmation.aspx?id=17718
 
-If you want to deploy this program on multiple PCs, run the solution file, compile then copy the /bin/debug folder.
+###### HOW TO COMPILE
+
+1. Click on "Clone or Download" and Choose whichever options. Download ZIP or Open in Visual Studio
+2. Open Solution Project File
+3. Build > Build Solution
+4. Go to /bin/debug/ in the Solution File directory. "DentalManagement.exe" should appear.
 
 ###### SYSTEM REQUIREMENTS
 

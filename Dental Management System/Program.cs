@@ -29,9 +29,16 @@ namespace Dental_Management_System
         [STAThread]
         static void Main()
         {
+
+            if (Properties.Settings.Default.UpgradeRequired)
+            {
+                Properties.Settings.Default.Upgrade();
+                Properties.Settings.Default.UpgradeRequired = false;
+                Properties.Settings.Default.Save();
+            }
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(true);
-            //Application.Run(new ViewPatientRecords());
             Application.Run(new Login());
 
             if (result == DialogResult.OK)

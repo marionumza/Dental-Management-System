@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AppSettings));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -100,7 +100,7 @@
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label31 = new System.Windows.Forms.Label();
-            this.textBox11 = new System.Windows.Forms.TextBox();
+            this.txtboxVATPercent = new System.Windows.Forms.TextBox();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.label27 = new System.Windows.Forms.Label();
@@ -118,6 +118,8 @@
             this.label22 = new System.Windows.Forms.Label();
             this.btnDeleteDatabase = new System.Windows.Forms.Button();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.metroToggleHideConfigureButtonAtLogin = new MetroFramework.Controls.MetroToggle();
             this.label17 = new System.Windows.Forms.Label();
             this.serverSettings_button = new System.Windows.Forms.Button();
             this.tabPage4 = new System.Windows.Forms.TabPage();
@@ -138,8 +140,8 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.cancel_button = new System.Windows.Forms.Button();
             this.button_applysettings = new System.Windows.Forms.Button();
-            this.metroToggleHideConfigureButtonAtLogin = new MetroFramework.Controls.MetroToggle();
-            this.label15 = new System.Windows.Forms.Label();
+            this.label33 = new System.Windows.Forms.Label();
+            this.labelEditModeStatus = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -692,19 +694,19 @@
             // 
             // dataGridView1
             // 
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle10;
             this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
@@ -715,8 +717,8 @@
             this.dataGridView1.Location = new System.Drawing.Point(5, 7);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle12;
             this.dataGridView1.RowTemplate.DefaultCellStyle.BackColor = System.Drawing.Color.White;
             this.dataGridView1.Size = new System.Drawing.Size(584, 343);
             this.dataGridView1.TabIndex = 13;
@@ -758,6 +760,8 @@
             // 
             // groupBox9
             // 
+            this.groupBox9.Controls.Add(this.labelEditModeStatus);
+            this.groupBox9.Controls.Add(this.label33);
             this.groupBox9.Controls.Add(this.btnAddNewService);
             this.groupBox9.Controls.Add(this.txtboxServiceFee);
             this.groupBox9.Controls.Add(this.label32);
@@ -768,7 +772,7 @@
             this.groupBox9.Controls.Add(this.metroToggleEnableEditing);
             this.groupBox9.Controls.Add(this.dataGridView2);
             this.groupBox9.Controls.Add(this.label31);
-            this.groupBox9.Controls.Add(this.textBox11);
+            this.groupBox9.Controls.Add(this.txtboxVATPercent);
             this.groupBox9.Location = new System.Drawing.Point(17, 204);
             this.groupBox9.Name = "groupBox9";
             this.groupBox9.Size = new System.Drawing.Size(563, 185);
@@ -795,6 +799,7 @@
             this.txtboxServiceFee.Name = "txtboxServiceFee";
             this.txtboxServiceFee.Size = new System.Drawing.Size(68, 23);
             this.txtboxServiceFee.TabIndex = 21;
+            this.txtboxServiceFee.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtboxServiceFee_KeyPress);
             // 
             // label32
             // 
@@ -858,18 +863,18 @@
             // 
             // dataGridView2
             // 
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.dataGridView2.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.dataGridView2.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
             this.dataGridView2.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
@@ -878,14 +883,15 @@
             this.dataGridView2.Location = new System.Drawing.Point(16, 24);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle12.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.Black;
-            this.dataGridView2.RowsDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.Black;
+            this.dataGridView2.RowsDefaultCellStyle = dataGridViewCellStyle9;
             this.dataGridView2.RowTemplate.DefaultCellStyle.BackColor = System.Drawing.Color.White;
-            this.dataGridView2.Size = new System.Drawing.Size(327, 140);
+            this.dataGridView2.Size = new System.Drawing.Size(327, 128);
             this.dataGridView2.TabIndex = 14;
             this.dataGridView2.RowValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_RowValidated);
+            this.dataGridView2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dataGridView2_KeyPress);
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -902,21 +908,22 @@
             // 
             this.label31.AutoSize = true;
             this.label31.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label31.Location = new System.Drawing.Point(486, 24);
+            this.label31.Location = new System.Drawing.Point(488, 24);
             this.label31.Name = "label31";
             this.label31.Size = new System.Drawing.Size(40, 15);
             this.label31.TabIndex = 13;
             this.label31.Text = "VAT %";
             // 
-            // textBox11
+            // txtboxVATPercent
             // 
-            this.textBox11.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox11.Location = new System.Drawing.Point(480, 52);
-            this.textBox11.MaxLength = 512;
-            this.textBox11.Name = "textBox11";
-            this.textBox11.Size = new System.Drawing.Size(56, 23);
-            this.textBox11.TabIndex = 12;
-            this.textBox11.Text = "12%";
+            this.txtboxVATPercent.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtboxVATPercent.Location = new System.Drawing.Point(480, 52);
+            this.txtboxVATPercent.MaxLength = 512;
+            this.txtboxVATPercent.Name = "txtboxVATPercent";
+            this.txtboxVATPercent.Size = new System.Drawing.Size(56, 23);
+            this.txtboxVATPercent.TabIndex = 12;
+            this.txtboxVATPercent.Text = "12";
+            this.txtboxVATPercent.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // groupBox8
             // 
@@ -1107,6 +1114,27 @@
             this.groupBox6.TabIndex = 17;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "MySQL Server Configuration Console";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.ForeColor = System.Drawing.Color.Black;
+            this.label15.Location = new System.Drawing.Point(276, 91);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(179, 15);
+            this.label15.TabIndex = 23;
+            this.label15.Text = "Hide \'Configure\' button at Login";
+            // 
+            // metroToggleHideConfigureButtonAtLogin
+            // 
+            this.metroToggleHideConfigureButtonAtLogin.AutoSize = true;
+            this.metroToggleHideConfigureButtonAtLogin.Location = new System.Drawing.Point(461, 88);
+            this.metroToggleHideConfigureButtonAtLogin.Name = "metroToggleHideConfigureButtonAtLogin";
+            this.metroToggleHideConfigureButtonAtLogin.Size = new System.Drawing.Size(80, 23);
+            this.metroToggleHideConfigureButtonAtLogin.TabIndex = 17;
+            this.metroToggleHideConfigureButtonAtLogin.Text = "Off";
+            this.metroToggleHideConfigureButtonAtLogin.UseSelectable = true;
             // 
             // label17
             // 
@@ -1323,26 +1351,26 @@
             this.button_applysettings.UseVisualStyleBackColor = true;
             this.button_applysettings.Click += new System.EventHandler(this.button_applysettings_Click);
             // 
-            // metroToggleHideConfigureButtonAtLogin
+            // label33
             // 
-            this.metroToggleHideConfigureButtonAtLogin.AutoSize = true;
-            this.metroToggleHideConfigureButtonAtLogin.Location = new System.Drawing.Point(461, 88);
-            this.metroToggleHideConfigureButtonAtLogin.Name = "metroToggleHideConfigureButtonAtLogin";
-            this.metroToggleHideConfigureButtonAtLogin.Size = new System.Drawing.Size(80, 23);
-            this.metroToggleHideConfigureButtonAtLogin.TabIndex = 17;
-            this.metroToggleHideConfigureButtonAtLogin.Text = "Off";
-            this.metroToggleHideConfigureButtonAtLogin.UseSelectable = true;
+            this.label33.AutoSize = true;
+            this.label33.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label33.Location = new System.Drawing.Point(13, 161);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(64, 15);
+            this.label33.TabIndex = 28;
+            this.label33.Text = "Edit Mode:";
             // 
-            // label15
+            // labelEditModeStatus
             // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.ForeColor = System.Drawing.Color.Black;
-            this.label15.Location = new System.Drawing.Point(276, 91);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(179, 15);
-            this.label15.TabIndex = 23;
-            this.label15.Text = "Hide \'Configure\' button at Login";
+            this.labelEditModeStatus.AutoSize = true;
+            this.labelEditModeStatus.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelEditModeStatus.ForeColor = System.Drawing.SystemColors.InactiveCaption;
+            this.labelEditModeStatus.Location = new System.Drawing.Point(77, 161);
+            this.labelEditModeStatus.Name = "labelEditModeStatus";
+            this.labelEditModeStatus.Size = new System.Drawing.Size(64, 15);
+            this.labelEditModeStatus.TabIndex = 29;
+            this.labelEditModeStatus.Text = "DISABLED";
             // 
             // AppSettings
             // 
@@ -1493,7 +1521,7 @@
         private System.Windows.Forms.TextBox textBox9;
         private System.Windows.Forms.GroupBox groupBox9;
         private System.Windows.Forms.Label label31;
-        private System.Windows.Forms.TextBox textBox11;
+        private System.Windows.Forms.TextBox txtboxVATPercent;
         public System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
@@ -1507,5 +1535,7 @@
         private MetroFramework.Controls.MetroToggle metroToggleEnableEditing;
         private System.Windows.Forms.Label label15;
         private MetroFramework.Controls.MetroToggle metroToggleHideConfigureButtonAtLogin;
+        private System.Windows.Forms.Label labelEditModeStatus;
+        private System.Windows.Forms.Label label33;
     }
 }

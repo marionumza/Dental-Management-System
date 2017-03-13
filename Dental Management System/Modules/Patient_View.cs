@@ -21,7 +21,7 @@ namespace Dental_Management_System
     {
         public Patient_View()
         {
-
+            this.StartPosition = FormStartPosition.CenterScreen;
             InitializeComponent();
         }
 
@@ -357,7 +357,6 @@ namespace Dental_Management_System
             DisableTextBoxInChartNotes();
 
             // DESIGN
-            this.StartPosition = FormStartPosition.CenterScreen;
             this.Text = "Patient Medical Profile for " + firstname_readonly.Text + " " + lastname_readonly.Text;
 
         }
@@ -1004,7 +1003,6 @@ namespace Dental_Management_System
                 doc.Close();
 
                 MetroMessageBox.Show(this, "Your PDF has been saved in" + "\n" + saveFileDialog.FileName, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.Close();
             }
             catch(Exception exception)
             {

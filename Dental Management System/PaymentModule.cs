@@ -197,16 +197,17 @@ namespace Dental_Management_System
                     try
                     {
 
-                        int vattax1 = Convert.ToInt32(labelVAT.Text);
-                        int servicefee1 = Convert.ToInt32(labelServiceFee.Text);
-                        int addtionalfee = Convert.ToInt32(labelAdditionalFee.Text);
-                        int getSumTotal = servicefee1 + addtionalfee;
+                        double vattax1 = Convert.ToDouble(Properties.PaymentSettings.Default["VATTax"]);
+                        double servicefee1 = Convert.ToDouble(labelServiceFee.Text);
+                        double addtionalfee = Convert.ToDouble(labelAdditionalFee.Text);
+                        double getSumTotal = servicefee1 + addtionalfee;
 
-                        int multiply = getSumTotal * vattax1;
-                        int div = multiply / 100;
-                        int getNetPrice = getSumTotal + div;
+                        double multiply = getSumTotal * vattax1;
+                        double div = multiply / 100;
+                        double getNetPrice = getSumTotal + div;
 
-                        labelTotalAmount.Text = getNetPrice.ToString();
+                        labelVAT.Text = div.ToString();
+                        labelTotalAmount.Text = getNetPrice.ToString("0.00");
 
                         connection.Open();
                         MySqlCommand updateCommand = new MySqlCommand();
@@ -214,12 +215,12 @@ namespace Dental_Management_System
                         updateCommand.Connection = connection;
                         updateCommand.CommandText = "UPDATE Patient_Payment SET Service=@Service, ServiceFee=@ServiceFee, MiscFee=@MiscFee, Discount=@Discount, VAT=@VAT, Method=@Method, Total=@Total, LastVisit=@LastVisit WHERE PID=" + labelPatientID.Text;
                         updateCommand.Parameters.AddWithValue("@Service", String.Format("{0}", comboBoxServiceList.Text));
-                        updateCommand.Parameters.AddWithValue("@ServiceFee", String.Format("{0}", servicefee1.ToString()));
-                        updateCommand.Parameters.AddWithValue("@MiscFee", String.Format("{0}", addtionalfee.ToString()));
+                        updateCommand.Parameters.AddWithValue("@ServiceFee", String.Format("{0}", servicefee1.ToString("0.00")));
+                        updateCommand.Parameters.AddWithValue("@MiscFee", String.Format("{0}", addtionalfee.ToString("0.00")));
                         updateCommand.Parameters.AddWithValue("@Discount", String.Format("{0}", label13.Text));
-                        updateCommand.Parameters.AddWithValue("@VAT", String.Format("{0}", labelVAT.Text));
+                        updateCommand.Parameters.AddWithValue("@VAT", String.Format("{0}", div.ToString("0.00")));
                         updateCommand.Parameters.AddWithValue("@Method", String.Format("{0}", comboBox2.Text));
-                        updateCommand.Parameters.AddWithValue("@Total", String.Format("{0}", getNetPrice.ToString()));
+                        updateCommand.Parameters.AddWithValue("@Total", String.Format("{0}", getNetPrice.ToString("0.00")));
                         updateCommand.Parameters.AddWithValue("@LastVisit", String.Format("{0}", DateTime.Now.ToString("MM/dd/yyyy")));
 
                         updateCommand.ExecuteNonQuery();
@@ -241,26 +242,29 @@ namespace Dental_Management_System
                     try
                     {
 
-                        int servicefee = Convert.ToInt32(labelServiceFee.Text);
-                        int vattax = Convert.ToInt32(labelVAT.Text);
-                        int total = servicefee * vattax;
-                        int divide = total / 100;
-                        int vatprice = divide;
-                        int netprice = Convert.ToInt32(labelServiceFee.Text) + vatprice;
+                        string empty = "0";
+                        double servicefee = Convert.ToDouble(labelServiceFee.Text);
+                        double vattax = Convert.ToDouble(Properties.PaymentSettings.Default["VATTax"]);
+                        double total = servicefee * vattax;
+                        double divide = total / 100;
+                        double vatprice = divide;
+                        double netprice = Convert.ToDouble(labelServiceFee.Text) + vatprice;
 
-                        labelTotalAmount.Text = netprice.ToString();
+                        labelVAT.Text = divide.ToString();
+                        labelTotalAmount.Text = netprice.ToString("0.00");
 
                         connection.Open();
                         MySqlCommand updateCommand = new MySqlCommand();
                         updateCommand.CommandTimeout = 22000;
                         updateCommand.Connection = connection;
-                        updateCommand.CommandText = "UPDATE Patient_Payment SET Service=@Service, ServiceFee=@ServiceFee, Discount=@Discount, VAT=@VAT, Method=@Method, Total=@Total, LastVisit=@LastVisit WHERE PID=" + labelPatientID.Text;
+                        updateCommand.CommandText = "UPDATE Patient_Payment SET Service=@Service, ServiceFee=@ServiceFee, MiscFee=@MiscFee, Discount=@Discount, VAT=@VAT, Method=@Method, Total=@Total, LastVisit=@LastVisit WHERE PID=" + labelPatientID.Text;
                         updateCommand.Parameters.AddWithValue("@Service", String.Format("{0}", comboBoxServiceList.Text));
-                        updateCommand.Parameters.AddWithValue("@ServiceFee", String.Format("{0}", servicefee.ToString()));
+                        updateCommand.Parameters.AddWithValue("@ServiceFee", String.Format("{0}", servicefee.ToString("0.00")));
+                        updateCommand.Parameters.AddWithValue("@MiscFee", String.Format("{0}", empty));
                         updateCommand.Parameters.AddWithValue("@Discount", String.Format("{0}", label13.Text));
-                        updateCommand.Parameters.AddWithValue("@VAT", String.Format("{0}", labelVAT.Text));
+                        updateCommand.Parameters.AddWithValue("@VAT", String.Format("{0}", divide.ToString("0.00")));
                         updateCommand.Parameters.AddWithValue("@Method", String.Format("{0}", comboBox2.Text));
-                        updateCommand.Parameters.AddWithValue("@Total", String.Format("{0}", netprice.ToString()));
+                        updateCommand.Parameters.AddWithValue("@Total", String.Format("{0}", netprice.ToString("0.00")));
                         updateCommand.Parameters.AddWithValue("@LastVisit", String.Format("{0}", DateTime.Now.ToString("MM/dd/yyyy")));
 
                         updateCommand.ExecuteNonQuery();

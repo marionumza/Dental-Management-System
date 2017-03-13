@@ -177,10 +177,10 @@
     <Compile Include="PaymentModule.Designer.cs">
       <DependentUpon>PaymentModule.cs</DependentUpon>
     </Compile>
-    <Compile Include="Properties\PaymentRates.Designer.cs">
+    <Compile Include="Properties\PaymentSettings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <DependentUpon>PaymentRates.settings</DependentUpon>
+      <DependentUpon>PaymentSettings.settings</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -253,9 +253,9 @@
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="packages.config" />
-    <None Include="Properties\PaymentRates.settings">
+    <None Include="Properties\PaymentSettings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>PaymentRates.Designer.cs</LastGenOutput>
+      <LastGenOutput>PaymentSettings.Designer.cs</LastGenOutput>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

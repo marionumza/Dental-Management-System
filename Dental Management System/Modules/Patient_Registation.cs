@@ -128,7 +128,6 @@ namespace Dental_Management_System
                 && e.KeyChar != '('
                 && e.KeyChar != ')')
             {
-                MessageBox.Show("Numbers can only be entered here", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 e.Handled = true;
             }
         }
@@ -142,7 +141,6 @@ namespace Dental_Management_System
                 && e.KeyChar != '('
                 && e.KeyChar != ')')
             {
-                MessageBox.Show("Numbers can only be entered here", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 e.Handled = true;
             }
         }
@@ -156,7 +154,6 @@ namespace Dental_Management_System
                 && e.KeyChar != '('
                 && e.KeyChar != ')')
             {
-                MessageBox.Show("Numbers can only be entered here", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 e.Handled = true;
             }
         }
@@ -428,6 +425,32 @@ namespace Dental_Management_System
                 if (form.Name == "ToothChartExternalWindow")
                     form.Dispose();
 
+            }
+        }
+
+        private void txtboxHomePhone_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar)
+                && !char.IsDigit(e.KeyChar)
+                && e.KeyChar != '-'
+                && e.KeyChar != ' '
+                && e.KeyChar != '('
+                && e.KeyChar != ')')
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtboxCellphoneNum_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar)
+                && !char.IsDigit(e.KeyChar)
+                && e.KeyChar != '-'
+                && e.KeyChar != ' '
+                && e.KeyChar != '('
+                && e.KeyChar != ')')
+            {
+                e.Handled = true;
             }
         }
     }

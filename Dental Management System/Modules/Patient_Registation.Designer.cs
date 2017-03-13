@@ -312,6 +312,7 @@
             this.txtboxCellphoneNum.Name = "txtboxCellphoneNum";
             this.txtboxCellphoneNum.Size = new System.Drawing.Size(256, 25);
             this.txtboxCellphoneNum.TabIndex = 30;
+            this.txtboxCellphoneNum.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtboxCellphoneNum_KeyPress);
             // 
             // label12
             // 
@@ -350,6 +351,7 @@
             this.txtboxHomePhone.Name = "txtboxHomePhone";
             this.txtboxHomePhone.Size = new System.Drawing.Size(256, 25);
             this.txtboxHomePhone.TabIndex = 18;
+            this.txtboxHomePhone.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtboxHomePhone_KeyPress);
             // 
             // label16
             // 
@@ -1493,6 +1495,7 @@
             this.Reset_button.BackColor = System.Drawing.Color.DimGray;
             this.Reset_button.FlatAppearance.BorderSize = 0;
             this.Reset_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Reset_button.Font = new System.Drawing.Font("Segoe UI", 9.75F);
             this.Reset_button.ForeColor = System.Drawing.Color.White;
             this.Reset_button.Location = new System.Drawing.Point(24, 389);
             this.Reset_button.Name = "Reset_button";
@@ -1507,6 +1510,7 @@
             this.btnAddPatient.BackColor = System.Drawing.Color.MediumSeaGreen;
             this.btnAddPatient.FlatAppearance.BorderSize = 0;
             this.btnAddPatient.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddPatient.Font = new System.Drawing.Font("Segoe UI", 9.75F);
             this.btnAddPatient.ForeColor = System.Drawing.Color.White;
             this.btnAddPatient.Location = new System.Drawing.Point(24, 344);
             this.btnAddPatient.Name = "btnAddPatient";

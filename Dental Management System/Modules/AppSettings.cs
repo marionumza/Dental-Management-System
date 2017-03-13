@@ -45,6 +45,7 @@ namespace Dental_Management_System
             metroButtonToggleHideConfigureButtonCheckState();
 
             // LOAD SERVICES AND FEES
+            txtboxVATPercent.Text = Properties.PaymentSettings.Default["VATTax"].ToString();
             retrieveDentalClinicServicesData.DoWork += new DoWorkEventHandler(StartLoadingOfDentalServices);
             retrieveDentalClinicServicesData.RunWorkerCompleted += new RunWorkerCompletedEventHandler(StopLoadingOfDentalServices);
             retrieveDentalClinicServicesData.RunWorkerAsync();
@@ -95,6 +96,7 @@ namespace Dental_Management_System
                 Properties.Settings.Default["DocAddress"] = textBox1.Text;
                 Properties.Settings.Default["DocNumber"] = DocNumber_txtbox.Text;
                 Properties.Settings.Default["DocOfficeName"] = textBox4.Text;
+                Properties.PaymentSettings.Default["VATTax"] = Convert.ToInt32(txtboxVATPercent.Text);
 
                 if (metroToggleHideConfigureButtonAtLogin.Checked == true)
                 {
@@ -106,6 +108,7 @@ namespace Dental_Management_System
                 }
 
                 Properties.Settings.Default.Save();
+                Properties.PaymentSettings.Default.Save();
                 Application.Exit();
             }
             else if (ConfirmSaveChanges == DialogResult.No)
@@ -456,6 +459,19 @@ namespace Dental_Management_System
         private void btnAddNewService_Click(object sender, EventArgs e)
         {
 
+            if (txtboxServiceName.Text == String.Empty)
+            {
+                MessageBox.Show("Please enter a service name", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+
+            }
+
+            if (txtboxServiceFee.Text == String.Empty)
+            {
+                MessageBox.Show("Enter fee amount.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             using (MySqlConnection connection = new MySqlConnection(databaseConnectionLink.networkLink))
             {
                 try
@@ -483,7 +499,7 @@ namespace Dental_Management_System
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    MessageBox.Show("This service already exists.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -526,11 +542,14 @@ namespace Dental_Management_System
             {
                 dataGridView2.ReadOnly = false;
                 dataGridView2.AllowUserToDeleteRows = true;
+                labelEditModeStatus.Text = "ENABLED";
             }
             else if (metroToggleEnableEditing.Checked == false)
             {
                 dataGridView2.ReadOnly = true;
                 dataGridView2.AllowUserToDeleteRows = false;
+                labelEditModeStatus.Text = "DISABLED";
+
             }
         }
 
@@ -538,6 +557,33 @@ namespace Dental_Management_System
         {
 
 
+        }
+
+        private void dataGridView2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (dataGridView2.CurrentCell.ColumnIndex == dataGridView2.Columns["Fee"].Index)
+            {
+                if (!char.IsControl(e.KeyChar)
+                && !char.IsDigit(e.KeyChar)
+                && e.KeyChar != '-'
+                && e.KeyChar != ' '
+                && e.KeyChar != '('
+                && e.KeyChar != ')')
+                {
+                    MessageBox.Show("Numbers can only be entered here", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    e.Handled = true;
+                }
+            }
+        }
+
+        private void txtboxServiceFee_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar)
+            && !char.IsDigit(e.KeyChar))
+
+            {
+                e.Handled = true;
+            }
         }
     }
 }

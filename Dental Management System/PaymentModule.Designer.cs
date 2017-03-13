@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.labelAdditionalFee = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.labelTotalAmount = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.labelVAT = new System.Windows.Forms.Label();
@@ -61,8 +63,6 @@
             this.lblOSCAPWDID = new System.Windows.Forms.Label();
             this.txtboxAdditionalFee = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.labelAdditionalFee = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.checkBoxEnableAdditionalFee = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
@@ -93,6 +93,24 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Preview";
+            // 
+            // labelAdditionalFee
+            // 
+            this.labelAdditionalFee.AutoSize = true;
+            this.labelAdditionalFee.Location = new System.Drawing.Point(116, 161);
+            this.labelAdditionalFee.Name = "labelAdditionalFee";
+            this.labelAdditionalFee.Size = new System.Drawing.Size(22, 15);
+            this.labelAdditionalFee.TabIndex = 19;
+            this.labelAdditionalFee.Text = "---";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(21, 161);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(89, 15);
+            this.label9.TabIndex = 18;
+            this.label9.Text = "Additional Fee: ";
             // 
             // labelTotalAmount
             // 
@@ -249,7 +267,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(105, 23);
             this.button1.TabIndex = 0;
-            this.button1.Text = "Print Receipt";
+            this.button1.Text = "Export Receipt";
             this.button1.UseVisualStyleBackColor = true;
             // 
             // label1
@@ -394,24 +412,6 @@
             this.label3.Size = new System.Drawing.Size(86, 15);
             this.label3.TabIndex = 15;
             this.label3.Text = "Additional Fee:";
-            // 
-            // labelAdditionalFee
-            // 
-            this.labelAdditionalFee.AutoSize = true;
-            this.labelAdditionalFee.Location = new System.Drawing.Point(116, 161);
-            this.labelAdditionalFee.Name = "labelAdditionalFee";
-            this.labelAdditionalFee.Size = new System.Drawing.Size(22, 15);
-            this.labelAdditionalFee.TabIndex = 19;
-            this.labelAdditionalFee.Text = "---";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(21, 161);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(89, 15);
-            this.label9.TabIndex = 18;
-            this.label9.Text = "Additional Fee: ";
             // 
             // label5
             // 

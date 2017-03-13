@@ -65,6 +65,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.checkBoxEnableAdditionalFee = new System.Windows.Forms.CheckBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -433,12 +434,21 @@
             this.checkBoxEnableAdditionalFee.UseVisualStyleBackColor = true;
             this.checkBoxEnableAdditionalFee.CheckedChanged += new System.EventHandler(this.checkBoxEnableAdditionalFee_CheckedChanged);
             // 
+            // textBox1
+            // 
+            this.textBox1.Enabled = false;
+            this.textBox1.Location = new System.Drawing.Point(122, 299);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(149, 23);
+            this.textBox1.TabIndex = 19;
+            // 
             // PaymentModule
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(567, 404);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.checkBoxEnableAdditionalFee);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtboxAdditionalFee);
@@ -512,5 +522,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.CheckBox checkBoxEnableAdditionalFee;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }

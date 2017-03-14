@@ -8,33 +8,18 @@ using System.Threading;
 using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
+using System.Security.Cryptography;
 using MySql;
 using MySql.Data.Entity;
 using MetroFramework.Forms;
 using MetroFramework;
+using MySql;
+using MySql.Data.MySqlClient;
 
 namespace Dental_Management_System
 {
     public partial class Login : Form
     {
-
-        /// <summary>
-        /// BackgroundWorker allows the secondary form "ProcessingDialogBox" to run for a specific amount of time
-        /// to perform an action in the background. 
-        /// 
-        /// ProcessingDialogBox contains the dialog box for testing the connection to MySQL
-        /// 
-        /// </summary>
-        /// 
-
-        BackgroundWorker worker = new BackgroundWorker();
-        LoadingDashDialogBox dashboardLoading = new LoadingDashDialogBox();
-        MainDashboard dashboard = new MainDashboard();
-
-        public void serverConnection()
-        {
-            String server = "Server=localhost;Database=sampleTest1;UID=root;PWD=root";
-        }
 
         public Login()
         {
@@ -45,7 +30,6 @@ namespace Dental_Management_System
             EnableDoubleBuffering(this, true);
         }
 
-
         private void LoginForm_Load(object sender, EventArgs e)
         {
             txtBoxPass.Text = "Password";
@@ -55,6 +39,14 @@ namespace Dental_Management_System
             lblappVersion.Text = String.Format("Client version: {0}", AssemblyVersion);
 
         }
+
+        BackgroundWorker worker = new BackgroundWorker();
+        LoadingDashDialogBox dashboardLoading = new LoadingDashDialogBox();
+        MainDashboard dashboard = new MainDashboard();
+        DatabaseConnectionLink databaseConnectionLink = new DatabaseConnectionLink();
+
+
+
 
         private void PreventAccessToMySQLConsole()
         {
@@ -77,16 +69,19 @@ namespace Dental_Management_System
             }
         }
 
+
+
         // Puts the current thread to sleep for 5 seconds
+
         void PerformReading()
         {
             Thread.Sleep(3000);
         }
 
         // After the thread is finished reading, it proceeds to test connection and then closes.
+
         void ReadingCompleted()
         {
-            //dashboardLoading.Close();
             dashboard.Show();
         }
 
@@ -98,40 +93,93 @@ namespace Dental_Management_System
             controlProperty.SetValue(control, value, null);
         }
 
+       
         public void LoginCheck()
         {
+
+            string pass = null;
+            string accountType = null;
+            string name = null;
+
             try
             {
 
-                if (txtBoxUser.Text == "dev" || txtBoxPass.Text == "dev")
-                {
-                    //MessageBox.Show("Login Successful", "Log in");
-                    //worker.RunWorkerAsync();
-                    this.Hide();
-                    dashboard.Show();
-                  //  dashboardLoading.ShowDialog();
-
-                }
-                else if (txtBoxUser.Text != "" || txtBoxPass.Text != "")
+                using (MySqlConnection connection = new MySqlConnection(databaseConnectionLink.networkLink))
                 {
 
-                    MetroMessageBox.Show(this, "The username or password you have entered may be incorrect." +
-                        " Please try again.", "Login", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    //MessageBox.Show("Incorrect password", "Log in");
-                    txtBoxUser.Clear();
-                    txtBoxPass.Clear();
-                    txtBoxUser.Text = "Username";
-                    txtBoxPass.Text = "Password";
+                    // REMINDER: REPLACE THIS WITH A HASH + SALT TO HASH THE PASSWORD
+
+                    connection.Open();
+                    MySqlCommand command = connection.CreateCommand();
+                    command.CommandText = "SELECT Name, Password, AccountType FROM UserAccounts WHERE Username='" + txtBoxUser.Text + "';";
+                    MySqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+
+                        pass = reader["Password"].ToString();
+                        accountType = reader["AccountType"].ToString();
+                        name = reader["Name"].ToString();
+
+                        /* var storedPW = reader["Password"].ToString();
+                        byte[] passwordBytes = Encoding.Unicode.GetBytes(txtBoxPass.Text);   
+                        var hasher = System.Security.Cryptography.SHA256.Create();
+                        byte[] hashedBytes = hasher.ComputeHash(passwordBytes);
+                        var hashedString = Convert.ToBase64String(hashedBytes);
+
+                        if (hashedString == storedPW)
+                        {
+                            this.Hide();
+                            dashboard.Show();
+                        } */
+                    }
                 }
+
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show("Invalid Login credentials");
+                MessageBox.Show(ex.Message);
                 txtBoxPass.Clear();
                 txtBoxUser.Text = "Username";
                 txtBoxPass.Text = "Password";
                 txtBoxPass.UseSystemPasswordChar = false;
             }
+
+            if (txtBoxPass.Text == pass )
+            {
+                this.Hide();
+                if (accountType == "Standard")
+                {
+                    dashboard.UserAccountTypeRegular = true;
+                }
+                if (accountType == "Doctor")
+                {
+                    dashboard.UserAccountTypeDoctor = true;
+                }
+                if (accountType == "Adminstrator")
+                {
+                    dashboard.UserAccountTypeAdmin = true;
+                }
+
+                dashboard.lblAccountNameUpperRight.Text = name;
+                dashboard.lblAccountNameHomePage.Text = name;
+                dashboard.Show();
+            }
+            else if (txtBoxPass.Text != pass)
+            {
+                MetroMessageBox.Show(this, "The username or password you have entered may be incorrect." +
+                    " Please try again.", "Login", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+
+            if (txtBoxUser.Text == "dev")
+            {
+                DialogResult = DialogResult.OK;
+
+                this.Hide();
+                dashboard.Show();
+
+            }
+
         }
 
 
@@ -191,15 +239,6 @@ namespace Dental_Management_System
             txtBoxUser.Clear();
         }
 
-        private void label1_DoubleClick(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtBoxUser_TextChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void LoginForm_FormClosing(object sender, FormClosingEventArgs e)
         {

@@ -300,7 +300,7 @@
             this.Patient_TabControl.FontWeight = MetroFramework.MetroTabControlWeight.Regular;
             this.Patient_TabControl.Location = new System.Drawing.Point(166, 20);
             this.Patient_TabControl.Name = "Patient_TabControl";
-            this.Patient_TabControl.SelectedIndex = 3;
+            this.Patient_TabControl.SelectedIndex = 0;
             this.Patient_TabControl.Size = new System.Drawing.Size(676, 415);
             this.Patient_TabControl.Style = MetroFramework.MetroColorStyle.Green;
             this.Patient_TabControl.TabIndex = 12;

@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AppSettings));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -62,32 +62,34 @@
             this.label13 = new System.Windows.Forms.Label();
             this.metroToggle2 = new MetroFramework.Controls.MetroToggle();
             this.CreateNewUser_Button = new System.Windows.Forms.Button();
-            this.CreateUserPanel = new System.Windows.Forms.Panel();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.label20 = new System.Windows.Forms.Label();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.CreateUser_button = new System.Windows.Forms.Button();
-            this.label19 = new System.Windows.Forms.Label();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.userpassword_txtbox = new System.Windows.Forms.TextBox();
-            this.ShowUserPassword = new System.Windows.Forms.CheckBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.doctorname_txtbox = new System.Windows.Forms.TextBox();
-            this.userpasswordconfirm_txtbox = new System.Windows.Forms.TextBox();
-            this.accountType_combobox = new System.Windows.Forms.ComboBox();
             this.ViewUsersPanel = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CreateUserPanel = new System.Windows.Forms.Panel();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.txtboxLastName = new System.Windows.Forms.TextBox();
+            this.btnCreateUserAccount = new System.Windows.Forms.Button();
+            this.label19 = new System.Windows.Forms.Label();
+            this.txtboxFirstName = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.txtboxUserPassword = new System.Windows.Forms.TextBox();
+            this.ShowUserPassword = new System.Windows.Forms.CheckBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtboxDoctorName = new System.Windows.Forms.TextBox();
+            this.txtboxUsername = new System.Windows.Forms.TextBox();
+            this.txtboxUserPasswordConfirm = new System.Windows.Forms.TextBox();
+            this.cboxAccountType = new System.Windows.Forms.ComboBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.labelEditModeStatus = new System.Windows.Forms.Label();
+            this.label33 = new System.Windows.Forms.Label();
             this.btnAddNewService = new System.Windows.Forms.Button();
             this.txtboxServiceFee = new System.Windows.Forms.TextBox();
             this.label32 = new System.Windows.Forms.Label();
@@ -140,8 +142,6 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.cancel_button = new System.Windows.Forms.Button();
             this.button_applysettings = new System.Windows.Forms.Button();
-            this.label33 = new System.Windows.Forms.Label();
-            this.labelEditModeStatus = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -151,10 +151,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.tabPage3.SuspendLayout();
             this.panel3.SuspendLayout();
-            this.CreateUserPanel.SuspendLayout();
-            this.groupBox3.SuspendLayout();
             this.ViewUsersPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.CreateUserPanel.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.groupBox9.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
@@ -444,7 +444,7 @@
             // ViewUserAccounts_Button
             // 
             this.ViewUserAccounts_Button.Enabled = false;
-            this.ViewUserAccounts_Button.Location = new System.Drawing.Point(142, 15);
+            this.ViewUserAccounts_Button.Location = new System.Drawing.Point(100, 15);
             this.ViewUserAccounts_Button.Name = "ViewUserAccounts_Button";
             this.ViewUserAccounts_Button.Size = new System.Drawing.Size(119, 27);
             this.ViewUserAccounts_Button.TabIndex = 3;
@@ -475,11 +475,73 @@
             // 
             this.CreateNewUser_Button.Location = new System.Drawing.Point(17, 15);
             this.CreateNewUser_Button.Name = "CreateNewUser_Button";
-            this.CreateNewUser_Button.Size = new System.Drawing.Size(119, 27);
+            this.CreateNewUser_Button.Size = new System.Drawing.Size(77, 27);
             this.CreateNewUser_Button.TabIndex = 0;
-            this.CreateNewUser_Button.Text = "Create new user";
+            this.CreateNewUser_Button.Text = "Create";
             this.CreateNewUser_Button.UseVisualStyleBackColor = true;
             this.CreateNewUser_Button.Click += new System.EventHandler(this.CreateNewUser_Button_Click);
+            // 
+            // ViewUsersPanel
+            // 
+            this.ViewUsersPanel.Controls.Add(this.dataGridView1);
+            this.ViewUsersPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ViewUsersPanel.Location = new System.Drawing.Point(3, 3);
+            this.ViewUsersPanel.Name = "ViewUsersPanel";
+            this.ViewUsersPanel.Size = new System.Drawing.Size(594, 454);
+            this.ViewUsersPanel.TabIndex = 14;
+            // 
+            // dataGridView1
+            // 
+            dataGridViewCellStyle25.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle25;
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
+            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            dataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle26.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle26.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle26.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle26.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle26.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle26.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle26;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column1,
+            this.Column2,
+            this.Column3,
+            this.Column5});
+            this.dataGridView1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(233)))), ((int)(((byte)(233)))));
+            this.dataGridView1.Location = new System.Drawing.Point(5, 7);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle27.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle27;
+            this.dataGridView1.RowTemplate.DefaultCellStyle.BackColor = System.Drawing.Color.White;
+            this.dataGridView1.Size = new System.Drawing.Size(584, 343);
+            this.dataGridView1.TabIndex = 13;
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Name";
+            this.Column1.Name = "Column1";
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Username";
+            this.Column2.Name = "Column2";
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Doctor Name";
+            this.Column3.Name = "Column3";
+            this.Column3.Width = 220;
+            // 
+            // Column5
+            // 
+            this.Column5.HeaderText = "Account Type";
+            this.Column5.Name = "Column5";
+            this.Column5.Width = 120;
             // 
             // CreateUserPanel
             // 
@@ -493,21 +555,21 @@
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.label20);
-            this.groupBox3.Controls.Add(this.textBox7);
-            this.groupBox3.Controls.Add(this.CreateUser_button);
+            this.groupBox3.Controls.Add(this.txtboxLastName);
+            this.groupBox3.Controls.Add(this.btnCreateUserAccount);
             this.groupBox3.Controls.Add(this.label19);
-            this.groupBox3.Controls.Add(this.textBox6);
+            this.groupBox3.Controls.Add(this.txtboxFirstName);
             this.groupBox3.Controls.Add(this.label2);
             this.groupBox3.Controls.Add(this.label12);
-            this.groupBox3.Controls.Add(this.userpassword_txtbox);
+            this.groupBox3.Controls.Add(this.txtboxUserPassword);
             this.groupBox3.Controls.Add(this.ShowUserPassword);
             this.groupBox3.Controls.Add(this.label3);
             this.groupBox3.Controls.Add(this.label11);
             this.groupBox3.Controls.Add(this.label4);
-            this.groupBox3.Controls.Add(this.textBox5);
-            this.groupBox3.Controls.Add(this.doctorname_txtbox);
-            this.groupBox3.Controls.Add(this.userpasswordconfirm_txtbox);
-            this.groupBox3.Controls.Add(this.accountType_combobox);
+            this.groupBox3.Controls.Add(this.txtboxDoctorName);
+            this.groupBox3.Controls.Add(this.txtboxUsername);
+            this.groupBox3.Controls.Add(this.txtboxUserPasswordConfirm);
+            this.groupBox3.Controls.Add(this.cboxAccountType);
             this.groupBox3.Location = new System.Drawing.Point(17, 7);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(563, 343);
@@ -525,29 +587,29 @@
             this.label20.TabIndex = 24;
             this.label20.Text = "Last name*";
             // 
-            // textBox7
+            // txtboxLastName
             // 
-            this.textBox7.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox7.Location = new System.Drawing.Point(200, 104);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(239, 23);
-            this.textBox7.TabIndex = 23;
+            this.txtboxLastName.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtboxLastName.Location = new System.Drawing.Point(200, 104);
+            this.txtboxLastName.Name = "txtboxLastName";
+            this.txtboxLastName.Size = new System.Drawing.Size(239, 23);
+            this.txtboxLastName.TabIndex = 3;
             // 
-            // CreateUser_button
+            // btnCreateUserAccount
             // 
-            this.CreateUser_button.BackColor = System.Drawing.Color.ForestGreen;
-            this.CreateUser_button.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.CreateUser_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CreateUser_button.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CreateUser_button.ForeColor = System.Drawing.Color.White;
-            this.CreateUser_button.Location = new System.Drawing.Point(441, 285);
-            this.CreateUser_button.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.CreateUser_button.Name = "CreateUser_button";
-            this.CreateUser_button.Size = new System.Drawing.Size(107, 43);
-            this.CreateUser_button.TabIndex = 2;
-            this.CreateUser_button.Text = "Create";
-            this.CreateUser_button.UseVisualStyleBackColor = false;
-            this.CreateUser_button.Click += new System.EventHandler(this.CreateUser_button_Click);
+            this.btnCreateUserAccount.BackColor = System.Drawing.Color.ForestGreen;
+            this.btnCreateUserAccount.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btnCreateUserAccount.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCreateUserAccount.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCreateUserAccount.ForeColor = System.Drawing.Color.White;
+            this.btnCreateUserAccount.Location = new System.Drawing.Point(441, 285);
+            this.btnCreateUserAccount.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnCreateUserAccount.Name = "btnCreateUserAccount";
+            this.btnCreateUserAccount.Size = new System.Drawing.Size(107, 43);
+            this.btnCreateUserAccount.TabIndex = 8;
+            this.btnCreateUserAccount.Text = "Create";
+            this.btnCreateUserAccount.UseVisualStyleBackColor = false;
+            this.btnCreateUserAccount.Click += new System.EventHandler(this.CreateUser_button_Click);
             // 
             // label19
             // 
@@ -559,13 +621,13 @@
             this.label19.TabIndex = 22;
             this.label19.Text = "First name*";
             // 
-            // textBox6
+            // txtboxFirstName
             // 
-            this.textBox6.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox6.Location = new System.Drawing.Point(200, 72);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(239, 23);
-            this.textBox6.TabIndex = 21;
+            this.txtboxFirstName.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtboxFirstName.Location = new System.Drawing.Point(200, 72);
+            this.txtboxFirstName.Name = "txtboxFirstName";
+            this.txtboxFirstName.Size = new System.Drawing.Size(239, 23);
+            this.txtboxFirstName.TabIndex = 2;
             // 
             // label2
             // 
@@ -587,15 +649,15 @@
             this.label12.TabIndex = 20;
             this.label12.Text = "Account type";
             // 
-            // userpassword_txtbox
+            // txtboxUserPassword
             // 
-            this.userpassword_txtbox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.userpassword_txtbox.Location = new System.Drawing.Point(200, 239);
-            this.userpassword_txtbox.MaxLength = 16;
-            this.userpassword_txtbox.Name = "userpassword_txtbox";
-            this.userpassword_txtbox.Size = new System.Drawing.Size(118, 23);
-            this.userpassword_txtbox.TabIndex = 16;
-            this.userpassword_txtbox.UseSystemPasswordChar = true;
+            this.txtboxUserPassword.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtboxUserPassword.Location = new System.Drawing.Point(200, 239);
+            this.txtboxUserPassword.MaxLength = 16;
+            this.txtboxUserPassword.Name = "txtboxUserPassword";
+            this.txtboxUserPassword.Size = new System.Drawing.Size(118, 23);
+            this.txtboxUserPassword.TabIndex = 6;
+            this.txtboxUserPassword.UseSystemPasswordChar = true;
             // 
             // ShowUserPassword
             // 
@@ -605,6 +667,7 @@
             this.ShowUserPassword.Name = "ShowUserPassword";
             this.ShowUserPassword.Size = new System.Drawing.Size(108, 19);
             this.ShowUserPassword.TabIndex = 13;
+            this.ShowUserPassword.TabStop = false;
             this.ShowUserPassword.Text = "Show password";
             this.ShowUserPassword.UseVisualStyleBackColor = true;
             this.ShowUserPassword.CheckedChanged += new System.EventHandler(this.ShowUserPassword_CheckedChanged);
@@ -639,111 +702,49 @@
             this.label4.TabIndex = 10;
             this.label4.Text = "Doctor Name";
             // 
-            // textBox5
+            // txtboxDoctorName
             // 
-            this.textBox5.Enabled = false;
-            this.textBox5.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox5.Location = new System.Drawing.Point(200, 188);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(239, 23);
-            this.textBox5.TabIndex = 14;
-            this.textBox5.Text = "Dr.";
+            this.txtboxDoctorName.Enabled = false;
+            this.txtboxDoctorName.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtboxDoctorName.Location = new System.Drawing.Point(200, 188);
+            this.txtboxDoctorName.Name = "txtboxDoctorName";
+            this.txtboxDoctorName.Size = new System.Drawing.Size(239, 23);
+            this.txtboxDoctorName.TabIndex = 5;
+            this.txtboxDoctorName.Text = "Dr.";
             // 
-            // doctorname_txtbox
+            // txtboxUsername
             // 
-            this.doctorname_txtbox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.doctorname_txtbox.Location = new System.Drawing.Point(200, 40);
-            this.doctorname_txtbox.Name = "doctorname_txtbox";
-            this.doctorname_txtbox.Size = new System.Drawing.Size(239, 23);
-            this.doctorname_txtbox.TabIndex = 11;
+            this.txtboxUsername.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtboxUsername.Location = new System.Drawing.Point(200, 40);
+            this.txtboxUsername.Name = "txtboxUsername";
+            this.txtboxUsername.Size = new System.Drawing.Size(239, 23);
+            this.txtboxUsername.TabIndex = 1;
             // 
-            // userpasswordconfirm_txtbox
+            // txtboxUserPasswordConfirm
             // 
-            this.userpasswordconfirm_txtbox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.userpasswordconfirm_txtbox.Location = new System.Drawing.Point(200, 304);
-            this.userpasswordconfirm_txtbox.MaxLength = 16;
-            this.userpasswordconfirm_txtbox.Name = "userpasswordconfirm_txtbox";
-            this.userpasswordconfirm_txtbox.Size = new System.Drawing.Size(118, 23);
-            this.userpasswordconfirm_txtbox.TabIndex = 18;
-            this.userpasswordconfirm_txtbox.UseSystemPasswordChar = true;
-            this.userpasswordconfirm_txtbox.Enter += new System.EventHandler(this.userpasswordconfirm_txtbox_Enter);
+            this.txtboxUserPasswordConfirm.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtboxUserPasswordConfirm.Location = new System.Drawing.Point(200, 304);
+            this.txtboxUserPasswordConfirm.MaxLength = 16;
+            this.txtboxUserPasswordConfirm.Name = "txtboxUserPasswordConfirm";
+            this.txtboxUserPasswordConfirm.Size = new System.Drawing.Size(118, 23);
+            this.txtboxUserPasswordConfirm.TabIndex = 7;
+            this.txtboxUserPasswordConfirm.UseSystemPasswordChar = true;
+            this.txtboxUserPasswordConfirm.Enter += new System.EventHandler(this.userpasswordconfirm_txtbox_Enter);
             // 
-            // accountType_combobox
+            // cboxAccountType
             // 
-            this.accountType_combobox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.accountType_combobox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.accountType_combobox.FormattingEnabled = true;
-            this.accountType_combobox.Items.AddRange(new object[] {
+            this.cboxAccountType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboxAccountType.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxAccountType.FormattingEnabled = true;
+            this.cboxAccountType.Items.AddRange(new object[] {
             "Adminstrator",
             "Doctor",
             "Standard"});
-            this.accountType_combobox.Location = new System.Drawing.Point(200, 147);
-            this.accountType_combobox.Name = "accountType_combobox";
-            this.accountType_combobox.Size = new System.Drawing.Size(118, 23);
-            this.accountType_combobox.TabIndex = 19;
-            this.accountType_combobox.SelectedIndexChanged += new System.EventHandler(this.accountType_combobox_SelectedIndexChanged);
-            // 
-            // ViewUsersPanel
-            // 
-            this.ViewUsersPanel.Controls.Add(this.dataGridView1);
-            this.ViewUsersPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ViewUsersPanel.Location = new System.Drawing.Point(3, 3);
-            this.ViewUsersPanel.Name = "ViewUsersPanel";
-            this.ViewUsersPanel.Size = new System.Drawing.Size(594, 454);
-            this.ViewUsersPanel.TabIndex = 14;
-            // 
-            // dataGridView1
-            // 
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle10;
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
-            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.Column2,
-            this.Column3,
-            this.Column5});
-            this.dataGridView1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(233)))), ((int)(((byte)(233)))));
-            this.dataGridView1.Location = new System.Drawing.Point(5, 7);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle12.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle12;
-            this.dataGridView1.RowTemplate.DefaultCellStyle.BackColor = System.Drawing.Color.White;
-            this.dataGridView1.Size = new System.Drawing.Size(584, 343);
-            this.dataGridView1.TabIndex = 13;
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "ID";
-            this.Column1.Name = "Column1";
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Username";
-            this.Column2.Name = "Column2";
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Doctor Name";
-            this.Column3.Name = "Column3";
-            this.Column3.Width = 220;
-            // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "Account Type";
-            this.Column5.Name = "Column5";
-            this.Column5.Width = 120;
+            this.cboxAccountType.Location = new System.Drawing.Point(200, 147);
+            this.cboxAccountType.Name = "cboxAccountType";
+            this.cboxAccountType.Size = new System.Drawing.Size(118, 23);
+            this.cboxAccountType.TabIndex = 4;
+            this.cboxAccountType.SelectedIndexChanged += new System.EventHandler(this.accountType_combobox_SelectedIndexChanged);
             // 
             // tabPage2
             // 
@@ -779,6 +780,27 @@
             this.groupBox9.TabIndex = 27;
             this.groupBox9.TabStop = false;
             this.groupBox9.Text = "Services and Fees";
+            // 
+            // labelEditModeStatus
+            // 
+            this.labelEditModeStatus.AutoSize = true;
+            this.labelEditModeStatus.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelEditModeStatus.ForeColor = System.Drawing.SystemColors.InactiveCaption;
+            this.labelEditModeStatus.Location = new System.Drawing.Point(77, 161);
+            this.labelEditModeStatus.Name = "labelEditModeStatus";
+            this.labelEditModeStatus.Size = new System.Drawing.Size(64, 15);
+            this.labelEditModeStatus.TabIndex = 29;
+            this.labelEditModeStatus.Text = "DISABLED";
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label33.Location = new System.Drawing.Point(13, 161);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(64, 15);
+            this.label33.TabIndex = 28;
+            this.label33.Text = "Edit Mode:";
             // 
             // btnAddNewService
             // 
@@ -863,18 +885,18 @@
             // 
             // dataGridView2
             // 
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.dataGridView2.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle28.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.dataGridView2.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle28;
             this.dataGridView2.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle29.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle29.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle29.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle29.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle29.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle29.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle29;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
@@ -883,10 +905,10 @@
             this.dataGridView2.Location = new System.Drawing.Point(16, 24);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.Black;
-            this.dataGridView2.RowsDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle30.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle30.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
+            dataGridViewCellStyle30.SelectionForeColor = System.Drawing.Color.Black;
+            this.dataGridView2.RowsDefaultCellStyle = dataGridViewCellStyle30;
             this.dataGridView2.RowTemplate.DefaultCellStyle.BackColor = System.Drawing.Color.White;
             this.dataGridView2.Size = new System.Drawing.Size(327, 128);
             this.dataGridView2.TabIndex = 14;
@@ -1351,27 +1373,6 @@
             this.button_applysettings.UseVisualStyleBackColor = true;
             this.button_applysettings.Click += new System.EventHandler(this.button_applysettings_Click);
             // 
-            // label33
-            // 
-            this.label33.AutoSize = true;
-            this.label33.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label33.Location = new System.Drawing.Point(13, 161);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(64, 15);
-            this.label33.TabIndex = 28;
-            this.label33.Text = "Edit Mode:";
-            // 
-            // labelEditModeStatus
-            // 
-            this.labelEditModeStatus.AutoSize = true;
-            this.labelEditModeStatus.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelEditModeStatus.ForeColor = System.Drawing.SystemColors.InactiveCaption;
-            this.labelEditModeStatus.Location = new System.Drawing.Point(77, 161);
-            this.labelEditModeStatus.Name = "labelEditModeStatus";
-            this.labelEditModeStatus.Size = new System.Drawing.Size(64, 15);
-            this.labelEditModeStatus.TabIndex = 29;
-            this.labelEditModeStatus.Text = "DISABLED";
-            // 
             // AppSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -1400,11 +1401,11 @@
             this.tabPage3.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            this.ViewUsersPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.CreateUserPanel.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            this.ViewUsersPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.groupBox9.ResumeLayout(false);
             this.groupBox9.PerformLayout();
@@ -1440,7 +1441,7 @@
         private System.Windows.Forms.Button cancel_button;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox doctorname_txtbox;
+        private System.Windows.Forms.TextBox txtboxUsername;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox DocNumber_txtbox;
@@ -1457,14 +1458,14 @@
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.Button CreateUser_button;
+        private System.Windows.Forms.Button btnCreateUserAccount;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.ComboBox accountType_combobox;
-        private System.Windows.Forms.TextBox userpasswordconfirm_txtbox;
+        private System.Windows.Forms.ComboBox cboxAccountType;
+        private System.Windows.Forms.TextBox txtboxUserPasswordConfirm;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox userpassword_txtbox;
+        private System.Windows.Forms.TextBox txtboxUserPassword;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox txtboxDoctorName;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.CheckBox ShowUserPassword;
         private System.Windows.Forms.DataGridView dataGridView1;
@@ -1475,10 +1476,6 @@
         private System.Windows.Forms.Panel ViewUsersPanel;
         private System.Windows.Forms.Panel CreateUserPanel;
         private System.Windows.Forms.Button ViewUserAccounts_Button;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label label14;
@@ -1497,9 +1494,9 @@
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.TextBox txtboxLastName;
         private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox txtboxFirstName;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.CheckBox checkBox1;
@@ -1537,5 +1534,9 @@
         private MetroFramework.Controls.MetroToggle metroToggleHideConfigureButtonAtLogin;
         private System.Windows.Forms.Label labelEditModeStatus;
         private System.Windows.Forms.Label label33;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
     }
 }

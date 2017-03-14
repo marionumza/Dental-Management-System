@@ -37,12 +37,16 @@ namespace Dental_Management_System
                 Properties.Settings.Default.Save();
             }
 
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(true);
+           // Application.Run(new AppSettings());
+            
             Application.Run(new Login());
 
             if (result == DialogResult.OK)
             {
+                
                 Application.Run(new MainDashboard());
             }
 

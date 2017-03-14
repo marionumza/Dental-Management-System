@@ -461,10 +461,24 @@ namespace Dental_Management_System
                         mysqlserverlog_textbox.AppendText(Environment.NewLine + "> " + DateTime.Now.ToString("hh:mm:ss : ") +
                         "Done!");
 
+
+                        command.CommandText = "CREATE TABLE UserAccounts(Name VARCHAR(64), Username VARCHAR(32), DoctorName VARCHAR(64), AccountType VARCHAR(16), Password VARCHAR(256))";
+                        mysqlserverlog_textbox.AppendText(Environment.NewLine + "> " + DateTime.Now.ToString("hh:mm:ss : ") +
+                        "Preparing table 'UserAccounts'.... ");
+                        command.ExecuteNonQuery();
+                        mysqlserverlog_textbox.AppendText(Environment.NewLine + "> " + DateTime.Now.ToString("hh:mm:ss : ") +
+                        "Done!");
+
+                        command.CommandText = "INSERT INTO UserAccounts(Username, Password) VALUES ('admin', '1234')";
+                        command.ExecuteNonQuery();
+
                         connection.Close();
 
                         mysqlserverlog_textbox.AppendText(Environment.NewLine + "> " + DateTime.Now.ToString("hh:mm:ss : ") +
                         "Database name '" + txtboxDatabasename.Text + "' has been successfully created.");
+
+                        MessageBox.Show("Default username: admin" + "\n" +
+                            "Default password: 1234", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
 
                         Properties.Settings.Default["SQL_Database"] = txtboxDatabasename.Text;
                         txtboxCurrentDB.Text = txtboxDatabasename.Text;

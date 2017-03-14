@@ -38,14 +38,17 @@ namespace Dental_Management_System
             InitializeComponent();
         }
 
-        // Calling all class and methods to be used in other methods.
-
+        // CALL ALL CLASS AND METHODS
         DatabaseConnectionLink databaseConnectionLink = new DatabaseConnectionLink();
         DatabaseGetData databaseGetData = new DatabaseGetData();
+
+        // BACKGROUNDWORKERS
         LoadingDashDialogBox loadingDialogBox = new LoadingDashDialogBox();
         RefreshDialogBox refreshDialogBox = new RefreshDialogBox();
         BackgroundWorker retrievePatientDataInformation = new BackgroundWorker();
         BackgroundWorker retrieveScheduleInformation = new BackgroundWorker();
+
+        // DATA TABLES
         public DataTable patientData = new DataTable();
         DataTable pullPatientData = new DataTable();
         DataTable pullPatientSchedule = new DataTable();
@@ -80,9 +83,7 @@ namespace Dental_Management_System
 
         private void Dashboard_Load(object sender, EventArgs e)
         {
-         
             // START ALL BACKGROUND THREADS
-
             retrievePatientDataInformation.DoWork += new DoWorkEventHandler(StartLoadingDatabase);
             retrievePatientDataInformation.RunWorkerCompleted += new RunWorkerCompletedEventHandler(StopLoadingDatabase);
             retrievePatientDataInformation.RunWorkerAsync();
@@ -100,21 +101,36 @@ namespace Dental_Management_System
             EnableDoubleBuffering(this, true);
             EnableDoubleBuffering(panel4, true);
 
-
             // INITIALIZE SETTINGS
-            label2.Text = Properties.Settings.Default["DoctorName"].ToString();
-            label3.Text = Properties.Settings.Default["DoctorName"].ToString();
             label4.Text = Properties.Settings.Default["DocAddress"].ToString();
             label6.Text = Properties.Settings.Default["DocNumber"].ToString();
             label12.Text = Properties.Settings.Default["DocOfficeName"].ToString();
 
+            // LOAD HIERACHY STATUS
+            AccountRestrictions();
         }
 
+        // HIERACHY BOOLEAN VALUES
+        public bool UserAccountTypeRegular = false;
+        public bool UserAccountTypeDoctor = false;
+        public bool UserAccountTypeAdmin = false;
 
-        int pageSize = 999;
-        int CurrentPageIndex = 1;
-        int TotalPage = 0;
+        public void AccountRestrictions()
+        {
+            if (UserAccountTypeRegular == true)
+            {
+                // RESTRICT OPTIONS HERE
+                
+            }
 
+            if (UserAccountTypeDoctor == true)
+            {
+            }
+
+            if (UserAccountTypeAdmin == true)
+            {
+            }
+        }
 
         void DisableModules()
         {
@@ -198,6 +214,11 @@ namespace Dental_Management_System
 
             }
             
+        }
+
+        public void StartLoadingUserAccountProfile(object sender, DoWorkEventArgs c)
+        {
+
         }
 
         void StartLoadingScheduleInformation(object sender, DoWorkEventArgs a)
@@ -356,6 +377,11 @@ namespace Dental_Management_System
             else
             {
                 patientView.lbl_IDnum.Text = PID;
+
+                if (UserAccountTypeRegular == true)
+                {
+                    patientView.UserAccountTypeRegular = true;
+                }
                 patientView.Show();
             }
 
@@ -449,6 +475,10 @@ namespace Dental_Management_System
         private void button_settings_Click(object sender, EventArgs e)
         {
             AppSettings appSettings = new AppSettings();
+
+            if (UserAccountTypeRegular == true)
+                appSettings.UserAccountTypeRegular = true;
+
             appSettings.ShowDialog();
         }
 
@@ -522,6 +552,7 @@ namespace Dental_Management_System
                         lblAppointmentPatientDataFirstName.Text = (reader["FirstName"].ToString());
                         txtBoxAppointPatientDataNotes.Text = (reader["Notes"].ToString());
                     }
+
                     connection.Close();
                 
                 }

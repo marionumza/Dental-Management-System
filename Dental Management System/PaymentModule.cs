@@ -97,7 +97,8 @@ namespace Dental_Management_System
         {
             if (comboBoxServiceList.Items.Count == 0)
             {
-                MessageBox.Show("Please go to Settings and add your Services before using this module.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                MessageBox.Show("Please go to Settings and add your Services before using this module." + "\n" +
+                    "Contact your system administrator for assistance.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 button2.Enabled = false;
             }
         }

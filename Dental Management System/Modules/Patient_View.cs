@@ -25,15 +25,53 @@ namespace Dental_Management_System
             InitializeComponent();
         }
 
+        private void Patient_View_Load(object sender, EventArgs e)
+        {
+            LoadInformation();
+            cbBirthday.Enabled = false;
+            cbMaritalStatus.Enabled = false;
+            groupBox3.Enabled = false;
+            groupBox4.Enabled = false;
+            groupBox5.Enabled = false;
+            DisableTextBoxInChartNotes();
+
+            // DESIGN
+            this.Text = "Patient Medical Profile for " + firstname_readonly.Text + " " + lastname_readonly.Text;
+
+            // LOAD HIERACHY STATUS
+            AccountRestrictions();
+
+        }
 
         // CALL CLASS
         DatabaseConnectionLink databaseConnectionLink = new DatabaseConnectionLink();
         DatabaseGetData databaseGetData = new DatabaseGetData();
 
-        // STRINGS
-        string Q1YesNo;
-        string Q2YesNo;
+        // FOR MEDICAL HISTORY
+        public string Q1YesNo;
+        public string Q2YesNo;
 
+        // HIERACHY BOOLEAN VALUES
+        public bool UserAccountTypeRegular = false;
+        public bool UserAccountTypeDoctor = false;
+        public bool UserAccountTypeAdmin = false;
+
+        public void AccountRestrictions()
+        {          
+            if (UserAccountTypeRegular == true)
+            {
+                label47.Enabled = false;
+                metroToggleEditMode.Enabled = false;
+            }
+
+            if (UserAccountTypeDoctor == true)
+            {
+            }
+
+            if (UserAccountTypeAdmin == true)
+            {
+            }
+        }
 
         private void LoadInformation()
         {
@@ -346,22 +384,6 @@ namespace Dental_Management_System
             }
         }
 
-        private void Patient_View_Load(object sender, EventArgs e)
-        {
-            LoadInformation();
-            cbBirthday.Enabled = false;
-            cbMaritalStatus.Enabled = false;
-            groupBox3.Enabled = false;
-            groupBox4.Enabled = false;
-            groupBox5.Enabled = false;
-            DisableTextBoxInChartNotes();
-
-            // DESIGN
-            this.Text = "Patient Medical Profile for " + firstname_readonly.Text + " " + lastname_readonly.Text;
-
-        }
-
-
         private void firstname_txtbox_TextChanged(object sender, EventArgs e)
         {
 
@@ -518,9 +540,10 @@ namespace Dental_Management_System
 
             }
         }
-
+        
         private void primaryTeeth_rb_CheckedChanged(object sender, EventArgs e)
         {
+
             if (radioButtonPrimary.Checked == true)
             {
                 ToothCharts_PicBox.Image = Properties.Resources.PrimaryTeethChart;

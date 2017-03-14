@@ -205,7 +205,7 @@
             this.txtBoxUser.TabIndex = 1;
             this.txtBoxUser.Text = "Username";
             this.txtBoxUser.Click += new System.EventHandler(this.txtBoxUser_Click);
-            this.txtBoxUser.TextChanged += new System.EventHandler(this.txtBoxUser_TextChanged);
+
             // 
             // btn_Configure
             // 

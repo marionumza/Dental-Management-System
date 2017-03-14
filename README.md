@@ -6,7 +6,7 @@ Note: This is not intended to be used in a commercial environment unless stated 
 
 To login to the system, the temporary default username is **dev** and no password. 
 
-Internal current software version: **0.0.2.67** as of ***March 14, 2017***
+Internal current software version: **0.0.2.84** as of ***March 15, 2017***
 
 For this software to work properly, you need the following...
 

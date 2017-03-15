@@ -18,7 +18,7 @@ namespace Dental_Management_System
         public AppSettings()
         {
             InitializeComponent();
-
+            int IDNumber;
         }
 
         // CALL CLASS
@@ -28,8 +28,10 @@ namespace Dental_Management_System
         // DATA TABLES
         DataTable DentalClinicServices = new DataTable();
         DataTable ClinicServices = new DataTable();
+        DataTable UserAccounts = new DataTable();
 
         BackgroundWorker retrieveDentalClinicServicesData = new BackgroundWorker();
+        BackgroundWorker retrieveDentalUserAccountData = new BackgroundWorker();
         RefreshDialogBox refreshDialogBox = new RefreshDialogBox();
 
         public const bool ValidateAccountType = false;
@@ -49,6 +51,10 @@ namespace Dental_Management_System
             retrieveDentalClinicServicesData.DoWork += new DoWorkEventHandler(StartLoadingOfDentalServices);
             retrieveDentalClinicServicesData.RunWorkerCompleted += new RunWorkerCompletedEventHandler(StopLoadingOfDentalServices);
             retrieveDentalClinicServicesData.RunWorkerAsync();
+            retrieveDentalUserAccountData.DoWork += new DoWorkEventHandler(StartLoadingUserAccountList);
+            retrieveDentalUserAccountData.RunWorkerCompleted += new RunWorkerCompletedEventHandler(StopLoadingUserAccountList);
+            retrieveDentalUserAccountData.RunWorkerAsync();
+
 
             AccountRestrictions();
 
@@ -58,6 +64,7 @@ namespace Dental_Management_System
         public bool UserAccountTypeRegular = false;
         public bool UserAccountTypeDoctor = false;
         public bool UserAccountTypeAdmin = false;
+
 
         public void AccountRestrictions()
         {
@@ -450,6 +457,62 @@ namespace Dental_Management_System
             }
         }
 
+        void StartLoadingUserAccountList(object sender, DoWorkEventArgs f)
+        {
+            try
+            {
+                using (MySqlConnection connection = new MySqlConnection(databaseConnectionLink.networkLink))
+                {
+
+                    connection.Open();
+
+                    using (MySqlDataAdapter data = new MySqlDataAdapter(databaseGetData.getUserAccounts, databaseConnectionLink.networkLink))
+                    {
+                        data.Fill(UserAccounts);
+                        connection.Close();
+                        Thread.Sleep(1000);
+                    }
+                }
+            }
+            catch
+            {
+
+            }
+        }
+
+        void StopLoadingUserAccountList(object sender, RunWorkerCompletedEventArgs f)
+        {
+            try
+            {
+                dataGridView1.AutoGenerateColumns = false;
+                dataGridView1.MultiSelect = false;
+                dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+                dataGridView1.ReadOnly = true;
+                dataGridView1.AllowUserToDeleteRows = false;
+                dataGridView1.ColumnCount = 3;
+                dataGridView1.DataSource = UserAccounts;
+
+                dataGridView1.Columns[0].HeaderText = "ID";
+                dataGridView1.Columns[0].DataPropertyName = "ID";
+                dataGridView1.Columns[0].Width = 30;
+                dataGridView1.Columns[0].Frozen = true;
+                dataGridView1.Columns[1].HeaderText = "Username";
+                dataGridView1.Columns[1].DataPropertyName = "Username";
+                dataGridView1.Columns[1].Width = 150;
+                dataGridView1.Columns[2].Frozen = true;
+                dataGridView1.Columns[2].HeaderText = "Account Type";
+                dataGridView1.Columns[2].DataPropertyName = "AccountType";
+                dataGridView1.Columns[2].Width = 150;
+                dataGridView1.Columns[2].Frozen = true;
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+
+            }
+        }
+
         void StartLoadingOfDentalServices(object sender, DoWorkEventArgs e)
         {
             try
@@ -637,6 +700,73 @@ namespace Dental_Management_System
 
             {
                 e.Handled = true;
+            }
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            using (MySqlConnection connection = new MySqlConnection(databaseConnectionLink.networkLink))
+            {
+
+                if (dataGridView1.SelectedCells[0].Value.ToString() == "1")
+                {
+                    buttonViewAccountDelete.Enabled = false;
+                    comboBoxViewUserAccountType.Enabled = false;
+                }
+
+                if (dataGridView1.SelectedCells[0].Value.ToString() == String.Empty)
+                {
+                    return;
+                }
+                else
+                {
+                    connection.Open();
+                    MySqlCommand command = new MySqlCommand();
+                    command.Connection = connection;
+                    command.CommandText = "SELECT UserAccounts.ID, UserAccounts.Name, UserAccounts.UserName, UserAccounts.DoctorName FROM UserAccounts WHERE ID=" + dataGridView1.SelectedCells[0].Value.ToString();
+                    MySqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+
+                        textBoxViewAccountName.Text = (reader["Name"].ToString());
+                        textBoxViewAccountUsername.Text = (reader["Username"].ToString());
+                        textBoxViewAccountDoctorName.Text = (reader["DoctorName"].ToString());
+
+                    }
+
+                    connection.Close();
+
+                }
+            }
+        }
+
+        private void buttonViewAccountSaveChanges_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (MySqlConnection connection = new MySqlConnection(databaseConnectionLink.networkLink))
+                {
+                    connection.Open();
+                    MySqlCommand updateCommand = new MySqlCommand();
+                    updateCommand.CommandTimeout = 22000;
+                    updateCommand.Connection = connection;
+                    updateCommand.CommandText = "UPDATE UserAccounts SET Name=@Name, Username=@Username, DoctorName=@DoctorName, AccountType=@AccountType, Password=@Password WHERE ID=" + dataGridView1.SelectedCells[0].Value.ToString();
+                    updateCommand.Parameters.AddWithValue("@Name", String.Format("{0}", textBoxViewAccountName.Text));
+                    updateCommand.Parameters.AddWithValue("@Username", String.Format("{0}", textBoxViewAccountUsername.Text));
+                    updateCommand.Parameters.AddWithValue("@DoctorName", String.Format("{0}", textBoxViewAccountDoctorName.Text));
+                    updateCommand.Parameters.AddWithValue("@AccountType", String.Format("{0}", comboBoxViewUserAccountType.Text));
+                    updateCommand.Parameters.AddWithValue("@Password", String.Format("{0}", textBoxViewAccountConfirmPassword.Text));    
+                    updateCommand.ExecuteNonQuery();
+                    updateCommand.Parameters.Clear();
+
+                    DialogResult confirmSaveChanges = MessageBox.Show("User account has been updated.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    connection.Close();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
     }

@@ -462,14 +462,14 @@ namespace Dental_Management_System
                         "Done!");
 
 
-                        command.CommandText = "CREATE TABLE UserAccounts(Name VARCHAR(64), Username VARCHAR(32), DoctorName VARCHAR(64), AccountType VARCHAR(16), Password VARCHAR(256))";
+                        command.CommandText = "CREATE TABLE UserAccounts(ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY, Name VARCHAR(64), Username VARCHAR(32), DoctorName VARCHAR(64), AccountType VARCHAR(16), Password VARCHAR(256))";
                         mysqlserverlog_textbox.AppendText(Environment.NewLine + "> " + DateTime.Now.ToString("hh:mm:ss : ") +
                         "Preparing table 'UserAccounts'.... ");
                         command.ExecuteNonQuery();
                         mysqlserverlog_textbox.AppendText(Environment.NewLine + "> " + DateTime.Now.ToString("hh:mm:ss : ") +
                         "Done!");
 
-                        command.CommandText = "INSERT INTO UserAccounts(Username, Password) VALUES ('admin', '1234')";
+                        command.CommandText = "INSERT INTO UserAccounts(Username, Password, AccountType) VALUES ('admin', '1234', 'Administrator')";
                         command.ExecuteNonQuery();
 
                         connection.Close();
@@ -478,7 +478,8 @@ namespace Dental_Management_System
                         "Database name '" + txtboxDatabasename.Text + "' has been successfully created.");
 
                         MessageBox.Show("Default username: admin" + "\n" +
-                            "Default password: 1234", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                            "Default password: 1234" + "\n" + "\n" +
+                            "Go to Settings > Users to change this username and password", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
 
                         Properties.Settings.Default["SQL_Database"] = txtboxDatabasename.Text;
                         txtboxCurrentDB.Text = txtboxDatabasename.Text;

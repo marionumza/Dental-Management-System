@@ -14,5 +14,7 @@ namespace Dental_Management_System
         public string getDentalClincFromDatabase = "SELECT dental_services.ServiceName, dental_services.Fee from dental_services";
 
         public string getALLDentalClinicFromDatabase = "SELECT * from dental_services";
+
+        public string getUserAccounts = "SELECT UserAccounts.ID, UserAccounts.UserName, UserAccounts.AccountType FROM UserAccounts";
     }
 }

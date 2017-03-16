@@ -40,14 +40,21 @@ namespace Dental_Management_System
         {
 
             // LOAD SETTINGS FOR "GENERAL" TAB
-            textBox1.Text = Properties.Settings.Default["DocAddress"].ToString();
-            DocNumber_txtbox.Text = Properties.Settings.Default["DocNumber"].ToString();
-            textBox4.Text = Properties.Settings.Default["DocOfficeName"].ToString();
+            textBoxBusinessAddress.Text = Properties.Settings.Default["DocAddress"].ToString();
+            textBoxBusinessPhoneNumber.Text = Properties.Settings.Default["DocNumber"].ToString();
+            textBoxBusinessName.Text = Properties.Settings.Default["DocOfficeName"].ToString();
             DisableGroupBox();
+            StartLoadingDoctorList();
             metroButtonToggleHideConfigureButtonCheckState();
 
+            // LOAD SETTINGS FOR PAYMENTS AND SERVICES TAB
+            textBoxTIN.Text = Properties.PaymentSettings.Default["TINnumber"].ToString();
+            textBoxBIR.Text = Properties.PaymentSettings.Default["BIRnumber"].ToString();
+            dateTimePickerDateIssued.Text = Properties.PaymentSettings.Default["TAXpermitIssueDate"].ToString();
+            dateTimePickerExpireDate.Text = Properties.PaymentSettings.Default["TAXpermitExpireDate"].ToString();
+
             // LOAD SERVICES AND FEES
-            txtboxVATPercent.Text = Properties.PaymentSettings.Default["VATTax"].ToString();
+            textboxVATPercent.Text = Properties.PaymentSettings.Default["VATTax"].ToString();
             retrieveDentalClinicServicesData.DoWork += new DoWorkEventHandler(StartLoadingOfDentalServices);
             retrieveDentalClinicServicesData.RunWorkerCompleted += new RunWorkerCompletedEventHandler(StopLoadingOfDentalServices);
             retrieveDentalClinicServicesData.RunWorkerAsync();
@@ -74,7 +81,6 @@ namespace Dental_Management_System
                 tabPage3.Enabled = false;
                 tabPage4.Enabled = false;
                 tabPage5.Enabled = false;
-                tabPage6.Enabled = false;
             }
 
             if (UserAccountTypeDoctor == true)
@@ -125,11 +131,15 @@ namespace Dental_Management_System
 
             if (ConfirmSaveChanges == DialogResult.Yes)
             {
-                Properties.Settings.Default["DoctorName"] = txtboxUsername.Text;
-                Properties.Settings.Default["DocAddress"] = textBox1.Text;
-                Properties.Settings.Default["DocNumber"] = DocNumber_txtbox.Text;
-                Properties.Settings.Default["DocOfficeName"] = textBox4.Text;
-                Properties.PaymentSettings.Default["VATTax"] = Convert.ToInt32(txtboxVATPercent.Text);
+                Properties.Settings.Default["DoctorName"] = textBoxUsername.Text;
+                Properties.Settings.Default["DocAddress"] = textBoxBusinessAddress.Text;
+                Properties.Settings.Default["DocNumber"] = textBoxBusinessPhoneNumber.Text;
+                Properties.Settings.Default["DocOfficeName"] = textBoxBusinessName.Text;
+                Properties.PaymentSettings.Default["BIRnumber"] = textBoxBIR.Text;
+                Properties.PaymentSettings.Default["TINnumber"] = textBoxTIN.Text;
+                Properties.PaymentSettings.Default["TAXpermitIssueDate"] = dateTimePickerDateIssued.Value.ToString("MM-dd-yyyy");
+                Properties.PaymentSettings.Default["TAXpermitExpireDate"] = dateTimePickerExpireDate.Value.ToString("MM-dd-yyyy");
+                Properties.PaymentSettings.Default["VATTax"] = Convert.ToInt32(textboxVATPercent.Text);
 
                 if (metroToggleHideConfigureButtonAtLogin.Checked == true)
                 {
@@ -142,6 +152,7 @@ namespace Dental_Management_System
 
                 Properties.Settings.Default.Save();
                 Properties.PaymentSettings.Default.Save();
+
                 Application.Exit();
             }
             else if (ConfirmSaveChanges == DialogResult.No)
@@ -149,8 +160,6 @@ namespace Dental_Management_System
                 return;
             }
         }
-
-
 
         public String CreateSalt(int size)
         {
@@ -169,290 +178,36 @@ namespace Dental_Management_System
             return Convert.ToBase64String(hash);
         }
 
-        private void button_applysettings_Click(object sender, EventArgs e)
+        void StartLoadingDoctorList()
         {
+            DataTable listofDoctors = new DataTable();
 
-            SaveSettings();
-
-        }
-
-        private void cancel_button_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        private void DocNumber_txtbox_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsControl(e.KeyChar)
-                && !char.IsDigit(e.KeyChar)
-                && e.KeyChar != '-'
-                && e.KeyChar != ' '
-                && e.KeyChar != '('
-                && e.KeyChar != ')')
+            using (MySqlConnection connection = new MySqlConnection(databaseConnectionLink.networkLink))
             {
-                MessageBox.Show("Numbers can only be entered here", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                e.Handled = true;
-            }
-        }
-
-        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-            if (tabControl1.SelectedIndex == 4 && RunMessageBoxOnce == 0)
-            {
-                if (UserAccountTypeRegular == true)
+                try
                 {
-                    return;
-                }
-                else if (UserAccountTypeRegular == false)
-                {
-                    MessageBox.Show("WARNING: Only use the database file generated by this program. Any use of other database file may not function correctly.", this.Text,
-                        MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
-                    RunMessageBoxOnce++;
-                }
-
-            }
-            else if (tabControl1.SelectedIndex == 4 && RunMessageBoxOnce == 1)
-            {
-                return;
-            }
-
-            if (tabControl1.SelectedIndex == 3 && LoadDatabaseListOnce == 0)
-            {
-
-                using (MySqlConnection connection = new MySqlConnection(connectionString))
-                {
-                    try
-                    {
-                        connection.Open();
-                        MySqlCommand command = connection.CreateCommand();
-                        command.CommandText = "SHOW DATABASES";
-
-                        MySqlDataReader reader = command.ExecuteReader();
-                        while (reader.Read())
-                        {
-                            var row = "";
-                            for (var i = 0; i < reader.FieldCount; i++)
-                                row += reader.GetValue(i);
-                            cbDatabaseList.Items.Add(row);
-                        }
-
-                        connection.Close();
-                        LoadDatabaseListOnce++;
-
-                    }
-                    catch (MySqlException exception)
-                    {
-
-                    }
-                }
-            }
-            else if (tabControl1.SelectedIndex == 3 && LoadDatabaseListOnce == 1)
-            {
-                return;
-            }
-        }
-
-        private void CreateUser_button_Click(object sender, EventArgs e)
-        {
-            if (txtboxUserPassword.Text == String.Empty)
-            {
-                MessageBox.Show("Password field cannot be blank", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            if (txtboxUserPassword.Text.Length < 4)
-            {
-                MessageBox.Show("Password must be at least 4 characters long.", this.Text);
-                txtboxUserPassword.Clear();
-                txtboxUserPassword.Focus();
-                return;
-            }
-
-            if (txtboxUserPassword.Text != txtboxUserPasswordConfirm.Text)
-            {
-                MessageBox.Show("Password does not match.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-
-            String salt = CreateSalt(6);
-            String hashedPassword = GenerateSHA256Hash(txtboxUserPassword.Text, salt);
-            try
-            {
-                using (MySqlConnection connection = new MySqlConnection(databaseConnectionLink.networkLink))
-                {
                     connection.Open();
                     MySqlCommand command = new MySqlCommand();
                     command.Connection = connection;
+                    command.CommandText = "SELECT DoctorName FROM UserAccounts";
 
-                    string fullname = txtboxFirstName.Text + " " + txtboxLastName.Text;
-                    command.CommandText = "INSERT INTO UserAccounts(Name, Username, DoctorName, AccountType, Password) VALUES (@Name, @Username, @DoctorName, @AccountType, @Password)";
-                    command.Parameters.AddWithValue("@Name", String.Format("{0}", fullname));
-                    command.Parameters.AddWithValue("@Username", String.Format("{0}", txtboxUsername.Text));
-                    command.Parameters.AddWithValue("@DoctorName", String.Format("{0}", txtboxDoctorName.Text));
-                    command.Parameters.AddWithValue("@AccountType", String.Format("{0}", cboxAccountType.Text));
-
-                    // YES I KNOW THIS IS NOT THE BEST PRACTICE TO STORE PASSWORDS IN PLAIN TEXT. 
-                    command.Parameters.AddWithValue("@Password", String.Format("{0}", txtboxUserPasswordConfirm.Text));
-                    command.ExecuteNonQuery();
-                    command.Parameters.Clear();
-                    connection.Close();
-                }
-            }
-            catch
-            {
-
-            }
-
-
-            //MessageBox.Show(salt + hashedPassword);
-        }
-
-        private void ShowUserPassword_CheckedChanged(object sender, EventArgs e)
-        {
-            if (ShowUserPassword.Checked == true)
-            {
-                txtboxUserPassword.UseSystemPasswordChar = false;
-            }
-            else if (ShowUserPassword.Checked == false)
-            {
-                txtboxUserPassword.UseSystemPasswordChar = true;
-            }
-
-        }
-
-        private void userpasswordconfirm_txtbox_Enter(object sender, EventArgs e)
-        {
-            if (txtboxUserPassword.UseSystemPasswordChar == false)
-            {
-                txtboxUserPassword.UseSystemPasswordChar = true;
-                ShowUserPassword.Checked = false;
-            }
-        }
-
-        private void CreateNewUser_Button_Click(object sender, EventArgs e)
-        {
-            if (ViewUsersPanel.Visible == true)
-            {
-                ViewUsersPanel.Visible = false;                
-                CreateNewUser_Button.Enabled = false;
-                CreateUserPanel.Visible = true;
-                ViewUserAccounts_Button.Enabled = true;
-
-            }
-        }
-
-        private void ViewUserAccounts_Button_Click(object sender, EventArgs e)
-        {
-            if (CreateUserPanel.Visible == true)
-            {
-                CreateUserPanel.Visible = false;
-                ViewUsersPanel.Visible = true;
-                ViewUserAccounts_Button.Enabled = false;
-                CreateNewUser_Button.Enabled = true;
-            }
-        }
-
-        private void restoreDatabase_button_Click(object sender, EventArgs e)
-        {
-            DialogResult confirmDatabaseRestore = MessageBox.Show("You are about to restore the database. Would you like to continue?",
-                this.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-
-            if (confirmDatabaseRestore == DialogResult.Yes)
-            {
-                MessageBox.Show("Database restoration successful. Application must restart for changes to take effect.", 
-                    this.Text, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                Application.Exit();
-            }
-            else if (confirmDatabaseRestore == DialogResult.No)
-            {
-                return;
-            }
-        }
-
-        private void serverSettings_button_Click(object sender, EventArgs e)
-        {
-            serverSettings serverConfig = new serverSettings();
-            serverConfig.ShowDialog();
-        }
-
-
-        private void accountType_combobox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-            if (cboxAccountType.SelectedIndex == 0)
-            {
-                txtboxDoctorName.Enabled = true;
-            }
-
-            if (cboxAccountType.SelectedIndex == 1)
-            {
-                txtboxDoctorName.Enabled = true;
-            }
-
-            if (cboxAccountType.SelectedIndex == 2)
-            {
-                txtboxDoctorName.Enabled = false;
-            }
-        }
-
-        private void tabControl1_Selecting(object sender, TabControlCancelEventArgs e)
-        {
-            if (ValidateAccountType == true)
-            {
-                if (e.TabPage == tabControl1.TabPages[1])
-                {
-                    MessageBox.Show("You must be an adminstrator to access this function.", this.Text,
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    e.Cancel = true;
-                }
-            }
-        }
-
-        private void btnDeleteDatabase_Click(object sender, EventArgs e)
-        {
-
-            if (cbDatabaseList.Text == String.Empty)
-            {
-                MessageBox.Show("Please select a database.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                return;
-            }
-            else if (cbDatabaseList.Text == Properties.Settings.Default["SQL_Database"].ToString())
-            {
-                MessageBox.Show("You cannot delete this database while in use.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                return;
-            }
-
-            if (cbDatabaseList.Text == "mysql1")
-            {
-                MessageBox.Show("Cannot delete this database. Choose another.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                return;
-            }
-            else
-            {
-                using (MySqlConnection connection = new MySqlConnection(connectionString))
-                {
-                    DialogResult confirmDelete =MessageBox.Show("Are you sure you want to delete this?" + "\n" + "\n" + 
-                        cbDatabaseList.Text, this.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk);
-                    if (confirmDelete == DialogResult.Yes)
+                    MySqlDataAdapter adapter = new MySqlDataAdapter(command);
                     {
-                        connection.Open();
-                        MySqlCommand deleteCommand = new MySqlCommand();
-                        deleteCommand.Connection = connection;
-                        deleteCommand.CommandText = "DROP DATABASE " + cbDatabaseList.Text;
-                        deleteCommand.ExecuteNonQuery();
-                        connection.Close();
-
-                        MessageBox.Show("Database has been deleted.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                    else if (confirmDelete == DialogResult.No)
-                    {
-                        return;
+                        adapter.Fill(listofDoctors);
                     }
 
 
+                }
+                
+                catch
+                {
+
+                }
+
+                foreach (DataRow adapter in listofDoctors.Rows)
+                {
+                    comboBoxDoctorList.Items.Add(adapter[0].ToString());                   
                 }
             }
         }
@@ -572,18 +327,321 @@ namespace Dental_Management_System
             }
         }
 
+        private void button_applysettings_Click(object sender, EventArgs e)
+        {
+
+            SaveSettings();
+
+        }
+
+        private void cancel_button_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void DocNumber_txtbox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar)
+                && !char.IsDigit(e.KeyChar)
+                && e.KeyChar != '-'
+                && e.KeyChar != ' '
+                && e.KeyChar != '('
+                && e.KeyChar != ')')
+            {
+                MessageBox.Show("Numbers can only be entered here", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                e.Handled = true;
+            }
+        }
+
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            if (tabControl1.SelectedIndex == 4 && RunMessageBoxOnce == 0)
+            {
+                if (UserAccountTypeRegular == true)
+                {
+                    return;
+                }
+                else if (UserAccountTypeRegular == false)
+                {
+                    MessageBox.Show("WARNING: Only use the database file generated by this program. Any use of other database file may not function correctly.", this.Text,
+                        MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+                    RunMessageBoxOnce++;
+                }
+
+            }
+            else if (tabControl1.SelectedIndex == 4 && RunMessageBoxOnce == 1)
+            {
+                return;
+            }
+
+            if (tabControl1.SelectedIndex == 3 && LoadDatabaseListOnce == 0)
+            {
+
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    try
+                    {
+                        connection.Open();
+                        MySqlCommand command = connection.CreateCommand();
+                        command.CommandText = "SHOW DATABASES";
+
+                        MySqlDataReader reader = command.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            var row = "";
+                            for (var i = 0; i < reader.FieldCount; i++)
+                                row += reader.GetValue(i);
+                            comboBoxSelectDatabase.Items.Add(row);
+                        }
+
+                        connection.Close();
+                        LoadDatabaseListOnce++;
+
+                    }
+                    catch (MySqlException exception)
+                    {
+
+                    }
+                }
+            }
+            else if (tabControl1.SelectedIndex == 3 && LoadDatabaseListOnce == 1)
+            {
+                return;
+            }
+        }
+
+        private void CreateUser_button_Click(object sender, EventArgs e)
+        {
+            if (textBoxUserPassword.Text == String.Empty)
+            {
+                MessageBox.Show("Password field cannot be blank", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (textBoxUserPassword.Text.Length < 4)
+            {
+                MessageBox.Show("Password must be at least 4 characters long.", this.Text);
+                textBoxUserPassword.Clear();
+                textBoxUserPassword.Focus();
+                return;
+            }
+
+            if (textBoxUserPassword.Text != textBoxPasswordConfirm.Text)
+            {
+                MessageBox.Show("Password does not match.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+
+            String salt = CreateSalt(6);
+            String hashedPassword = GenerateSHA256Hash(textBoxUserPassword.Text, salt);
+            try
+            {
+                using (MySqlConnection connection = new MySqlConnection(databaseConnectionLink.networkLink))
+                {
+                    connection.Open();
+                    MySqlCommand command = new MySqlCommand();
+                    command.Connection = connection;
+
+                    string fullname = textBoxFirstName.Text + " " + textBoxLastName.Text;
+                    command.CommandText = "INSERT INTO UserAccounts(Name, Username, DoctorName, AccountType, Password) VALUES (@Name, @Username, @DoctorName, @AccountType, @Password)";
+                    command.Parameters.AddWithValue("@Name", String.Format("{0}", fullname));
+                    command.Parameters.AddWithValue("@Username", String.Format("{0}", textBoxUsername.Text));
+                    command.Parameters.AddWithValue("@DoctorName", String.Format("{0}", textBoxDoctorName.Text));
+                    command.Parameters.AddWithValue("@AccountType", String.Format("{0}", comboBoxAccountType.Text));
+
+                    // YES I KNOW THIS IS NOT THE BEST PRACTICE TO STORE PASSWORDS IN PLAIN TEXT. 
+                    command.Parameters.AddWithValue("@Password", String.Format("{0}", textBoxPasswordConfirm.Text));
+                    command.ExecuteNonQuery();
+                    command.Parameters.Clear();
+                    connection.Close();
+                }
+            }
+            catch
+            {
+
+            }
+
+            //MessageBox.Show(salt + hashedPassword);
+        }
+
+        private void ShowUserPassword_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxShowUserPassword.Checked == true)
+            {
+                textBoxUserPassword.UseSystemPasswordChar = false;
+            }
+            else if (checkBoxShowUserPassword.Checked == false)
+            {
+                textBoxUserPassword.UseSystemPasswordChar = true;
+            }
+
+        }
+
+        private void userpasswordconfirm_txtbox_Enter(object sender, EventArgs e)
+        {
+            if (textBoxUserPassword.UseSystemPasswordChar == false)
+            {
+                textBoxUserPassword.UseSystemPasswordChar = true;
+                checkBoxShowUserPassword.Checked = false;
+            }
+        }
+
+        private void CreateNewUser_Button_Click(object sender, EventArgs e)
+        {
+            if (ViewUsersPanel.Visible == true)
+            {
+                ViewUsersPanel.Visible = false;                
+                buttonCreateNewUser.Enabled = false;
+                CreateUserPanel.Visible = true;
+                buttonViewAccounts.Enabled = true;
+
+            }
+        }
+
+        private void ViewUserAccounts_Button_Click(object sender, EventArgs e)
+        {
+            if (CreateUserPanel.Visible == true)
+            {
+                CreateUserPanel.Visible = false;
+                ViewUsersPanel.Visible = true;
+                buttonViewAccounts.Enabled = false;
+                buttonCreateNewUser.Enabled = true;
+            }
+        }
+
+        private void restoreDatabase_button_Click(object sender, EventArgs e)
+        {
+            DialogResult confirmDatabaseRestore = MessageBox.Show("You are about to restore the database. Would you like to continue?",
+                this.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            if (confirmDatabaseRestore == DialogResult.Yes)
+            {
+
+                using (MySqlConnection connection = new MySqlConnection(databaseConnectionLink.networkLink))
+                {
+                    using (MySqlCommand command = new MySqlCommand())
+                    {
+                        using (MySqlBackup backup = new MySqlBackup(command))
+                        {
+                            command.Connection = connection;
+                            connection.Open();
+                            backup.ImportFromFile(textBoxRestoreFileLocation.Text);
+                            connection.Close();
+                        }
+                    }
+                }
+
+
+                MessageBox.Show("Database restoration successful. Application must restart for changes to take effect.", 
+                    this.Text, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                Application.Exit();
+            }
+            else if (confirmDatabaseRestore == DialogResult.No)
+            {
+                return;
+            }
+        }
+
+        private void serverSettings_button_Click(object sender, EventArgs e)
+        {
+            serverSettings serverConfig = new serverSettings();
+            serverConfig.ShowDialog();
+        }
+
+
+        private void accountType_combobox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            if (comboBoxAccountType.SelectedIndex == 0)
+            {
+                textBoxDoctorName.Enabled = true;
+            }
+
+            if (comboBoxAccountType.SelectedIndex == 1)
+            {
+                textBoxDoctorName.Enabled = true;
+            }
+
+            if (comboBoxAccountType.SelectedIndex == 2)
+            {
+                textBoxDoctorName.Text = string.Empty;
+                textBoxDoctorName.Enabled = false;
+            }
+        }
+
+        private void tabControl1_Selecting(object sender, TabControlCancelEventArgs e)
+        {
+            if (ValidateAccountType == true)
+            {
+                if (e.TabPage == tabControl1.TabPages[1])
+                {
+                    MessageBox.Show("You must be an adminstrator to access this function.", this.Text,
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    e.Cancel = true;
+                }
+            }
+        }
+
+        private void btnDeleteDatabase_Click(object sender, EventArgs e)
+        {
+
+            if (comboBoxSelectDatabase.Text == String.Empty)
+            {
+                MessageBox.Show("Please select a database.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
+            }
+            else if (comboBoxSelectDatabase.Text == Properties.Settings.Default["SQL_Database"].ToString())
+            {
+                MessageBox.Show("You cannot delete this database while in use.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
+            }
+
+            if (comboBoxSelectDatabase.Text == "mysql1")
+            {
+                MessageBox.Show("Cannot delete this database. Choose another.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                return;
+            }
+            else
+            {
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    DialogResult confirmDelete =MessageBox.Show("Are you sure you want to delete this?" + "\n" + "\n" + 
+                        comboBoxSelectDatabase.Text, this.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk);
+                    if (confirmDelete == DialogResult.Yes)
+                    {
+                        connection.Open();
+                        MySqlCommand deleteCommand = new MySqlCommand();
+                        deleteCommand.Connection = connection;
+                        deleteCommand.CommandText = "DROP DATABASE " + comboBoxSelectDatabase.Text;
+                        deleteCommand.ExecuteNonQuery();
+                        connection.Close();
+
+                        MessageBox.Show("Database has been deleted.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else if (confirmDelete == DialogResult.No)
+                    {
+                        return;
+                    }
+
+
+                }
+            }
+        }
 
         private void btnAddNewService_Click(object sender, EventArgs e)
         {
 
-            if (txtboxServiceName.Text == String.Empty)
+            if (textboxServiceName.Text == String.Empty)
             {
                 MessageBox.Show("Please enter a service name", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
 
             }
 
-            if (txtboxServiceFee.Text == String.Empty)
+            if (textboxServiceFee.Text == String.Empty)
             {
                 MessageBox.Show("Enter fee amount.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -597,8 +655,8 @@ namespace Dental_Management_System
                     MySqlCommand command = new MySqlCommand();
                     command.Connection = connection;
                     command.CommandText = "INSERT INTO Dental_Services (ServiceName, Fee) VALUES (@ServiceName, @Fee)";
-                    command.Parameters.AddWithValue("@ServiceName", txtboxServiceName.Text);
-                    command.Parameters.AddWithValue("@Fee", String.Format("{0}", txtboxServiceFee.Text));
+                    command.Parameters.AddWithValue("@ServiceName", textboxServiceName.Text);
+                    command.Parameters.AddWithValue("@Fee", String.Format("{0}", textboxServiceFee.Text));
                     command.ExecuteNonQuery();
                     command.Parameters.Clear();
                     connection.Close();
@@ -668,12 +726,6 @@ namespace Dental_Management_System
                 labelEditModeStatus.Text = "DISABLED";
 
             }
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-
-
         }
 
         private void dataGridView2_KeyPress(object sender, KeyPressEventArgs e)
@@ -768,6 +820,60 @@ namespace Dental_Management_System
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void buttonSaveBackup_Click(object sender, EventArgs e)
+        {
+            string SaveFileLocation = String.Empty;
+
+            SaveFileDialog saveFile = new SaveFileDialog();
+            saveFile.FileName = Properties.Settings.Default["SQL_Database"].ToString();
+            saveFile.Filter = "SQL (*.sql)|*.sql|All files (*.*)|*.*";
+
+            try
+            {
+                if (saveFile.ShowDialog() == DialogResult.OK)
+                {
+                    SaveFileLocation = saveFile.FileName;
+                    textBoxBackupFileLocation.Text = SaveFileLocation;
+
+                }
+
+                using (MySqlConnection connection = new MySqlConnection(databaseConnectionLink.networkLink))
+                {
+                    using (MySqlCommand commmand = new MySqlCommand())
+                    {
+                        using (MySqlBackup backup = new MySqlBackup(commmand))
+                        {
+                            commmand.Connection = connection;
+                            connection.Open();
+                            backup.ExportToFile(SaveFileLocation);
+                            connection.Close();
+                        }
+                    }
+                }
+
+            }
+            catch
+            {
+
+            }
+
+        }
+
+        private void buttonBrowseSQLFile_Click(object sender, EventArgs e)
+        {
+            string FileLocation = String.Empty;
+
+            OpenFileDialog openFile = new OpenFileDialog();
+            openFile.Filter = "SQL (*.sql)|*.sql|All files (*.*)|*.*";
+
+            if (openFile.ShowDialog() == DialogResult.OK)
+            {
+                textBoxRestoreFileLocation.Text = openFile.FileName;
+
+            }
+
         }
     }
 }

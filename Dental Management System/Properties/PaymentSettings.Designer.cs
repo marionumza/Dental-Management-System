@@ -34,5 +34,53 @@ namespace Dental_Management_System.Properties {
                 this["VATTax"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("222-222-222-222")]
+        public string BIRnumber {
+            get {
+                return ((string)(this["BIRnumber"]));
+            }
+            set {
+                this["BIRnumber"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("222-222-222-222")]
+        public string TINnumber {
+            get {
+                return ((string)(this["TINnumber"]));
+            }
+            set {
+                this["TINnumber"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string TAXpermitIssueDate {
+            get {
+                return ((string)(this["TAXpermitIssueDate"]));
+            }
+            set {
+                this["TAXpermitIssueDate"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string TAXpermitExpireDate {
+            get {
+                return ((string)(this["TAXpermitExpireDate"]));
+            }
+            set {
+                this["TAXpermitExpireDate"] = value;
+            }
+        }
     }
 }

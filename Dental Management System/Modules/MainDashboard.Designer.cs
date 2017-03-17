@@ -178,25 +178,28 @@
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(1072, 505);
             this.panel4.TabIndex = 2;
+            this.panel4.Paint += new System.Windows.Forms.PaintEventHandler(this.panel4_Paint);
             // 
             // btnViewAppointments
             // 
             this.btnViewAppointments.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnViewAppointments.BackColor = System.Drawing.Color.Transparent;
             this.btnViewAppointments.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
+            this.btnViewAppointments.FlatAppearance.BorderSize = 0;
             this.btnViewAppointments.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnViewAppointments.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.btnViewAppointments.ForeColor = System.Drawing.Color.Gray;
+            this.btnViewAppointments.ForeColor = System.Drawing.Color.Black;
             this.btnViewAppointments.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnViewAppointments.ImageKey = "payment_icon.png";
+            this.btnViewAppointments.ImageKey = "notificationbell_icon.png";
             this.btnViewAppointments.ImageList = this.imageList1;
-            this.btnViewAppointments.Location = new System.Drawing.Point(452, 381);
+            this.btnViewAppointments.Location = new System.Drawing.Point(444, 381);
             this.btnViewAppointments.Name = "btnViewAppointments";
-            this.btnViewAppointments.Size = new System.Drawing.Size(212, 56);
+            this.btnViewAppointments.Size = new System.Drawing.Size(220, 56);
             this.btnViewAppointments.TabIndex = 16;
-            this.btnViewAppointments.Text = "View Appointments (0)";
+            this.btnViewAppointments.Text = "Current Appointments (0)";
             this.btnViewAppointments.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnViewAppointments.UseVisualStyleBackColor = false;
+            this.btnViewAppointments.Click += new System.EventHandler(this.btnViewAppointments_Click);
             // 
             // imageList1
             // 
@@ -206,11 +209,12 @@
             this.imageList1.Images.SetKeyName(1, "add_icon.png");
             this.imageList1.Images.SetKeyName(2, "payment_icon.png");
             this.imageList1.Images.SetKeyName(3, "setting_icon.png");
+            this.imageList1.Images.SetKeyName(4, "notificationbell_icon.png");
             // 
             // pictureBox3
             // 
             this.pictureBox3.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
+            this.pictureBox3.Image = global::Dental_Management_System.Properties.Resources.placeholderimage1;
             this.pictureBox3.Location = new System.Drawing.Point(486, 29);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(150, 135);
@@ -809,12 +813,12 @@
             this.button_settings.BackColor = System.Drawing.Color.Transparent;
             this.button_settings.FlatAppearance.BorderSize = 0;
             this.button_settings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_settings.Font = new System.Drawing.Font("Segoe UI Semilight", 9F);
+            this.button_settings.Font = new System.Drawing.Font("Segoe UI", 9.75F);
             this.button_settings.ForeColor = System.Drawing.Color.Black;
             this.button_settings.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button_settings.ImageKey = "setting_icon.png";
             this.button_settings.ImageList = this.imageList1;
-            this.button_settings.Location = new System.Drawing.Point(997, 44);
+            this.button_settings.Location = new System.Drawing.Point(986, 39);
             this.button_settings.Name = "button_settings";
             this.button_settings.Size = new System.Drawing.Size(88, 26);
             this.button_settings.TabIndex = 8;
@@ -830,12 +834,12 @@
             this.button_about.BackColor = System.Drawing.Color.Transparent;
             this.button_about.FlatAppearance.BorderSize = 0;
             this.button_about.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_about.Font = new System.Drawing.Font("Segoe UI Semilight", 9F);
+            this.button_about.Font = new System.Drawing.Font("Segoe UI", 9.75F);
             this.button_about.ForeColor = System.Drawing.Color.Black;
             this.button_about.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button_about.ImageKey = "about_icon.png";
             this.button_about.ImageList = this.imageList1;
-            this.button_about.Location = new System.Drawing.Point(925, 44);
+            this.button_about.Location = new System.Drawing.Point(905, 39);
             this.button_about.Name = "button_about";
             this.button_about.Size = new System.Drawing.Size(75, 26);
             this.button_about.TabIndex = 7;
@@ -851,12 +855,12 @@
             this.btnPayment.BackColor = System.Drawing.Color.Transparent;
             this.btnPayment.FlatAppearance.BorderSize = 0;
             this.btnPayment.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPayment.Font = new System.Drawing.Font("Segoe UI Semilight", 9F);
+            this.btnPayment.Font = new System.Drawing.Font("Segoe UI", 9.75F);
             this.btnPayment.ForeColor = System.Drawing.Color.Black;
             this.btnPayment.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnPayment.ImageKey = "payment_icon.png";
             this.btnPayment.ImageList = this.imageList1;
-            this.btnPayment.Location = new System.Drawing.Point(842, 44);
+            this.btnPayment.Location = new System.Drawing.Point(811, 39);
             this.btnPayment.Name = "btnPayment";
             this.btnPayment.Size = new System.Drawing.Size(88, 26);
             this.btnPayment.TabIndex = 6;
@@ -872,14 +876,14 @@
             this.btnNewPatient.BackColor = System.Drawing.Color.Transparent;
             this.btnNewPatient.FlatAppearance.BorderSize = 0;
             this.btnNewPatient.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnNewPatient.Font = new System.Drawing.Font("Segoe UI Semilight", 9F);
+            this.btnNewPatient.Font = new System.Drawing.Font("Segoe UI", 9.75F);
             this.btnNewPatient.ForeColor = System.Drawing.Color.Black;
             this.btnNewPatient.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnNewPatient.ImageKey = "add_icon.png";
             this.btnNewPatient.ImageList = this.imageList1;
-            this.btnNewPatient.Location = new System.Drawing.Point(737, 43);
+            this.btnNewPatient.Location = new System.Drawing.Point(694, 38);
             this.btnNewPatient.Name = "btnNewPatient";
-            this.btnNewPatient.Size = new System.Drawing.Size(102, 28);
+            this.btnNewPatient.Size = new System.Drawing.Size(111, 28);
             this.btnNewPatient.TabIndex = 5;
             this.btnNewPatient.TabStop = false;
             this.btnNewPatient.Text = "New Patient";
@@ -893,8 +897,8 @@
             this.button_signout.BackColor = System.Drawing.Color.Transparent;
             this.button_signout.FlatAppearance.BorderSize = 0;
             this.button_signout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_signout.Font = new System.Drawing.Font("Segoe UI", 8F);
-            this.button_signout.ForeColor = System.Drawing.Color.DarkRed;
+            this.button_signout.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Bold);
+            this.button_signout.ForeColor = System.Drawing.Color.Red;
             this.button_signout.Location = new System.Drawing.Point(987, 11);
             this.button_signout.Name = "button_signout";
             this.button_signout.Size = new System.Drawing.Size(58, 23);
@@ -908,7 +912,7 @@
             // 
             this.lblAccountNameUpperRight.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblAccountNameUpperRight.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
-            this.lblAccountNameUpperRight.ForeColor = System.Drawing.Color.DimGray;
+            this.lblAccountNameUpperRight.ForeColor = System.Drawing.Color.Black;
             this.lblAccountNameUpperRight.Location = new System.Drawing.Point(737, 13);
             this.lblAccountNameUpperRight.Name = "lblAccountNameUpperRight";
             this.lblAccountNameUpperRight.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -931,7 +935,7 @@
             // pictureBox2
             // 
             this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pictureBox2.Image = global::Dental_Management_System.Properties.Resources.DMS_Icon;
+            this.pictureBox2.Image = global::Dental_Management_System.Properties.Resources.dms_logo;
             this.pictureBox2.Location = new System.Drawing.Point(0, 0);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(72, 71);
@@ -971,6 +975,7 @@
             this.Controls.Add(this.BannerPanel);
             this.DisplayHeader = false;
             this.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MinimumSize = new System.Drawing.Size(800, 640);
             this.Name = "MainDashboard";

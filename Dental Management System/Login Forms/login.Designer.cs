@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
             this.panel2 = new System.Windows.Forms.Panel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -205,7 +206,6 @@
             this.txtBoxUser.TabIndex = 1;
             this.txtBoxUser.Text = "Username";
             this.txtBoxUser.Click += new System.EventHandler(this.txtBoxUser_Click);
-
             // 
             // btn_Configure
             // 
@@ -247,6 +247,7 @@
             this.ClientSize = new System.Drawing.Size(446, 400);
             this.Controls.Add(this.panel2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "Login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

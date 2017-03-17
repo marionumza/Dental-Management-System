@@ -170,7 +170,7 @@ namespace Dental_Management_System
                     MySqlCommand countCommand = connection.CreateCommand();
                     countCommand.CommandText = "SELECT COUNT(*) FROM Patient_Schedule WHERE ID";
                     long count = (long)countCommand.ExecuteScalar();
-                    getTotalAppointmentCount = "View Appointments (" + count.ToString() + ")"; 
+                    getTotalAppointmentCount = "Current Appointments (" + count.ToString() + ")"; 
 
                     if (connection.State == ConnectionState.Open)
                         IsConnectionActive = true;
@@ -633,6 +633,16 @@ namespace Dental_Management_System
             retrieveScheduleInformation.RunWorkerCompleted += new RunWorkerCompletedEventHandler(StopLoadingScheduleInformation);
             retrieveScheduleInformation.RunWorkerAsync();
             refreshDialogBox.ShowDialog();
+
+        }
+
+        private void btnViewAppointments_Click(object sender, EventArgs e)
+        {
+            metroTabControl1.SelectTab("tabPage3");
+        }
+
+        private void panel4_Paint(object sender, PaintEventArgs e)
+        {
 
         }
     }

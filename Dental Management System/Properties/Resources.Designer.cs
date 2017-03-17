@@ -111,11 +111,21 @@ namespace Dental_Management_System.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon DMS_Desktop_Icon_Windows_256x256 {
+            get {
+                object obj = ResourceManager.GetObject("DMS_Desktop_Icon_Windows_256x256", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap DMS_Icon {
+        internal static System.Drawing.Bitmap dms_logo {
             get {
-                object obj = ResourceManager.GetObject("DMS_Icon", resourceCulture);
+                object obj = ResourceManager.GetObject("dms_logo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -176,6 +186,16 @@ namespace Dental_Management_System.Properties {
         internal static System.Drawing.Bitmap mysql_logo {
             get {
                 object obj = ResourceManager.GetObject("mysql_logo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap notificationbell_icon {
+            get {
+                object obj = ResourceManager.GetObject("notificationbell_icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

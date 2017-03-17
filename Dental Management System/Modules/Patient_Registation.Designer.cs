@@ -64,6 +64,10 @@
             this.txtboxFirstName = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.metroTabPage1 = new MetroFramework.Controls.MetroTabPage();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.metroRadioButtonQ4No = new MetroFramework.Controls.MetroRadioButton();
+            this.metroRadioButtonQ4Yes = new MetroFramework.Controls.MetroRadioButton();
+            this.label47 = new System.Windows.Forms.Label();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.metroRadioButtonQ3No = new MetroFramework.Controls.MetroRadioButton();
             this.metroRadioButtonQ3Yes = new MetroFramework.Controls.MetroRadioButton();
@@ -173,6 +177,7 @@
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.metroTabPage1.SuspendLayout();
+            this.groupBox8.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -590,6 +595,7 @@
             // 
             // metroTabPage1
             // 
+            this.metroTabPage1.Controls.Add(this.groupBox8);
             this.metroTabPage1.Controls.Add(this.groupBox7);
             this.metroTabPage1.Controls.Add(this.groupBox4);
             this.metroTabPage1.Controls.Add(this.groupBox3);
@@ -605,6 +611,48 @@
             this.metroTabPage1.VerticalScrollbarHighlightOnWheel = false;
             this.metroTabPage1.VerticalScrollbarSize = 10;
             // 
+            // groupBox8
+            // 
+            this.groupBox8.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox8.Controls.Add(this.metroRadioButtonQ4No);
+            this.groupBox8.Controls.Add(this.metroRadioButtonQ4Yes);
+            this.groupBox8.Controls.Add(this.label47);
+            this.groupBox8.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.groupBox8.Location = new System.Drawing.Point(0, 177);
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.Size = new System.Drawing.Size(668, 52);
+            this.groupBox8.TabIndex = 9;
+            this.groupBox8.TabStop = false;
+            // 
+            // metroRadioButtonQ4No
+            // 
+            this.metroRadioButtonQ4No.AutoSize = true;
+            this.metroRadioButtonQ4No.Location = new System.Drawing.Point(623, 24);
+            this.metroRadioButtonQ4No.Name = "metroRadioButtonQ4No";
+            this.metroRadioButtonQ4No.Size = new System.Drawing.Size(39, 15);
+            this.metroRadioButtonQ4No.TabIndex = 8;
+            this.metroRadioButtonQ4No.Text = "No";
+            this.metroRadioButtonQ4No.UseSelectable = true;
+            // 
+            // metroRadioButtonQ4Yes
+            // 
+            this.metroRadioButtonQ4Yes.AutoSize = true;
+            this.metroRadioButtonQ4Yes.Location = new System.Drawing.Point(552, 24);
+            this.metroRadioButtonQ4Yes.Name = "metroRadioButtonQ4Yes";
+            this.metroRadioButtonQ4Yes.Size = new System.Drawing.Size(40, 15);
+            this.metroRadioButtonQ4Yes.TabIndex = 7;
+            this.metroRadioButtonQ4Yes.Text = "Yes";
+            this.metroRadioButtonQ4Yes.UseSelectable = true;
+            // 
+            // label47
+            // 
+            this.label47.AutoSize = true;
+            this.label47.Location = new System.Drawing.Point(6, 21);
+            this.label47.Name = "label47";
+            this.label47.Size = new System.Drawing.Size(255, 17);
+            this.label47.TabIndex = 0;
+            this.label47.Text = "Do you smoke or chew tobacco products?";
+            // 
             // groupBox7
             // 
             this.groupBox7.BackColor = System.Drawing.Color.Transparent;
@@ -612,7 +660,7 @@
             this.groupBox7.Controls.Add(this.metroRadioButtonQ3Yes);
             this.groupBox7.Controls.Add(this.label45);
             this.groupBox7.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.groupBox7.Location = new System.Drawing.Point(0, 121);
+            this.groupBox7.Location = new System.Drawing.Point(0, 120);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Size = new System.Drawing.Size(668, 52);
             this.groupBox7.TabIndex = 7;
@@ -643,9 +691,9 @@
             this.label45.AutoSize = true;
             this.label45.Location = new System.Drawing.Point(6, 21);
             this.label45.Name = "label45";
-            this.label45.Size = new System.Drawing.Size(349, 17);
+            this.label45.Size = new System.Drawing.Size(444, 17);
             this.label45.TabIndex = 0;
-            this.label45.Text = "Are you taking any medicines (including non-prescription)?";
+            this.label45.Text = "Do you have or have you ever had any heart or blood pressure problems?";
             // 
             // groupBox4
             // 
@@ -1649,6 +1697,8 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.metroTabPage1.ResumeLayout(false);
+            this.groupBox8.ResumeLayout(false);
+            this.groupBox8.PerformLayout();
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
             this.groupBox4.ResumeLayout(false);
@@ -1813,5 +1863,9 @@
         private System.Windows.Forms.Label label46;
         private System.Windows.Forms.Label lblToothChartMessage;
         private System.Windows.Forms.Button btnOpenToothChartExternalWindow;
+        private System.Windows.Forms.GroupBox groupBox8;
+        private MetroFramework.Controls.MetroRadioButton metroRadioButtonQ4No;
+        private MetroFramework.Controls.MetroRadioButton metroRadioButtonQ4Yes;
+        private System.Windows.Forms.Label label47;
     }
 }

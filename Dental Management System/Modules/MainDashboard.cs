@@ -81,6 +81,18 @@ namespace Dental_Management_System
             }
         }
 
+        private void LoadHomePageLogo()
+        {
+            if ((bool)Properties.Settings.Default["UseDefaultLogo"] == true)
+            {
+                pictureBox3.Image = Properties.Resources.placeholderimage1;
+            }
+            else if ((bool)Properties.Settings.Default["UseDefaultLogo"] == false)
+            {
+                pictureBox3.ImageLocation = Properties.Settings.Default["LogoFileLocation"].ToString();
+            }
+        }
+
         private void Dashboard_Load(object sender, EventArgs e)
         {
             // START ALL BACKGROUND THREADS
@@ -92,8 +104,10 @@ namespace Dental_Management_System
             retrieveScheduleInformation.RunWorkerAsync();
             loadingDialogBox.ShowDialog();
 
+
             ResizeRedraw = true;
             appTitle.Text = String.Format(AssemblyTitle);
+            LoadHomePageLogo();
 
             // ENABLE DOUBLE BUFFERING                     
             EnableDoubleBuffering(BannerPanel, true);
@@ -147,7 +161,6 @@ namespace Dental_Management_System
             // APPOINTMENT TAB
 
             dataGridView2.Visible = false;
-            btnSetAppointment.Enabled = false;
             btnDeleteSchedule.Enabled = false;
             btnSendEmail.Enabled = false;
         }
@@ -355,6 +368,12 @@ namespace Dental_Management_System
 
             using (MySqlConnection connection = new MySqlConnection(databaseConnectionLink.networkLink))
             {
+
+                if (dataGridView1.SelectedCells[0].Value.ToString() == String.Empty)
+                {
+                    return;
+                }
+
                 connection.Open();
                 MySqlCommand validatePatientID = connection.CreateCommand();
                 validatePatientID.CommandText = "SELECT * FROM Patient_Information WHERE PID=" + dataGridView1.SelectedCells[0].Value.ToString();
@@ -478,6 +497,9 @@ namespace Dental_Management_System
 
             if (UserAccountTypeRegular == true)
                 appSettings.UserAccountTypeRegular = true;
+
+            if (UserAccountTypeDoctor == true)
+                appSettings.UserAccountTypeDoctor = true;
 
             appSettings.ShowDialog();
         }

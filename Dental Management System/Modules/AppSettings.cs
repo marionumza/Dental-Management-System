@@ -43,9 +43,11 @@ namespace Dental_Management_System
             textBoxBusinessAddress.Text = Properties.Settings.Default["DocAddress"].ToString();
             textBoxBusinessPhoneNumber.Text = Properties.Settings.Default["DocNumber"].ToString();
             textBoxBusinessName.Text = Properties.Settings.Default["DocOfficeName"].ToString();
+            textBoxLogoFileLocation.Text = Properties.Settings.Default["LogoFileLocation"].ToString();
             DisableGroupBox();
             StartLoadingDoctorList();
             metroButtonToggleHideConfigureButtonCheckState();
+            checkBoxUseDefaultLogoCheckState();
 
             // LOAD SETTINGS FOR PAYMENTS AND SERVICES TAB
             textBoxTIN.Text = Properties.PaymentSettings.Default["TINnumber"].ToString();
@@ -85,6 +87,10 @@ namespace Dental_Management_System
 
             if (UserAccountTypeDoctor == true)
             {
+                tabPage4.Enabled = false;
+                tabPage5.Enabled = false;
+                buttonViewAccountDelete.Enabled = false;
+                comboBoxViewUserAccountType.Enabled = false;
             }
 
             if (UserAccountTypeAdmin == true)
@@ -122,6 +128,17 @@ namespace Dental_Management_System
             }
         }
 
+        private void checkBoxUseDefaultLogoCheckState()
+        {
+            if ((bool)Properties.Settings.Default["UseDefaultLogo"] == true)
+            {
+                checkBoxUseDefaultLogo.Checked = true;
+            }
+            else if ((bool)Properties.Settings.Default["UseDefaultLogo"] == false)
+            {
+                checkBoxUseDefaultLogo.Checked = false;
+            }
+        }
 
         public void SaveSettings()
         {
@@ -135,10 +152,11 @@ namespace Dental_Management_System
                 Properties.Settings.Default["DocAddress"] = textBoxBusinessAddress.Text;
                 Properties.Settings.Default["DocNumber"] = textBoxBusinessPhoneNumber.Text;
                 Properties.Settings.Default["DocOfficeName"] = textBoxBusinessName.Text;
+                Properties.Settings.Default["LogoFileLocation"] = textBoxLogoFileLocation.Text;
                 Properties.PaymentSettings.Default["BIRnumber"] = textBoxBIR.Text;
                 Properties.PaymentSettings.Default["TINnumber"] = textBoxTIN.Text;
-                Properties.PaymentSettings.Default["TAXpermitIssueDate"] = dateTimePickerDateIssued.Value.ToString("MM-dd-yyyy");
-                Properties.PaymentSettings.Default["TAXpermitExpireDate"] = dateTimePickerExpireDate.Value.ToString("MM-dd-yyyy");
+                Properties.PaymentSettings.Default["TAXpermitIssueDate"] = dateTimePickerDateIssued.Value.ToString("MMMM/dd/yyyy");
+                Properties.PaymentSettings.Default["TAXpermitExpireDate"] = dateTimePickerExpireDate.Value.ToString("MMMM/dd/yyyy");
                 Properties.PaymentSettings.Default["VATTax"] = Convert.ToInt32(textboxVATPercent.Text);
 
                 if (metroToggleHideConfigureButtonAtLogin.Checked == true)
@@ -148,6 +166,15 @@ namespace Dental_Management_System
                 else
                 {
                     Properties.Settings.Default["HideConfigureButtonAtLogin"] = false;
+                }
+
+                if (checkBoxUseDefaultLogo.Checked == true)
+                {
+                    Properties.Settings.Default["UseDefaultLogo"] = true;
+                }
+                else if (checkBoxUseDefaultLogo.Checked == false)
+                {
+                    Properties.Settings.Default["UseDefaultLogo"] = false;
                 }
 
                 Properties.Settings.Default.Save();
@@ -562,13 +589,8 @@ namespace Dental_Management_System
 
             if (comboBoxAccountType.SelectedIndex == 1)
             {
-                textBoxDoctorName.Enabled = true;
-            }
-
-            if (comboBoxAccountType.SelectedIndex == 2)
-            {
-                textBoxDoctorName.Text = string.Empty;
                 textBoxDoctorName.Enabled = false;
+                textBoxDoctorName.Clear();
             }
         }
 
@@ -763,7 +785,9 @@ namespace Dental_Management_System
                 if (dataGridView1.SelectedCells[0].Value.ToString() == "1")
                 {
                     buttonViewAccountDelete.Enabled = false;
-                    comboBoxViewUserAccountType.Enabled = false;
+                    comboBoxViewUserAccountType.SelectedIndex = 0;
+                    comboBoxViewUserAccountType.Visible = false;
+                    labelCannotChangeAdminAccountType.Visible = true;
                 }
 
                 if (dataGridView1.SelectedCells[0].Value.ToString() == String.Empty)
@@ -794,6 +818,27 @@ namespace Dental_Management_System
 
         private void buttonViewAccountSaveChanges_Click(object sender, EventArgs e)
         {
+
+            if (textBoxViewAccountPassword.Text == String.Empty)
+            {
+                MessageBox.Show("Password field cannot be blank", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (textBoxViewAccountPassword.Text.Length < 4)
+            {
+                MessageBox.Show("Password must be at least 4 characters long.", this.Text);
+                textBoxUserPassword.Clear();
+                textBoxUserPassword.Focus();
+                return;
+            }
+
+            if (textBoxViewAccountPassword.Text != textBoxViewAccountPassword.Text)
+            {
+                MessageBox.Show("Password does not match.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             try
             {
                 using (MySqlConnection connection = new MySqlConnection(databaseConnectionLink.networkLink))
@@ -874,6 +919,34 @@ namespace Dental_Management_System
 
             }
 
+        }
+
+        private void buttonBrowseLogo_Click(object sender, EventArgs e)
+        {
+            string FileLocation = String.Empty;
+
+            OpenFileDialog openFile = new OpenFileDialog();
+            openFile.Filter = "*.BMP;*.JPG;*)|*.BMP;*.JPG;*";
+
+            if (openFile.ShowDialog() == DialogResult.OK)
+            {
+                textBoxLogoFileLocation.Text = openFile.FileName;
+
+            }
+        }
+
+        private void checkBoxUseDefaultLogo_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxUseDefaultLogo.Checked == true)
+            {
+                textBoxLogoFileLocation.Enabled = false;
+                buttonBrowseLogo.Enabled = false;
+            }
+            else if (checkBoxUseDefaultLogo.Checked == false)
+            {
+                textBoxLogoFileLocation.Enabled = true;
+                buttonBrowseLogo.Enabled = true;
+            }
         }
     }
 }

@@ -33,6 +33,8 @@ namespace Dental_Management_System
             groupBox3.Enabled = false;
             groupBox4.Enabled = false;
             groupBox5.Enabled = false;
+            groupBox7.Enabled = false;
+            groupBox8.Enabled = false;
             DisableTextBoxInChartNotes();
 
             // DESIGN
@@ -50,6 +52,8 @@ namespace Dental_Management_System
         // FOR MEDICAL HISTORY
         public string Q1YesNo;
         public string Q2YesNo;
+        public string Q3YesNo;
+        public string Q4YesNo;
 
         // HIERACHY BOOLEAN VALUES
         public bool UserAccountTypeRegular = false;
@@ -108,7 +112,7 @@ namespace Dental_Management_System
                     connection.Open();
 
                     MySqlCommand command2 = connection.CreateCommand();
-                    command2.CommandText = "SELECT Q1, Q2, ChartType, Note1, Note2, Note3, Note4, Note5, Note6, Note7, Note8, Note9, Note10, Note11, Note12, Note13, Note14, Note15, Note16, Note17, Note18, Note19, Note20, Note21, Note22, Note23, Note24, Note25, Note26, Note27, Note28, Note29, Note30, Note31, Note32 FROM Patient_MedHistory WHERE PID=" + lbl_IDnum.Text;
+                    command2.CommandText = "SELECT Q1, Q2, Q3, Q4, ChartType, Note1, Note2, Note3, Note4, Note5, Note6, Note7, Note8, Note9, Note10, Note11, Note12, Note13, Note14, Note15, Note16, Note17, Note18, Note19, Note20, Note21, Note22, Note23, Note24, Note25, Note26, Note27, Note28, Note29, Note30, Note31, Note32 FROM Patient_MedHistory WHERE PID=" + lbl_IDnum.Text;
                     MySqlDataReader reader2 = command2.ExecuteReader();
                     while (reader2.Read())
                     {
@@ -116,6 +120,8 @@ namespace Dental_Management_System
 
                         Q1YesNo = (reader2["Q1"].ToString());
                         Q2YesNo = (reader2["Q2"].ToString());
+                        Q3YesNo = (reader2["Q3"].ToString());
+                        Q4YesNo = (reader2["Q4"].ToString());
 
                         if (Q1YesNo.ToString() == "Yes")
                         {
@@ -137,6 +143,30 @@ namespace Dental_Management_System
                         {
                             metroRadioButtonQ2Yes.Checked = false;
                             metroRadioButtonQ2No.Checked = true;
+                        }
+
+
+                        if (Q3YesNo.ToString() == "Yes")
+                        {
+                            metroRadioButtonQ3No.Checked = false;
+                            metroRadioButtonQ3Yes.Checked = true;
+                        }
+                        else if (Q3YesNo.ToString() == "No")
+                        {
+                            metroRadioButtonQ3Yes.Checked = false;
+                            metroRadioButtonQ3No.Checked = true;
+                        }
+
+
+                        if (Q4YesNo.ToString() == "Yes")
+                        {
+                            metroRadioButtonQ4No.Checked = false;
+                            metroRadioButtonQ4Yes.Checked = true;
+                        }
+                        else if (Q4YesNo.ToString() == "No")
+                        {
+                            metroRadioButtonQ4Yes.Checked = false;
+                            metroRadioButtonQ4No.Checked = true;
                         }
 
                         ValidateChartType = (reader2["ChartType"].ToString());
@@ -227,24 +257,34 @@ namespace Dental_Management_System
             string fieldate = cbBirthday.Value.ToString("yyyy-MM-dd");
             string question1 = null;
             string question2 = null;
+            string question3 = null;
+            string question4 = null;
             string charttype = null;
 
             if (metroRadioButtonQ1Yes.Checked == true)
-            {
                 question1 = metroRadioButtonQ1Yes.Text;
-            }
-            else if (metroRadioButtonQ1No.Checked == true)
-            {
+
+            if (metroRadioButtonQ1No.Checked == true)
                 question1 = metroRadioButtonQ1No.Text;
-            }
+
             if (metroRadioButtonQ2Yes.Checked == true)
-            {
                 question2 = metroRadioButtonQ2Yes.Text;
-            }
-            else if (metroRadioButtonQ2No.Checked == true)
-            {
+
+            if (metroRadioButtonQ2No.Checked == true)
                 question2 = metroRadioButtonQ2No.Text;
-            }
+
+            if (metroRadioButtonQ3Yes.Checked == true)
+                question3 = metroRadioButtonQ3Yes.Text;
+
+            if (metroRadioButtonQ3No.Checked == true)
+                question3 = metroRadioButtonQ3No.Text;
+
+            if (metroRadioButtonQ4Yes.Checked == true)
+                question4 = metroRadioButtonQ4Yes.Text;
+
+            if (metroRadioButtonQ4No.Checked == true)
+                question4 = metroRadioButtonQ4No.Text;
+
 
             if (radioButtonPrimary.Checked == true)
             {
@@ -282,9 +322,11 @@ namespace Dental_Management_System
                     updateCommand.ExecuteNonQuery();
                     updateCommand.Parameters.Clear();
 
-                    updateCommand.CommandText = "UPDATE Patient_MedHistory SET Q1=@Q1, Q2=@Q2, ChartType=@ChartType, Note1=@Note1, Note2=@Note2, Note3=@Note3, Note4=@Note4, Note5=@Note5, Note6=@Note6, Note7=@Note7, Note8=@Note8, Note9=@Note9, Note10=@Note10, Note11=@Note11, Note12=@Note12, Note13=@Note13, Note14=@Note14, Note15=@Note15, Note16=@Note16, Note17=@Note17, Note18=@Note18, Note19=@Note19, Note20=@Note20, Note21=@Note21, Note22=@Note22, Note23=@Note23, Note24=@Note24, Note25=@Note25, Note26=@Note26, Note27=@Note27, Note28=@Note28, Note29=@Note29, Note30=@Note30, Note31=@Note31, Note32=@Note32 WHERE PID=" + lbl_IDnum.Text;
+                    updateCommand.CommandText = "UPDATE Patient_MedHistory SET Q1=@Q1, Q2=@Q2, Q3=@Q3, Q4=@Q4, ChartType=@ChartType, Note1=@Note1, Note2=@Note2, Note3=@Note3, Note4=@Note4, Note5=@Note5, Note6=@Note6, Note7=@Note7, Note8=@Note8, Note9=@Note9, Note10=@Note10, Note11=@Note11, Note12=@Note12, Note13=@Note13, Note14=@Note14, Note15=@Note15, Note16=@Note16, Note17=@Note17, Note18=@Note18, Note19=@Note19, Note20=@Note20, Note21=@Note21, Note22=@Note22, Note23=@Note23, Note24=@Note24, Note25=@Note25, Note26=@Note26, Note27=@Note27, Note28=@Note28, Note29=@Note29, Note30=@Note30, Note31=@Note31, Note32=@Note32 WHERE PID=" + lbl_IDnum.Text;
                     updateCommand.Parameters.AddWithValue("@Q1", String.Format("{0}", question1));
                     updateCommand.Parameters.AddWithValue("@Q2", String.Format("{0}", question2));
+                    updateCommand.Parameters.AddWithValue("@Q3", String.Format("{0}", question3));
+                    updateCommand.Parameters.AddWithValue("@Q4", String.Format("{0}", question4));
                     updateCommand.Parameters.AddWithValue("@ChartType", String.Format("{0}", charttype));
                     updateCommand.Parameters.AddWithValue("@Note1", String.Format("{0}", toothNote_1.Text));
                     updateCommand.Parameters.AddWithValue("@Note2", String.Format("{0}", toothNote_2.Text));
@@ -576,6 +618,8 @@ namespace Dental_Management_System
                     groupBox3.Enabled = true;
                     groupBox4.Enabled = true;
                     groupBox5.Enabled = true;
+                    groupBox7.Enabled = true;
+                    groupBox8.Enabled = true;
                     EnableTextBoxInChartNotes();
 
                     if (textBox != null)
@@ -594,6 +638,8 @@ namespace Dental_Management_System
                     groupBox3.Enabled = false;
                     groupBox4.Enabled = false;
                     groupBox5.Enabled = false;
+                    groupBox7.Enabled = false;
+                    groupBox8.Enabled = false;
 
                     if (textBox != null)
                     {
@@ -821,6 +867,14 @@ namespace Dental_Management_System
                     FontFactory.GetFont(FontFactory.HELVETICA, 9, iTextSharp.text.Font.BOLD));
                 Question2.Alignment = Element.ALIGN_LEFT;
 
+                Paragraph Question3 = new Paragraph("3. " + "Do you have or have you ever had any heart or blood pressure problems?...................................    " + Q3YesNo,
+                FontFactory.GetFont(FontFactory.HELVETICA, 9, iTextSharp.text.Font.BOLD));
+                Question2.Alignment = Element.ALIGN_LEFT;
+
+                Paragraph Question4 = new Paragraph("4. " + "Do you smoke or chew tobacco products?........................................................................................    " + Q4YesNo,
+                FontFactory.GetFont(FontFactory.HELVETICA, 9, iTextSharp.text.Font.BOLD));
+                Question2.Alignment = Element.ALIGN_LEFT;
+
                 Paragraph FinalDisclaimer = new Paragraph("To the best of my knowledge, the questions on this form have been accurately answered. I understand that providing incorrect information can be dangerous to my (or patient’s) health. It is my responsibility to inform the dental office of any changes in medical status.",
                     FontFactory.GetFont(FontFactory.HELVETICA, 9, iTextSharp.text.Font.NORMAL));
                 FinalDisclaimer.Alignment = Element.ALIGN_LEFT;
@@ -859,8 +913,8 @@ namespace Dental_Management_System
                 doc.Add(MedicalHistoryDisclaimer);
                 doc.Add(Question1);
                 doc.Add(Question2);
-                doc.Add(new Paragraph("\n"));
-                doc.Add(new Paragraph("\n"));
+                doc.Add(Question3);
+                doc.Add(Question4);
                 doc.Add(new Paragraph("\n"));
                 doc.Add(new Paragraph("\n"));
                 doc.Add(new Paragraph("\n"));
@@ -950,8 +1004,11 @@ namespace Dental_Management_System
                 Paragraph ClinicTelephoneNumber = new Paragraph("Tel no. " + Properties.Settings.Default["DocNumber"].ToString(), FontFactory.GetFont(FontFactory.HELVETICA, 8, iTextSharp.text.Font.NORMAL));
                 ClinicTelephoneNumber.Alignment = Element.ALIGN_LEFT;
 
-                Paragraph OfficialHeader = new Paragraph("OFFICIAL RECEIPT", FontFactory.GetFont(FontFactory.HELVETICA, 10, iTextSharp.text.Font.BOLD));
+                Paragraph OfficialHeader = new Paragraph("OFFICIAL RECEIPT - CUSTOMER'S COPY", FontFactory.GetFont(FontFactory.HELVETICA, 10, iTextSharp.text.Font.BOLD));
                 OfficialHeader.Alignment = Element.ALIGN_LEFT;
+
+                Paragraph OfficialHeader1 = new Paragraph("OFFICIAL RECEIPT - DOCTOR'S COPY", FontFactory.GetFont(FontFactory.HELVETICA, 10, iTextSharp.text.Font.BOLD));
+                OfficialHeader1.Alignment = Element.ALIGN_LEFT;
 
                 // BREAK DOWN FEE
 
@@ -979,10 +1036,10 @@ namespace Dental_Management_System
                 Paragraph PWDID = new Paragraph("OSCA/PWD ID: ", FontFactory.GetFont(FontFactory.HELVETICA, 9, iTextSharp.text.Font.NORMAL));
                 PWDID.Alignment = Element.ALIGN_LEFT;
 
-                Paragraph TINNUMBER = new Paragraph("TIN #: " + "221-463-613-000" + " | " + "BIR: " + "3AU0001004336", FontFactory.GetFont(FontFactory.HELVETICA, 9, iTextSharp.text.Font.NORMAL));
+                Paragraph TINNUMBER = new Paragraph("TIN #: " + Properties.PaymentSettings.Default["TINnumber"].ToString() + " | " + "BIR: " + Properties.PaymentSettings.Default["BIRnumber"].ToString(), FontFactory.GetFont(FontFactory.HELVETICA, 9, iTextSharp.text.Font.NORMAL));
                 TINNUMBER.Alignment = Element.ALIGN_LEFT;
 
-                Paragraph DATEISSUED = new Paragraph("Date Issued: " + "April 3, 2013" + " | " + "Expiration: " + "June 30, 2018", FontFactory.GetFont(FontFactory.HELVETICA, 9, iTextSharp.text.Font.NORMAL));
+                Paragraph DATEISSUED = new Paragraph("Date Issued: " + Properties.PaymentSettings.Default["TAXpermitIssueDate"].ToString() + " | " + "Expiration: " + Properties.PaymentSettings.Default["TAXpermitExpireDate"].ToString(), FontFactory.GetFont(FontFactory.HELVETICA, 9, iTextSharp.text.Font.NORMAL));
                 DATEISSUED.Alignment = Element.ALIGN_LEFT;
 
                 Paragraph PRINTDATE = new Paragraph("Receipt Print Date: " + DateTime.Now.ToString("MM/dd/yyyy"), FontFactory.GetFont(FontFactory.HELVETICA, 9, iTextSharp.text.Font.NORMAL));
@@ -997,6 +1054,7 @@ namespace Dental_Management_System
                 Paragraph CUTHERE = new Paragraph("-------------------------------------------------------------------------------CUT HERE--------------------------------------------------------------------", FontFactory.GetFont(FontFactory.HELVETICA, 9, iTextSharp.text.Font.NORMAL));
                 CUTHERE.Alignment = Element.ALIGN_LEFT;
 
+                // CUSTOMER'S COPY
                 doc.Add(ClinicName);
                 doc.Add(ClinicAddress);
                 doc.Add(ClinicTelephoneNumber);
@@ -1021,7 +1079,34 @@ namespace Dental_Management_System
                 doc.Add(new Paragraph("\n"));
                 doc.Add(new Paragraph("\n"));
                 doc.Add(DISCLAIMER);
+                doc.Add(new Paragraph("\n"));
                 doc.Add(CUTHERE);
+                // DOCTOR'S COPY
+                doc.Add(new Paragraph("\n"));
+                doc.Add(ClinicName);
+                doc.Add(ClinicAddress);
+                doc.Add(ClinicTelephoneNumber);
+                doc.Add(new Paragraph("\n"));
+                doc.Add(OfficialHeader1);
+                doc.Add(new Paragraph("\n"));
+                doc.Add(ServiceType);
+                doc.Add(ServiceFee);
+                doc.Add(MiscFee);
+                doc.Add(Discount);
+                doc.Add(VAT);
+                doc.Add(TotalAmount);
+                doc.Add(new Paragraph("\n"));
+                doc.Add(SeniorID);
+                doc.Add(PWDID);
+                doc.Add(new Paragraph("\n"));
+                doc.Add(TINNUMBER);
+                doc.Add(DATEISSUED);
+                doc.Add(PRINTDATE);
+                doc.Add(new Paragraph("\n"));
+                doc.Add(DOCSIGN);
+                doc.Add(new Paragraph("\n"));
+                doc.Add(new Paragraph("\n"));
+                doc.Add(DISCLAIMER);
 
                 doc.Close();
 

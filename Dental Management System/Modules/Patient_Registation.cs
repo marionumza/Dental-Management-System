@@ -22,7 +22,8 @@ namespace Dental_Management_System
             fm1 = dashboard;
         }
 
-
+        // CALL ALL CLASS AND OTHER METHODS
+        DatabaseConnectionLink databaseConnectionLink = new DatabaseConnectionLink();
 
         private void Patient_Registation_Load(object sender, EventArgs e)
         {
@@ -208,31 +209,36 @@ namespace Dental_Management_System
         private void Addpatient_button_Click(object sender, EventArgs e)
         {
 
-            string connectionString = "Server=" + Properties.Settings.Default["SQL_IP"] + ';' + "Database=" +
-            Properties.Settings.Default["SQL_Database"] + ";" + "UID=" + Properties.Settings.Default["SQL_User"] + ';' + "PWD=" +
-            Properties.Settings.Default["SQL_Pass"];
-
             string fieldate = cbBirthday.Value.ToString("yyyy-MM-dd");
             string question1 = null;
             string question2 = null;
+            string question3 = null;
+            string question4 = null;
             string charttype = null;
 
             if (metroRadioButtonQ1YES.Checked == true)
-            {
                 question1 = metroRadioButtonQ1YES.Text;
-            }
-            else if (metroRadioButtonQ1No.Checked == true)
-            {
+
+            if (metroRadioButtonQ1No.Checked == true)
                 question1 = metroRadioButtonQ1No.Text;
-            }
+
             if (metroRadioButtonQ2Yes.Checked == true)
-            {
                 question2 = metroRadioButtonQ2Yes.Text;
-            }
-            else if (metroRadioButtonQ2No.Checked == true)
-            {
+
+            if (metroRadioButtonQ2No.Checked == true)
                 question2 = metroRadioButtonQ2No.Text;
-            }
+
+            if (metroRadioButtonQ3Yes.Checked == true)
+                question3 = metroRadioButtonQ3Yes.Text;
+
+            if (metroRadioButtonQ3No.Checked == true)
+                question3 = metroRadioButtonQ3No.Text;
+
+            if (metroRadioButtonQ4Yes.Checked == true)
+                question4 = metroRadioButtonQ4Yes.Text;
+
+            if (metroRadioButtonQ4No.Checked == true)
+                question4 = metroRadioButtonQ4No.Text;
 
             if (primaryTeeth_rb.Checked == true)
             {
@@ -244,7 +250,7 @@ namespace Dental_Management_System
             }
 
 
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            using (MySqlConnection connection = new MySqlConnection(databaseConnectionLink.networkLink))
             {
                 try
                 {
@@ -283,10 +289,12 @@ namespace Dental_Management_System
                         command.ExecuteNonQuery();
                         command.Parameters.Clear();
 
-                        command.CommandText = "INSERT INTO Patient_MedHistory (PID, Q1, Q2, ChartType, Note1, Note2, Note3, Note4, Note5, Note6, Note7, Note8, Note9, Note10, Note11, Note12, Note13, Note14, Note15, Note16, Note17, Note18, Note19, Note20, Note21, Note22, Note23, Note24, Note25, Note26, Note27, Note28, Note29, Note30, Note31, Note32) VALUES (@PID, @Q1, @Q2, @ChartType, @Note1, @Note2, @Note3, @Note4, @Note5, @Note6, @Note7, @Note8, @Note9, @Note10, @Note11, @Note12, @Note13, @Note14, @Note15, @Note16, @Note17, @Note18, @Note19, @Note20, @Note21, @Note22, @Note23, @Note24, @Note25, @Note26, @Note27, @Note28, @Note29, @Note30, @Note31, @Note32)";
+                        command.CommandText = "INSERT INTO Patient_MedHistory (PID, Q1, Q2, Q3, Q4, ChartType, Note1, Note2, Note3, Note4, Note5, Note6, Note7, Note8, Note9, Note10, Note11, Note12, Note13, Note14, Note15, Note16, Note17, Note18, Note19, Note20, Note21, Note22, Note23, Note24, Note25, Note26, Note27, Note28, Note29, Note30, Note31, Note32) VALUES (@PID, @Q1, @Q2, @Q3, @Q4, @ChartType, @Note1, @Note2, @Note3, @Note4, @Note5, @Note6, @Note7, @Note8, @Note9, @Note10, @Note11, @Note12, @Note13, @Note14, @Note15, @Note16, @Note17, @Note18, @Note19, @Note20, @Note21, @Note22, @Note23, @Note24, @Note25, @Note26, @Note27, @Note28, @Note29, @Note30, @Note31, @Note32)";
                         command.Parameters.AddWithValue("@PID", lbl_IDnum.Text);
                         command.Parameters.AddWithValue("@Q1", String.Format("{0}", question1));
                         command.Parameters.AddWithValue("@Q2", String.Format("{0}", question2));
+                        command.Parameters.AddWithValue("@Q3", String.Format("{0}", question3));
+                        command.Parameters.AddWithValue("@Q4", String.Format("{0}", question4));
                         command.Parameters.AddWithValue("@ChartType", String.Format("{0}", charttype));
                         command.Parameters.AddWithValue("@Note1", String.Format("{0}", toothNote_1.Text));
                         command.Parameters.AddWithValue("@Note2", String.Format("{0}", toothNote_2.Text));

@@ -52,8 +52,6 @@
             this.txtboxPatientIDNumber = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.comboBoxServiceList = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.radioButtonNone = new System.Windows.Forms.RadioButton();
             this.radioButtonSCPWD = new System.Windows.Forms.RadioButton();
@@ -65,6 +63,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.checkBoxEnableAdditionalFee = new System.Windows.Forms.CheckBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -108,9 +108,9 @@
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(21, 161);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(89, 15);
+            this.label9.Size = new System.Drawing.Size(59, 15);
             this.label9.TabIndex = 18;
-            this.label9.Text = "Additional Fee: ";
+            this.label9.Text = "Misc Fee: ";
             // 
             // labelTotalAmount
             // 
@@ -306,26 +306,6 @@
             this.comboBoxServiceList.TabIndex = 5;
             this.comboBoxServiceList.SelectedIndexChanged += new System.EventHandler(this.comboBoxServiceList_SelectedIndexChanged);
             // 
-            // comboBox2
-            // 
-            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
-            "Cash"});
-            this.comboBox2.Location = new System.Drawing.Point(134, 143);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 23);
-            this.comboBox2.TabIndex = 7;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(12, 146);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(102, 15);
-            this.label7.TabIndex = 6;
-            this.label7.Text = "Form of Payment:";
-            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -409,15 +389,15 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(11, 102);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(86, 15);
+            this.label3.Size = new System.Drawing.Size(56, 15);
             this.label3.TabIndex = 15;
-            this.label3.Text = "Additional Fee:";
+            this.label3.Text = "Misc Fee:";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI", 7F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(20, 119);
+            this.label5.Location = new System.Drawing.Point(13, 117);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(63, 12);
             this.label5.TabIndex = 17;
@@ -432,6 +412,26 @@
             this.checkBoxEnableAdditionalFee.TabIndex = 18;
             this.checkBoxEnableAdditionalFee.UseVisualStyleBackColor = true;
             this.checkBoxEnableAdditionalFee.CheckedChanged += new System.EventHandler(this.checkBoxEnableAdditionalFee_CheckedChanged);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(12, 146);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(102, 15);
+            this.label7.TabIndex = 6;
+            this.label7.Text = "Form of Payment:";
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Items.AddRange(new object[] {
+            "Cash"});
+            this.comboBox2.Location = new System.Drawing.Point(134, 143);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(121, 23);
+            this.comboBox2.TabIndex = 7;
             // 
             // PaymentModule
             // 
@@ -485,8 +485,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox comboBoxServiceList;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.RadioButton radioButtonNone;
@@ -512,5 +510,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.CheckBox checkBoxEnableAdditionalFee;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ComboBox comboBox2;
     }
 }

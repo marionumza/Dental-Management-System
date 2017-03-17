@@ -156,6 +156,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.buttonCancel = new System.Windows.Forms.Button();
             this.buttonsSaveSettings = new System.Windows.Forms.Button();
+            this.labelCannotChangeAdminAccountType = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -375,9 +376,11 @@
             this.checkBoxUseDefaultLogo.TabIndex = 21;
             this.checkBoxUseDefaultLogo.Text = "Use default logo";
             this.checkBoxUseDefaultLogo.UseVisualStyleBackColor = true;
+            this.checkBoxUseDefaultLogo.CheckedChanged += new System.EventHandler(this.checkBoxUseDefaultLogo_CheckedChanged);
             // 
             // buttonBrowseLogo
             // 
+            this.buttonBrowseLogo.Enabled = false;
             this.buttonBrowseLogo.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonBrowseLogo.Location = new System.Drawing.Point(442, 91);
             this.buttonBrowseLogo.Name = "buttonBrowseLogo";
@@ -385,6 +388,7 @@
             this.buttonBrowseLogo.TabIndex = 19;
             this.buttonBrowseLogo.Text = "Browse";
             this.buttonBrowseLogo.UseVisualStyleBackColor = true;
+            this.buttonBrowseLogo.Click += new System.EventHandler(this.buttonBrowseLogo_Click);
             // 
             // labelGeneralLogoLocation
             // 
@@ -398,10 +402,13 @@
             // 
             // textBoxLogoFileLocation
             // 
+            this.textBoxLogoFileLocation.BackColor = System.Drawing.Color.White;
+            this.textBoxLogoFileLocation.Enabled = false;
             this.textBoxLogoFileLocation.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxLogoFileLocation.Location = new System.Drawing.Point(126, 92);
             this.textBoxLogoFileLocation.MaxLength = 512;
             this.textBoxLogoFileLocation.Name = "textBoxLogoFileLocation";
+            this.textBoxLogoFileLocation.ReadOnly = true;
             this.textBoxLogoFileLocation.Size = new System.Drawing.Size(310, 23);
             this.textBoxLogoFileLocation.TabIndex = 17;
             // 
@@ -665,7 +672,6 @@
             this.comboBoxAccountType.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxAccountType.FormattingEnabled = true;
             this.comboBoxAccountType.Items.AddRange(new object[] {
-            "Administrator",
             "Doctor",
             "Standard"});
             this.comboBoxAccountType.Location = new System.Drawing.Point(163, 229);
@@ -744,6 +750,7 @@
             this.panel5.Controls.Add(this.textBoxViewAccountUsername);
             this.panel5.Controls.Add(this.label13);
             this.panel5.Controls.Add(this.textBoxViewAccountName);
+            this.panel5.Controls.Add(this.labelCannotChangeAdminAccountType);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel5.Location = new System.Drawing.Point(384, 0);
             this.panel5.Name = "panel5";
@@ -823,7 +830,7 @@
             this.comboBoxViewUserAccountType.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxViewUserAccountType.FormattingEnabled = true;
             this.comboBoxViewUserAccountType.Items.AddRange(new object[] {
-            "Adminstrator",
+            "Administrator",
             "Doctor",
             "Standard"});
             this.comboBoxViewUserAccountType.Location = new System.Drawing.Point(47, 207);
@@ -1542,6 +1549,18 @@
             this.buttonsSaveSettings.UseVisualStyleBackColor = true;
             this.buttonsSaveSettings.Click += new System.EventHandler(this.button_applysettings_Click);
             // 
+            // labelCannotChangeAdminAccountType
+            // 
+            this.labelCannotChangeAdminAccountType.AutoSize = true;
+            this.labelCannotChangeAdminAccountType.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelCannotChangeAdminAccountType.ForeColor = System.Drawing.Color.Maroon;
+            this.labelCannotChangeAdminAccountType.Location = new System.Drawing.Point(44, 203);
+            this.labelCannotChangeAdminAccountType.Name = "labelCannotChangeAdminAccountType";
+            this.labelCannotChangeAdminAccountType.Size = new System.Drawing.Size(113, 30);
+            this.labelCannotChangeAdminAccountType.TabIndex = 28;
+            this.labelCannotChangeAdminAccountType.Text = "You cannot modify \r\nthis account type.";
+            this.labelCannotChangeAdminAccountType.Visible = false;
+            // 
             // AppSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -1723,5 +1742,6 @@
         private System.Windows.Forms.Label label42;
         private System.Windows.Forms.Label label36;
         private System.Windows.Forms.Label labelGeneralChangeHomePageApperance;
+        private System.Windows.Forms.Label labelCannotChangeAdminAccountType;
     }
 }

@@ -202,5 +202,29 @@ namespace Dental_Management_System.Properties {
                 this["UpgradeRequired"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string LogoFileLocation {
+            get {
+                return ((string)(this["LogoFileLocation"]));
+            }
+            set {
+                this["LogoFileLocation"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool UseDefaultLogo {
+            get {
+                return ((bool)(this["UseDefaultLogo"]));
+            }
+            set {
+                this["UseDefaultLogo"] = value;
+            }
+        }
     }
 }

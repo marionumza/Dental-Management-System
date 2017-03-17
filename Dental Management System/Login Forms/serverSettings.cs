@@ -29,7 +29,6 @@ namespace Dental_Management_System
             InitializeComponent();
             worker.DoWork += (sender, args) => PerformReading();
             worker.RunWorkerCompleted += (sender, args) => ReadingCompleted();
-
         }
 
         private void serverSettings_Load(object sender, EventArgs e)
@@ -432,7 +431,7 @@ namespace Dental_Management_System
                         mysqlserverlog_textbox.AppendText(Environment.NewLine + "> " + DateTime.Now.ToString("hh:mm:ss : ") +
                         "Done!");
 
-                        command.CommandText = "CREATE TABLE Patient_MedHistory(med_ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY, PID BIGINT NOT NULL, Q1 VARCHAR(255), Q2 VARCHAR(255), ChartType VARCHAR(16),  Note1 TEXT,  Note2 TEXT,  Note3 TEXT,  Note4 TEXT,  Note5 TEXT,  Note6 TEXT,  Note7 TEXT,  Note8 TEXT,  Note9 TEXT,  Note10 TEXT,  Note11 TEXT,  Note12 TEXT,  Note13 TEXT,  Note14 TEXT,  Note15 TEXT,  Note16 TEXT,  Note17 TEXT,  Note18 TEXT,  Note19 TEXT,  Note20 TEXT,  Note21 TEXT,  Note22 TEXT,  Note23 TEXT,  Note24 TEXT,  Note25 TEXT,  Note26 TEXT,  Note27 TEXT,  Note28 TEXT,  Note29 TEXT,  Note30 TEXT,  Note31 TEXT,  Note32 TEXT, FOREIGN KEY fk_pid(PID) REFERENCES Patient_Information(PID) ON UPDATE CASCADE ON DELETE RESTRICT) ENGINE=InnoDB";
+                        command.CommandText = "CREATE TABLE Patient_MedHistory(med_ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY, PID BIGINT NOT NULL, Q1 VARCHAR(6), Q2 VARCHAR(6), Q3 VARCHAR(6), Q4 VARCHAR(6), ChartType VARCHAR(16),  Note1 TEXT,  Note2 TEXT,  Note3 TEXT,  Note4 TEXT,  Note5 TEXT,  Note6 TEXT,  Note7 TEXT,  Note8 TEXT,  Note9 TEXT,  Note10 TEXT,  Note11 TEXT,  Note12 TEXT,  Note13 TEXT,  Note14 TEXT,  Note15 TEXT,  Note16 TEXT,  Note17 TEXT,  Note18 TEXT,  Note19 TEXT,  Note20 TEXT,  Note21 TEXT,  Note22 TEXT,  Note23 TEXT,  Note24 TEXT,  Note25 TEXT,  Note26 TEXT,  Note27 TEXT,  Note28 TEXT,  Note29 TEXT,  Note30 TEXT,  Note31 TEXT,  Note32 TEXT, FOREIGN KEY fk_pid(PID) REFERENCES Patient_Information(PID) ON UPDATE CASCADE ON DELETE RESTRICT) ENGINE=InnoDB";
                         mysqlserverlog_textbox.AppendText(Environment.NewLine + "> " + DateTime.Now.ToString("hh:mm:ss : ") +
                         "Preparing table 'Patient_MedHistory'.... ");
                         command.ExecuteNonQuery();
@@ -469,7 +468,7 @@ namespace Dental_Management_System
                         mysqlserverlog_textbox.AppendText(Environment.NewLine + "> " + DateTime.Now.ToString("hh:mm:ss : ") +
                         "Done!");
 
-                        command.CommandText = "INSERT INTO UserAccounts(Username, Password, AccountType) VALUES ('admin', '1234', 'Administrator')";
+                        command.CommandText = "INSERT INTO UserAccounts(Name, Username, Password, AccountType) VALUES ('YourNameHere', 'admin', '1234', 'Administrator')";
                         command.ExecuteNonQuery();
 
                         connection.Close();
@@ -536,9 +535,6 @@ namespace Dental_Management_System
             mysqlserverlog_textbox.ScrollToCaret();
         }
 
-        private void cbDatabaseSelection_SelectionChangeCommitted(object sender, EventArgs e)
-        {
 
-        }
     }
 }

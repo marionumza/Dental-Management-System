@@ -30,12 +30,12 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainDashboard));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
             this.NavigationMenu = new System.Windows.Forms.Panel();
             this.metroTabControl1 = new MetroFramework.Controls.MetroTabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -89,7 +89,6 @@
             this.label9 = new System.Windows.Forms.Label();
             this.lblAppointmentPatientDataFirstName = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.btnSetAppointment = new MetroFramework.Controls.MetroButton();
             this.panel2 = new System.Windows.Forms.Panel();
             this.button2 = new System.Windows.Forms.Button();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
@@ -192,7 +191,7 @@
             this.btnViewAppointments.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnViewAppointments.ImageKey = "notificationbell_icon.png";
             this.btnViewAppointments.ImageList = this.imageList1;
-            this.btnViewAppointments.Location = new System.Drawing.Point(444, 381);
+            this.btnViewAppointments.Location = new System.Drawing.Point(444, 382);
             this.btnViewAppointments.Name = "btnViewAppointments";
             this.btnViewAppointments.Size = new System.Drawing.Size(220, 56);
             this.btnViewAppointments.TabIndex = 16;
@@ -316,7 +315,7 @@
             // 
             // lblsadface
             // 
-            this.lblsadface.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblsadface.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblsadface.Font = new System.Drawing.Font("Segoe UI", 48F);
             this.lblsadface.ForeColor = System.Drawing.Color.DimGray;
             this.lblsadface.Location = new System.Drawing.Point(286, 87);
@@ -330,7 +329,7 @@
             // 
             // lblDatabaseError
             // 
-            this.lblDatabaseError.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblDatabaseError.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblDatabaseError.Font = new System.Drawing.Font("Segoe UI", 15F);
             this.lblDatabaseError.ForeColor = System.Drawing.Color.DimGray;
             this.lblDatabaseError.Location = new System.Drawing.Point(286, 191);
@@ -345,19 +344,19 @@
             // 
             // dataGridView1
             // 
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle19.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle19;
             this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle20.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle20.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle20.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle20;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
@@ -370,10 +369,10 @@
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.Black;
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle21.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle21.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
+            dataGridViewCellStyle21.SelectionForeColor = System.Drawing.Color.Black;
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle21;
             this.dataGridView1.RowTemplate.DefaultCellStyle.BackColor = System.Drawing.Color.White;
             this.dataGridView1.Size = new System.Drawing.Size(1072, 459);
             this.dataGridView1.TabIndex = 0;
@@ -474,7 +473,6 @@
             this.panel5.Controls.Add(this.groupBox2);
             this.panel5.Controls.Add(this.dataGridView2);
             this.panel5.Controls.Add(this.groupBox1);
-            this.panel5.Controls.Add(this.btnSetAppointment);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel5.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.panel5.Location = new System.Drawing.Point(0, 10);
@@ -485,7 +483,7 @@
             // btnRefreshAppointmentsList
             // 
             this.btnRefreshAppointmentsList.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnRefreshAppointmentsList.Location = new System.Drawing.Point(379, 461);
+            this.btnRefreshAppointmentsList.Location = new System.Drawing.Point(103, 461);
             this.btnRefreshAppointmentsList.Name = "btnRefreshAppointmentsList";
             this.btnRefreshAppointmentsList.Size = new System.Drawing.Size(104, 23);
             this.btnRefreshAppointmentsList.TabIndex = 9;
@@ -512,7 +510,7 @@
             // 
             this.btnDeleteSchedule.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnDeleteSchedule.Enabled = false;
-            this.btnDeleteSchedule.Location = new System.Drawing.Point(178, 461);
+            this.btnDeleteSchedule.Location = new System.Drawing.Point(12, 461);
             this.btnDeleteSchedule.Name = "btnDeleteSchedule";
             this.btnDeleteSchedule.Size = new System.Drawing.Size(85, 23);
             this.btnDeleteSchedule.TabIndex = 7;
@@ -523,7 +521,7 @@
             // btnSendEmail
             // 
             this.btnSendEmail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnSendEmail.Location = new System.Drawing.Point(269, 461);
+            this.btnSendEmail.Location = new System.Drawing.Point(212, 461);
             this.btnSendEmail.Name = "btnSendEmail";
             this.btnSendEmail.Size = new System.Drawing.Size(104, 23);
             this.btnSendEmail.TabIndex = 3;
@@ -634,19 +632,19 @@
             // 
             // dataGridView2
             // 
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.dataGridView2.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle22.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.dataGridView2.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle22;
             this.dataGridView2.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView2.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridView2.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Segoe UI", 10F);
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle23.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle23.Font = new System.Drawing.Font("Segoe UI", 10F);
+            dataGridViewCellStyle23.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle23.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle23.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle23;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
@@ -658,10 +656,10 @@
             this.dataGridView2.Location = new System.Drawing.Point(3, 6);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle12.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.Black;
-            this.dataGridView2.RowsDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle24.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle24.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
+            dataGridViewCellStyle24.SelectionForeColor = System.Drawing.Color.Black;
+            this.dataGridView2.RowsDefaultCellStyle = dataGridViewCellStyle24;
             this.dataGridView2.RowTemplate.DefaultCellStyle.BackColor = System.Drawing.Color.White;
             this.dataGridView2.Size = new System.Drawing.Size(522, 432);
             this.dataGridView2.TabIndex = 6;
@@ -746,17 +744,6 @@
             this.label7.Size = new System.Drawing.Size(85, 19);
             this.label7.TabIndex = 0;
             this.label7.Text = "First Name:";
-            // 
-            // btnSetAppointment
-            // 
-            this.btnSetAppointment.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnSetAppointment.Location = new System.Drawing.Point(3, 461);
-            this.btnSetAppointment.Name = "btnSetAppointment";
-            this.btnSetAppointment.Size = new System.Drawing.Size(169, 23);
-            this.btnSetAppointment.TabIndex = 4;
-            this.btnSetAppointment.Text = "Set appointment";
-            this.btnSetAppointment.UseSelectable = true;
-            this.btnSetAppointment.Click += new System.EventHandler(this.btnSetAppointment_Click);
             // 
             // panel2
             // 
@@ -1049,7 +1036,6 @@
         private System.Windows.Forms.Timer backgroundSyncTimeOut;
         public System.Windows.Forms.Label lblDatabaseError;
         private MetroFramework.Controls.MetroButton btnSendEmail;
-        private MetroFramework.Controls.MetroButton btnSetAppointment;
         private System.Windows.Forms.TextBox txtboxSearch;
         private System.Windows.Forms.Label label1;
         public System.Windows.Forms.Label lblsadface;

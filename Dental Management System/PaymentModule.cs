@@ -191,6 +191,11 @@ namespace Dental_Management_System
                 return;
             }
 
+            if (radioButtonSCPWD.Checked == true)
+            {
+
+            }
+
             if (txtboxAdditionalFee.Text.Length > 1)
             {
                 using (MySqlConnection connection = new MySqlConnection(databaseConnectionLink.networkLink))

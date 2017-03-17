@@ -1,12 +1,12 @@
 # Dental-Management-System
 
-This is a College project.
+This is a College project for Software Engineering.
 
 Note: This is not intended to be used in a commercial environment unless stated by the developer (Dasutein). You may contribute to the source code as needed. For general bug fixes or new features, please switch to the 'general-fixes' branch and make your changes there. 
 
 To login to the system, default username = **admin** and password = **1234**
 
-Internal current software version: **0.0.2.88** as of ***March 16, 2017***
+Internal current software version: **0.0.2.90** as of ***March 17, 2017***
 
 For this software to work properly, you need the following...
 
@@ -33,8 +33,6 @@ For this software to work properly, you need the following...
 - MySQL
 - MySqlBackup.NET
 - Mimekit
-
-
 
 ###### INTERNAL SOFTWARE VERSION (FROM VISUAL STUDIO GIT HISTORY)
 

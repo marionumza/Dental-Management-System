@@ -139,9 +139,6 @@
   <data name="add_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\add_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="DMS_Icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DMS Icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="payment_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\payment_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -177,5 +174,14 @@
   </data>
   <data name="email_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\email-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DMS_Desktop_Icon_Windows_256x256" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DMS_Desktop Icon_Windows_256x256.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="dms_logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\dms_logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="notificationbell_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\notificationbell_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

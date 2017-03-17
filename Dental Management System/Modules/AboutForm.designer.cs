@@ -79,7 +79,7 @@
             // 
             // logoPictureBox
             // 
-            this.logoPictureBox.Image = global::Dental_Management_System.Properties.Resources.DMS_Icon;
+
             this.logoPictureBox.Location = new System.Drawing.Point(3, 3);
             this.logoPictureBox.Name = "logoPictureBox";
             this.tableLayoutPanel.SetRowSpan(this.logoPictureBox, 6);

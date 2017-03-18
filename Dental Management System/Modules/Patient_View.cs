@@ -36,6 +36,7 @@ namespace Dental_Management_System
             groupBox7.Enabled = false;
             groupBox8.Enabled = false;
             DisableTextBoxInChartNotes();
+            StartLoadingDoctorList();
 
             // DESIGN
             this.Text = "Patient Medical Profile for " + firstname_readonly.Text + " " + lastname_readonly.Text;
@@ -74,6 +75,40 @@ namespace Dental_Management_System
 
             if (UserAccountTypeAdmin == true)
             {
+            }
+        }
+
+        void StartLoadingDoctorList()
+        {
+            DataTable listofservices = new DataTable();
+
+            using (MySqlConnection connection = new MySqlConnection(databaseConnectionLink.networkLink))
+            {
+                try
+                {
+
+                    connection.Open();
+                    MySqlCommand command = new MySqlCommand();
+                    command.Connection = connection;
+                    command.CommandText = "SELECT ServiceName FROM dental_services";
+
+                    MySqlDataAdapter adapter = new MySqlDataAdapter(command);
+                    {
+                        adapter.Fill(listofservices);
+                    }
+
+
+                }
+
+                catch
+                {
+
+                }
+
+                foreach (DataRow adapter in listofservices.Rows)
+                {
+                    comboBox_ServiceType.Items.Add(adapter[0].ToString());
+                }
             }
         }
 
@@ -221,7 +256,7 @@ namespace Dental_Management_System
                     connection.Open();
 
                     MySqlCommand command3 = connection.CreateCommand();
-                    command3.CommandText = "SELECT Service, ServiceFee, MiscFee, Discount, VAT, Method, Total, LastVisit FROM Patient_Payment WHERE PID=" + lbl_IDnum.Text;
+                    command3.CommandText = "SELECT Service, ServiceFee, MiscFee, Discount, VAT, Method, Total, LastVisit, SeniorTIN, PWDID FROM Patient_Payment WHERE PID=" + lbl_IDnum.Text;
                     MySqlDataReader reader3 = command3.ExecuteReader();
                     while (reader3.Read())
                     {
@@ -232,6 +267,8 @@ namespace Dental_Management_System
                         lblVAT.Text = (reader3["VAT"].ToString());
                         lblTotalAmount.Text = (reader3["Total"].ToString());
                         label55.Text = (reader3["LastVisit"].ToString());
+                        label69.Text = (reader3["SeniorTIN"].ToString());
+                        label73.Text = (reader3["PWDID"].ToString());
     
                     }
                     connection.Close();
@@ -1030,10 +1067,10 @@ namespace Dental_Management_System
                 Paragraph TotalAmount = new Paragraph("Total Amount:............. " + lblTotalAmount.Text, FontFactory.GetFont(FontFactory.HELVETICA, 9, iTextSharp.text.Font.BOLD));
                 TotalAmount.Alignment = Element.ALIGN_LEFT;
 
-                Paragraph SeniorID = new Paragraph("Senior Citizen TIN: ", FontFactory.GetFont(FontFactory.HELVETICA, 9, iTextSharp.text.Font.NORMAL));
+                Paragraph SeniorID = new Paragraph("Senior Citizen TIN: " + label69.Text, FontFactory.GetFont(FontFactory.HELVETICA, 9, iTextSharp.text.Font.NORMAL));
                 SeniorID.Alignment = Element.ALIGN_LEFT;
 
-                Paragraph PWDID = new Paragraph("OSCA/PWD ID: ", FontFactory.GetFont(FontFactory.HELVETICA, 9, iTextSharp.text.Font.NORMAL));
+                Paragraph PWDID = new Paragraph("OSCA/PWD ID: " + label73.Text, FontFactory.GetFont(FontFactory.HELVETICA, 9, iTextSharp.text.Font.NORMAL));
                 PWDID.Alignment = Element.ALIGN_LEFT;
 
                 Paragraph TINNUMBER = new Paragraph("TIN #: " + Properties.PaymentSettings.Default["TINnumber"].ToString() + " | " + "BIR: " + Properties.PaymentSettings.Default["BIRnumber"].ToString(), FontFactory.GetFont(FontFactory.HELVETICA, 9, iTextSharp.text.Font.NORMAL));

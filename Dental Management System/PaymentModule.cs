@@ -8,6 +8,12 @@ using System.Text;
 using System.Windows.Forms;
 using MySql;
 using MySql.Data.MySqlClient;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+using itextsharp.pdfa.iTextSharp;
+using MetroFramework.Forms;
+using MetroFramework;
+using System.IO;
 
 namespace Dental_Management_System
 {
@@ -146,6 +152,9 @@ namespace Dental_Management_System
 
         private void comboBoxServiceList_SelectedIndexChanged(object sender, EventArgs e)
         {
+
+            labelService.Text = comboBoxServiceList.Text;
+
             using (MySqlConnection connection = new MySqlConnection(databaseConnectionLink.networkLink))
             {
                 try
@@ -214,8 +223,35 @@ namespace Dental_Management_System
                         double div = multiply / 100;
                         double getNetPrice = getSumTotal + div;
 
-                        labelVAT.Text = div.ToString();
+                        labelVAT.Text = div.ToString("0.00");
                         labelTotalAmount.Text = getNetPrice.ToString("0.00");
+
+                        /* FORMULA FOR SENIOR/PWD DISCOUNT
+                         * 
+                         * Senior Discount is equals to 0.20
+                         * Take NETPRICE then MULTIPLY BY 0.20
+                         * Example: P800 X 0.20 = 160
+                         * 
+                         * 160 is your discount. 
+                         * 
+                         * Take the NETPRICE (800) then minus from your discounted price (160).
+                         * Total should be (640)
+                         * 
+                         * */
+
+                        string totalcost = null;
+
+                        if (radioButtonSCPWD.Checked == true)
+                        {
+                            double seniordiscount = getNetPrice * 0.20;
+                            double seniordiscount1 = seniordiscount;
+                            double finalnetprice = getNetPrice - seniordiscount1;
+                            totalcost = labelTotalAmount.Text = finalnetprice.ToString("0.00");
+                        }
+                        else if (radioButtonSCPWD.Checked == false)
+                        {
+                            totalcost = getNetPrice.ToString("0.00");
+                        }
 
                         connection.Open();
                         MySqlCommand updateCommand = new MySqlCommand();
@@ -228,11 +264,10 @@ namespace Dental_Management_System
                         updateCommand.Parameters.AddWithValue("@Discount", String.Format("{0}", label13.Text));
                         updateCommand.Parameters.AddWithValue("@VAT", String.Format("{0}", div.ToString("0.00")));
                         updateCommand.Parameters.AddWithValue("@Method", String.Format("{0}", comboBox2.Text));
-                        updateCommand.Parameters.AddWithValue("@Total", String.Format("{0}", getNetPrice.ToString("0.00")));
+                        updateCommand.Parameters.AddWithValue("@Total", String.Format("{0}", totalcost));
                         updateCommand.Parameters.AddWithValue("@LastVisit", String.Format("{0}", DateTime.Now.ToString("MM/dd/yyyy")));
                         updateCommand.Parameters.AddWithValue("@SeniorTIN", String.Format("{0}", txtboxSeniorTIN.Text));
                         updateCommand.Parameters.AddWithValue("@PWDID", String.Format("{0}", txtboxPWDNumber.Text));
-
                         updateCommand.ExecuteNonQuery();
                         updateCommand.Parameters.Clear();
                         connection.Close();
@@ -260,8 +295,37 @@ namespace Dental_Management_System
                         double vatprice = divide;
                         double netprice = Convert.ToDouble(labelServiceFee.Text) + vatprice;
 
-                        labelVAT.Text = divide.ToString();
+                        labelVAT.Text = divide.ToString("0.00");
                         labelTotalAmount.Text = netprice.ToString("0.00");
+
+
+                        /* FORMULA FOR SENIOR/PWD DISCOUNT
+                         * 
+                         * Senior Discount is equals to 0.20
+                         * Take NETPRICE then MULTIPLY BY 0.20
+                         * Example: P800 X 0.20 = 160
+                         * 
+                         * 160 is your discount. 
+                         * 
+                         * Take the NETPRICE (800) then minus from your discounted price (160).
+                         * Total should be (640)
+                         * 
+                         * */
+
+                        string totalcost = null;
+
+                        if (radioButtonSCPWD.Checked == true)
+                        {
+
+                            double seniordiscount = netprice * 0.20;
+                            double seniordiscount1 = seniordiscount;
+                            double finalnetprice = netprice - seniordiscount1;
+                            totalcost = labelTotalAmount.Text = finalnetprice.ToString("0.00");
+                        }
+                        else if (radioButtonSCPWD.Checked == false)
+                        {
+                            totalcost = netprice.ToString("0.00");
+                        }
 
                         connection.Open();
                         MySqlCommand updateCommand = new MySqlCommand();
@@ -274,7 +338,7 @@ namespace Dental_Management_System
                         updateCommand.Parameters.AddWithValue("@Discount", String.Format("{0}", label13.Text));
                         updateCommand.Parameters.AddWithValue("@VAT", String.Format("{0}", divide.ToString("0.00")));
                         updateCommand.Parameters.AddWithValue("@Method", String.Format("{0}", comboBox2.Text));
-                        updateCommand.Parameters.AddWithValue("@Total", String.Format("{0}", netprice.ToString("0.00")));
+                        updateCommand.Parameters.AddWithValue("@Total", String.Format("{0}", totalcost));
                         updateCommand.Parameters.AddWithValue("@LastVisit", String.Format("{0}", DateTime.Now.ToString("MM/dd/yyyy")));
                         updateCommand.Parameters.AddWithValue("@SeniorTIN", String.Format("{0}", txtboxSeniorTIN.Text));
                         updateCommand.Parameters.AddWithValue("@PWDID", String.Format("{0}", txtboxPWDNumber.Text));
@@ -288,6 +352,8 @@ namespace Dental_Management_System
                         MessageBox.Show(exa.Message);
                     }
                 }
+
+                buttonExport.Enabled = true;
             }
 
 
@@ -344,6 +410,163 @@ namespace Dental_Management_System
             && !char.IsDigit(e.KeyChar))
             {
                 e.Handled = true;
+            }
+        }
+
+        private void buttonExport_Click(object sender, EventArgs e)
+        {
+
+            string saveFileLocation = string.Empty;
+
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.FileName = labelPatientID.Text + "-" + "Receipt" + "-" + labelPatientName.Text;
+            saveFileDialog.Filter = "PDF (*.pdf)|*.pdf|All files (*.*)|*.*";
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+
+                if (!string.IsNullOrEmpty(saveFileDialog.FileName))
+                {
+                    saveFileLocation = saveFileDialog.FileName;
+                }
+
+            }
+            else
+            {
+                if (!string.IsNullOrEmpty(saveFileDialog.FileName))
+                    return;
+            }
+
+            try
+            {
+
+                Document doc = new Document(iTextSharp.text.PageSize.A4);
+                PdfWriter write = PdfWriter.GetInstance(doc, new FileStream(saveFileLocation, FileMode.Create));
+
+                doc.Open();
+
+                // BASIC INFORMATION FOR CLINIC
+
+                Paragraph ClinicName = new Paragraph(Properties.Settings.Default["DocOfficeName"].ToString(), FontFactory.GetFont(FontFactory.HELVETICA, 12, iTextSharp.text.Font.BOLD));
+                ClinicName.Alignment = Element.ALIGN_LEFT;
+
+                Paragraph ClinicAddress = new Paragraph("Address: " + Properties.Settings.Default["DocAddress"].ToString(), FontFactory.GetFont(FontFactory.HELVETICA, 8, iTextSharp.text.Font.NORMAL));
+                ClinicAddress.Alignment = Element.ALIGN_LEFT;
+
+                Paragraph ClinicTelephoneNumber = new Paragraph("Tel no. " + Properties.Settings.Default["DocNumber"].ToString(), FontFactory.GetFont(FontFactory.HELVETICA, 8, iTextSharp.text.Font.NORMAL));
+                ClinicTelephoneNumber.Alignment = Element.ALIGN_LEFT;
+
+                Paragraph OfficialHeader = new Paragraph("OFFICIAL RECEIPT - CUSTOMER'S COPY", FontFactory.GetFont(FontFactory.HELVETICA, 10, iTextSharp.text.Font.BOLD));
+                OfficialHeader.Alignment = Element.ALIGN_LEFT;
+
+                Paragraph OfficialHeader1 = new Paragraph("OFFICIAL RECEIPT - DOCTOR'S COPY", FontFactory.GetFont(FontFactory.HELVETICA, 10, iTextSharp.text.Font.BOLD));
+                OfficialHeader1.Alignment = Element.ALIGN_LEFT;
+
+                // BREAK DOWN FEE
+
+                Paragraph ServiceType = new Paragraph("Service:......................... " + labelService.Text, FontFactory.GetFont(FontFactory.HELVETICA, 9, iTextSharp.text.Font.NORMAL));
+                ServiceType.Alignment = Element.ALIGN_LEFT;
+
+                Paragraph ServiceFee = new Paragraph("Service fee:................... " + labelServiceFee.Text, FontFactory.GetFont(FontFactory.HELVETICA, 9, iTextSharp.text.Font.NORMAL));
+                ServiceFee.Alignment = Element.ALIGN_LEFT;
+
+                Paragraph MiscFee = new Paragraph("Additional fees:.............. " + labelAdditionalFee.Text, FontFactory.GetFont(FontFactory.HELVETICA, 9, iTextSharp.text.Font.NORMAL));
+                MiscFee.Alignment = Element.ALIGN_LEFT;
+
+                Paragraph Discount = new Paragraph("Discount:....................... " + label13.Text, FontFactory.GetFont(FontFactory.HELVETICA, 9, iTextSharp.text.Font.NORMAL));
+                Discount.Alignment = Element.ALIGN_LEFT;
+
+                Paragraph VAT = new Paragraph("VAT............................... " + labelVAT.Text, FontFactory.GetFont(FontFactory.HELVETICA, 9, iTextSharp.text.Font.NORMAL));
+                VAT.Alignment = Element.ALIGN_LEFT;
+
+                Paragraph TotalAmount = new Paragraph("Total Amount:............. " + labelTotalAmount.Text, FontFactory.GetFont(FontFactory.HELVETICA, 9, iTextSharp.text.Font.BOLD));
+                TotalAmount.Alignment = Element.ALIGN_LEFT;
+
+                Paragraph SeniorID = new Paragraph("Senior Citizen TIN: " + txtboxSeniorTIN.Text, FontFactory.GetFont(FontFactory.HELVETICA, 9, iTextSharp.text.Font.NORMAL));
+                SeniorID.Alignment = Element.ALIGN_LEFT;
+
+                Paragraph PWDID = new Paragraph("OSCA/PWD ID: " + txtboxPWDNumber.Text, FontFactory.GetFont(FontFactory.HELVETICA, 9, iTextSharp.text.Font.NORMAL));
+                PWDID.Alignment = Element.ALIGN_LEFT;
+
+                Paragraph TINNUMBER = new Paragraph("TIN #: " + Properties.PaymentSettings.Default["TINnumber"].ToString() + " | " + "BIR: " + Properties.PaymentSettings.Default["BIRnumber"].ToString(), FontFactory.GetFont(FontFactory.HELVETICA, 9, iTextSharp.text.Font.NORMAL));
+                TINNUMBER.Alignment = Element.ALIGN_LEFT;
+
+                Paragraph DATEISSUED = new Paragraph("Date Issued: " + Properties.PaymentSettings.Default["TAXpermitIssueDate"].ToString() + " | " + "Expiration: " + Properties.PaymentSettings.Default["TAXpermitExpireDate"].ToString(), FontFactory.GetFont(FontFactory.HELVETICA, 9, iTextSharp.text.Font.NORMAL));
+                DATEISSUED.Alignment = Element.ALIGN_LEFT;
+
+                Paragraph PRINTDATE = new Paragraph("Receipt Print Date: " + DateTime.Now.ToString("MM/dd/yyyy"), FontFactory.GetFont(FontFactory.HELVETICA, 9, iTextSharp.text.Font.NORMAL));
+                PRINTDATE.Alignment = Element.ALIGN_LEFT;
+
+                Paragraph DOCSIGN = new Paragraph("SIGNED BY (Cashier/Authorized Representative)", FontFactory.GetFont(FontFactory.HELVETICA, 9, iTextSharp.text.Font.NORMAL));
+                DOCSIGN.Alignment = Element.ALIGN_LEFT;
+
+                Paragraph DISCLAIMER = new Paragraph("THIS DOCUMENT IS NOT VALID FOR CLAIMING INPUT TAXES" + "\n" + "THIS OFFICIAL RECEIPT SHALL BE VALID FOR FIVE(5) YEARS FROM THE DATE OF PRINTING", FontFactory.GetFont(FontFactory.HELVETICA, 5, iTextSharp.text.Font.NORMAL));
+                DISCLAIMER.Alignment = Element.ALIGN_CENTER;
+
+                Paragraph CUTHERE = new Paragraph("-------------------------------------------------------------------------------CUT HERE--------------------------------------------------------------------", FontFactory.GetFont(FontFactory.HELVETICA, 9, iTextSharp.text.Font.NORMAL));
+                CUTHERE.Alignment = Element.ALIGN_LEFT;
+
+                // CUSTOMER'S COPY
+                doc.Add(ClinicName);
+                doc.Add(ClinicAddress);
+                doc.Add(ClinicTelephoneNumber);
+                doc.Add(new Paragraph("\n"));
+                doc.Add(OfficialHeader);
+                doc.Add(new Paragraph("\n"));
+                doc.Add(ServiceType);
+                doc.Add(ServiceFee);
+                doc.Add(MiscFee);
+                doc.Add(Discount);
+                doc.Add(VAT);
+                doc.Add(TotalAmount);
+                doc.Add(new Paragraph("\n"));
+                doc.Add(SeniorID);
+                doc.Add(PWDID);
+                doc.Add(new Paragraph("\n"));
+                doc.Add(TINNUMBER);
+                doc.Add(DATEISSUED);
+                doc.Add(PRINTDATE);
+                doc.Add(new Paragraph("\n"));
+                doc.Add(DOCSIGN);
+                doc.Add(new Paragraph("\n"));
+                doc.Add(new Paragraph("\n"));
+                doc.Add(DISCLAIMER);
+                doc.Add(new Paragraph("\n"));
+                doc.Add(CUTHERE);
+                // DOCTOR'S COPY
+                doc.Add(new Paragraph("\n"));
+                doc.Add(ClinicName);
+                doc.Add(ClinicAddress);
+                doc.Add(ClinicTelephoneNumber);
+                doc.Add(new Paragraph("\n"));
+                doc.Add(OfficialHeader1);
+                doc.Add(new Paragraph("\n"));
+                doc.Add(ServiceType);
+                doc.Add(ServiceFee);
+                doc.Add(MiscFee);
+                doc.Add(Discount);
+                doc.Add(VAT);
+                doc.Add(TotalAmount);
+                doc.Add(new Paragraph("\n"));
+                doc.Add(SeniorID);
+                doc.Add(PWDID);
+                doc.Add(new Paragraph("\n"));
+                doc.Add(TINNUMBER);
+                doc.Add(DATEISSUED);
+                doc.Add(PRINTDATE);
+                doc.Add(new Paragraph("\n"));
+                doc.Add(DOCSIGN);
+                doc.Add(new Paragraph("\n"));
+                doc.Add(new Paragraph("\n"));
+                doc.Add(DISCLAIMER);
+
+                doc.Close();
+
+                MetroMessageBox.Show(this, "Your PDF has been saved in" + "\n" + saveFileDialog.FileName, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception exception)
+            {
+                MetroMessageBox.Show(this, exception.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Stop);
             }
         }
     }

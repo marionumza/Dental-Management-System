@@ -215,7 +215,7 @@
             this.btn_Configure.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btn_Configure.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_Configure.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_Configure.ForeColor = System.Drawing.SystemColors.InactiveCaption;
+            this.btn_Configure.ForeColor = System.Drawing.Color.Black;
             this.btn_Configure.Location = new System.Drawing.Point(187, 285);
             this.btn_Configure.Name = "btn_Configure";
             this.btn_Configure.Size = new System.Drawing.Size(93, 37);

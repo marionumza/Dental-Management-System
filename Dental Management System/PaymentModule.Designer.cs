@@ -255,7 +255,7 @@
             this.button2.Location = new System.Drawing.Point(297, 13);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(147, 23);
-            this.button2.TabIndex = 1;
+            this.button2.TabIndex = 9;
             this.button2.Text = "Process transaction";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
@@ -266,7 +266,7 @@
             this.button1.Location = new System.Drawing.Point(450, 13);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(105, 23);
-            this.button1.TabIndex = 0;
+            this.button1.TabIndex = 10;
             this.button1.Text = "Export Receipt";
             this.button1.UseVisualStyleBackColor = true;
             // 
@@ -282,10 +282,12 @@
             // txtboxPatientIDNumber
             // 
             this.txtboxPatientIDNumber.Location = new System.Drawing.Point(134, 20);
+            this.txtboxPatientIDNumber.MaxLength = 6;
             this.txtboxPatientIDNumber.Name = "txtboxPatientIDNumber";
             this.txtboxPatientIDNumber.Size = new System.Drawing.Size(149, 23);
-            this.txtboxPatientIDNumber.TabIndex = 3;
+            this.txtboxPatientIDNumber.TabIndex = 1;
             this.txtboxPatientIDNumber.TextChanged += new System.EventHandler(this.txtboxPatientIDNumber_TextChanged);
+            this.txtboxPatientIDNumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtboxPatientIDNumber_KeyPress);
             // 
             // label6
             // 
@@ -303,7 +305,7 @@
             this.comboBoxServiceList.Location = new System.Drawing.Point(134, 58);
             this.comboBoxServiceList.Name = "comboBoxServiceList";
             this.comboBoxServiceList.Size = new System.Drawing.Size(121, 23);
-            this.comboBoxServiceList.TabIndex = 5;
+            this.comboBoxServiceList.TabIndex = 2;
             this.comboBoxServiceList.SelectedIndexChanged += new System.EventHandler(this.comboBoxServiceList_SelectedIndexChanged);
             // 
             // label8
@@ -322,7 +324,7 @@
             this.radioButtonNone.Location = new System.Drawing.Point(134, 183);
             this.radioButtonNone.Name = "radioButtonNone";
             this.radioButtonNone.Size = new System.Drawing.Size(54, 19);
-            this.radioButtonNone.TabIndex = 9;
+            this.radioButtonNone.TabIndex = 5;
             this.radioButtonNone.TabStop = true;
             this.radioButtonNone.Text = "None";
             this.radioButtonNone.UseVisualStyleBackColor = true;
@@ -334,7 +336,7 @@
             this.radioButtonSCPWD.Location = new System.Drawing.Point(201, 183);
             this.radioButtonSCPWD.Name = "radioButtonSCPWD";
             this.radioButtonSCPWD.Size = new System.Drawing.Size(70, 19);
-            this.radioButtonSCPWD.TabIndex = 10;
+            this.radioButtonSCPWD.TabIndex = 6;
             this.radioButtonSCPWD.Text = "SC/PWD";
             this.radioButtonSCPWD.UseVisualStyleBackColor = true;
             this.radioButtonSCPWD.CheckedChanged += new System.EventHandler(this.radioButtonSCPWD_CheckedChanged);
@@ -343,9 +345,11 @@
             // 
             this.txtboxSeniorTIN.Enabled = false;
             this.txtboxSeniorTIN.Location = new System.Drawing.Point(135, 217);
+            this.txtboxSeniorTIN.MaxLength = 24;
             this.txtboxSeniorTIN.Name = "txtboxSeniorTIN";
             this.txtboxSeniorTIN.Size = new System.Drawing.Size(149, 23);
-            this.txtboxSeniorTIN.TabIndex = 12;
+            this.txtboxSeniorTIN.TabIndex = 7;
+            this.txtboxSeniorTIN.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtboxSeniorTIN_KeyPress);
             // 
             // lblSeniorCitizenTIN
             // 
@@ -361,9 +365,11 @@
             // 
             this.txtboxPWDNumber.Enabled = false;
             this.txtboxPWDNumber.Location = new System.Drawing.Point(134, 255);
+            this.txtboxPWDNumber.MaxLength = 24;
             this.txtboxPWDNumber.Name = "txtboxPWDNumber";
             this.txtboxPWDNumber.Size = new System.Drawing.Size(149, 23);
-            this.txtboxPWDNumber.TabIndex = 14;
+            this.txtboxPWDNumber.TabIndex = 8;
+            this.txtboxPWDNumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtboxPWDNumber_KeyPress);
             // 
             // lblOSCAPWDID
             // 
@@ -381,8 +387,9 @@
             this.txtboxAdditionalFee.Location = new System.Drawing.Point(134, 99);
             this.txtboxAdditionalFee.Name = "txtboxAdditionalFee";
             this.txtboxAdditionalFee.Size = new System.Drawing.Size(121, 23);
-            this.txtboxAdditionalFee.TabIndex = 16;
+            this.txtboxAdditionalFee.TabIndex = 3;
             this.txtboxAdditionalFee.TextChanged += new System.EventHandler(this.txtboxAdditionalFee_TextChanged);
+            this.txtboxAdditionalFee.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtboxAdditionalFee_KeyPress);
             // 
             // label3
             // 
@@ -431,7 +438,7 @@
             this.comboBox2.Location = new System.Drawing.Point(134, 143);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(121, 23);
-            this.comboBox2.TabIndex = 7;
+            this.comboBox2.TabIndex = 4;
             // 
             // PaymentModule
             // 

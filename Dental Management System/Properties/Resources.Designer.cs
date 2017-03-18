@@ -143,6 +143,16 @@ namespace Dental_Management_System.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap error_filemissing {
+            get {
+                object obj = ResourceManager.GetObject("error_filemissing", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap flat_padlock_icon {
             get {
                 object obj = ResourceManager.GetObject("flat_padlock_icon", resourceCulture);

@@ -30,6 +30,7 @@ namespace Dental_Management_System
                 lblOSCAPWDID.Enabled = false;
                 txtboxSeniorTIN.Enabled = false;
                 txtboxPWDNumber.Enabled = false;
+                label13.Text = "None";
             }
             else
             {
@@ -48,6 +49,7 @@ namespace Dental_Management_System
                 lblOSCAPWDID.Enabled = true;
                 txtboxSeniorTIN.Enabled = true;
                 txtboxPWDNumber.Enabled = true;
+                label13.Text = "SC/PWD";
             }
             else
             {
@@ -219,7 +221,7 @@ namespace Dental_Management_System
                         MySqlCommand updateCommand = new MySqlCommand();
                         updateCommand.CommandTimeout = 22000;
                         updateCommand.Connection = connection;
-                        updateCommand.CommandText = "UPDATE Patient_Payment SET Service=@Service, ServiceFee=@ServiceFee, MiscFee=@MiscFee, Discount=@Discount, VAT=@VAT, Method=@Method, Total=@Total, LastVisit=@LastVisit WHERE PID=" + labelPatientID.Text;
+                        updateCommand.CommandText = "UPDATE Patient_Payment SET Service=@Service, ServiceFee=@ServiceFee, MiscFee=@MiscFee, Discount=@Discount, VAT=@VAT, Method=@Method, Total=@Total, LastVisit=@LastVisit, SeniorTIN=@SeniorTIN, PWDID=@PWDID WHERE PID=" + labelPatientID.Text;
                         updateCommand.Parameters.AddWithValue("@Service", String.Format("{0}", comboBoxServiceList.Text));
                         updateCommand.Parameters.AddWithValue("@ServiceFee", String.Format("{0}", servicefee1.ToString("0.00")));
                         updateCommand.Parameters.AddWithValue("@MiscFee", String.Format("{0}", addtionalfee.ToString("0.00")));
@@ -228,6 +230,8 @@ namespace Dental_Management_System
                         updateCommand.Parameters.AddWithValue("@Method", String.Format("{0}", comboBox2.Text));
                         updateCommand.Parameters.AddWithValue("@Total", String.Format("{0}", getNetPrice.ToString("0.00")));
                         updateCommand.Parameters.AddWithValue("@LastVisit", String.Format("{0}", DateTime.Now.ToString("MM/dd/yyyy")));
+                        updateCommand.Parameters.AddWithValue("@SeniorTIN", String.Format("{0}", txtboxSeniorTIN.Text));
+                        updateCommand.Parameters.AddWithValue("@PWDID", String.Format("{0}", txtboxPWDNumber.Text));
 
                         updateCommand.ExecuteNonQuery();
                         updateCommand.Parameters.Clear();
@@ -263,7 +267,7 @@ namespace Dental_Management_System
                         MySqlCommand updateCommand = new MySqlCommand();
                         updateCommand.CommandTimeout = 22000;
                         updateCommand.Connection = connection;
-                        updateCommand.CommandText = "UPDATE Patient_Payment SET Service=@Service, ServiceFee=@ServiceFee, MiscFee=@MiscFee, Discount=@Discount, VAT=@VAT, Method=@Method, Total=@Total, LastVisit=@LastVisit WHERE PID=" + labelPatientID.Text;
+                        updateCommand.CommandText = "UPDATE Patient_Payment SET Service=@Service, ServiceFee=@ServiceFee, MiscFee=@MiscFee, Discount=@Discount, VAT=@VAT, Method=@Method, Total=@Total, LastVisit=@LastVisit, SeniorTIN=@SeniorTIN, PWDID=@PWDID WHERE PID=" + labelPatientID.Text;
                         updateCommand.Parameters.AddWithValue("@Service", String.Format("{0}", comboBoxServiceList.Text));
                         updateCommand.Parameters.AddWithValue("@ServiceFee", String.Format("{0}", servicefee.ToString("0.00")));
                         updateCommand.Parameters.AddWithValue("@MiscFee", String.Format("{0}", empty));
@@ -272,6 +276,8 @@ namespace Dental_Management_System
                         updateCommand.Parameters.AddWithValue("@Method", String.Format("{0}", comboBox2.Text));
                         updateCommand.Parameters.AddWithValue("@Total", String.Format("{0}", netprice.ToString("0.00")));
                         updateCommand.Parameters.AddWithValue("@LastVisit", String.Format("{0}", DateTime.Now.ToString("MM/dd/yyyy")));
+                        updateCommand.Parameters.AddWithValue("@SeniorTIN", String.Format("{0}", txtboxSeniorTIN.Text));
+                        updateCommand.Parameters.AddWithValue("@PWDID", String.Format("{0}", txtboxPWDNumber.Text));
 
                         updateCommand.ExecuteNonQuery();
                         updateCommand.Parameters.Clear();
@@ -303,6 +309,42 @@ namespace Dental_Management_System
                 txtboxAdditionalFee.Enabled = false;
             }
 
+        }
+
+        private void txtboxPatientIDNumber_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar)
+            && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtboxAdditionalFee_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar)
+            && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtboxSeniorTIN_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar)
+            && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtboxPWDNumber_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar)
+            && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
     }
 

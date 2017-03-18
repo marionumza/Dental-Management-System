@@ -7,6 +7,7 @@ namespace Dental_Management_System
 {
     static class Program
     {
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -37,11 +38,9 @@ namespace Dental_Management_System
                 Properties.Settings.Default.Save();
             }
 
-
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(true);
-           // Application.Run(new AppSettings());
             
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(true);        
             Application.Run(new Login());
 
             if (result == DialogResult.OK)

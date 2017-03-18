@@ -789,6 +789,11 @@ namespace Dental_Management_System
                     comboBoxViewUserAccountType.Visible = false;
                     labelCannotChangeAdminAccountType.Visible = true;
                 }
+                else
+                {
+                    comboBoxViewUserAccountType.Visible = true;
+                    labelCannotChangeAdminAccountType.Visible = false;
+                }
 
                 if (dataGridView1.SelectedCells[0].Value.ToString() == String.Empty)
                 {
@@ -799,7 +804,7 @@ namespace Dental_Management_System
                     connection.Open();
                     MySqlCommand command = new MySqlCommand();
                     command.Connection = connection;
-                    command.CommandText = "SELECT UserAccounts.ID, UserAccounts.Name, UserAccounts.UserName, UserAccounts.DoctorName FROM UserAccounts WHERE ID=" + dataGridView1.SelectedCells[0].Value.ToString();
+                    command.CommandText = "SELECT UserAccounts.ID, UserAccounts.Name, UserAccounts.UserName, UserAccounts.DoctorName, UserAccounts.AccountType FROM UserAccounts WHERE ID=" + dataGridView1.SelectedCells[0].Value.ToString();
                     MySqlDataReader reader = command.ExecuteReader();
                     while (reader.Read())
                     {
@@ -807,6 +812,7 @@ namespace Dental_Management_System
                         textBoxViewAccountName.Text = (reader["Name"].ToString());
                         textBoxViewAccountUsername.Text = (reader["Username"].ToString());
                         textBoxViewAccountDoctorName.Text = (reader["DoctorName"].ToString());
+                        comboBoxViewUserAccountType.Text = (reader["AccountType"].ToString());
 
                     }
 

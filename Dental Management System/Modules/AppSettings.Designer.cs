@@ -81,8 +81,6 @@
             this.textBoxDoctorName = new System.Windows.Forms.TextBox();
             this.textBoxPasswordConfirm = new System.Windows.Forms.TextBox();
             this.ViewUsersPanel = new System.Windows.Forms.Panel();
-            this.label42 = new System.Windows.Forms.Label();
-            this.label36 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
             this.buttonViewAccountSaveChanges = new System.Windows.Forms.Button();
             this.buttonViewAccountDelete = new System.Windows.Forms.Button();
@@ -703,8 +701,6 @@
             // 
             // ViewUsersPanel
             // 
-            this.ViewUsersPanel.Controls.Add(this.label42);
-            this.ViewUsersPanel.Controls.Add(this.label36);
             this.ViewUsersPanel.Controls.Add(this.panel5);
             this.ViewUsersPanel.Controls.Add(this.dataGridView1);
             this.ViewUsersPanel.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -712,26 +708,6 @@
             this.ViewUsersPanel.Name = "ViewUsersPanel";
             this.ViewUsersPanel.Size = new System.Drawing.Size(594, 454);
             this.ViewUsersPanel.TabIndex = 14;
-            // 
-            // label42
-            // 
-            this.label42.AutoSize = true;
-            this.label42.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.label42.Location = new System.Drawing.Point(29, 338);
-            this.label42.Name = "label42";
-            this.label42.Size = new System.Drawing.Size(18, 15);
-            this.label42.TabIndex = 29;
-            this.label42.Text = "ID";
-            // 
-            // label36
-            // 
-            this.label36.AutoSize = true;
-            this.label36.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.label36.Location = new System.Drawing.Point(5, 338);
-            this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(18, 15);
-            this.label36.TabIndex = 28;
-            this.label36.Text = "ID";
             // 
             // panel5
             // 
@@ -1591,7 +1567,6 @@
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             this.ViewUsersPanel.ResumeLayout(false);
-            this.ViewUsersPanel.PerformLayout();
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -1738,8 +1713,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.Label label42;
-        private System.Windows.Forms.Label label36;
         private System.Windows.Forms.Label labelGeneralChangeHomePageApperance;
         private System.Windows.Forms.Label labelCannotChangeAdminAccountType;
     }

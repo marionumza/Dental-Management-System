@@ -47,7 +47,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.buttonExport = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.txtboxPatientIDNumber = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -99,9 +99,9 @@
             this.labelAdditionalFee.AutoSize = true;
             this.labelAdditionalFee.Location = new System.Drawing.Point(116, 161);
             this.labelAdditionalFee.Name = "labelAdditionalFee";
-            this.labelAdditionalFee.Size = new System.Drawing.Size(22, 15);
+            this.labelAdditionalFee.Size = new System.Drawing.Size(28, 15);
             this.labelAdditionalFee.TabIndex = 19;
-            this.labelAdditionalFee.Text = "---";
+            this.labelAdditionalFee.Text = "0.00";
             // 
             // label9
             // 
@@ -137,18 +137,18 @@
             this.labelVAT.AutoSize = true;
             this.labelVAT.Location = new System.Drawing.Point(116, 225);
             this.labelVAT.Name = "labelVAT";
-            this.labelVAT.Size = new System.Drawing.Size(19, 15);
+            this.labelVAT.Size = new System.Drawing.Size(28, 15);
             this.labelVAT.TabIndex = 15;
-            this.labelVAT.Text = "12";
+            this.labelVAT.Text = "0.00";
             // 
             // label16
             // 
             this.label16.AutoSize = true;
             this.label16.Location = new System.Drawing.Point(21, 225);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(46, 15);
+            this.label16.Size = new System.Drawing.Size(33, 15);
             this.label16.TabIndex = 14;
-            this.label16.Text = "VAT %: ";
+            this.label16.Text = "VAT: ";
             // 
             // label13
             // 
@@ -243,7 +243,7 @@
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.Control;
             this.panel1.Controls.Add(this.button2);
-            this.panel1.Controls.Add(this.button1);
+            this.panel1.Controls.Add(this.buttonExport);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel1.Location = new System.Drawing.Point(0, 356);
             this.panel1.Name = "panel1";
@@ -260,15 +260,16 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // button1
+            // buttonExport
             // 
-            this.button1.Enabled = false;
-            this.button1.Location = new System.Drawing.Point(450, 13);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(105, 23);
-            this.button1.TabIndex = 10;
-            this.button1.Text = "Export Receipt";
-            this.button1.UseVisualStyleBackColor = true;
+            this.buttonExport.Enabled = false;
+            this.buttonExport.Location = new System.Drawing.Point(450, 13);
+            this.buttonExport.Name = "buttonExport";
+            this.buttonExport.Size = new System.Drawing.Size(105, 23);
+            this.buttonExport.TabIndex = 10;
+            this.buttonExport.Text = "Export Receipt";
+            this.buttonExport.UseVisualStyleBackColor = true;
+            this.buttonExport.Click += new System.EventHandler(this.buttonExport_Click);
             // 
             // label1
             // 
@@ -364,10 +365,10 @@
             // txtboxPWDNumber
             // 
             this.txtboxPWDNumber.Enabled = false;
-            this.txtboxPWDNumber.Location = new System.Drawing.Point(134, 255);
+            this.txtboxPWDNumber.Location = new System.Drawing.Point(135, 255);
             this.txtboxPWDNumber.MaxLength = 24;
             this.txtboxPWDNumber.Name = "txtboxPWDNumber";
-            this.txtboxPWDNumber.Size = new System.Drawing.Size(149, 23);
+            this.txtboxPWDNumber.Size = new System.Drawing.Size(148, 23);
             this.txtboxPWDNumber.TabIndex = 8;
             this.txtboxPWDNumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtboxPWDNumber_KeyPress);
             // 
@@ -488,7 +489,7 @@
         private System.Windows.Forms.Label labelPatientID;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button buttonExport;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox comboBoxServiceList;

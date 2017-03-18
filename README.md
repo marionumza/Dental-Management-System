@@ -6,7 +6,7 @@ Note: This is not intended to be used in a commercial environment unless stated 
 
 To login to the system, default username = **admin** and password = **1234**
 
-Internal current software version: **0.0.2.101** as of ***March 18, 2017***
+Internal current software version: **0.0.2.104** as of ***March 18, 2017***
 
 For this software to work properly, you need the following...
 

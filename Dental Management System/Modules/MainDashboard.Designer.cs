@@ -145,7 +145,7 @@
             this.metroTabControl1.FontWeight = MetroFramework.MetroTabControlWeight.Regular;
             this.metroTabControl1.Location = new System.Drawing.Point(0, 0);
             this.metroTabControl1.Name = "metroTabControl1";
-            this.metroTabControl1.SelectedIndex = 1;
+            this.metroTabControl1.SelectedIndex = 0;
             this.metroTabControl1.Size = new System.Drawing.Size(1080, 560);
             this.metroTabControl1.TabIndex = 0;
             this.metroTabControl1.UseSelectable = true;
@@ -191,7 +191,7 @@
             this.btnViewAppointments.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnViewAppointments.ImageKey = "notificationbell_icon.png";
             this.btnViewAppointments.ImageList = this.imageList1;
-            this.btnViewAppointments.Location = new System.Drawing.Point(444, 382);
+            this.btnViewAppointments.Location = new System.Drawing.Point(444, 383);
             this.btnViewAppointments.Name = "btnViewAppointments";
             this.btnViewAppointments.Size = new System.Drawing.Size(220, 56);
             this.btnViewAppointments.TabIndex = 16;

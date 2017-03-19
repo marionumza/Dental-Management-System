@@ -145,7 +145,7 @@
             this.metroTabControl1.FontWeight = MetroFramework.MetroTabControlWeight.Regular;
             this.metroTabControl1.Location = new System.Drawing.Point(0, 0);
             this.metroTabControl1.Name = "metroTabControl1";
-            this.metroTabControl1.SelectedIndex = 0;
+            this.metroTabControl1.SelectedIndex = 1;
             this.metroTabControl1.Size = new System.Drawing.Size(1080, 560);
             this.metroTabControl1.TabIndex = 0;
             this.metroTabControl1.UseSelectable = true;
@@ -428,7 +428,7 @@
             // btnRefreshRecordList
             // 
             this.btnRefreshRecordList.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnRefreshRecordList.Location = new System.Drawing.Point(569, 11);
+            this.btnRefreshRecordList.Location = new System.Drawing.Point(10, 12);
             this.btnRefreshRecordList.Name = "btnRefreshRecordList";
             this.btnRefreshRecordList.Size = new System.Drawing.Size(104, 23);
             this.btnRefreshRecordList.TabIndex = 4;
@@ -442,6 +442,7 @@
             this.txtboxSearch.Name = "txtboxSearch";
             this.txtboxSearch.Size = new System.Drawing.Size(420, 29);
             this.txtboxSearch.TabIndex = 1;
+            this.txtboxSearch.Visible = false;
             // 
             // label1
             // 
@@ -451,6 +452,7 @@
             this.label1.Size = new System.Drawing.Size(121, 21);
             this.label1.TabIndex = 0;
             this.label1.Text = "Search by name";
+            this.label1.Visible = false;
             // 
             // tabPage3
             // 
